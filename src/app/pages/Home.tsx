@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
 
@@ -69,7 +70,7 @@ export function Home() {
 
   const testimonials = [
     {
-      quote: "Revolution Tech transformed our legacy systems into a modern, scalable platform. Their expertise and professionalism are unmatched.",
+      quote: "Next Revolution Tech transformed our legacy systems into a modern, scalable platform. Their expertise and professionalism are unmatched.",
       author: "Sarah Johnson",
       title: "CTO, TechCorp Global",
     },
@@ -79,7 +80,7 @@ export function Home() {
       title: "VP Engineering, DataStream Inc",
     },
     {
-      quote: "Working with Revolution Tech was a game-changer for our business. They truly understand enterprise needs.",
+      quote: "Working with Next Revolution Tech was a game-changer for our business. They truly understand enterprise needs.",
       author: "Emily Rodriguez",
       title: "CEO, CloudVentures",
     },
@@ -87,6 +88,10 @@ export function Home() {
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
+        <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1e3a8a] to-[#1e40af] dark:from-background dark:to-background text-white dark:text-foreground overflow-hidden transition-colors duration-300">
         <div className="absolute inset-0">
@@ -169,7 +174,7 @@ export function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="mb-6 text-primary">Why Choose Revolution Tech</h2>
+              <h2 className="mb-6 text-primary">Why Choose Next Revolution Tech</h2>
               <p className="text-xl text-muted-foreground mb-8">
                 We partner with forward-thinking enterprises to deliver technology solutions that drive real business value.
               </p>

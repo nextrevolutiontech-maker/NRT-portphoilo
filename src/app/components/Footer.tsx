@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <img src={logoImage} alt="Revolution Tech" className="h-[140px] w-auto object-contain mb-4 dark:brightness-0 dark:invert" />
+            <img src={logoImage} alt="Next Revolution Tech" className="h-[140px] w-auto object-contain mb-4 dark:brightness-0 dark:invert" />
             <p className="text-sm text-gray-400 mb-4">
               Engineering Scalable Digital Solutions for a Connected World
             </p>
@@ -62,7 +62,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span className="text-muted-foreground">info@revolutiontech.com</span>
+                <span className="text-muted-foreground">info@nextrevolutiontech.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
@@ -78,7 +78,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-border pt-8 text-sm text-muted-foreground flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>&copy; {new Date().getFullYear()} Revolution Tech. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Next Revolution Tech. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>
             <Link to="#" className="hover:text-foreground transition-colors">Terms of Service</Link>

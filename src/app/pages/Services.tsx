@@ -1,5 +1,6 @@
 import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function Services() {
@@ -80,6 +81,10 @@ export function Services() {
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Services - Next Revolution Tech | Custom Software, SaaS & AI</title>
+        <meta name="description" content="Explore Next Revolution Tech's services including Custom Software, SaaS Development, AI & Automation, and Cloud Solutions." />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

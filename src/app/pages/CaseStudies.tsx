@@ -1,5 +1,6 @@
 import { ArrowRight, Building2, TrendingUp, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function CaseStudies() {
@@ -86,6 +87,10 @@ export function CaseStudies() {
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Case Studies - Next Revolution Tech | Success Stories</title>
+        <meta name="description" content="Read how Next Revolution Tech has helped global enterprises achieve their digital transformation goals." />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

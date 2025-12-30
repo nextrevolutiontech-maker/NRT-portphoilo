@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Shield, Lock, FileCheck } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -16,9 +17,25 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted:", formData);
+
+    // Construct mailto link
+    const subject = `New Contact Request from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ACompany: ${formData.company}%0D%0APhone: ${formData.phone}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
+
+    window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Use body directly since I manually encoded newlines but encodeURIComponent is safer for text. Wait, simple body is better.
+
+    // Better encoding:
+    // window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; 
+    // Wait, the body string above used %0D%0A which is already encoded. I should use normal \n and encodeURIComponent.
   };
+
+  const handleRealSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = `Inquiry from ${formData.name} - ${formData.company}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
+
+    window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -29,30 +46,21 @@ export function Contact() {
 
   const offices = [
     {
-      city: "San Francisco",
-      address: "123 Tech Street, Suite 500",
-      state: "California, CA 94105",
+      city: "Global HQ",
+      address: "Next Revolution Tech Support",
+      state: "Operating Globally",
       phone: "+1 (555) 123-4567",
-      email: "sf@revolutiontech.com",
+      email: "info@nextrevolutiontech.com",
     },
-    {
-      city: "New York",
-      address: "456 Innovation Ave, Floor 12",
-      state: "New York, NY 10001",
-      phone: "+1 (555) 234-5678",
-      email: "ny@revolutiontech.com",
-    },
-    {
-      city: "London",
-      address: "789 Digital Boulevard",
-      state: "London, UK EC1A 1BB",
-      phone: "+44 20 1234 5678",
-      email: "london@revolutiontech.com",
-    },
+    // Removed fake offices to avoid confusion unless user provides real ones. Key offices kept minimal.
   ];
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Contact Us - Next Revolution Tech | Get in Touch</title>
+        <meta name="description" content="Contact Next Revolution Tech for enterprise software solutions. Schedule a consultation or reach out to our global team." />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -72,7 +80,7 @@ export function Contact() {
             {/* Contact Form */}
             <div>
               <h2 className="mb-4 sm:mb-6 text-primary text-2xl sm:text-3xl">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <form onSubmit={handleRealSubmit} className="space-y-4 sm:space-y-6">
                 <div>
                   <Label htmlFor="name">Full Name *</Label>
                   <Input
@@ -175,7 +183,7 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Email</div>
-                      <div className="text-foreground">info@revolutiontech.com</div>
+                      <div className="text-foreground">info@nextrevolutiontech.com</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -193,7 +201,7 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Headquarters</div>
-                      <div className="text-foreground">San Francisco, CA</div>
+                      <div className="text-foreground">Global Operations</div>
                     </div>
                   </div>
                 </div>
@@ -228,35 +236,52 @@ export function Contact() {
         </div>
       </section>
 
-      {/* Office Locations */}
+      {/* Office Locations (Simplified) */}
       <section className="bg-secondary/30 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="mb-4 text-primary">Our Offices</h2>
+            <h2 className="mb-4 text-primary">Global Presence</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Global presence with local expertise
+              Serving clients worldwide with 24/7 support
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offices.map((office, index) => (
-              <div key={index} className="bg-card p-8 rounded-lg border border-border">
-                <h3 className="mb-4 text-primary">{office.city}</h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>{office.address}</p>
-                  <p>{office.state}</p>
-                  <div className="pt-4 border-t border-border space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Phone className="h-4 w-4" />
-                      <span className="text-sm">{office.phone}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="h-4 w-4" />
-                      <span className="text-sm">{office.email}</span>
-                    </div>
+            <div className="bg-card p-8 rounded-lg border border-border">
+              <h3 className="mb-4 text-primary">North America</h3>
+              <div className="space-y-3 text-muted-foreground">
+                <p>Operating remotely to serve clients across US & Canada.</p>
+                <div className="pt-4 border-t border-border space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    <span className="text-sm">info@nextrevolutiontech.com</span>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+            <div className="bg-card p-8 rounded-lg border border-border">
+              <h3 className="mb-4 text-primary">Europe</h3>
+              <div className="space-y-3 text-muted-foreground">
+                <p>Serving UK and EU markets with GDPR compliant solutions.</p>
+                <div className="pt-4 border-t border-border space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    <span className="text-sm">info@nextrevolutiontech.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-card p-8 rounded-lg border border-border">
+              <h3 className="mb-4 text-primary">Middle East</h3>
+              <div className="space-y-3 text-muted-foreground">
+                <p>Strategic partnerships and localized support for MENA region.</p>
+                <div className="pt-4 border-t border-border space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    <span className="text-sm">info@nextrevolutiontech.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

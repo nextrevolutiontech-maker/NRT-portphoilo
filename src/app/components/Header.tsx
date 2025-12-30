@@ -27,7 +27,7 @@ export function Header() {
           <Link to="/" className="flex items-center">
             <motion.img
               src={logoImage}
-              alt="Revolution Tech"
+              alt="Next Revolution Tech"
               className="h-[140px] w-auto object-contain drop-shadow-md mb-[5px] dark:brightness-0 dark:invert"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}

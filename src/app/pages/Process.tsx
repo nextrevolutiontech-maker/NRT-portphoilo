@@ -1,5 +1,6 @@
 import { Search, Lightbulb, Code2, Rocket, HeadphonesIcon, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export function Process() {
   const steps = [
@@ -86,6 +87,10 @@ export function Process() {
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>Our Process - Next Revolution Tech | How We Work</title>
+        <meta name="description" content="Discover Next Revolution Tech's proven development process, from discovery and strategy to deployment and support." />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

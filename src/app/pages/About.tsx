@@ -1,4 +1,5 @@
 import { Target, Eye, Heart, Globe, Users, Award } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function About() {
@@ -36,11 +37,15 @@ export function About() {
 
   return (
     <div className="pt-20">
+      <Helmet>
+        <title>About Us - Next Revolution Tech | Global Technology Partner</title>
+        <meta name="description" content="Learn about Next Revolution Tech, our mission, vision, and our journey in delivering world-class technology solutions." />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-12 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl">About Revolution Tech</h1>
+            <h1 className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl">About Next Revolution Tech</h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90">
               A global technology partner committed to engineering innovative solutions that empower businesses to thrive in the digital age.
             </p>
