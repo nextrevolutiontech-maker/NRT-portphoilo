@@ -1,0 +1,26 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+@layer base {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        @apply bg-muted-foreground/30 hover:bg-muted-foreground/50;
+    }
+}
