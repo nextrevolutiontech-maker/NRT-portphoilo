@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, Mail, Loader2, AlertCircle } from "lucide-react";
 import { motion } from "motion/react";
-import { API_BASE_URL } from "../../config";
+import { API_BASE_URL } from "../../../config";
 
 export function Login() {
     const [email, setEmail] = useState("");
