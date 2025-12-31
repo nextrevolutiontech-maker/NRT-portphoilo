@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
+import { toast } from "sonner";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -29,12 +30,40 @@ export function Contact() {
     // Wait, the body string above used %0D%0A which is already encoded. I should use normal \n and encodeURIComponent.
   };
 
-  const handleRealSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = `Inquiry from ${formData.name} - ${formData.company}`;
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-    window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const handleRealSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      setStatus('success');
+      toast.success("Message sent successfully!", {
+        description: "We will get back to you shortly.",
+        duration: 5000,
+      });
+      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+    } catch (error: any) {
+      console.error(error);
+      setStatus('error');
+      toast.error("Failed to send message", {
+        description: error.message || "Something went wrong. Please try again.",
+      });
+    } finally {
+      setStatus('idle');
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

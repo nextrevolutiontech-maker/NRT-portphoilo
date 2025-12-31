@@ -1,83 +1,42 @@
-import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
+// Helper to map icon names to components
+const getIcon = (name: string) => {
+  const icons: any = {
+    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe
+  };
+  return icons[name] || <Code className="h-10 w-10" />;
+};
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  image_url: string;
+}
+
 export function Services() {
-  const services = [
-    {
-      icon: <Code className="h-10 w-10" />,
-      title: "Custom Software Development",
-      description: "Enterprise-grade custom software solutions tailored to your unique business requirements.",
-      features: [
-        "Full-stack web applications",
-        "Enterprise system integration",
-        "Legacy system modernization",
-        "Microservices architecture",
-      ],
-      image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjY4ODQxMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      icon: <Cloud className="h-10 w-10" />,
-      title: "SaaS Development",
-      description: "Build scalable SaaS products with modern architecture and best practices.",
-      features: [
-        "Multi-tenant architecture",
-        "Subscription management",
-        "API development",
-        "Performance optimization",
-      ],
-      image: "https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbG91ZCUyMGNvbXB1dGluZyUyMHNlcnZlcnxlbnwxfHx8fDE3NjY5MDM3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      icon: <Smartphone className="h-10 w-10" />,
-      title: "Web & Mobile Applications",
-      description: "Responsive web and native mobile applications that deliver exceptional user experiences.",
-      features: [
-        "Progressive Web Apps (PWA)",
-        "iOS and Android development",
-        "Cross-platform solutions",
-        "UI/UX design services",
-      ],
-      image: "https://images.unsplash.com/photo-1616386261012-8a328c89d5b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNobm9sb2d5JTIwb2ZmaWNlfGVufDF8fHx8MTc2Njg3MTQ3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      icon: <Cpu className="h-10 w-10" />,
-      title: "AI & Automation",
-      description: "Leverage artificial intelligence and automation to transform your business operations.",
-      features: [
-        "Machine learning models",
-        "Process automation",
-        "Natural language processing",
-        "Predictive analytics",
-      ],
-      image: "https://images.unsplash.com/photo-1618758992242-2d4bc63a1be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2V8ZW58MXx8fHwxNzY2OTQ4NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      icon: <Database className="h-10 w-10" />,
-      title: "Cloud & DevOps",
-      description: "Modern cloud infrastructure and DevOps practices for continuous delivery.",
-      features: [
-        "Cloud migration services",
-        "Infrastructure as code",
-        "CI/CD pipeline setup",
-        "Container orchestration",
-      ],
-      image: "https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbG91ZCUyMGNvbXB1dGluZyUyMHNlcnZlcnxlbnwxfHx8fDE3NjY5MDM3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      icon: <Shield className="h-10 w-10" />,
-      title: "Security & Compliance",
-      description: "Comprehensive security solutions to protect your assets and ensure compliance.",
-      features: [
-        "Security audits",
-        "Compliance consulting",
-        "Penetration testing",
-        "Data encryption",
-      ],
-      image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjY4ODQxMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-  ];
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/services")
+      .then(res => res.json())
+      .then(data => {
+        setServices(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch services", err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="pt-20">
@@ -101,36 +60,39 @@ export function Services() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}
-              >
-                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
-                    {service.icon}
+            {services.map((service, index) => {
+              const Icon = getIcon(service.icon);
+              return (
+                <div
+                  key={service.id || index}
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                    }`}
+                >
+                  <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                    <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6">
+                      {typeof Icon === 'function' ? <Icon className="h-10 w-10" /> : Icon}
+                    </div>
+                    <h2 className="mb-4 text-primary">{service.title}</h2>
+                    <p className="text-xl text-muted-foreground mb-6">{service.description}</p>
+                    <ul className="space-y-3">
+                      {Array.isArray(service.features) && service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center gap-3">
+                          <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                          <span className="text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h2 className="mb-4 text-primary">{service.title}</h2>
-                  <p className="text-xl text-muted-foreground mb-6">{service.description}</p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                    <ImageWithFallback
+                      src={service.image_url}
+                      alt={service.title}
+                      className="rounded-lg shadow-xl w-full h-auto"
+                    />
+                  </div>
                 </div>
-                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                  <ImageWithFallback
-                    src={service.image}
-                    alt={service.title}
-                    className="rounded-lg shadow-xl w-full h-auto"
-                  />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

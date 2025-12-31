@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
-import logoImage from "@/assets/NRT_LOGO-removebg-preview.png";
+const logoImage = "https://res.cloudinary.com/de4oqb7rz/image/upload/v1767171735/nrt-portfolio/wto8zoxcklpxskwobvv6.png";
 
 export function Footer() {
   return (

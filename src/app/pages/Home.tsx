@@ -1,42 +1,58 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp } from "lucide-react";
+import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
+import { VideoHero } from "../components/ui/VideoHero";
+
+// Helper to map icon names to components
+const getIcon = (name: string) => {
+  const icons: any = {
+    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe
+  };
+  return icons[name] || <Code className="h-8 w-8" />;
+};
+
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  image_url: string;
+}
+
+interface Testimonial {
+  id: number;
+  author: string;
+  role: string;
+  company: string;
+  quote: string;
+  rating: number;
+  image_url: string;
+}
 
 export function Home() {
-  const services = [
-    {
-      icon: <Code className="h-8 w-8" />,
-      title: "Custom Software",
-      description: "Tailored enterprise solutions built for your specific business needs with scalable architecture.",
-    },
-    {
-      icon: <Cloud className="h-8 w-8" />,
-      title: "SaaS Development",
-      description: "End-to-end SaaS product development with robust infrastructure and modern technologies.",
-    },
-    {
-      icon: <Cpu className="h-8 w-8" />,
-      title: "AI & Automation",
-      description: "Intelligent automation solutions to optimize your business processes and drive efficiency.",
-    },
-    {
-      icon: <BarChart3 className="h-8 w-8" />,
-      title: "Cloud & DevOps",
-      description: "Scalable cloud infrastructure and DevOps practices for continuous delivery and deployment.",
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Enterprise Security",
-      description: "Comprehensive security solutions to protect your data and ensure compliance.",
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Performance Optimization",
-      description: "Enhance application performance with cutting-edge optimization techniques.",
-    },
-  ];
+  const [services, setServices] = useState<Service[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("http://localhost:5000/api/services"),
+      fetch("http://localhost:5000/api/testimonials")
+    ])
+      .then(([resServices, resTestimonials]) => Promise.all([resServices.json(), resTestimonials.json()]))
+      .then(([dataServices, dataTestimonials]) => {
+        setServices(Array.isArray(dataServices) ? dataServices : []);
+        setTestimonials(Array.isArray(dataTestimonials) ? dataTestimonials : []);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load home data", err);
+        setLoading(false);
+      });
+  }, []);
 
   const stats = [
     { value: "200+", label: "Projects Delivered" },
@@ -68,23 +84,8 @@ export function Home() {
     },
   ];
 
-  const testimonials = [
-    {
-      quote: "Next Revolution Tech transformed our legacy systems into a modern, scalable platform. Their expertise and professionalism are unmatched.",
-      author: "Sarah Johnson",
-      title: "CTO, TechCorp Global",
-    },
-    {
-      quote: "The team delivered beyond our expectations. Their attention to detail and commitment to quality is remarkable.",
-      author: "Michael Chen",
-      title: "VP Engineering, DataStream Inc",
-    },
-    {
-      quote: "Working with Next Revolution Tech was a game-changer for our business. They truly understand enterprise needs.",
-      author: "Emily Rodriguez",
-      title: "CEO, CloudVentures",
-    },
-  ];
+  // If no services yet (e.g. fresh DB), fallback to empty state or skip section?
+  // We'll just render whatever we have. User can add data via Admin.
 
   return (
     <div className="pt-20">
@@ -105,7 +106,14 @@ export function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                to="/contact"
+                to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
+                onClick={(e) => {
+                  if (!localStorage.getItem('token')) {
+                    e.preventDefault();
+                    window.location.href = '/admin/login';
+                    alert("Please login to schedule a consultation.");
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-2 bg-white dark:bg-primary text-[#1e3a8a] dark:text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 rounded-md hover:bg-gray-100 dark:hover:bg-primary/90 transition-colors text-center"
               >
                 Schedule Consultation
@@ -121,6 +129,9 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Video Slider Section */}
+      <VideoHero />
 
       {/* Stats Section */}
       <section className="bg-background border-b border-border">
@@ -146,16 +157,21 @@ export function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
-              >
-                <div className="text-primary mb-4">{service.icon}</div>
-                <h3 className="mb-3 text-card-foreground">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </div>
-            ))}
+            {services.slice(0, 6).map((service, index) => {
+              const Icon = getIcon(service.icon);
+              return (
+                <div
+                  key={service.id || index}
+                  className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+                >
+                  <div className="text-primary mb-4">
+                    {typeof Icon === 'function' ? <Icon className="h-8 w-8" /> : Icon}
+                  </div>
+                  <h3 className="mb-3 text-card-foreground">{service.title}</h3>
+                  <p className="text-muted-foreground">{service.description}</p>
+                </div>
+              );
+            })}
           </div>
           <div className="text-center mt-12">
             <Link
@@ -214,11 +230,20 @@ export function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-card p-8 rounded-lg border border-border">
+              <div key={testimonial.id || index} className="bg-card p-8 rounded-lg border border-border">
                 <p className="text-muted-foreground mb-6 italic">"{testimonial.quote}"</p>
-                <div className="border-t border-border pt-4">
-                  <div className="text-card-foreground">{testimonial.author}</div>
-                  <div className="text-sm text-muted-foreground">{testimonial.title}</div>
+                <div className="border-t border-border pt-4 flex items-center gap-4">
+                  {testimonial.image_url && (
+                    <img
+                      src={testimonial.image_url}
+                      alt={testimonial.author}
+                      className="w-10 h-10 object-cover rounded-full bg-secondary"
+                    />
+                  )}
+                  <div>
+                    <div className="text-card-foreground">{testimonial.author}</div>
+                    <div className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</div>
+                  </div>
                 </div>
               </div>
             ))}

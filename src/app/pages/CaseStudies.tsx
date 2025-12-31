@@ -1,89 +1,48 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Building2, TrendingUp, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
+interface Project {
+  title: string;
+  industry: string;
+  challenge: string;
+  solution: string;
+  results: string[];
+  image_url: string;
+}
+
 export function CaseStudies() {
-  const caseStudies = [
-    {
-      title: "Global Financial Platform Modernization",
-      industry: "Financial Services",
-      challenge: "Legacy system hindering growth and innovation, requiring complete modernization while maintaining 24/7 operations.",
-      solution: "Phased migration to microservices architecture with zero downtime, implementing modern security protocols and scalable cloud infrastructure.",
-      results: [
-        "40% reduction in operational costs",
-        "3x improvement in system performance",
-        "99.99% uptime achieved",
-        "Enhanced security compliance",
-      ],
-      image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjY4ODQxMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      title: "Healthcare SaaS Platform",
-      industry: "Healthcare Technology",
-      challenge: "Need for HIPAA-compliant patient management system with real-time collaboration features for distributed medical teams.",
-      solution: "Built enterprise-grade SaaS platform with end-to-end encryption, real-time sync, and comprehensive audit logging.",
-      results: [
-        "Serving 500+ healthcare facilities",
-        "Processing 10M+ patient records",
-        "HIPAA and SOC 2 compliant",
-        "95% customer satisfaction rate",
-      ],
-      image: "https://images.unsplash.com/photo-1618758992242-2d4bc63a1be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2V8ZW58MXx8fHwxNzY2OTQ4NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      title: "AI-Powered Supply Chain Optimization",
-      industry: "Logistics & Manufacturing",
-      challenge: "Inefficient supply chain processes causing delays and increased costs across global operations.",
-      solution: "Implemented AI/ML algorithms for demand forecasting, route optimization, and predictive maintenance with real-time dashboards.",
-      results: [
-        "30% reduction in delivery times",
-        "25% decrease in operational costs",
-        "$5M annual savings achieved",
-        "Improved inventory accuracy to 98%",
-      ],
-      image: "https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbG91ZCUyMGNvbXB1dGluZyUyMHNlcnZlcnxlbnwxfHx8fDE3NjY5MDM3ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      title: "E-Commerce Platform Scalability",
-      industry: "Retail & E-Commerce",
-      challenge: "Platform unable to handle peak traffic during sales events, resulting in lost revenue and poor customer experience.",
-      solution: "Re-architected platform with auto-scaling infrastructure, CDN integration, and optimized database queries.",
-      results: [
-        "Handled 10x traffic increase",
-        "50% improvement in page load times",
-        "Zero downtime during peak sales",
-        "200% increase in conversion rate",
-      ],
-      image: "https://images.unsplash.com/photo-1616386261012-8a328c89d5b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNobm9sb2d5JTIwb2ZmaWNlfGVufDF8fHx8MTc2Njg3MTQ3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      title: "Enterprise Data Analytics Platform",
-      industry: "Technology & Data",
-      challenge: "Disparate data sources preventing unified business intelligence and real-time decision making.",
-      solution: "Built centralized data warehouse with ETL pipelines, real-time analytics, and custom visualization dashboards.",
-      results: [
-        "Unified 50+ data sources",
-        "Real-time insights delivery",
-        "70% faster reporting",
-        "Enhanced data-driven decisions",
-      ],
-      image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50JTIwY29kZXxlbnwxfHx8fDE3NjY4ODQxMTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-    {
-      title: "Banking Mobile App Transformation",
-      industry: "Banking & Finance",
-      challenge: "Outdated mobile banking app with poor UX leading to customer churn and negative reviews.",
-      solution: "Complete redesign and rebuild of mobile app with modern UI/UX, biometric security, and enhanced features.",
-      results: [
-        "4.8-star app store rating",
-        "60% increase in active users",
-        "50% reduction in support tickets",
-        "Industry-leading security features",
-      ],
-      image: "https://images.unsplash.com/photo-1618758992242-2d4bc63a1be7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2V8ZW58MXx8fHwxNzY2OTQ4NTQyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    },
-  ];
+  const [caseStudies, setCaseStudies] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/projects')
+      .then(res => res.json())
+      .then(data => {
+        // Map backend fields to frontend expected fields if necessary, 
+        // essentially ensuring results is an array
+        const formatted = (Array.isArray(data) ? data : []).map((p: any) => ({
+          ...p,
+          results: Array.isArray(p.results) ? p.results : []
+        }));
+        setCaseStudies(formatted);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load projects", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="pt-20 min-h-screen flex items-center justify-center bg-black text-white">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-20">
@@ -113,7 +72,7 @@ export function CaseStudies() {
                 className="bg-card rounded-lg border border-border overflow-hidden hover:shadow-xl transition-shadow"
               >
                 <ImageWithFallback
-                  src={study.image}
+                  src={study.image_url || study.image}
                   alt={study.title}
                   className="w-full h-64 object-cover"
                 />

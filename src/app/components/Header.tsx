@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
-import logoImage from "@/assets/NRT_LOGO-removebg-preview.png";
+const logoImage = "https://res.cloudinary.com/de4oqb7rz/image/upload/v1767171735/nrt-portfolio/wto8zoxcklpxskwobvv6.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -69,7 +69,34 @@ export function Header() {
           </div>
 
           {/* CTA Button Desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Login/Dashboard Button */}
+            <div className="hidden lg:block">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {localStorage.getItem('token') ? (
+                  <Link
+                    to="/admin/dashboard"
+                    className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  >
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    to="/admin/login"
+                    className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  >
+                    Login
+                  </Link>
+                )}
+              </motion.div>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -78,7 +105,14 @@ export function Header() {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                to="/contact"
+                to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
+                onClick={(e) => {
+                  if (!localStorage.getItem('token')) {
+                    e.preventDefault();
+                    window.location.href = '/admin/login';
+                    alert("Please login to schedule a consultation.");
+                  }
+                }}
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
               >
                 Get Started
