@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
 import { VideoHero } from "../components/ui/VideoHero";
+import { API_BASE_URL } from "../../config";
 
 // Helper to map icon names to components
 const getIcon = (name: string) => {
@@ -39,8 +40,10 @@ export function Home() {
 
   useEffect(() => {
     Promise.all([
-      fetch("http://localhost:5000/api/services"),
-      fetch("http://localhost:5000/api/testimonials")
+
+      // ...
+      fetch(`${API_BASE_URL}/api/services`),
+      fetch(`${API_BASE_URL}/api/testimonials`)
     ])
       .then(([resServices, resTestimonials]) => Promise.all([resServices.json(), resTestimonials.json()]))
       .then(([dataServices, dataTestimonials]) => {

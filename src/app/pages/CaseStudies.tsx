@@ -3,6 +3,7 @@ import { ArrowRight, Building2, TrendingUp, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { API_BASE_URL } from "../../config";
 
 interface Project {
   title: string;
@@ -18,7 +19,10 @@ export function CaseStudies() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects')
+
+
+    // ...
+    fetch(`${API_BASE_URL}/api/projects`)
       .then(res => res.json())
       .then(data => {
         // Map backend fields to frontend expected fields if necessary, 

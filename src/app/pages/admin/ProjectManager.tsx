@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Plus, Trash2, Upload, Loader2, Save, X } from "lucide-react";
+import { API_BASE_URL } from "../../../config";
 
 interface Project {
     id: number;
@@ -33,7 +34,7 @@ export function ProjectManager() {
 
     const fetchProjects = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/projects");
+            const res = await fetch(`${API_BASE_URL}/api/projects`);
             const data = await res.json();
             setProjects(Array.isArray(data) ? data : []);
         } catch (error) {
@@ -48,7 +49,7 @@ export function ProjectManager() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -82,7 +83,7 @@ export function ProjectManager() {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/api/projects", {
+            const res = await fetch(`${API_BASE_URL}/api/projects`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` }, // Content-Type is auto-set for FormData
                 body: data,

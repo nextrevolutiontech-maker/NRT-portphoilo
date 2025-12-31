@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { toast } from "sonner";
+import { API_BASE_URL } from "../../config";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -37,7 +38,10 @@ export function Contact() {
     setStatus('loading');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+
+
+      // ...
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

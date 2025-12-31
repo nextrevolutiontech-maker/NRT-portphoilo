@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Plus, Trash2, Upload, Loader2, Save, X } from "lucide-react";
+import { API_BASE_URL } from "../../../config";
 
 interface Testimonial {
     id: number;
@@ -34,7 +35,7 @@ export function TestimonialManager() {
 
     const fetchTestimonials = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/testimonials");
+            const res = await fetch(`${API_BASE_URL}/api/testimonials`);
             const data = await res.json();
             setTestimonials(Array.isArray(data) ? data : []);
         } catch (error) {
@@ -49,7 +50,7 @@ export function TestimonialManager() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`http://localhost:5000/api/testimonials/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/testimonials/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -81,7 +82,7 @@ export function TestimonialManager() {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/api/testimonials", {
+            const res = await fetch(`${API_BASE_URL}/api/testimonials`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
                 body: data,

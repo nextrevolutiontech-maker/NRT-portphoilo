@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Plus, Trash2, Upload, Loader2, Save, X } from "lucide-react";
+import { API_BASE_URL } from "../../../config";
 
 interface Service {
     id: number;
@@ -32,7 +33,7 @@ export function ServiceManager() {
 
     const fetchServices = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/services");
+            const res = await fetch(`${API_BASE_URL}/api/services`);
             const data = await res.json();
             setServices(Array.isArray(data) ? data : []);
         } catch (error) {
@@ -47,7 +48,7 @@ export function ServiceManager() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`http://localhost:5000/api/services/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/services/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -80,7 +81,7 @@ export function ServiceManager() {
         }
 
         try {
-            const res = await fetch("http://localhost:5000/api/services", {
+            const res = await fetch(`${API_BASE_URL}/api/services`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
                 body: data,

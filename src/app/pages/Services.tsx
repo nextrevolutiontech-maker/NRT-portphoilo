@@ -3,6 +3,7 @@ import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { API_BASE_URL } from "../../config";
 
 // Helper to map icon names to components
 const getIcon = (name: string) => {
@@ -26,7 +27,10 @@ export function Services() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/services")
+
+
+    // ... inside the component
+    fetch(`${API_BASE_URL}/api/services`)
       .then(res => res.json())
       .then(data => {
         setServices(Array.isArray(data) ? data : []);
