@@ -16,8 +16,8 @@ export function About() {
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "Collaboration",
-      description: "We work as an extension of your team, fostering strong partnerships.",
+      title: "Remote & Agile",
+      description: "We work as a globally distributed team, ensuring 24/7 productivity and flexibility.",
     },
     {
       icon: <Globe className="h-8 w-8" />,
@@ -27,12 +27,11 @@ export function About() {
   ];
 
   const timeline = [
-    { year: "2010", event: "Founded with a vision to transform enterprise technology" },
-    { year: "2013", event: "Expanded to serve Fortune 500 companies" },
-    { year: "2016", event: "Opened offices in Europe and Asia" },
-    { year: "2019", event: "Launched AI and Machine Learning division" },
-    { year: "2022", event: "Achieved industry-leading 98% client retention" },
-    { year: "2024", event: "Recognized as Top Global Tech Innovator" },
+    { year: "Late 2025", event: "Founded as a Global Remote Agency" },
+    { year: "2025", event: "Launched SaaS & Food Nutrition Platforms" },
+    { year: "2025", event: "Developed Bidding App & Baba App" },
+    { year: "2025", event: "Expanded into Ecommerce & Advanced UI/UX Design" },
+    { year: "2025", event: "Delivering Real-World Solutions Globally" },
   ];
 
   return (
@@ -47,7 +46,7 @@ export function About() {
           <div className="max-w-3xl">
             <h1 className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl">About Next Revolution Tech</h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90">
-              A global technology partner committed to engineering innovative solutions that empower businesses to thrive in the digital age.
+              A global, fully remote technology partner committed to engineering innovative solutions that empower businesses to thrive in the digital age.
             </p>
           </div>
         </div>
@@ -89,7 +88,7 @@ export function About() {
           <div className="text-center mb-16">
             <h2 className="mb-4 text-primary">Our Journey</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Over a decade of innovation and excellence in enterprise technology
+              Rapid growth and innovation in enterprise technology since late 2025
             </p>
           </div>
           <div className="space-y-8">
@@ -99,10 +98,10 @@ export function About() {
                 className="flex gap-6 items-start"
               >
                 <div className="flex-shrink-0 w-24 h-24 bg-background border-4 border-primary rounded-full flex items-center justify-center">
-                  <span className="text-primary">{item.year}</span>
+                  <span className="text-primary font-bold text-center text-sm px-2">{item.year}</span>
                 </div>
                 <div className="flex-grow bg-background p-6 rounded-lg border border-border mt-4">
-                  <p className="text-foreground">{item.event}</p>
+                  <p className="text-foreground font-medium">{item.event}</p>
                 </div>
               </div>
             ))}
@@ -141,26 +140,26 @@ export function About() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="mb-6">Global Reach, Local Expertise</h2>
+              <h2 className="mb-6">Borderless Innovation, Global Impact</h2>
               <p className="text-xl text-primary-foreground/90 mb-6">
-                With offices across North America, Europe, Asia, and the Middle East, we deliver world-class solutions with local understanding and support.
+                We operate as a fully remote, globally distributed team, collaborating seamlessly across time zones to deliver world-class solutions.
               </p>
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div>
-                  <div className="text-4xl mb-2">4</div>
-                  <div className="text-primary-foreground/90">Continents</div>
+                  <div className="text-4xl mb-2">100%</div>
+                  <div className="text-primary-foreground/90">Remote First</div>
                 </div>
                 <div>
-                  <div className="text-4xl mb-2">12</div>
-                  <div className="text-primary-foreground/90">Office Locations</div>
+                  <div className="text-4xl mb-2">Global</div>
+                  <div className="text-primary-foreground/90">Client Base</div>
                 </div>
                 <div>
-                  <div className="text-4xl mb-2">200+</div>
-                  <div className="text-primary-foreground/90">Team Members</div>
+                  <div className="text-4xl mb-2">24/7</div>
+                  <div className="text-primary-foreground/90">Operations</div>
                 </div>
                 <div>
-                  <div className="text-4xl mb-2">50+</div>
-                  <div className="text-primary-foreground/90">Countries Served</div>
+                  <div className="text-4xl mb-2">Multiple</div>
+                  <div className="text-primary-foreground/90">Success Stories</div>
                 </div>
               </div>
             </div>

@@ -26,9 +26,16 @@ function PublicLayout() {
 
 import { Toaster } from "sonner";
 
+import { PrivacyPolicy } from "./pages/policies/PrivacyPolicy";
+import { TermsOfService } from "./pages/policies/TermsOfService";
+import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
+
+import { ScrollToTop } from "./components/ScrollToTop";
+
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Toaster position="top-center" richColors />
       <Routes>
         {/* Admin Routes (Standalone) */}
@@ -43,6 +50,9 @@ export default function App() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/process" element={<Process />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
         </Route>
       </Routes>
     </BrowserRouter>

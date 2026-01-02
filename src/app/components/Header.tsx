@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
-const logoImage = "https://res.cloudinary.com/de4oqb7rz/image/upload/v1767171735/nrt-portfolio/wto8zoxcklpxskwobvv6.png";
+const logoImage = "/logo.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,19 +24,17 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-[100px] items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
             <motion.img
               src={logoImage}
-              alt="Next Revolution Tech"
-              className="h-[140px] w-auto object-contain drop-shadow-md mb-[5px] dark:brightness-0 dark:invert"
+              alt="Next Revolution Tech Logo"
+              className="h-16 sm:h-24 w-auto object-contain drop-shadow-md dark:brightness-0 dark:invert transition-all"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
-              style={{
-                filter: "drop-shadow(0 2px 4px rgba(30, 58, 138, 0.1))",
-              }}
             />
+            <span className="text-lg sm:text-2xl font-bold text-foreground relative -top-[3px] sm:-top-[5px] leading-tight">Next Revolution Tech</span>
           </Link>
 
           {/* Desktop Navigation */}

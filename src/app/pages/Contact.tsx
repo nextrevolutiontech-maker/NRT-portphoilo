@@ -212,29 +212,11 @@ export function Contact() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
-                      <Mail className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Email</div>
-                      <div className="text-foreground">info@nextrevolutiontech.com</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
-                      <Phone className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Phone</div>
-                      <div className="text-foreground">+1 (555) 123-4567</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
                       <MapPin className="h-6 w-6" />
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Headquarters</div>
-                      <div className="text-foreground">Global Operations</div>
+                      <div className="text-foreground">Operating from Pakistan</div>
                     </div>
                   </div>
                 </div>
@@ -283,36 +265,18 @@ export function Contact() {
               <h3 className="mb-4 text-primary">North America</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Operating remotely to serve clients across US & Canada.</p>
-                <div className="pt-4 border-t border-border space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" />
-                    <span className="text-sm">info@nextrevolutiontech.com</span>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="bg-card p-8 rounded-lg border border-border">
               <h3 className="mb-4 text-primary">Europe</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Serving UK and EU markets with GDPR compliant solutions.</p>
-                <div className="pt-4 border-t border-border space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" />
-                    <span className="text-sm">info@nextrevolutiontech.com</span>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="bg-card p-8 rounded-lg border border-border">
               <h3 className="mb-4 text-primary">Middle East</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Strategic partnerships and localized support for MENA region.</p>
-                <div className="pt-4 border-t border-border space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" />
-                    <span className="text-sm">info@nextrevolutiontech.com</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
-const logoImage = "https://res.cloudinary.com/de4oqb7rz/image/upload/v1767171735/nrt-portfolio/wto8zoxcklpxskwobvv6.png";
+const logoImage = "/logo.png";
 
 export function Footer() {
   return (
@@ -9,7 +9,10 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <img src={logoImage} alt="Next Revolution Tech" className="h-[140px] w-auto object-contain mb-4 dark:brightness-0 dark:invert" />
+            <div className="flex flex-col items-start gap-2 mb-4">
+              <img src={logoImage} alt="Next Revolution Tech" className="h-20 sm:h-32 w-auto object-contain dark:brightness-0 dark:invert transition-all" />
+              <span className="text-xl font-bold text-foreground">Next Revolution Tech</span>
+            </div>
             <p className="text-sm text-gray-400 mb-4">
               Engineering Scalable Digital Solutions for a Connected World
             </p>
@@ -61,16 +64,8 @@ export function Footer() {
             <h3 className="text-foreground mb-4">Contact Us</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                <span className="text-muted-foreground">info@nextrevolutiontech.com</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                <span className="text-muted-foreground">+1 (555) 123-4567</span>
-              </li>
-              <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span className="text-muted-foreground">San Francisco, CA</span>
+                <span className="text-muted-foreground">Operating from Pakistan</span>
               </li>
             </ul>
           </div>
@@ -80,9 +75,9 @@ export function Footer() {
         <div className="border-t border-border pt-8 text-sm text-muted-foreground flex flex-col md:flex-row justify-between items-center gap-4">
           <p>&copy; {new Date().getFullYear()} Next Revolution Tech. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>
-            <Link to="#" className="hover:text-foreground transition-colors">Terms of Service</Link>
-            <Link to="#" className="hover:text-foreground transition-colors">GDPR Compliance</Link>
+            <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</Link>
+            <Link to="/gdpr-compliance" className="hover:text-foreground transition-colors">GDPR Compliance</Link>
           </div>
         </div>
       </div>

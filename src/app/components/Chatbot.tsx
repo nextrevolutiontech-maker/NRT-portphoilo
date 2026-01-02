@@ -14,7 +14,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! Welcome to Revolution Tech. How can I assist you today?",
+      text: "Hello! Welcome to Next Revolution Tech. How can I assist you today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -64,19 +64,25 @@ export function Chatbot() {
 
   const getBotResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
-    
-    if (input.includes("service") || input.includes("what do you do")) {
+
+    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
+      return "Hello! How can I help you today?";
+    } else if (input.includes("thank") || input.includes("thanks")) {
+      return "You're welcome! Let me know if you need anything else.";
+    } else if (input.includes("bye") || input.includes("goodbye")) {
+      return "Goodbye! Have a great day.";
+    } else if (input.includes("service") || input.includes("what do you do")) {
       return "We offer Custom Software Development, SaaS Development, AI & Automation, Cloud & DevOps, and more. Would you like to know more about any specific service?";
-    } else if (input.includes("price") || input.includes("cost")) {
+    } else if (input.includes("price") || input.includes("cost") || input.includes("pricing")) {
       return "Our pricing is customized based on project scope and requirements. I'd be happy to connect you with our team for a detailed quote. Would you like to schedule a consultation?";
     } else if (input.includes("consultation") || input.includes("meeting") || input.includes("schedule")) {
-      return "Great! I can help you schedule a consultation. Please visit our Contact page or email us at info@revolutiontech.com to book a meeting with our experts.";
+      return "Great! I can help you schedule a consultation. Please visit our Contact page or fill out the form there to book a meeting with our experts.";
     } else if (input.includes("case stud") || input.includes("project") || input.includes("portfolio")) {
-      return "We've successfully delivered 200+ projects across various industries. Check out our Case Studies page to see detailed examples of our work in Finance, Healthcare, E-commerce, and more.";
-    } else if (input.includes("contact") || input.includes("reach")) {
-      return "You can reach us at info@revolutiontech.com or call +1 (555) 123-4567. We have offices in San Francisco, New York, and London. Visit our Contact page for more details.";
+      return "We've successfully delivered 10+ projects across various industries including Tech, Ecommerce, and SaaS. Check out our Case Studies page to see detailed examples of our work.";
+    } else if (input.includes("contact") || input.includes("contect") || input.includes("reach") || input.includes("email") || input.includes("phone") || input.includes("form") || input.includes("redirect")) {
+      return "You can reach us by filling out the form on our Contact page. We operate globally from Pakistan, serving clients worldwide.";
     } else {
-      return "Thank you for your question! For detailed information, I recommend visiting our website or contacting our team directly at info@revolutiontech.com. How else can I help you?";
+      return "Thank you for your question! For detailed information, I recommend visiting our website or checking our specialized services. How else can I help you?";
     }
   };
 
@@ -121,7 +127,7 @@ export function Chatbot() {
                   <MessageCircle className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="font-medium">Revolution Tech</div>
+                  <div className="font-medium">Next Revolution Tech</div>
                   <div className="text-xs text-blue-100">Online - We're here to help</div>
                 </div>
               </div>
@@ -151,17 +157,15 @@ export function Chatbot() {
                   className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl ${
-                      message.sender === "user"
-                        ? "bg-[#1e3a8a] text-white rounded-br-none"
-                        : "bg-white text-gray-800 rounded-bl-none shadow-sm"
-                    }`}
+                    className={`max-w-[80%] p-3 rounded-2xl ${message.sender === "user"
+                      ? "bg-[#1e3a8a] text-white rounded-br-none"
+                      : "bg-white text-gray-800 rounded-bl-none shadow-sm"
+                      }`}
                   >
                     <p className="text-sm">{message.text}</p>
                     <div
-                      className={`text-xs mt-1 ${
-                        message.sender === "user" ? "text-blue-200" : "text-gray-400"
-                      }`}
+                      className={`text-xs mt-1 ${message.sender === "user" ? "text-blue-200" : "text-gray-400"
+                        }`}
                     >
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",

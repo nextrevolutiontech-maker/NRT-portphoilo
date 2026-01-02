@@ -124,19 +124,19 @@ export function CaseStudies() {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl text-primary mb-2">200+</div>
+              <div className="text-4xl text-primary mb-2">10+</div>
               <div className="text-muted-foreground">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl text-primary mb-2">15+</div>
+              <div className="text-4xl text-primary mb-2">5+</div>
               <div className="text-muted-foreground">Industries Served</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl text-primary mb-2">$100M+</div>
-              <div className="text-muted-foreground">Client Cost Savings</div>
+              <div className="text-4xl text-primary mb-2">100%</div>
+              <div className="text-muted-foreground">Client Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl text-primary mb-2">98%</div>
+              <div className="text-4xl text-primary mb-2">100%</div>
               <div className="text-muted-foreground">Client Retention</div>
             </div>
           </div>
