@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity } from "lucide-react";
 const logoImage = "/logo.png";
 
 export function Footer() {
@@ -68,6 +68,51 @@ export function Footer() {
                 <span className="text-muted-foreground">Operating from Pakistan</span>
               </li>
             </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="sm:col-span-2 lg:col-span-1 border-t sm:border-t-0 border-border pt-8 sm:pt-0">
+            <h3 className="text-foreground mb-4">Stay Ahead of the Curve</h3>
+            <p className="text-sm text-gray-400 mb-4">
+              Subscribe to get the latest tech trends and insights delivered to your inbox.
+            </p>
+            <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}>
+              <input
+                type="email"
+                placeholder="Enter email address"
+                className="bg-secondary/20 border border-border rounded px-4 py-2 text-sm w-full focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground/50"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-primary text-primary-foreground p-2 rounded hover:bg-primary/90 transition-colors"
+                aria-label="Subscribe"
+              >
+                <Send className="h-4 w-4" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Trust Signals & Status */}
+        <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
+              <Shield className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-foreground">Secure & Compliant</span>
+            </div>
+            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
+              <CheckCircle className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-foreground">ISO Certified Processes</span>
+            </div>
+            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
+              <Activity className="w-5 h-5 text-green-500" />
+              <span className="text-sm font-medium text-foreground">All Systems Operational</span>
+            </div>
+          </div>
+
+          <div className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Next Revolution Tech. All rights reserved.
           </div>
         </div>
 

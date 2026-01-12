@@ -134,7 +134,7 @@ export function Services() {
                     </div>
                     <h2 className="mb-4 text-primary text-3xl font-bold">{service.title}</h2>
                     <p className="text-xl text-muted-foreground mb-6">{service.description}</p>
-                    <ul className="space-y-3">
+                    <ul className="space-y-3 mb-6">
                       {Array.isArray(service.features) && service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center gap-3">
                           <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
@@ -142,6 +142,13 @@ export function Services() {
                         </li>
                       ))}
                     </ul>
+
+                    <Link
+                      to={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="text-primary font-medium hover:underline inline-flex items-center gap-2"
+                    >
+                      Learn More <ArrowRight className="h-4 w-4" />
+                    </Link>
                   </div>
                   <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                     <ImageWithFallback

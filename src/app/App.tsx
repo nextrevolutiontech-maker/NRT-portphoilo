@@ -15,13 +15,16 @@ import { Toaster } from "sonner";
 import { GSAPWrapper } from "./components/GSAPWrapper";
 import { CursorFollower } from "./components/ui/CursorFollower";
 import { SmoothScroll } from "./components/ui/SmoothScroll";
-import { PrivacyPolicy } from "./pages/policies/PrivacyPolicy";
-import { TermsOfService } from "./pages/policies/TermsOfService";
-import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
-import { ScrollToTop } from "./components/ScrollToTop";
+import { ExitIntentPopup } from "./components/ui/ExitIntentPopup";
+import { WhatsAppWidget } from "./components/ui/WhatsAppWidget";
+import { Blog } from "./pages/Blog";
+import { CostEstimator } from "./pages/Estimator";
+import { ServiceDetail } from "./pages/ServiceDetail";
 
 function PublicLayout() {
   return (
+    <ExitIntentPopup />
+    <WhatsAppWidget />
     <SmoothScroll>
       <GSAPWrapper>
         <CursorFollower />
@@ -54,12 +57,15 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/process" element={<Process />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/estimator" element={<CostEstimator />} />
         </Route>
       </Routes>
     </BrowserRouter>

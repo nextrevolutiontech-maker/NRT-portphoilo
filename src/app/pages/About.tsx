@@ -165,6 +165,49 @@ export function About() {
         </div>
       </section>
 
+      {/* Leadership Section */}
+      <section className="bg-background py-0 pb-20 border-b border-border/50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl">
+            <div className="grid lg:grid-cols-2 gap-0">
+              <div className="relative h-[400px] lg:h-auto">
+                <ImageWithFallback
+                  src="/ceo.png"
+                  alt="Founder & CEO"
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent lg:hidden flex items-end p-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">Founder</h3>
+                    <p className="text-primary">Next Revolution Tech</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                <div className="mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Visionary Leadership</h2>
+                  <div className="h-1 w-20 bg-primary rounded-full"></div>
+                </div>
+
+                <blockquote className="text-xl md:text-2xl text-muted-foreground italic mb-8 leading-relaxed">
+                  "We don't just write code; we architect the future. My vision for Next Revolution Tech is to be the bridge that connects ambitious enterprises with the transformative power of modern technology."
+                </blockquote>
+
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="bg-primary/10 p-3 rounded-full">
+                    <Award className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground">Founder & CEO</h3>
+                    <p className="text-primary font-medium">Next Revolution Tech</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Company Story Timeline */}
       <section className="bg-secondary/10 py-20 timeline-section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

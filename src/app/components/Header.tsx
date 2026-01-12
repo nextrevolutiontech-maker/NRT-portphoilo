@@ -14,6 +14,8 @@ export function Header() {
     { name: "Services", href: "/services" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Process", href: "/process" },
+    { name: "Blog", href: "/blog" },
+    { name: "Estimate Cost", href: "/estimator" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -107,13 +109,12 @@ export function Header() {
                 onClick={(e) => {
                   if (!localStorage.getItem('token')) {
                     e.preventDefault();
-                    window.location.href = '/admin/login';
-                    alert("Please login to schedule a consultation.");
+                    window.location.href = '/contact';
                   }
                 }}
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg font-medium"
               >
-                Get Started
+                Book a Call
               </Link>
             </motion.div>
           </div>

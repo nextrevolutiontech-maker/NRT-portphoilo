@@ -61,26 +61,26 @@ function CaseStudyCard({ study, index }: { study: Project; index: number }) {
           <Building2 className="h-4 w-4" />
           <span>{study.industry}</span>
         </div>
-        <h3 className="mb-4 text-white text-2xl font-semibold">{study.title}</h3>
+        <h3 className="mb-4 text-card-foreground text-2xl font-semibold">{study.title}</h3>
 
         <div className="space-y-4 mb-6 flex-grow">
           <div>
-            <h4 className="text-sm text-gray-400 mb-2 font-medium uppercase tracking-wider">Challenge</h4>
-            <p className="text-gray-300">{study.challenge}</p>
+            <h4 className="text-sm text-muted-foreground mb-2 font-medium uppercase tracking-wider">Challenge</h4>
+            <p className="text-muted-foreground/80">{study.challenge}</p>
           </div>
           <div>
-            <h4 className="text-sm text-gray-400 mb-2 font-medium uppercase tracking-wider">Solution</h4>
-            <p className="text-gray-300">{study.solution}</p>
+            <h4 className="text-sm text-muted-foreground mb-2 font-medium uppercase tracking-wider">Solution</h4>
+            <p className="text-muted-foreground/80">{study.solution}</p>
           </div>
         </div>
 
         <div className="bg-secondary/10 rounded-lg p-6 mt-auto border border-border">
-          <h4 className="mb-4 text-white font-medium">Results</h4>
+          <h4 className="mb-4 text-card-foreground font-medium">Results</h4>
           <ul className="space-y-2">
             {study.results.map((result, resultIndex) => (
               <li key={resultIndex} className="flex items-start gap-2 text-sm">
                 <TrendingUp className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300">{result}</span>
+                <span className="text-muted-foreground">{result}</span>
               </li>
             ))}
           </ul>

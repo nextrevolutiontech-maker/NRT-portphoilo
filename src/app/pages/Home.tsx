@@ -205,7 +205,7 @@ export function Home() {
                 }}
                 className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"
               >
-                Schedule Consultation
+                Book Strategy Call
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link

@@ -10,6 +10,49 @@
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
-    </body>
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.nextrevolutiontech.tech/#organization",
+            "name": "Next Revolution Tech",
+            "url": "https://www.nextrevolutiontech.tech",
+            "logo": "https://www.nextrevolutiontech.tech/logo.png",
+            "image": "https://www.nextrevolutiontech.tech/logo.png",
+            "description": "Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems.",
+            "email": "info@nextrevolutiontech.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "PK"
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "",
+                "contactType": "customer support",
+                "email": "info@nextrevolutiontech.com",
+                "availableLanguage": ["en"]
+              }
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/company/nextrevolutiontech"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.nextrevolutiontech.tech/#website",
+            "url": "https://www.nextrevolutiontech.tech",
+            "name": "Next Revolution Tech",
+            "description": "Enterprise Software Development & AI Solutions",
+            "publisher": {
+              "@id": "https://www.nextrevolutiontech.tech/#organization"
+            },
+            "inLanguage": "en-US"
+          }
+        ]
+      }
+    </script>
+  </body>
   </html>
-  
