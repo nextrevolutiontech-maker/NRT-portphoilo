@@ -247,7 +247,7 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-sm text-muted-foreground">Email</div>
-                      <a href="mailto:info@nextrevolutiontech.com" className="text-foreground hover:text-primary transition-colors">info@nextrevolutiontech.com</a>
+                      <a href="mailto:support@nextrevolutiontech.tech" className="text-foreground hover:text-primary transition-colors">support@nextrevolutiontech.tech</a>
                     </div>
                   </div>
                 </div>

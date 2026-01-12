@@ -32,6 +32,10 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-foreground mb-4">Quick Links</h3>
+            <div className="flex items-center gap-3 text-muted-foreground mb-4">
+              <Mail className="w-5 h-5 text-primary" />
+              <a href="mailto:support@nextrevolutiontech.tech" className="hover:text-primary transition-colors">support@nextrevolutiontech.tech</a>
+            </div>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link to="/about" className="hover:text-foreground transition-colors">About Us</Link>
