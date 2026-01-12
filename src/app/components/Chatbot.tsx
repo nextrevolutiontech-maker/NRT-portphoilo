@@ -103,7 +103,7 @@ export function Chatbot() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 bg-[#1e3a8a] text-white p-4 rounded-full shadow-2xl hover:bg-[#1e40af] transition-colors"
+            className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-2xl hover:bg-primary/90 transition-colors"
           >
             <MessageCircle className="h-6 w-6" />
           </motion.button>
@@ -118,17 +118,17 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[calc(100vh-6rem)] sm:h-[600px] max-h-[calc(100vh-2rem)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[calc(100vh-6rem)] sm:h-[600px] max-h-[calc(100vh-2rem)] bg-card rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary to-blue-600 text-primary-foreground p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <MessageCircle className="h-5 w-5" />
                 </div>
                 <div>
                   <div className="font-medium">Next Revolution Tech</div>
-                  <div className="text-xs text-blue-100">Online - We're here to help</div>
+                  <div className="text-xs text-primary-foreground/90">Online - We're here to help</div>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -148,7 +148,7 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/10">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -158,13 +158,13 @@ export function Chatbot() {
                 >
                   <div
                     className={`max-w-[80%] p-3 rounded-2xl ${message.sender === "user"
-                      ? "bg-[#1e3a8a] text-white rounded-br-none"
-                      : "bg-white text-gray-800 rounded-bl-none shadow-sm"
+                      ? "bg-primary text-primary-foreground rounded-br-none"
+                      : "bg-card text-card-foreground border border-border rounded-bl-none shadow-sm"
                       }`}
                   >
                     <p className="text-sm">{message.text}</p>
                     <div
-                      className={`text-xs mt-1 ${message.sender === "user" ? "text-blue-200" : "text-gray-400"
+                      className={`text-xs mt-1 ${message.sender === "user" ? "text-primary-foreground/80" : "text-muted-foreground"
                         }`}
                     >
                       {message.timestamp.toLocaleTimeString([], {
@@ -180,14 +180,14 @@ export function Chatbot() {
 
             {/* Quick Replies */}
             {messages.length === 1 && (
-              <div className="px-4 py-2 bg-white border-t border-gray-200">
-                <div className="text-xs text-gray-600 mb-2">Quick questions:</div>
+              <div className="px-4 py-2 bg-card border-t border-border">
+                <div className="text-xs text-muted-foreground mb-2">Quick questions:</div>
                 <div className="flex flex-wrap gap-2">
                   {quickReplies.map((reply, index) => (
                     <button
                       key={index}
                       onClick={() => handleQuickReply(reply)}
-                      className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition-colors"
+                      className="text-xs bg-secondary hover:bg-secondary/80 text-secondary-foreground px-3 py-1.5 rounded-full transition-colors"
                     >
                       {reply}
                     </button>
@@ -197,7 +197,7 @@ export function Chatbot() {
             )}
 
             {/* Input */}
-            <div className="p-4 bg-white border-t border-gray-200">
+            <div className="p-4 bg-background border-t border-border">
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -205,11 +205,11 @@ export function Chatbot() {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent"
+                  className="flex-1 px-4 py-2 bg-input text-foreground border border-input rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
                 <button
                   onClick={handleSend}
-                  className="bg-[#1e3a8a] text-white p-2 rounded-full hover:bg-[#1e40af] transition-colors disabled:opacity-50"
+                  className="bg-primary text-primary-foreground p-2 rounded-full hover:bg-primary/90 transition-colors disabled:opacity-50"
                   disabled={!inputValue.trim()}
                 >
                   <Send className="h-5 w-5" />

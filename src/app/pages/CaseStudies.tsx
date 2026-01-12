@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Building2, TrendingUp, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { API_BASE_URL } from "../../config";
 
@@ -12,131 +15,285 @@ interface Project {
   solution: string;
   results: string[];
   image_url: string;
+  gallery?: { title: string; image: string }[];
+}
+
+// Internal component for handling gallery state
+function CaseStudyCard({ study, index }: { study: Project; index: number }) {
+  const [activeImage, setActiveImage] = useState(study.image_url);
+
+  return (
+    <div
+      className="bg-card rounded-lg border border-border overflow-hidden hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all hover:scale-[1.02] case-study-card flex flex-col h-full"
+    >
+      <div className="overflow-hidden h-64 relative group">
+        <ImageWithFallback
+          src={activeImage}
+          alt={study.title}
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+        />
+        {/* Overlay Badge for Gallery */}
+        {study.gallery && (
+          <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs px-2 py-1 rounded border border-white/10">
+            {study.gallery.find(g => g.image === activeImage)?.title || "View"}
+          </div>
+        )}
+      </div>
+
+      {/* Gallery Thumbs */}
+      {study.gallery && (
+        <div className="flex gap-2 p-4 bg-secondary/5 border-b border-border overflow-x-auto">
+          {study.gallery.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveImage(item.image)}
+              className={`relative flex-shrink-0 w-16 h-12 rounded overflow-hidden border-2 transition-all ${activeImage === item.image ? 'border-primary opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`}
+              title={item.title}
+            >
+              <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="p-8 flex-grow flex flex-col">
+        <div className="flex items-center gap-2 text-sm text-primary mb-4 font-medium">
+          <Building2 className="h-4 w-4" />
+          <span>{study.industry}</span>
+        </div>
+        <h3 className="mb-4 text-white text-2xl font-semibold">{study.title}</h3>
+
+        <div className="space-y-4 mb-6 flex-grow">
+          <div>
+            <h4 className="text-sm text-gray-400 mb-2 font-medium uppercase tracking-wider">Challenge</h4>
+            <p className="text-gray-300">{study.challenge}</p>
+          </div>
+          <div>
+            <h4 className="text-sm text-gray-400 mb-2 font-medium uppercase tracking-wider">Solution</h4>
+            <p className="text-gray-300">{study.solution}</p>
+          </div>
+        </div>
+
+        <div className="bg-secondary/10 rounded-lg p-6 mt-auto border border-border">
+          <h4 className="mb-4 text-white font-medium">Results</h4>
+          <ul className="space-y-2">
+            {study.results.map((result, resultIndex) => (
+              <li key={resultIndex} className="flex items-start gap-2 text-sm">
+                <TrendingUp className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <span className="text-gray-300">{result}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function CaseStudies() {
   const [caseStudies, setCaseStudies] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+
+  const dummyProjects: Project[] = [
+    {
+      title: "Pulse Portal",
+      industry: "MedSpa & Wellness SaaS",
+      challenge: "Fragmented administrative processes and lack of cohesive digital journey for wellness centers.",
+      solution: "Centralized SaaS platform with client portals, comprehensive admin management, and seamless onboarding.",
+      results: ["Streamlined Operations", "Enhanced Client Engagement", "Scalable Multi-Location Support"],
+      image_url: "/pulse-admin.png",
+      gallery: [
+        { title: "Admin Dashboard", image: "/pulse-admin.png" },
+        { title: "Reception View", image: "/pulse-reception.png" },
+        { title: "Provider Portal", image: "/pulse-provider.png" },
+        { title: "Client App", image: "/pulse-client.png" }
+      ]
+    },
+    {
+      title: "Global FinTech Platform",
+      industry: "Finance",
+      challenge: "Legacy infrastructure causing slow transaction times and scalability issues.",
+      solution: "Cloud-native microservices architecture migration with real-time processing.",
+      results: ["400% increase in transaction speed", "99.99% uptime", "Reduced operational costs by 60%"],
+      image_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1080"
+    },
+    {
+      title: "Healthcare Analytics Dashboard",
+      industry: "Healthcare",
+      challenge: "Fragmented patient data across multiple systems hindering diagnosis.",
+      solution: "Unified data lake with AI-powered analytics and visualization dashboard.",
+      results: ["30% faster diagnosis", "Secure HIPAA-compliant data sharing", "Real-time patient monitoring"],
+      image_url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1080"
+    },
+    {
+      title: "E-Commerce AI Personalization",
+      industry: "Retail",
+      challenge: "Low conversion rates and lack of personalized user experiences.",
+      solution: "Implemented machine learning recommendation engine.",
+      results: ["50% increase in average order value", "25% boost in conversion rate", "Enhanced customer retention"],
+      image_url: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1080"
+    }
+  ];
 
   useEffect(() => {
-
-
-    // ...
+    // Fetch data first
     fetch(`${API_BASE_URL}/api/projects`)
       .then(res => res.json())
       .then(data => {
-        // Map backend fields to frontend expected fields if necessary, 
-        // essentially ensuring results is an array
-        const formatted = (Array.isArray(data) ? data : []).map((p: any) => ({
+        let formatted = (Array.isArray(data) ? data : []).map((p: any) => ({
           ...p,
           results: Array.isArray(p.results) ? p.results : []
         }));
+
+        // Use dummy data if backend is empty
+        if (formatted.length === 0) {
+          formatted = dummyProjects;
+        }
+
         setCaseStudies(formatted);
         setLoading(false);
       })
       .catch(err => {
         console.error("Failed to load projects", err);
+        // Fallback to dummy data on error
+        setCaseStudies(dummyProjects);
         setLoading(false);
       });
   }, []);
 
+  // Animation effect - runs when loading is false
+  useEffect(() => {
+    if (loading) return;
+
+    const ctx = gsap.context(() => {
+      // Refresh ScrollTrigger to ensure positions are correct after loading
+      ScrollTrigger.refresh();
+
+      // Cards
+      gsap.from(".case-study-card", {
+        scrollTrigger: {
+          trigger: ".case-studies-grid",
+          start: "top 85%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out"
+      });
+
+      // Stats
+      gsap.from(".stat-item", {
+        scrollTrigger: {
+          trigger: ".impact-section",
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+    }, containerRef);
+    return () => ctx.revert();
+  }, [loading]);
+
   if (loading) {
     return (
-      <div className="pt-20 min-h-screen flex items-center justify-center bg-black text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="pt-[120px] min-h-screen bg-background text-foreground">
+        {/* Skeleton Hero */}
+        <section className="py-8 border-b border-border/50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl space-y-4">
+              <div className="h-12 w-3/4 bg-secondary/30 rounded animate-pulse" />
+              <div className="h-6 w-full bg-secondary/20 rounded animate-pulse" />
+              <div className="h-6 w-2/3 bg-secondary/20 rounded animate-pulse" />
+            </div>
+          </div>
+        </section>
+
+        {/* Skeleton Grid */}
+        <section className="pt-8 pb-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {[1, 2].map((i) => (
+                <div key={i} className="bg-card rounded-lg border border-border overflow-hidden h-96 animate-pulse">
+                  <div className="h-48 bg-secondary/30" />
+                  <div className="p-8 space-y-4">
+                    <div className="h-4 w-1/4 bg-secondary/20 rounded" />
+                    <div className="h-8 w-3/4 bg-secondary/30 rounded" />
+                    <div className="space-y-2">
+                      <div className="h-4 w-full bg-secondary/20 rounded" />
+                      <div className="h-4 w-5/6 bg-secondary/20 rounded" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
 
   return (
-    <div className="pt-20">
+    <div className="pt-[120px]" ref={containerRef}>
       <Helmet>
         <title>Case Studies - Next Revolution Tech | Success Stories</title>
         <meta name="description" content="Read how Next Revolution Tech has helped global enterprises achieve their digital transformation goals." />
       </Helmet>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
+      <section className="bg-background text-white py-8 border-b border-border/50 relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="mb-6">Case Studies</h1>
-            <p className="text-xl text-primary-foreground/90">
-              Real-world success stories demonstrating how we've helped enterprises achieve their digital transformation goals.
+            <h1 className="case-hero-text mb-4 text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight opacity-100">Success Stories</h1>
+            <p className="case-hero-text text-xl text-gray-300 leading-relaxed opacity-100">
+              Delivering <strong>Measurable Impact</strong> for Global Enterprises. See how we transform challenges into <strong>competitive advantages</strong>.
             </p>
           </div>
         </div>
       </section>
 
       {/* Case Studies Grid */}
-      <section className="bg-background py-20">
+      <section className="bg-background pt-8 pb-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 case-studies-grid">
             {caseStudies.map((study, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-lg border border-border overflow-hidden hover:shadow-xl transition-shadow"
-              >
-                <ImageWithFallback
-                  src={study.image_url || study.image}
-                  alt={study.title}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-8">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                    <Building2 className="h-4 w-4" />
-                    <span>{study.industry}</span>
-                  </div>
-                  <h3 className="mb-4 text-primary">{study.title}</h3>
-
-                  <div className="space-y-4 mb-6">
-                    <div>
-                      <h4 className="text-sm text-muted-foreground mb-2">Challenge</h4>
-                      <p className="text-muted-foreground">{study.challenge}</p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm text-muted-foreground mb-2">Solution</h4>
-                      <p className="text-muted-foreground">{study.solution}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-secondary/30 rounded-lg p-6 mb-6">
-                    <h4 className="mb-4 text-foreground">Results</h4>
-                    <ul className="space-y-2">
-                      {study.results.map((result, resultIndex) => (
-                        <li key={resultIndex} className="flex items-start gap-2 text-sm">
-                          <TrendingUp className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-muted-foreground">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <CaseStudyCard key={index} study={study} index={index} />
             ))}
+            {caseStudies.length === 0 && (
+              <div className="col-span-full text-center py-20 text-muted-foreground">
+                No case studies found. Check back soon!
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="bg-secondary/30 py-20">
+      <section className="bg-secondary/10 py-8 impact-section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="mb-4 text-primary">Impact Across Industries</h2>
+            <h2 className="mb-4 text-primary text-3xl md:text-4xl font-bold">Impact by the Numbers</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl text-primary mb-2">10+</div>
+            <div className="text-center stat-item">
+              <div className="text-4xl text-primary mb-2 font-bold">10+</div>
               <div className="text-muted-foreground">Projects Completed</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl text-primary mb-2">5+</div>
+            <div className="text-center stat-item">
+              <div className="text-4xl text-primary mb-2 font-bold">5+</div>
               <div className="text-muted-foreground">Industries Served</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl text-primary mb-2">100%</div>
+            <div className="text-center stat-item">
+              <div className="text-4xl text-primary mb-2 font-bold">100%</div>
               <div className="text-muted-foreground">Client Satisfaction</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl text-primary mb-2">100%</div>
+            <div className="text-center stat-item">
+              <div className="text-4xl text-primary mb-2 font-bold">100%</div>
               <div className="text-muted-foreground">Client Retention</div>
             </div>
           </div>
@@ -146,13 +303,13 @@ export function CaseStudies() {
       {/* CTA Section */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="mb-6">Ready to Create Your Success Story?</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Let's discuss how we can help you achieve similar results
+          <h2 className="mb-6 text-3xl md:text-4xl font-bold">Ready to Write Your <span className="text-background bg-primary px-2 rounded">Success Story</span>?</h2>
+          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Partner with us to build technology that drives <strong>real results</strong>.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors"
+            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
           >
             Start Your Project
             <ArrowRight className="h-5 w-5" />
@@ -162,3 +319,4 @@ export function CaseStudies() {
     </div>
   );
 }
+

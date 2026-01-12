@@ -25,7 +25,7 @@ export function VideoHero() {
     }, []);
 
     return (
-        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden bg-black border-y border-white/10 group">
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden bg-background border-y border-border group">
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={currentVideo}
@@ -54,8 +54,8 @@ export function VideoHero() {
             </AnimatePresence>
 
             {/* Cinematic Overlays */}
-            <div className="absolute inset-0 bg-black/10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+            <div className="absolute inset-0 bg-background/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/50" />
 
             {/* Tech Grid Overlay */}
             <div
@@ -69,7 +69,7 @@ export function VideoHero() {
                     <button
                         key={index}
                         onClick={() => setCurrentVideo(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentVideo ? "bg-white w-6" : "bg-white/40 hover:bg-white/60"
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentVideo ? "bg-primary w-6" : "bg-primary/40 hover:bg-primary/60"
                             }`}
                         aria-label={`Go to video ${index + 1}`}
                     />

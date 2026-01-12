@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
 import { VideoHero } from "../components/ui/VideoHero";
+import { TechStackMarquee } from "../components/ui/TechStackMarquee";
 import { API_BASE_URL } from "../../config";
 
 // Helper to map icon names to components
@@ -37,11 +40,92 @@ export function Home() {
   const [services, setServices] = useState<Service[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero Entrance
+      const tl = gsap.timeline();
+      tl.from(".hero-text", {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power4.out",
+        delay: 0.5 // Wait for page load a bit
+      });
+
+      // Stats Scroll Reveal
+      gsap.from(".stat-item", {
+        scrollTrigger: {
+          trigger: ".stats-section",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      // Section Headers Reveal
+      gsap.utils.toArray(".section-header").forEach((header: any) => {
+        gsap.from(header, {
+          scrollTrigger: {
+            trigger: header,
+            start: "top 85%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+      });
+
+      // Service Cards Reveal
+      gsap.from(".service-card", {
+        scrollTrigger: {
+          trigger: ".services-grid",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      // Why Choose Us Reveal
+      gsap.from(".reason-item", {
+        scrollTrigger: {
+          trigger: ".reasons-grid",
+          start: "top 80%",
+        },
+        x: -50,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+      gsap.from(".why-image", {
+        scrollTrigger: {
+          trigger: ".reasons-grid",
+          start: "top 80%",
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     Promise.all([
-
-      // ...
       fetch(`${API_BASE_URL}/api/services`),
       fetch(`${API_BASE_URL}/api/testimonials`)
     ])
@@ -58,10 +142,10 @@ export function Home() {
   }, []);
 
   const stats = [
-    { value: "200+", label: "Projects Delivered" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "50+", label: "Enterprise Clients" },
-    { value: "15+", label: "Years Experience" },
+    { value: "50+", label: "Projects Delivered" },
+    { value: "98%", label: "Client Retention" },
+    { value: "10+", label: "Countries Served" },
+    { value: "24/7", label: "Support & Monitoring" },
   ];
 
   const reasons = [
@@ -87,27 +171,29 @@ export function Home() {
     },
   ];
 
-  // If no services yet (e.g. fresh DB), fallback to empty state or skip section?
-  // We'll just render whatever we have. User can add data via Admin.
-
   return (
-    <div className="pt-20">
+    <div className="pt-20" ref={containerRef}>
       <Helmet>
         <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
         <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
       </Helmet>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1e3a8a] to-[#1e40af] dark:from-background dark:to-background text-white dark:text-foreground overflow-hidden transition-colors duration-300">
-        <div className="absolute inset-0">
+      <section className="relative bg-background text-foreground overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <GravityHero />
+          {/* Subtle overlay to ensure text readability if needed */}
+          <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32">
+
           <div className="max-w-3xl">
-            <h1 className="mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white dark:text-foreground">Engineering Scalable Digital Solutions for a Connected World</h1>
-            <p className="mb-6 sm:mb-8 text-lg sm:text-xl text-blue-100 dark:text-muted-foreground">
-              Transform your business with enterprise-grade software solutions. We build secure, scalable, and innovative technology that drives growth.
+            <h1 className="hero-text mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
+              Building <span className="text-primary">Scalable</span> Digital Solutions for a <span className="text-primary">Connected Future</span>
+            </h1>
+            <p className="hero-text mb-6 sm:mb-8 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              We partner with global enterprises to <strong>transform ideas</strong> into powerful, <strong>secure</strong>, and ready-to-scale software ecosystems.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="hero-text flex flex-col sm:flex-row gap-4">
               <Link
                 to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
                 onClick={(e) => {
@@ -117,14 +203,14 @@ export function Home() {
                     alert("Please login to schedule a consultation.");
                   }
                 }}
-                className="inline-flex items-center justify-center gap-2 bg-white dark:bg-primary text-[#1e3a8a] dark:text-primary-foreground px-6 sm:px-8 py-3 sm:py-4 rounded-md hover:bg-gray-100 dark:hover:bg-primary/90 transition-colors text-center"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"
               >
                 Schedule Consultation
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white dark:border-primary text-white dark:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-md hover:bg-white/10 dark:hover:bg-primary/10 transition-colors text-center"
+                className="inline-flex items-center justify-center gap-2 bg-background/50 backdrop-blur-sm border border-primary/30 text-foreground px-8 py-4 rounded-full hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 text-center font-medium"
               >
                 Explore Services
               </Link>
@@ -137,11 +223,11 @@ export function Home() {
       <VideoHero />
 
       {/* Stats Section */}
-      <section className="bg-background border-b border-border">
+      <section className="bg-background border-b border-border stats-section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center stat-item">
                 <div className="text-4xl lg:text-5xl text-primary mb-2">{stat.value}</div>
                 <div className="text-muted-foreground">{stat.label}</div>
               </div>
@@ -153,25 +239,25 @@ export function Home() {
       {/* Services Section */}
       <section className="bg-secondary/30 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 section-header">
             <h2 className="mb-4 text-primary">Our Services</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Comprehensive technology solutions designed for enterprise scale and performance
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 services-grid">
             {services.slice(0, 6).map((service, index) => {
               const Icon = getIcon(service.icon);
               return (
                 <div
                   key={service.id || index}
-                  className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow"
+                  className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow service-card"
                 >
                   <div className="text-primary mb-4">
                     {typeof Icon === 'function' ? <Icon className="h-8 w-8" /> : Icon}
                   </div>
-                  <h3 className="mb-3 text-card-foreground">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <h3 className="mb-3 text-card-foreground text-xl font-bold">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
               );
             })}
@@ -188,18 +274,23 @@ export function Home() {
         </div>
       </section>
 
+      {/* Tech Stack Marquee */}
+      <TechStackMarquee />
+
       {/* Why Choose Us Section */}
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center reasons-grid">
             <div>
-              <h2 className="mb-6 text-primary">Why Choose Next Revolution Tech</h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                We partner with forward-thinking enterprises to deliver technology solutions that drive real business value.
-              </p>
+              <div className="section-header">
+                <h2 className="mb-6 text-primary text-3xl md:text-4xl">Why Leaders Choose Us</h2>
+                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                  We don't just write code; we engineer <strong>business value</strong>. Our approach combines technical depth with strategic foresight.
+                </p>
+              </div>
               <div className="space-y-6">
                 {reasons.map((reason, index) => (
-                  <div key={index} className="flex gap-4">
+                  <div key={index} className="flex gap-4 reason-item">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                       {reason.icon}
                     </div>
@@ -211,7 +302,7 @@ export function Home() {
                 ))}
               </div>
             </div>
-            <div className="relative">
+            <div className="relative why-image">
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHRlYW18ZW58MXx8fHwxNzY2OTAzMjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                 alt="Professional Team"
@@ -225,7 +316,7 @@ export function Home() {
       {/* Testimonials Section */}
       <section className="bg-secondary/30 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 section-header">
             <h2 className="mb-4 text-primary">What Our Clients Say</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Trusted by leading enterprises worldwide
@@ -233,7 +324,7 @@ export function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id || index} className="bg-card p-8 rounded-lg border border-border">
+              <div key={testimonial.id || index} className="bg-card p-8 rounded-lg border border-border service-card">
                 <p className="text-muted-foreground mb-6 italic">"{testimonial.quote}"</p>
                 <div className="border-t border-border pt-4 flex items-center gap-4">
                   {testimonial.image_url && (

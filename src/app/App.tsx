@@ -10,27 +10,34 @@ import { Process } from "./pages/Process";
 import { Contact } from "./pages/Contact";
 import { Login } from "./pages/admin/Login";
 import { Dashboard } from "./pages/admin/Dashboard";
-
-function PublicLayout() {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
-      <Chatbot />
-    </div>
-  );
-}
-
 import { Toaster } from "sonner";
 
+import { GSAPWrapper } from "./components/GSAPWrapper";
+import { CursorFollower } from "./components/ui/CursorFollower";
+import { SmoothScroll } from "./components/ui/SmoothScroll";
 import { PrivacyPolicy } from "./pages/policies/PrivacyPolicy";
 import { TermsOfService } from "./pages/policies/TermsOfService";
 import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
-
 import { ScrollToTop } from "./components/ScrollToTop";
+
+function PublicLayout() {
+  return (
+    <SmoothScroll>
+      <GSAPWrapper>
+        <CursorFollower />
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <Outlet />
+          </main>
+          <Footer />
+          <Chatbot />
+        </div>
+      </GSAPWrapper>
+    </SmoothScroll>
+  );
+}
+
 
 export default function App() {
   return (

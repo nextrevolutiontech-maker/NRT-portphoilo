@@ -148,8 +148,8 @@ export function Header() {
                   key={item.name}
                   to={item.href}
                   className={`transition-colors px-2 py-1 ${isActive(item.href)
-                    ? "text-[#1e3a8a] bg-blue-50 rounded"
-                    : "text-gray-700 hover:text-[#1e3a8a]"
+                    ? "text-primary bg-primary/10 rounded"
+                    : "text-muted-foreground hover:text-primary"
                     }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >

@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Send, Shield, Lock, FileCheck } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "../components/ui/button";
@@ -6,9 +7,57 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { toast } from "sonner";
+import gsap from "gsap";
 import { API_BASE_URL } from "../../config";
 
 export function Contact() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero
+      gsap.from(".hero-text", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power2.out",
+        delay: 0.2
+      });
+
+      // Contact Form & Info
+      gsap.from(".contact-form", {
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.5
+      });
+      gsap.from(".contact-info", {
+        x: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.5
+      });
+
+      // Locations
+      gsap.from(".location-card", {
+        scrollTrigger: {
+          trigger: ".locations-section",
+          start: "top 80%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out"
+      });
+
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,20 +66,6 @@ export function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Construct mailto link
-    const subject = `New Contact Request from ${formData.name}`;
-    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ACompany: ${formData.company}%0D%0APhone: ${formData.phone}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
-
-    window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${body}`; // Use body directly since I manually encoded newlines but encodeURIComponent is safer for text. Wait, simple body is better.
-
-    // Better encoding:
-    // window.location.href = `mailto:info@nextrevolutiontech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; 
-    // Wait, the body string above used %0D%0A which is already encoded. I should use normal \n and encodeURIComponent.
-  };
-
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleRealSubmit = async (e: React.FormEvent) => {
@@ -38,9 +73,6 @@ export function Contact() {
     setStatus('loading');
 
     try {
-
-
-      // ...
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -77,29 +109,18 @@ export function Contact() {
     });
   };
 
-  const offices = [
-    {
-      city: "Global HQ",
-      address: "Next Revolution Tech Support",
-      state: "Operating Globally",
-      phone: "+1 (555) 123-4567",
-      email: "info@nextrevolutiontech.com",
-    },
-    // Removed fake offices to avoid confusion unless user provides real ones. Key offices kept minimal.
-  ];
-
   return (
-    <div className="pt-20">
+    <div className="pt-20" ref={containerRef}>
       <Helmet>
         <title>Contact Us - Next Revolution Tech | Get in Touch</title>
         <meta name="description" content="Contact Next Revolution Tech for enterprise software solutions. Schedule a consultation or reach out to our global team." />
       </Helmet>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-blue-700 text-primary-foreground py-20">
+      <section className="bg-background text-foreground py-20 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="mb-6">Get In Touch</h1>
-            <p className="text-xl text-primary-foreground/90">
+            <h1 className="hero-text mb-6 text-4xl md:text-5xl font-bold text-primary">Get In Touch</h1>
+            <p className="hero-text text-xl text-muted-foreground">
               Ready to transform your business with cutting-edge technology? Schedule a consultation with our expert team.
             </p>
           </div>
@@ -111,7 +132,7 @@ export function Contact() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
             {/* Contact Form */}
-            <div>
+            <div className="contact-form">
               <h2 className="mb-4 sm:mb-6 text-primary text-2xl sm:text-3xl">Send Us a Message</h2>
               <form onSubmit={handleRealSubmit} className="space-y-4 sm:space-y-6">
                 <div>
@@ -179,14 +200,15 @@ export function Contact() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6"
+                  disabled={status === 'loading'}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
                 >
                   <Send className="h-5 w-5 mr-2" />
-                  Send Message
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </Button>
 
                 {/* Privacy Note */}
-                <div className="bg-secondary/30 p-4 rounded-lg">
+                <div className="bg-secondary/10 p-4 rounded-lg border border-border">
                   <div className="flex items-start gap-3">
                     <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div className="text-sm text-muted-foreground">
@@ -203,15 +225,15 @@ export function Contact() {
             </div>
 
             {/* Contact Information */}
-            <div>
+            <div className="contact-info">
               <h2 className="mb-6 text-primary">Contact Information</h2>
 
               {/* General Contact */}
-              <div className="bg-secondary/30 p-8 rounded-lg mb-8">
-                <h3 className="mb-6 text-foreground">Get in Touch</h3>
+              <div className="bg-secondary/10 p-8 rounded-lg mb-8 border border-border">
+                <h3 className="mb-6 text-foreground text-xl font-medium">Get in Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
                       <MapPin className="h-6 w-6" />
                     </div>
                     <div>
@@ -219,29 +241,38 @@ export function Contact() {
                       <div className="text-foreground">Operating from Pakistan</div>
                     </div>
                   </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+                      <Mail className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Email</div>
+                      <a href="mailto:info@nextrevolutiontech.com" className="text-foreground hover:text-primary transition-colors">info@nextrevolutiontech.com</a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               {/* Trust Indicators */}
               <div className="space-y-4">
-                <div className="flex items-center gap-3 p-4 bg-secondary/30 rounded-lg">
+                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
                   <Lock className="h-6 w-6 text-primary" />
                   <div>
-                    <div className="text-foreground">NDA Protection</div>
+                    <div className="text-foreground font-medium">NDA Protection</div>
                     <div className="text-sm text-muted-foreground">Your project details are secure</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 bg-secondary/30 rounded-lg">
+                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
                   <Shield className="h-6 w-6 text-primary" />
                   <div>
-                    <div className="text-foreground">GDPR Compliant</div>
+                    <div className="text-foreground font-medium">GDPR Compliant</div>
                     <div className="text-sm text-muted-foreground">Full data protection compliance</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 bg-secondary/30 rounded-lg">
+                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
                   <FileCheck className="h-6 w-6 text-primary" />
                   <div>
-                    <div className="text-foreground">ISO 27001 Certified</div>
+                    <div className="text-foreground font-medium">ISO 27001 Certified</div>
                     <div className="text-sm text-muted-foreground">Information security management</div>
                   </div>
                 </div>
@@ -252,7 +283,7 @@ export function Contact() {
       </section>
 
       {/* Office Locations (Simplified) */}
-      <section className="bg-secondary/30 py-20">
+      <section className="bg-secondary/10 py-20 locations-section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="mb-4 text-primary">Global Presence</h2>
@@ -261,20 +292,20 @@ export function Contact() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card p-8 rounded-lg border border-border">
-              <h3 className="mb-4 text-primary">North America</h3>
+            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
+              <h3 className="mb-4 text-primary font-medium text-lg">North America</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Operating remotely to serve clients across US & Canada.</p>
               </div>
             </div>
-            <div className="bg-card p-8 rounded-lg border border-border">
-              <h3 className="mb-4 text-primary">Europe</h3>
+            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
+              <h3 className="mb-4 text-primary font-medium text-lg">Europe</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Serving UK and EU markets with GDPR compliant solutions.</p>
               </div>
             </div>
-            <div className="bg-card p-8 rounded-lg border border-border">
-              <h3 className="mb-4 text-primary">Middle East</h3>
+            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
+              <h3 className="mb-4 text-primary font-medium text-lg">Middle East</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Strategic partnerships and localized support for MENA region.</p>
               </div>
@@ -289,19 +320,19 @@ export function Contact() {
           <h2 className="mb-12 text-center text-primary">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground">What is your typical response time?</h4>
-              <p className="text-muted-foreground">We respond to all inquiries within 24 hours during business days. For urgent matters, please call our hotline.</p>
+              <h4 className="mb-2 text-foreground font-medium">What is your typical response time?</h4>
+              <p className="text-muted-foreground">We respond to all inquiries within 24 hours during business days.</p>
             </div>
             <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground">Do you sign NDAs?</h4>
+              <h4 className="mb-2 text-foreground font-medium">Do you sign NDAs?</h4>
               <p className="text-muted-foreground">Yes, we are happy to sign NDAs to protect your confidential information before discussing project details.</p>
             </div>
             <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground">What industries do you serve?</h4>
+              <h4 className="mb-2 text-foreground font-medium">What industries do you serve?</h4>
               <p className="text-muted-foreground">We serve enterprises across all industries including finance, healthcare, retail, manufacturing, and technology sectors.</p>
             </div>
             <div>
-              <h4 className="mb-2 text-foreground">How do you price your services?</h4>
+              <h4 className="mb-2 text-foreground font-medium">How do you price your services?</h4>
               <p className="text-muted-foreground">We offer flexible pricing models including fixed-price, time and materials, and dedicated team options based on your project needs.</p>
             </div>
           </div>
