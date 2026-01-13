@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity, Github } from "lucide-react";
 const logoImage = "/logo.png";
 
 export function Footer() {
