@@ -12,6 +12,11 @@ import { Login } from "./pages/admin/Login";
 import { Dashboard } from "./pages/admin/Dashboard";
 import { Toaster } from "sonner";
 
+import { ScrollToTop } from "./components/ScrollToTop";
+import { PrivacyPolicy } from "./pages/policies/PrivacyPolicy";
+import { TermsOfService } from "./pages/policies/TermsOfService";
+import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
+
 import { GSAPWrapper } from "./components/GSAPWrapper";
 import { CursorFollower } from "./components/ui/CursorFollower";
 import { SmoothScroll } from "./components/ui/SmoothScroll";
