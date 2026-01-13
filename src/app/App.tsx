@@ -23,21 +23,23 @@ import { ServiceDetail } from "./pages/ServiceDetail";
 
 function PublicLayout() {
   return (
-    <ExitIntentPopup />
-    <WhatsAppWidget />
-    <SmoothScroll>
-      <GSAPWrapper>
-        <CursorFollower />
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">
-            <Outlet />
-          </main>
-          <Footer />
-          <Chatbot />
-        </div>
-      </GSAPWrapper>
-    </SmoothScroll>
+    <>
+      <ExitIntentPopup />
+      <WhatsAppWidget />
+      <SmoothScroll>
+        <GSAPWrapper>
+          <CursorFollower />
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">
+              <Outlet />
+            </main>
+            <Footer />
+            <Chatbot />
+          </div>
+        </GSAPWrapper>
+      </SmoothScroll>
+    </>
   );
 }
 
