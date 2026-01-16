@@ -40,6 +40,7 @@ function CaseStudyCard({ study, index }: { study: Project; index: number }) {
           className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
           loading="eager"
           decoding="sync"
+          style={{ opacity: 1 }}
         />
         {/* Overlay Badge for Gallery */}
         {study.gallery && (
@@ -181,17 +182,22 @@ export function CaseStudies() {
       // Refresh ScrollTrigger to ensure positions are correct after loading
       ScrollTrigger.refresh();
 
-      // Cards
+      // Cards - Set initial state first
+      gsap.set(".case-study-card", { opacity: 1, y: 0 });
+      
+      // Then animate from hidden state
       gsap.from(".case-study-card", {
         scrollTrigger: {
           trigger: ".case-studies-grid",
           start: "top 85%",
+          toggleActions: "play none none none"
         },
         y: 30,
         opacity: 0,
         duration: 0.8,
         stagger: 0.2,
-        ease: "power2.out"
+        ease: "power2.out",
+        immediateRender: false
       });
 
       // Stats
