@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Check, ChevronRight, ChevronLeft, Calculator, Mail } from "lucide-react";
+import { Check, ChevronRight, ChevronLeft, Calculator, Mail, Globe, Smartphone, Sparkles, ShoppingCart, Zap, Cloud } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -9,6 +9,8 @@ interface Option {
     id: string;
     label: string;
     cost: number;
+    icon?: React.ReactNode;
+    description?: string;
 }
 
 interface Step {
@@ -25,9 +27,48 @@ const steps: Step[] = [
         title: "Platform",
         description: "Where should your application live?",
         options: [
-            { id: "web", label: "Web Application", cost: 1500 },
-            { id: "mobile", label: "Mobile App (iOS/Android)", cost: 2500 },
-            { id: "both", label: "Both (Web + Mobile)", cost: 3500 },
+            { 
+                id: "web", 
+                label: "Web Application", 
+                cost: 1500,
+                icon: <Globe className="h-6 w-6" />,
+                description: "Responsive web apps for all devices"
+            },
+            { 
+                id: "mobile", 
+                label: "Mobile App (iOS/Android)", 
+                cost: 2500,
+                icon: <Smartphone className="h-6 w-6" />,
+                description: "Native mobile applications"
+            },
+            { 
+                id: "both", 
+                label: "Both (Web + Mobile)", 
+                cost: 3500,
+                icon: <Sparkles className="h-6 w-6" />,
+                description: "Cross-platform solution"
+            },
+            { 
+                id: "saas", 
+                label: "SaaS MVP", 
+                cost: 4000,
+                icon: <Cloud className="h-6 w-6" />,
+                description: "Scalable SaaS platform with multi-tenancy"
+            },
+            { 
+                id: "ecommerce", 
+                label: "E-commerce Platform", 
+                cost: 3000,
+                icon: <ShoppingCart className="h-6 w-6" />,
+                description: "Full-featured online store"
+            },
+            { 
+                id: "ai-automation", 
+                label: "AI Automation", 
+                cost: 3500,
+                icon: <Zap className="h-6 w-6" />,
+                description: "AI-powered automation solutions"
+            },
         ]
     },
     {
@@ -177,21 +218,48 @@ export function CostEstimator() {
                                         <h2 className="text-2xl font-bold text-foreground mb-2">{steps[currentStep].title}</h2>
                                         <p className="text-muted-foreground mb-6">{steps[currentStep].description}</p>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                             {steps[currentStep].options.map(option => {
                                                 const isSelected = (selections[steps[currentStep].id] || []).includes(option.id);
                                                 return (
-                                                    <div
+                                                    <motion.div
                                                         key={option.id}
                                                         onClick={() => handleSelect(steps[currentStep].id, option.id, steps[currentStep].multiSelect || false)}
-                                                        className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center justify-between ${isSelected
-                                                            ? "border-primary bg-primary/5 shadow-[0_0_10px_-4px_var(--color-primary)]"
-                                                            : "border-border hover:border-primary/50 bg-secondary/10"
+                                                        whileHover={{ scale: 1.02 }}
+                                                        whileTap={{ scale: 0.98 }}
+                                                        className={`p-5 rounded-xl border-2 cursor-pointer transition-all ${isSelected
+                                                            ? "border-primary bg-primary/10 shadow-[0_0_20px_-8px_var(--color-primary)]"
+                                                            : "border-border hover:border-primary/50 bg-card hover:bg-card/80"
                                                             }`}
                                                     >
-                                                        <span className="font-medium text-foreground">{option.label}</span>
-                                                        {isSelected && <Check className="h-5 w-5 text-primary" />}
-                                                    </div>
+                                                        <div className="flex items-start justify-between mb-3">
+                                                            <div className="flex items-center gap-3">
+                                                                {option.icon && (
+                                                                    <div className={`p-2 rounded-lg ${isSelected ? "bg-primary/20 text-primary" : "bg-secondary/50 text-muted-foreground"}`}>
+                                                                        {option.icon}
+                                                                    </div>
+                                                                )}
+                                                                <div>
+                                                                    <span className="font-semibold text-foreground block">{option.label}</span>
+                                                                    {option.description && (
+                                                                        <span className="text-xs text-muted-foreground mt-1 block">{option.description}</span>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                            {isSelected && (
+                                                                <motion.div
+                                                                    initial={{ scale: 0 }}
+                                                                    animate={{ scale: 1 }}
+                                                                    className="bg-primary text-primary-foreground rounded-full p-1"
+                                                                >
+                                                                    <Check className="h-4 w-4" />
+                                                                </motion.div>
+                                                            )}
+                                                        </div>
+                                                        <div className="text-sm font-medium text-primary mt-2">
+                                                            From ${option.cost.toLocaleString()}
+                                                        </div>
+                                                    </motion.div>
                                                 );
                                             })}
                                         </div>
