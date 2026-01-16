@@ -9,6 +9,7 @@ import { GravityHero } from "../components/ui/GravityHero";
 import { VideoHero } from "../components/ui/VideoHero";
 import { TechStackMarquee } from "../components/ui/TechStackMarquee";
 import { API_BASE_URL } from "../../config";
+import { toast } from "sonner";
 
 // Helper to map icon names to components
 const getIcon = (name: string) => {
@@ -199,8 +200,13 @@ export function Home() {
                 onClick={(e) => {
                   if (!localStorage.getItem('token')) {
                     e.preventDefault();
-                    window.location.href = '/admin/login';
-                    alert("Please login to schedule a consultation.");
+                    toast.info("Login Required", {
+                      description: "Please login to schedule a consultation.",
+                      action: {
+                        label: "Go to Login",
+                        onClick: () => window.location.href = '/admin/login'
+                      }
+                    });
                   }
                 }}
                 className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"

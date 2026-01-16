@@ -1,6 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { Plus, Trash2, Upload, Loader2, Save, X } from "lucide-react";
 import { API_BASE_URL } from "../../../config";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../components/ui/alert-dialog";
 
 interface Project {
     id: number;
@@ -16,6 +27,8 @@ export function ProjectManager() {
     const [loading, setLoading] = useState(true);
     const [isAdding, setIsAdding] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState<number | null>(null);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -45,22 +58,31 @@ export function ProjectManager() {
     };
 
     const handleDelete = async (id: number) => {
-        if (!confirm("Are you sure you want to delete this project?")) return;
+        setItemToDelete(id);
+        setDeleteDialogOpen(true);
+    };
 
+    const confirmDelete = async () => {
+        if (!itemToDelete) return;
+        
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/projects/${itemToDelete}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             if (res.ok) {
-                setProjects(projects.filter((p) => p.id !== id));
+                setProjects(projects.filter((p) => p.id !== itemToDelete));
+                toast.success("Project deleted successfully");
             } else {
-                alert("Failed to delete project");
+                toast.error("Failed to delete project");
             }
         } catch (error) {
-            alert("Error deleting project");
+            toast.error("Error deleting project");
+        } finally {
+            setDeleteDialogOpen(false);
+            setItemToDelete(null);
         }
     };
 
@@ -96,11 +118,13 @@ export function ProjectManager() {
                 setImageFile(null);
             } else {
                 const err = await res.json();
-                alert(`Error: ${err.message}`);
+                toast.error("Error", {
+                    description: err.message || "Failed to create project"
+                });
             }
         } catch (error) {
             console.error(error);
-            alert("Failed to create project");
+            toast.error("Failed to create project");
         } finally {
             setSubmitting(false);
         }
@@ -235,6 +259,23 @@ export function ProjectManager() {
                     ))
                 )}
             </div>
-        </div >
+            
+            <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete the project.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={confirmDelete} className="bg-red-600 hover:bg-red-700">
+                            Delete
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </div>
     );
 }
