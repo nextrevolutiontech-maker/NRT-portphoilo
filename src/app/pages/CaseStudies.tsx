@@ -21,15 +21,13 @@ interface Project {
 // Internal component for handling gallery state
 function CaseStudyCard({ study, index }: { study: Project; index: number }) {
   const [activeImage, setActiveImage] = useState<string>(study.image_url || '');
-  const [imageLoaded, setImageLoaded] = useState(false);
   
   // Update activeImage when study.image_url changes
   useEffect(() => {
-    if (study.image_url) {
+    if (study.image_url && study.image_url !== activeImage) {
       setActiveImage(study.image_url);
-      setImageLoaded(false); // Reset loaded state when image changes
     }
-  }, [study.image_url]);
+  }, [study.image_url, activeImage]);
 
   return (
     <div
