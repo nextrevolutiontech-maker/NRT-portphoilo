@@ -133,7 +133,7 @@ export function CaseStudies() {
       challenge: "Low conversion rates and lack of personalized user experiences.",
       solution: "Implemented machine learning recommendation engine.",
       results: ["50% increase in average order value", "25% boost in conversion rate", "Enhanced customer retention"],
-      image_url: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=1080"
+      image_url: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&q=80&w=1080"
     }
   ];
 
