@@ -1,4 +1,4 @@
-
+// Estimator component with 6 platform options and price display
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Check, ChevronRight, ChevronLeft, Calculator, Mail, Globe, Smartphone, Sparkles, ShoppingCart, Zap, Cloud } from "lucide-react";
