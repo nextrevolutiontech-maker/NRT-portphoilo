@@ -260,10 +260,18 @@ export function CaseStudies() {
       {/* Case Studies Grid */}
       <section className="bg-background pt-8 pb-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 case-studies-grid">
-            {caseStudies.map((study, index) => (
-              <CaseStudyCard key={index} study={study} index={index} />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 case-studies-grid">
+            {caseStudies.length === 3 ? (
+              // If 3 items, show only first 2 for better visibility
+              caseStudies.slice(0, 2).map((study, index) => (
+                <CaseStudyCard key={index} study={study} index={index} />
+              ))
+            ) : (
+              // Show all items if 2, 4, or more
+              caseStudies.map((study, index) => (
+                <CaseStudyCard key={index} study={study} index={index} />
+              ))
+            )}
             {caseStudies.length === 0 && (
               <div className="col-span-full text-center py-20 text-muted-foreground">
                 No case studies found. Check back soon!
