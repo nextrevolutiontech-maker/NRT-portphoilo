@@ -256,8 +256,9 @@ export function CostEstimator() {
                                                                 </motion.div>
                                                             )}
                                                         </div>
-                                                        <div className="text-sm font-medium text-primary mt-2">
-                                                            From ${option.cost.toLocaleString()}
+                                                        <div className="text-sm font-bold text-primary mt-3 pt-3 border-t border-border/50">
+                                                            <span className="text-xs text-muted-foreground font-normal mr-1">Starting from</span>
+                                                            <span className="text-lg font-bold">${option.cost.toLocaleString()}</span>
                                                         </div>
                                                     </motion.div>
                                                 );
