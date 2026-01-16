@@ -11,7 +11,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "../../components/ui/alert-dialog";
+} from "../../components/ui/alert-dialog"; // Fixed import path for Vercel build
 
 interface Project {
     id: number;
