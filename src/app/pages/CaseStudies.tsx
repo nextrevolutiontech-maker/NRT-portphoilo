@@ -260,7 +260,7 @@ export function CaseStudies() {
       {/* Case Studies Grid */}
       <section className="bg-background pt-8 pb-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 case-studies-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2 md:gap-3 case-studies-grid">
             {caseStudies.length === 3 ? (
               // If 3 items, show only first 2 for better visibility
               caseStudies.slice(0, 2).map((study, index) => (
