@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity, Github } from "lucide-react";
+import { toast } from "sonner";
+import { useState } from "react";
 const logoImage = "/logo.png";
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const emailValue = formData.get("email") as string || email;
+    
+    if (emailValue) {
+      toast.success("Thanks for subscribing!", {
+        description: `We'll send updates to ${emailValue}`,
+        duration: 4000,
+      });
+      setEmail("");
+      e.currentTarget.reset();
+    }
+  };
+
   return (
     <footer className="bg-card text-muted-foreground border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -88,9 +107,12 @@ export function Footer() {
             <p className="text-sm text-gray-400 mb-4">
               Subscribe to get the latest tech trends and insights delivered to your inbox.
             </p>
-            <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); alert("Thanks for subscribing!"); }}>
+            <form className="flex gap-2" onSubmit={handleSubscribe}>
               <input
                 type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email address"
                 className="bg-secondary/20 border border-border rounded px-4 py-2 text-sm w-full focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground/50"
                 required
