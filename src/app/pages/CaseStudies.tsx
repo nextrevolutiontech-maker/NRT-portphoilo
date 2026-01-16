@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, Building2, TrendingUp, Users, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -21,17 +21,27 @@ interface Project {
 // Internal component for handling gallery state
 function CaseStudyCard({ study, index }: { study: Project; index: number }) {
   const [activeImage, setActiveImage] = useState(study.image_url);
+  
+  // Update activeImage when study.image_url changes
+  useEffect(() => {
+    if (study.image_url && study.image_url !== activeImage) {
+      setActiveImage(study.image_url);
+    }
+  }, [study.image_url]);
 
   return (
     <div
       className="bg-card rounded-lg border border-border overflow-hidden hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all hover:scale-[1.02] case-study-card flex flex-col h-full"
     >
       <div className="overflow-hidden h-64 relative group">
-        <ImageWithFallback
-          src={activeImage}
-          alt={study.title}
-          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-        />
+        {activeImage && (
+          <ImageWithFallback
+            src={activeImage}
+            alt={study.title}
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+            loading="eager"
+          />
+        )}
         {/* Overlay Badge for Gallery */}
         {study.gallery && (
           <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs px-2 py-1 rounded border border-white/10">
