@@ -10,7 +10,15 @@ export function Footer() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex flex-col items-start gap-2 mb-4">
-              <img src={logoImage} alt="Next Revolution Tech" className="h-20 sm:h-32 w-auto object-contain dark:brightness-0 dark:invert transition-all" />
+              <img 
+                src={logoImage} 
+                alt="Next Revolution Tech" 
+                className="h-20 sm:h-32 w-auto object-contain transition-all"
+                onError={(e) => {
+                  console.error('Logo failed to load:', logoImage);
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
               <span className="text-xl font-bold text-foreground">Next Revolution Tech</span>
             </div>
             <p className="text-sm text-gray-400 mb-4">

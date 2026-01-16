@@ -30,7 +30,11 @@ export function Header() {
             <motion.img
               src={logoImage}
               alt="Next Revolution Tech Logo"
-              className="h-16 sm:h-24 w-auto object-contain drop-shadow-md dark:brightness-0 dark:invert transition-all"
+              className="h-16 sm:h-24 w-auto object-contain drop-shadow-md transition-all"
+              onError={(e) => {
+                console.error('Logo failed to load:', logoImage);
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -40,7 +44,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-8">
+          <div className="hidden xl:flex xl:items-center xl:gap-x-6">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -50,7 +54,7 @@ export function Header() {
               >
                 <Link
                   to={item.href}
-                  className={`transition-colors relative ${isActive(item.href)
+                  className={`transition-colors relative text-sm font-medium ${isActive(item.href)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-primary"
                     }`}
@@ -69,9 +73,9 @@ export function Header() {
           </div>
 
           {/* CTA Button Desktop */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4">
             {/* Login/Dashboard Button */}
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -112,7 +116,7 @@ export function Header() {
                     window.location.href = '/contact';
                   }
                 }}
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg font-medium"
+                className="bg-primary text-primary-foreground px-5 py-2.5 rounded-md hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg font-medium text-sm"
               >
                 Book a Call
               </Link>
@@ -124,7 +128,7 @@ export function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+            className="xl:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -138,7 +142,7 @@ export function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.div
-            className="lg:hidden border-t border-gray-200 py-4"
+            className="xl:hidden border-t border-gray-200 py-4"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
