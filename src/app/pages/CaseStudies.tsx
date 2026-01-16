@@ -20,12 +20,14 @@ interface Project {
 
 // Internal component for handling gallery state
 function CaseStudyCard({ study, index }: { study: Project; index: number }) {
-  const [activeImage, setActiveImage] = useState(study.image_url);
+  const [activeImage, setActiveImage] = useState<string>(study.image_url || '');
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   // Update activeImage when study.image_url changes
   useEffect(() => {
-    if (study.image_url && study.image_url !== activeImage) {
+    if (study.image_url) {
       setActiveImage(study.image_url);
+      setImageLoaded(false); // Reset loaded state when image changes
     }
   }, [study.image_url]);
 
@@ -33,15 +35,14 @@ function CaseStudyCard({ study, index }: { study: Project; index: number }) {
     <div
       className="bg-card rounded-lg border border-border overflow-hidden hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all hover:scale-[1.02] case-study-card flex flex-col h-full"
     >
-      <div className="overflow-hidden h-64 relative group">
-        {activeImage && (
-          <ImageWithFallback
-            src={activeImage}
-            alt={study.title}
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-            loading="eager"
-          />
-        )}
+      <div className="overflow-hidden h-64 relative group bg-secondary/10">
+        <ImageWithFallback
+          src={activeImage || study.image_url || ''}
+          alt={study.title}
+          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+          loading="eager"
+          decoding="sync"
+        />
         {/* Overlay Badge for Gallery */}
         {study.gallery && (
           <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white text-xs px-2 py-1 rounded border border-white/10">
@@ -154,7 +155,8 @@ export function CaseStudies() {
       .then(data => {
         let formatted = (Array.isArray(data) ? data : []).map((p: any) => ({
           ...p,
-          results: Array.isArray(p.results) ? p.results : []
+          results: Array.isArray(p.results) ? p.results : [],
+          image_url: p.image_url || p.image_url // Ensure image_url is preserved
         }));
 
         // Use dummy data if backend is empty
