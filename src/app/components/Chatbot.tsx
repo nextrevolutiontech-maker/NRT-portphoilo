@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Minimize2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { HoverModal } from "./ui/HoverModal";
 
 interface Message {
   id: number;
@@ -11,6 +12,7 @@ interface Message {
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -96,17 +98,80 @@ export function Chatbot() {
       {/* Chat Button */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-2xl hover:bg-primary/90 transition-colors"
+            className="fixed bottom-6 right-6 z-50"
+            onMouseEnter={() => setHoverModalOpen(true)}
+            onMouseLeave={() => setHoverModalOpen(false)}
           >
-            <MessageCircle className="h-6 w-6" />
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(true)}
+              className="bg-primary text-primary-foreground p-4 rounded-full shadow-2xl hover:bg-primary/90 transition-colors"
+            >
+              <MessageCircle className="h-6 w-6" />
+            </motion.button>
+            <HoverModal
+              isOpen={hoverModalOpen}
+              onMouseEnter={() => setHoverModalOpen(true)}
+              onMouseLeave={() => setHoverModalOpen(false)}
+              position="top"
+              align="end"
+              className="!z-[10002] min-w-[300px] max-w-[350px]"
+            >
+              <div className="space-y-3">
+                <div>
+                  <h3 className="font-semibold text-foreground text-sm mb-1">Chat with Us</h3>
+                  <p className="text-xs text-muted-foreground">
+                    Get instant answers to your questions about our services, pricing, and more.
+                  </p>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                      💬
+                    </div>
+                    <div>
+                      <div className="text-xs font-medium text-foreground">Quick Responses</div>
+                      <div className="text-xs text-muted-foreground">Get answers instantly</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                      📋
+                    </div>
+                    <div>
+                      <div className="text-xs font-medium text-foreground">Service Information</div>
+                      <div className="text-xs text-muted-foreground">Learn about our offerings</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                      📅
+                    </div>
+                    <div>
+                      <div className="text-xs font-medium text-foreground">Schedule Consultation</div>
+                      <div className="text-xs text-muted-foreground">Book a meeting with us</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button
+                  onClick={() => {
+                    setIsOpen(true);
+                    setHoverModalOpen(false);
+                  }}
+                  className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                >
+                  Start Chat
+                </button>
+              </div>
+            </HoverModal>
+          </motion.div>
         )}
       </AnimatePresence>
 

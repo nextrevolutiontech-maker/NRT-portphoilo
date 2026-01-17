@@ -1,14 +1,16 @@
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Search, Lightbulb, Code2, Rocket, HeadphonesIcon, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EngagementModels } from "../components/ui/EngagementModels";
+import { HoverModal } from "../components/ui/HoverModal";
 
 export function Process() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -332,18 +334,44 @@ export function Process() {
       <EngagementModels />
 
       {/* CTA Section */}
-      <section className="bg-primary text-primary-foreground py-20">
+      <section className="bg-primary text-primary-foreground py-20 relative" style={{ overflow: 'visible', zIndex: 1 }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6">Start Your Project Today</h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Let's discuss your requirements and how our process can deliver the results you need
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+          <div 
+            className="relative inline-block"
+            onMouseEnter={() => setHoverModalOpen(true)}
+            onMouseLeave={() => setHoverModalOpen(false)}
           >
-            Get Started
-          </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+            >
+              Get Started
+            </Link>
+            <HoverModal
+              isOpen={hoverModalOpen}
+              onMouseEnter={() => setHoverModalOpen(true)}
+              onMouseLeave={() => setHoverModalOpen(false)}
+              position="top"
+              align="center"
+            >
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground text-sm">Start Your Project Today</h3>
+                <p className="text-xs text-muted-foreground">
+                  Let's discuss your requirements and how our proven process can deliver the results you need.
+                </p>
+                <Link
+                  to="/contact"
+                  className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </HoverModal>
+          </div>
         </div>
       </section>
     </div>

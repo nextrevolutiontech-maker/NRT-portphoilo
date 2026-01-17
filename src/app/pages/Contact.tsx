@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
+import { HoverModal } from "../components/ui/HoverModal";
 import { toast } from "sonner";
 import gsap from "gsap";
 import { API_BASE_URL } from "../../config";
@@ -67,6 +68,7 @@ export function Contact() {
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
 
   const handleRealSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -198,14 +200,35 @@ export function Contact() {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
+                <div 
+                  className="relative w-full"
+                  onMouseEnter={() => setHoverModalOpen(true)}
+                  onMouseLeave={() => setHoverModalOpen(false)}
                 >
-                  <Send className="h-5 w-5 mr-2" />
-                  {status === 'loading' ? 'Sending...' : 'Send Message'}
-                </Button>
+                  <Button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
+                  >
+                    <Send className="h-5 w-5 mr-2" />
+                    {status === 'loading' ? 'Sending...' : 'Send Message'}
+                  </Button>
+                  <HoverModal
+                    isOpen={hoverModalOpen && status !== 'loading'}
+                    onMouseEnter={() => setHoverModalOpen(true)}
+                    onMouseLeave={() => setHoverModalOpen(false)}
+                    position="top"
+                    align="center"
+                    className="w-72"
+                  >
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-foreground text-sm">Send Your Message</h3>
+                      <p className="text-xs text-muted-foreground">
+                        Fill out the form and we'll get back to you within 24 hours. Your information is secure and confidential.
+                      </p>
+                    </div>
+                  </HoverModal>
+                </div>
 
                 {/* Privacy Note */}
                 <div className="bg-secondary/10 p-4 rounded-lg border border-border">

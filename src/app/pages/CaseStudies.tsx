@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { HoverModal } from "../components/ui/HoverModal";
 import { API_BASE_URL } from "../../config";
 
 interface Project {
@@ -103,6 +104,7 @@ function CaseStudyCard({ study, index }: { study: Project; index: number }) {
 export function CaseStudies() {
   const [caseStudies, setCaseStudies] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
 
@@ -325,19 +327,45 @@ export function CaseStudies() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary text-primary-foreground py-20">
+      <section className="bg-primary text-primary-foreground py-20 relative" style={{ overflow: 'visible', zIndex: 1 }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-3xl md:text-4xl font-bold">Ready to Write Your <span className="text-background bg-primary px-2 rounded">Success Story</span>?</h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Partner with us to build technology that drives <strong>real results</strong>.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+          <div 
+            className="relative inline-block"
+            onMouseEnter={() => setHoverModalOpen(true)}
+            onMouseLeave={() => setHoverModalOpen(false)}
           >
-            Start Your Project
-            <ArrowRight className="h-5 w-5" />
-          </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+            >
+              Start Your Project
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <HoverModal
+              isOpen={hoverModalOpen}
+              onMouseEnter={() => setHoverModalOpen(true)}
+              onMouseLeave={() => setHoverModalOpen(false)}
+              position="top"
+              align="center"
+            >
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground text-sm">Start Your Success Story</h3>
+                <p className="text-xs text-muted-foreground">
+                  Ready to build technology that drives real results? Let's discuss your project and create something amazing together.
+                </p>
+                <Link
+                  to="/contact"
+                  className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </HoverModal>
+          </div>
         </div>
       </section>
     </div>

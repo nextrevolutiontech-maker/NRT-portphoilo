@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity, Github } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import { HoverModal } from "./ui/HoverModal";
 const logoImage = "/logo.png";
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -117,13 +119,34 @@ export function Footer() {
                 className="bg-secondary/20 border border-border rounded px-4 py-2 text-sm w-full focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground/50"
                 required
               />
-              <button
-                type="submit"
-                className="bg-primary text-primary-foreground p-2 rounded hover:bg-primary/90 transition-colors"
-                aria-label="Subscribe"
+              <div 
+                className="relative"
+                onMouseEnter={() => setHoverModalOpen(true)}
+                onMouseLeave={() => setHoverModalOpen(false)}
               >
-                <Send className="h-4 w-4" />
-              </button>
+                <button
+                  type="submit"
+                  className="bg-primary text-primary-foreground p-2 rounded hover:bg-primary/90 transition-colors"
+                  aria-label="Subscribe"
+                >
+                  <Send className="h-4 w-4" />
+                </button>
+                <HoverModal
+                  isOpen={hoverModalOpen}
+                  onMouseEnter={() => setHoverModalOpen(true)}
+                  onMouseLeave={() => setHoverModalOpen(false)}
+                  position="top"
+                  align="end"
+                  className="w-64"
+                >
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-foreground text-sm">Stay Updated</h3>
+                    <p className="text-xs text-muted-foreground">
+                      Subscribe to get the latest tech trends, insights, and company updates delivered to your inbox.
+                    </p>
+                  </div>
+                </HoverModal>
+              </div>
             </form>
           </div>
         </div>

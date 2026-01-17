@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { MessageCircle, QrCode, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { HoverModal } from "./HoverModal";
 
 export function WhatsAppWidget() {
     const phoneNumber = "923442013217"; // Updated with user number
     const message = "Hello! I'm interested in your services.";
     const [showQr, setShowQr] = useState(false);
+    const [hoverModalOpen, setHoverModalOpen] = useState(false);
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(whatsappUrl)}`;
@@ -36,16 +38,79 @@ export function WhatsAppWidget() {
 
             <div className="flex items-center gap-3">
                 {/* QR Toggle Button (Mini) */}
-                <motion.button
-                    onClick={() => setShowQr(!showQr)}
-                    className="bg-white text-gray-700 p-2 rounded-full shadow-md hover:shadow-lg border border-gray-100 hover:bg-gray-50 transition-all"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    whileHover={{ scale: 1.1 }}
-                    title="Show QR Code"
+                <div
+                    className="relative"
+                    onMouseEnter={() => setHoverModalOpen(true)}
+                    onMouseLeave={() => setHoverModalOpen(false)}
                 >
-                    <QrCode className="w-5 h-5" />
-                </motion.button>
+                    <motion.button
+                        onClick={() => setShowQr(!showQr)}
+                        className="bg-white text-gray-700 p-2 rounded-full shadow-md hover:shadow-lg border border-gray-100 hover:bg-gray-50 transition-all"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        whileHover={{ scale: 1.1 }}
+                        title="Show QR Code"
+                    >
+                        <QrCode className="w-5 h-5" />
+                    </motion.button>
+                    <HoverModal
+                        isOpen={hoverModalOpen && !showQr}
+                        onMouseEnter={() => setHoverModalOpen(true)}
+                        onMouseLeave={() => setHoverModalOpen(false)}
+                        position="top"
+                        align="end"
+                        className="!z-[10002] min-w-[280px] max-w-[320px]"
+                    >
+                        <div className="space-y-3">
+                            <div>
+                                <h3 className="font-semibold text-foreground text-sm mb-1">Scan QR Code</h3>
+                                <p className="text-xs text-muted-foreground">
+                                    Scan this QR code with your phone to start a WhatsApp conversation instantly.
+                                </p>
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                                        📱
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-medium text-foreground">Quick Access</div>
+                                        <div className="text-xs text-muted-foreground">Scan and chat instantly</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                                        💬
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-medium text-foreground">Direct WhatsApp</div>
+                                        <div className="text-xs text-muted-foreground">No app download needed</div>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
+                                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                                        ⚡
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-medium text-foreground">Instant Connection</div>
+                                        <div className="text-xs text-muted-foreground">Get immediate responses</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button
+                                onClick={() => {
+                                    setShowQr(true);
+                                    setHoverModalOpen(false);
+                                }}
+                                className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                            >
+                                Show QR Code
+                            </button>
+                        </div>
+                    </HoverModal>
+                </div>
 
                 {/* Main WhatsApp Button */}
                 <motion.a

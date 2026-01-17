@@ -1,11 +1,12 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp } from "lucide-react";
+import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { HoverModal } from "../components/ui/HoverModal";
 import { API_BASE_URL } from "../../config";
 
 // Helper to map icon names to components
@@ -28,6 +29,7 @@ interface Service {
 export function Services() {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -187,18 +189,44 @@ export function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary text-primary-foreground py-20 cta-section">
+      <section className="bg-primary text-primary-foreground py-20 cta-section relative" style={{ overflow: 'visible', zIndex: 1 }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-6 text-3xl md:text-4xl font-bold">Ready to <span className="text-background bg-primary px-2 rounded">Scale</span> Your Vision?</h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Don't settle for average. Partner with a team that delivers <strong>excellence</strong>.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+          <div 
+            className="relative inline-block"
+            onMouseEnter={() => setHoverModalOpen(true)}
+            onMouseLeave={() => setHoverModalOpen(false)}
           >
-            Get in Touch
-          </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
+            >
+              Get in Touch
+            </Link>
+            <HoverModal
+              isOpen={hoverModalOpen}
+              onMouseEnter={() => setHoverModalOpen(true)}
+              onMouseLeave={() => setHoverModalOpen(false)}
+              position="top"
+              align="center"
+            >
+              <div className="space-y-2">
+                <h3 className="font-semibold text-foreground text-sm">Let's Build Together</h3>
+                <p className="text-xs text-muted-foreground">
+                  Ready to scale your vision? Get in touch with our team to discuss your project requirements.
+                </p>
+                <Link
+                  to="/contact"
+                  className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </HoverModal>
+          </div>
         </div>
       </section>
     </div>

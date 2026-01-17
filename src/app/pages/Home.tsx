@@ -8,6 +8,7 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
 import { VideoHero } from "../components/ui/VideoHero";
 import { TechStackMarquee } from "../components/ui/TechStackMarquee";
+import { HoverModal } from "../components/ui/HoverModal";
 import { API_BASE_URL } from "../../config";
 import { toast } from "sonner";
 
@@ -41,6 +42,7 @@ export function Home() {
   const [services, setServices] = useState<Service[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hoverModalOpen, setHoverModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -179,13 +181,13 @@ export function Home() {
         <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
       </Helmet>
       {/* Hero Section */}
-      <section className="relative bg-background text-foreground overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      <section className="relative bg-background text-foreground" style={{ overflow: 'visible' }}>
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <GravityHero />
           {/* Subtle overlay to ensure text readability if needed */}
           <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32" style={{ overflow: 'visible' }}>
 
           <div className="max-w-3xl">
             <h1 className="hero-text mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
@@ -194,26 +196,54 @@ export function Home() {
             <p className="hero-text mb-6 sm:mb-8 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
               We partner with global enterprises to <strong>transform ideas</strong> into powerful, <strong>secure</strong>, and ready-to-scale software ecosystems.
             </p>
-            <div className="hero-text flex flex-col sm:flex-row gap-4">
-              <Link
-                to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
-                onClick={(e) => {
-                  if (!localStorage.getItem('token')) {
-                    e.preventDefault();
-                    toast.info("Login Required", {
-                      description: "Please login to schedule a consultation.",
-                      action: {
-                        label: "Go to Login",
-                        onClick: () => window.location.href = '/admin/login'
-                      }
-                    });
-                  }
-                }}
-                className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"
+            <div className="hero-text flex flex-col sm:flex-row gap-4" style={{ overflow: 'visible', position: 'relative', zIndex: 1 }}>
+              <div 
+                className="relative inline-block"
+                style={{ overflow: 'visible', position: 'relative', zIndex: 1000 }}
+                onMouseEnter={() => setHoverModalOpen(true)}
+                onMouseLeave={() => setHoverModalOpen(false)}
               >
-                Book Strategy Call
-                <ArrowRight className="h-5 w-5" />
-              </Link>
+                <Link
+                  to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
+                  onClick={(e) => {
+                    if (!localStorage.getItem('token')) {
+                      e.preventDefault();
+                      toast.info("Login Required", {
+                        description: "Please login to schedule a consultation.",
+                        action: {
+                          label: "Go to Login",
+                          onClick: () => window.location.href = '/admin/login'
+                        }
+                      });
+                    }
+                  }}
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"
+                >
+                  Book Strategy Call
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+                <HoverModal
+                  isOpen={hoverModalOpen}
+                  onMouseEnter={() => setHoverModalOpen(true)}
+                  onMouseLeave={() => setHoverModalOpen(false)}
+                  position="bottom"
+                  align="start"
+                  className="!z-[10000]"
+                >
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-foreground text-sm">Strategic Consultation</h3>
+                    <p className="text-xs text-muted-foreground">
+                      Book a free strategy call to discuss your business goals and how we can help you achieve them.
+                    </p>
+                    <Link
+                      to="/contact"
+                      className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
+                    >
+                      Schedule Now
+                    </Link>
+                  </div>
+                </HoverModal>
+              </div>
               <Link
                 to="/services"
                 className="inline-flex items-center justify-center gap-2 bg-background/50 backdrop-blur-sm border border-primary/30 text-foreground px-8 py-4 rounded-full hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 text-center font-medium"
