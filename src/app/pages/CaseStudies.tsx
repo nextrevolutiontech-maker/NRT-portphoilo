@@ -22,7 +22,7 @@ interface Project {
 // Internal component for handling gallery state
 function CaseStudyCard({ study, index }: { study: Project; index: number }) {
   const [activeImage, setActiveImage] = useState<string>(study.image_url || '');
-  
+
   // Update activeImage when study.image_url changes
   useEffect(() => {
     if (study.image_url && study.image_url !== activeImage) {
@@ -186,7 +186,7 @@ export function CaseStudies() {
 
       // Cards - Set initial state first
       gsap.set(".case-study-card", { opacity: 1, y: 0 });
-      
+
       // Then animate from hidden state
       gsap.from(".case-study-card", {
         scrollTrigger: {
@@ -333,7 +333,7 @@ export function CaseStudies() {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Partner with us to build technology that drives <strong>real results</strong>.
           </p>
-          <div 
+          <div
             className="relative inline-block"
             onMouseEnter={() => setHoverModalOpen(true)}
             onMouseLeave={() => setHoverModalOpen(false)}

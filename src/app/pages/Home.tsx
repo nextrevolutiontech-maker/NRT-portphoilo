@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe } from "lucide-react";
+import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,9 +15,9 @@ import { toast } from "sonner";
 // Helper to map icon names to components
 const getIcon = (name: string) => {
   const icons: any = {
-    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe
+    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow
   };
-  return icons[name] || <Code className="h-8 w-8" />;
+  return icons[name] || Code;
 };
 
 interface Service {
@@ -197,7 +197,7 @@ export function Home() {
               We partner with global enterprises to <strong>transform ideas</strong> into powerful, <strong>secure</strong>, and ready-to-scale software ecosystems.
             </p>
             <div className="hero-text flex flex-col sm:flex-row gap-4" style={{ overflow: 'visible', position: 'relative', zIndex: 1 }}>
-              <div 
+              <div
                 className="relative inline-block"
                 style={{ overflow: 'visible', position: 'relative', zIndex: 1000 }}
                 onMouseEnter={() => setHoverModalOpen(true)}
@@ -290,7 +290,7 @@ export function Home() {
                   className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow service-card"
                 >
                   <div className="text-primary mb-4">
-                    {typeof Icon === 'function' ? <Icon className="h-8 w-8" /> : Icon}
+                    <Icon className="h-8 w-8" />
                   </div>
                   <h3 className="mb-3 text-card-foreground text-xl font-bold">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>

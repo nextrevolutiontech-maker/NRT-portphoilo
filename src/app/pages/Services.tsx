@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp, ArrowRight } from "lucide-react";
+import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp, ArrowRight, Blocks, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
@@ -12,9 +12,9 @@ import { API_BASE_URL } from "../../config";
 // Helper to map icon names to components
 const getIcon = (name: string) => {
   const icons: any = {
-    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe
+    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow
   };
-  return icons[name] || <Code className="h-10 w-10" />;
+  return icons[name] || Code;
 };
 
 interface Service {
@@ -132,7 +132,7 @@ export function Services() {
                 >
                   <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                     <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-6 shadow-[0_0_20px_-5px_var(--color-primary)]">
-                      {typeof Icon === 'function' ? <Icon className="h-10 w-10" /> : Icon}
+                      <Icon className="h-10 w-10" />
                     </div>
                     <h2 className="mb-4 text-primary text-3xl font-bold">{service.title}</h2>
                     <p className="text-xl text-muted-foreground mb-6">{service.description}</p>
@@ -195,7 +195,7 @@ export function Services() {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
             Don't settle for average. Partner with a team that delivers <strong>excellence</strong>.
           </p>
-          <div 
+          <div
             className="relative inline-block"
             onMouseEnter={() => setHoverModalOpen(true)}
             onMouseLeave={() => setHoverModalOpen(false)}

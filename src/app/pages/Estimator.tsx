@@ -1,7 +1,7 @@
-// Estimator component with 6 platform options and price display
+// Estimator component with 3 platform options and price display
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Check, ChevronRight, ChevronLeft, Calculator, Mail, Globe, Smartphone, Sparkles, ShoppingCart, Zap, Cloud } from "lucide-react";
+import { Check, ChevronRight, ChevronLeft, Calculator, Mail, Globe, Smartphone, Sparkles, Cloud, Shield, Database, Blocks, Workflow, Zap, ShoppingCart, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -24,51 +24,17 @@ interface Step {
 const steps: Step[] = [
     {
         id: 1,
-        title: "Platform",
-        description: "Where should your application live?",
+        title: "Service",
+        description: "What service are you looking for?",
         options: [
-            { 
-                id: "web", 
-                label: "Web Application", 
-                cost: 1500,
-                icon: <Globe className="h-6 w-6" />,
-                description: "Responsive web apps for all devices"
-            },
-            { 
-                id: "mobile", 
-                label: "Mobile App (iOS/Android)", 
-                cost: 2500,
-                icon: <Smartphone className="h-6 w-6" />,
-                description: "Native mobile applications"
-            },
-            { 
-                id: "both", 
-                label: "Both (Web + Mobile)", 
-                cost: 3500,
-                icon: <Sparkles className="h-6 w-6" />,
-                description: "Cross-platform solution"
-            },
-            { 
-                id: "saas", 
-                label: "SaaS MVP", 
-                cost: 4000,
-                icon: <Cloud className="h-6 w-6" />,
-                description: "Scalable SaaS platform with multi-tenancy"
-            },
-            { 
-                id: "ecommerce", 
-                label: "E-commerce Platform", 
-                cost: 3000,
-                icon: <ShoppingCart className="h-6 w-6" />,
-                description: "Full-featured online store"
-            },
-            { 
-                id: "ai-automation", 
-                label: "AI Automation", 
-                cost: 3500,
-                icon: <Zap className="h-6 w-6" />,
-                description: "AI-powered automation solutions"
-            },
+            { id: "ai", label: "AI / Machine Learning", cost: 0, icon: <Sparkles className="h-6 w-6" />, description: "Chatbots, AI Agents, Recommendation Systems" },
+            { id: "web", label: "Full-Stack Web Dev", cost: 0, icon: <Globe className="h-6 w-6" />, description: "Modern web applications (React, Next.js)" },
+            { id: "cloud", label: "Cloud & DevOps", cost: 0, icon: <Cloud className="h-6 w-6" />, description: "AWS, Azure, Docker, Kubernetes" },
+            { id: "security", label: "Cybersecurity", cost: 0, icon: <Shield className="h-6 w-6" />, description: "App Security, Pentesting, Secure Coding" },
+            { id: "mobile", label: "Mobile App Development", cost: 0, icon: <Smartphone className="h-6 w-6" />, description: "iOS, Android, Flutter, React Native" },
+            { id: "data", label: "Data Engineering", cost: 0, icon: <Database className="h-6 w-6" />, description: "Data Pipelines, ETL, Big Data" },
+            { id: "blockchain", label: "Blockchain & Web3", cost: 0, icon: <Blocks className="h-6 w-6" />, description: "Smart Contracts, DeFi, NFTs" },
+            { id: "automation", label: "Automation / RPA", cost: 0, icon: <Workflow className="h-6 w-6" />, description: "Business Process Automation, Selenium" },
         ]
     },
     {
@@ -119,6 +85,13 @@ export function CostEstimator() {
             }
             return { ...prev, [stepId]: [optionId] };
         });
+
+        // Auto-advance for single select steps
+        if (!multi) {
+            setTimeout(() => {
+                nextStep();
+            }, 500);
+        }
     };
 
     const calculateTotal = () => {
@@ -196,7 +169,7 @@ export function CostEstimator() {
 
                 <div className="bg-card border border-border rounded-2xl shadow-xl overflow-hidden p-8">
                     {!showResult ? (
-                        <div className="flex flex-col h-[500px]">
+                        <div className="flex flex-col h-auto min-h-[500px]">
                             {/* Progress Bar */}
                             <div className="w-full bg-secondary/20 h-2 rounded-full mb-8">
                                 <div
@@ -218,7 +191,7 @@ export function CostEstimator() {
                                         <h2 className="text-2xl font-bold text-foreground mb-2">{steps[currentStep].title}</h2>
                                         <p className="text-muted-foreground mb-6">{steps[currentStep].description}</p>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                                             {steps[currentStep].options.map(option => {
                                                 const isSelected = (selections[steps[currentStep].id] || []).includes(option.id);
                                                 return (
@@ -257,8 +230,14 @@ export function CostEstimator() {
                                                             )}
                                                         </div>
                                                         <div className="text-sm font-bold text-primary mt-3 pt-3 border-t border-border/50">
-                                                            <span className="text-xs text-muted-foreground font-normal mr-1">Starting from</span>
-                                                            <span className="text-lg font-bold">${option.cost.toLocaleString()}</span>
+                                                            {steps[currentStep].id === 1 ? (
+                                                                <span className="text-sm font-medium">Quality solutions within your budget</span>
+                                                            ) : (
+                                                                <>
+                                                                    <span className="text-xs text-muted-foreground font-normal mr-1">Starting from</span>
+                                                                    <span className="text-lg font-bold">${option.cost.toLocaleString()}</span>
+                                                                </>
+                                                            )}
                                                         </div>
                                                     </motion.div>
                                                 );
@@ -269,26 +248,28 @@ export function CostEstimator() {
                             </div>
 
                             {/* Navigation */}
-                            <div className="flex justify-between items-center mt-8 pt-6 border-t border-border">
-                                <button
-                                    onClick={prevStep}
-                                    disabled={currentStep === 0}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${currentStep === 0 ? "text-muted-foreground opacity-50 cursor-not-allowed" : "text-foreground hover:bg-secondary/20"
-                                        }`}
-                                >
-                                    <ChevronLeft className="h-5 w-5" /> Back
-                                </button>
-                                <button
-                                    onClick={nextStep}
-                                    disabled={!(selections[steps[currentStep].id] && selections[steps[currentStep].id].length > 0)}
-                                    className={`flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all shadow-lg ${!(selections[steps[currentStep].id] && selections[steps[currentStep].id].length > 0)
-                                        ? "opacity-50 cursor-not-allowed shadow-none"
-                                        : "hover:bg-primary/90 hover:scale-105 shadow-[0_0_20px_-5px_var(--color-primary)]"
-                                        }`}
-                                >
-                                    {currentStep === steps.length - 1 ? "Calculate" : "Next"} <ChevronRight className="h-5 w-5" />
-                                </button>
-                            </div>
+                            {currentStep !== 0 && (
+                                <div className="flex justify-between items-center mt-8 pt-6 border-t border-border">
+                                    <button
+                                        onClick={prevStep}
+                                        disabled={currentStep === 0}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${currentStep === 0 ? "text-muted-foreground opacity-50 cursor-not-allowed" : "text-foreground hover:bg-secondary/20"
+                                            }`}
+                                    >
+                                        <ChevronLeft className="h-5 w-5" /> Back
+                                    </button>
+                                    <button
+                                        onClick={nextStep}
+                                        disabled={!(selections[steps[currentStep].id] && selections[steps[currentStep].id].length > 0)}
+                                        className={`flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all shadow-lg ${!(selections[steps[currentStep].id] && selections[steps[currentStep].id].length > 0)
+                                            ? "opacity-50 cursor-not-allowed shadow-none"
+                                            : "hover:bg-primary/90 hover:scale-105 shadow-[0_0_20px_-5px_var(--color-primary)]"
+                                            }`}
+                                    >
+                                        {currentStep === steps.length - 1 ? "Calculate" : "Next"} <ChevronRight className="h-5 w-5" />
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <div className="text-center py-12">
