@@ -179,6 +179,22 @@ export function Home() {
       <Helmet>
         <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
         <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
+        <meta name="keywords" content="Software Development, Enterprise Solutions, AI, SaaS, Cloud Computing, Next Revolution Tech" />
+        <link rel="canonical" href="https://www.nextrevolutiontech.tech/" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nextrevolutiontech.tech/" />
+        <meta property="og:title" content="Next Revolution Tech | Enterprise Software Solutions" />
+        <meta property="og:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
+        <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/" />
+        <meta property="twitter:title" content="Next Revolution Tech | Enterprise Software Solutions" />
+        <meta property="twitter:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
+        <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
       </Helmet>
       {/* Hero Section */}
       <section className="relative bg-background text-foreground" style={{ overflow: 'visible' }}>

@@ -262,6 +262,22 @@ export function CaseStudies() {
       <Helmet>
         <title>Case Studies - Next Revolution Tech | Success Stories</title>
         <meta name="description" content="Read how Next Revolution Tech has helped global enterprises achieve their digital transformation goals." />
+        <meta name="keywords" content="Case Studies, Success Stories, Software Projects, Client Results, Digital Transformation" />
+        <link rel="canonical" href="https://www.nextrevolutiontech.tech/case-studies" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nextrevolutiontech.tech/case-studies" />
+        <meta property="og:title" content="Case Studies - Next Revolution Tech | Success Stories" />
+        <meta property="og:description" content="See how we transform challenges into competitive advantages for global enterprises." />
+        <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/case-studies" />
+        <meta property="twitter:title" content="Case Studies - Next Revolution Tech | Success Stories" />
+        <meta property="twitter:description" content="See how we transform challenges into competitive advantages for global enterprises." />
+        <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
       </Helmet>
       {/* Hero Section */}
       <section className="bg-background text-white py-8 border-b border-border/50 relative z-10">

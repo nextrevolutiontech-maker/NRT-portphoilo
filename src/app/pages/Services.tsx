@@ -105,6 +105,43 @@ export function Services() {
       <Helmet>
         <title>Services - Next Revolution Tech | Custom Software, SaaS & AI</title>
         <meta name="description" content="Explore Next Revolution Tech's services including Custom Software, SaaS Development, AI & Automation, and Cloud Solutions." />
+        <meta name="keywords" content="Custom Software, SaaS Development, AI, Automation, Cloud Solutions, Mobile App Development, Web3" />
+        <link rel="canonical" href="https://www.nextrevolutiontech.tech/services" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nextrevolutiontech.tech/services" />
+        <meta property="og:title" content="Services - Next Revolution Tech | Custom Software, SaaS & AI" />
+        <meta property="og:description" content="Transform your business with our enterprise-grade software services: AI, Cloud, Mobile, and Web Development." />
+        <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/services" />
+        <meta property="twitter:title" content="Services - Next Revolution Tech | Custom Software, SaaS & AI" />
+        <meta property="twitter:description" content="Transform your business with our enterprise-grade software services: AI, Cloud, Mobile, and Web Development." />
+        <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "Next Revolution Tech Services",
+              "image": "https://www.nextrevolutiontech.tech/logo.png",
+              "url": "https://www.nextrevolutiontech.tech/services",
+              "telephone": "info@nextrevolutiontech.com",
+              "priceRange": "$$$",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "PK"
+              },
+              "serviceArea": {
+                "@type": "GeoShape",
+                "addressCountry": "Global"
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Hero Section */}
       <section className="bg-background text-foreground py-20 border-b border-border">

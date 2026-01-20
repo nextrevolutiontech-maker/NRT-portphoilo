@@ -122,6 +122,22 @@ export function About() {
       <Helmet>
         <title>About Us - Next Revolution Tech | Global Technology Partner</title>
         <meta name="description" content="Learn about Next Revolution Tech, our mission, vision, and our journey in delivering world-class technology solutions." />
+        <meta name="keywords" content="About Next Revolution Tech, Technology Partner, Software Agency, Global Team, Remote First" />
+        <link rel="canonical" href="https://www.nextrevolutiontech.tech/about" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.nextrevolutiontech.tech/about" />
+        <meta property="og:title" content="About Us - Next Revolution Tech | Global Technology Partner" />
+        <meta property="og:description" content="We are a borderless technology partner engineering the future of digital business. Discover our mission and vision." />
+        <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/about" />
+        <meta property="twitter:title" content="About Us - Next Revolution Tech | Global Technology Partner" />
+        <meta property="twitter:description" content="We are a borderless technology partner engineering the future of digital business. Discover our mission and vision." />
+        <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
       </Helmet>
       {/* Hero Section */}
       <section className="bg-background text-foreground py-12 sm:py-16 md:py-20 border-b border-border">
