@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import { HoverModal } from "./ui/HoverModal";
+import { InstallPWA } from "./ui/InstallPWA";
 import { API_BASE_URL } from "../../config";
 const logoImage = "/logo.png";
 
@@ -46,43 +47,43 @@ export function Header() {
   }, []);
 
   const navigation = [
-    { 
-      name: "Home", 
+    {
+      name: "Home",
       href: "/",
       description: "Welcome to Next Revolution Tech - Your trusted partner for enterprise software solutions."
     },
-    { 
-      name: "About", 
+    {
+      name: "About",
       href: "/about",
       description: "Learn about our mission, vision, and the team behind Next Revolution Tech."
     },
-    { 
-      name: "Services", 
+    {
+      name: "Services",
       href: "/services",
       description: "Explore our comprehensive range of software development services and solutions."
     },
-    { 
-      name: "Case Studies", 
+    {
+      name: "Case Studies",
       href: "/case-studies",
       description: "Discover how we've helped businesses achieve success through our innovative solutions."
     },
-    { 
-      name: "Process", 
+    {
+      name: "Process",
       href: "/process",
       description: "Understand our proven development process and how we deliver exceptional results."
     },
-    { 
-      name: "Blog", 
+    {
+      name: "Blog",
       href: "/blog",
       description: "Read our latest insights, tech trends, and industry updates."
     },
-    { 
-      name: "Estimate Cost", 
+    {
+      name: "Estimate Cost",
       href: "/estimator",
       description: "Get an instant estimate for your project with our cost calculator."
     },
-    { 
-      name: "Contact", 
+    {
+      name: "Contact",
       href: "/contact",
       description: "Get in touch with our team to discuss your project requirements."
     },
@@ -146,13 +147,12 @@ export function Header() {
                   onMouseLeave={() => setHoveredNavItem(null)}
                   position="bottom"
                   align="center"
-                  className={`!z-[10001] ${
-                    item.name === "Case Studies" || item.name === "Services" 
-                      ? "min-w-[500px] max-w-[600px]" 
-                      : item.name === "Home" || item.name === "About" || item.name === "Process"
+                  className={`!z-[10001] ${item.name === "Case Studies" || item.name === "Services"
+                    ? "min-w-[500px] max-w-[600px]"
+                    : item.name === "Home" || item.name === "About" || item.name === "Process"
                       ? "min-w-[400px] max-w-[500px]"
                       : "min-w-[300px] max-w-[400px]"
-                  }`}
+                    }`}
                 >
                   {item.name === "Home" ? (
                     <div className="space-y-4">
@@ -162,7 +162,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Stats Preview */}
                       <div className="grid grid-cols-2 gap-3">
                         <div className="bg-secondary/10 p-3 rounded-lg border border-border">
@@ -182,7 +182,7 @@ export function Header() {
                           <div className="text-xs text-muted-foreground">Support</div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -200,7 +200,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* About Highlights */}
                       <div className="space-y-2">
                         <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
@@ -231,7 +231,7 @@ export function Header() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -249,7 +249,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Services Preview */}
                       <div className="space-y-2 max-h-[400px] overflow-y-auto">
                         {services.length > 0 ? (
@@ -263,8 +263,8 @@ export function Header() {
                               <div className="flex gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/10 transition-all">
                                 {service.image_url && (
                                   <div className="w-16 h-16 rounded-md overflow-hidden flex-shrink-0">
-                                    <img 
-                                      src={service.image_url} 
+                                    <img
+                                      src={service.image_url}
                                       alt={service.title}
                                       className="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                       onError={(e) => {
@@ -292,7 +292,7 @@ export function Header() {
                           </div>
                         )}
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -310,7 +310,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Case Studies Preview */}
                       <div className="space-y-3 max-h-[400px] overflow-y-auto">
                         {caseStudies.length > 0 ? (
@@ -324,8 +324,8 @@ export function Header() {
                               <div className="flex gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/10 transition-all">
                                 {study.image_url && (
                                   <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0">
-                                    <img 
-                                      src={study.image_url} 
+                                    <img
+                                      src={study.image_url}
                                       alt={study.title}
                                       className="w-full h-full object-cover group-hover:scale-110 transition-transform"
                                       onError={(e) => {
@@ -356,7 +356,7 @@ export function Header() {
                           </div>
                         )}
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -374,7 +374,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Process Steps Preview */}
                       <div className="space-y-2">
                         <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
@@ -414,7 +414,7 @@ export function Header() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -432,7 +432,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Blog Preview */}
                       <div className="space-y-3">
                         <div className="p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary/10 transition-all">
@@ -448,7 +448,7 @@ export function Header() {
                           <div className="text-xs text-muted-foreground">Learn from real projects</div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -466,7 +466,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Calculator Features */}
                       <div className="space-y-2">
                         <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
@@ -497,7 +497,7 @@ export function Header() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -515,7 +515,7 @@ export function Header() {
                           {item.description}
                         </p>
                       </div>
-                      
+
                       {/* Contact Info */}
                       <div className="space-y-2">
                         <div className="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
@@ -546,7 +546,7 @@ export function Header() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <Link
                         to={item.href}
                         className="flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground px-4 py-2.5 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-4"
@@ -605,6 +605,9 @@ export function Header() {
               </motion.div>
             </div>
 
+            {/* Desktop Install Button */}
+            <InstallPWA />
+
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -627,7 +630,7 @@ export function Header() {
               >
                 Book a Call
               </Link>
-              
+
               <HoverModal
                 isOpen={hoverModalOpen}
                 onMouseEnter={() => setHoverModalOpen(true)}
@@ -696,6 +699,8 @@ export function Header() {
               >
                 Get Started
               </Link>
+              {/* Mobile Install Button */}
+              <InstallPWA mobile />
 
             </div>
           </motion.div>

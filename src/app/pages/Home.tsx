@@ -179,20 +179,22 @@ export function Home() {
       <Helmet>
         <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
         <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
-        <meta name="keywords" content="Software Development, Enterprise Solutions, AI, SaaS, Cloud Computing, Next Revolution Tech" />
+        <meta name="keywords" content="Software Development, Enterprise Solutions, AI, SaaS, Cloud Computing, Next Revolution Tech, Enterprise Software USA, Software Development UK, IT Staff Augmentation Canada, B2B Tech Partner Europe, Global Tech Partner" />
         <link rel="canonical" href="https://www.nextrevolutiontech.tech/" />
+        <meta name="content-language" content="en" />
 
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
+        {/* Open Graph / Facebook / LinkedIn */}
+        <meta property="og:type" content="business.business" />
         <meta property="og:url" content="https://www.nextrevolutiontech.tech/" />
-        <meta property="og:title" content="Next Revolution Tech | Enterprise Software Solutions" />
-        <meta property="og:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
+        <meta property="og:title" content="Next Revolution Tech | Enterprise Software & AI Partner" />
+        <meta property="og:description" content="We build scalable, secure, and ready-to-scale software ecosystems for global enterprises. Your trusted technology partner in USA, UK, Canada & Europe." />
         <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+        <meta property="business:contact_data:country_name" content="United States" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/" />
-        <meta property="twitter:title" content="Next Revolution Tech | Enterprise Software Solutions" />
+        <meta property="twitter:title" content="Next Revolution Tech | Enterprise Tech Partner" />
         <meta property="twitter:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
         <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
       </Helmet>
