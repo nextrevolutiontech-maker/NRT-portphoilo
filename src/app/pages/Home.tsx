@@ -175,7 +175,7 @@ export function Home() {
   ];
 
   return (
-    <div className="pt-20" ref={containerRef}>
+    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
       <Helmet>
         <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
         <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { HoverModal } from "./ui/HoverModal";
 import { InstallPWA } from "./ui/InstallPWA";
 import { API_BASE_URL } from "../../config";
@@ -94,27 +94,32 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-[100px] items-center justify-between">
+        <div className="flex h-16 sm:h-20 2xl:h-[90px] items-center justify-between transition-all duration-300">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3">
-            <motion.img
-              src={logoImage}
-              alt="Next Revolution Tech Logo"
-              className="h-16 sm:h-24 w-auto object-contain drop-shadow-md transition-all"
-              onError={(e) => {
-                console.error('Logo failed to load:', logoImage);
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
+            <motion.div
               whileHover={{ scale: 1.05 }}
-            />
-            <span className="text-lg sm:text-2xl font-bold text-foreground relative -top-[3px] sm:-top-[5px] leading-tight">Next Revolution Tech</span>
+              whileTap={{ scale: 0.95 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <img
+                src={logoImage}
+                alt="Next Revolution Tech Logo"
+                className="h-10 sm:h-12 xl:h-16 w-auto object-contain relative z-10"
+                onError={(e) => {
+                  console.error('Logo failed to load:', logoImage);
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </motion.div>
+            <span className="text-base sm:text-lg 2xl:text-xl font-bold text-foreground leading-tight tracking-tight">
+              Next Revolution<br className="sm:hidden" /> <span className="text-primary">Tech</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex xl:items-center xl:gap-x-6">
+          <div className="hidden 2xl:flex 2xl:items-center 2xl:gap-x-6">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -577,9 +582,9 @@ export function Header() {
           </div>
 
           {/* CTA Button Desktop */}
-          <div className="hidden xl:flex items-center gap-4">
+          <div className="hidden 2xl:flex items-center gap-4">
             {/* Login/Dashboard Button */}
-            <div className="hidden xl:block">
+            <div className="hidden 2xl:block">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -657,54 +662,79 @@ export function Header() {
 
 
           {/* Mobile menu button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             type="button"
-            className="xl:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+            className="2xl:hidden p-2 text-foreground hover:bg-secondary/20 rounded-md transition-colors relative z-50"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+            <AnimatePresence mode="wait">
+              {mobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-7 w-7" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-7 w-7" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <motion.div
-            className="xl:hidden border-t border-gray-200 py-4"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <div className="flex flex-col gap-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`transition-colors px-2 py-1 ${isActive(item.href)
-                    ? "text-primary bg-primary/10 rounded"
-                    : "text-muted-foreground hover:text-primary"
-                    }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+        <motion.div
+          className="2xl:hidden overflow-hidden"
+          initial={false}
+          animate={mobileMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <div className="border-t border-border mt-2 py-4 space-y-2 bg-background/95 backdrop-blur-md max-h-[80vh] overflow-y-auto shadow-xl rounded-b-xl px-2">
+            {navigation.map((item, idx) => (
               <Link
-                to="/contact"
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors text-center shadow-md"
+                key={item.name}
+                to={item.href}
+                className={`block px-4 py-3 text-base font-medium rounded-md transition-all duration-200 ${isActive(item.href)
+                  ? "bg-primary/10 text-primary border-l-4 border-primary"
+                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:pl-6"
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Get Started
+                {item.name}
               </Link>
-              {/* Mobile Install Button */}
-              <InstallPWA mobile />
+            ))}
 
+            <div className="pt-4 px-4 flex flex-col gap-3">
+              <Link
+                to="/contact"
+                className="w-full bg-primary text-primary-foreground py-3 rounded-lg text-center font-semibold shadow-lg hover:shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Book a Call
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              {/* Mobile Install Button Container - Ensuring it has proper width/styling */}
+              <div className="w-full">
+                <InstallPWA mobile />
+              </div>
             </div>
-          </motion.div>
-        )}
+          </div>
+        </motion.div>
       </nav>
     </header>
   );

@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp, ArrowRight, Blocks, Workflow } from "lucide-react";
+import { Code, Cloud, Cpu, Database, Shield, Zap, Smartphone, Globe, CheckCircle2, BarChart3, Users, Award, TrendingUp, ArrowRight, Blocks, Workflow, GraduationCap, FlaskConical, ShoppingCart, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
@@ -12,7 +12,8 @@ import { API_BASE_URL } from "../../config";
 // Helper to map icon names to components
 const getIcon = (name: string) => {
   const icons: any = {
-    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow
+    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow,
+    "GraduationCap": GraduationCap, "FlaskConical": FlaskConical, "ShoppingCart": ShoppingCart, "Briefcase": Briefcase
   };
   return icons[name] || Code;
 };
@@ -31,6 +32,41 @@ export function Services() {
   const [loading, setLoading] = useState(true);
   const [hoverModalOpen, setHoverModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const staticServices: Service[] = [
+    {
+      id: 101,
+      title: "Learning Management Systems (LMS)",
+      description: "Empower education with robust platforms for course delivery, student tracking, and interactive learning experiences.",
+      icon: "GraduationCap",
+      features: ["Student Portals", "Live Class Integration", "Exam & Grading Modules"],
+      image_url: "/assets/services/lms-platform.png"
+    },
+    {
+      id: 102,
+      title: "Laboratory Information Management (LIMS)",
+      description: "Streamline lab workflows, sample tracking, and data compliance with precision-engineered LIMS solutions.",
+      icon: "FlaskConical",
+      features: ["Sample Tracking", "Workflow Automation", "Compliance Reporting"],
+      image_url: "/assets/services/lims-lab.png"
+    },
+    {
+      id: 103,
+      title: "Modern POS & Inventory",
+      description: "Transform retail and hospitality with cloud-based Point of Sale systems that sync inventory in real-time.",
+      icon: "ShoppingCart",
+      features: ["Multi-Store Sync", "Real-time Analytics", "CRM Integration"],
+      image_url: "/assets/services/pos-system.png"
+    },
+    {
+      id: 104,
+      title: "Enterprise Resource Planning (ERP)",
+      description: "Unify your business processes—finance, HR, supply chain—into a single, intelligent management system.",
+      icon: "Briefcase",
+      features: ["Financial Reporting", "HR Automation", "Supply Chain Optimization"],
+      image_url: "/assets/services/erp-dashboard.png"
+    }
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -91,17 +127,21 @@ export function Services() {
     fetch(`${API_BASE_URL}/api/services`)
       .then(res => res.json())
       .then(data => {
-        setServices(Array.isArray(data) ? data : []);
+        // Merge API data with static "Enterprise Solutions"
+        const apiData = Array.isArray(data) ? data : [];
+        setServices([...staticServices, ...apiData]);
         setLoading(false);
       })
       .catch(err => {
         console.error("Failed to fetch services", err);
+        // Fallback to static only on error
+        setServices(staticServices);
         setLoading(false);
       });
   }, []);
 
   return (
-    <div className="pt-20" ref={containerRef}>
+    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
       <Helmet>
         <title>Services - Next Revolution Tech | Custom Software, SaaS & AI</title>
         <meta name="description" content="Explore Next Revolution Tech's services including Custom Software, SaaS Development, AI & Automation, and Cloud Solutions." />

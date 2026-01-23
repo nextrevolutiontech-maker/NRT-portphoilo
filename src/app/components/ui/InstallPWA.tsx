@@ -35,6 +35,9 @@ export function InstallPWA({ className = "", mobile = false }: { className?: str
 
     const handleInstallClick = async () => {
         if (!deferredPrompt) {
+            if (import.meta.env.DEV) {
+                toast.info("Install Prompt unavailable in Dev mode (Forced View)");
+            }
             return;
         }
         // Show the install prompt
@@ -47,7 +50,10 @@ export function InstallPWA({ className = "", mobile = false }: { className?: str
         setIsInstallable(false);
     };
 
-    if (!isInstallable) return null;
+    // In development, we can force show it for layout testing, but functionally it needs the prompt
+    const showButton = isInstallable || import.meta.env.DEV;
+
+    if (!showButton) return null;
 
     if (mobile) {
         return (
@@ -70,7 +76,7 @@ export function InstallPWA({ className = "", mobile = false }: { className?: str
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleInstallClick}
-                className={`hidden xl:inline-flex items-center gap-2 bg-secondary/20 hover:bg-secondary/40 text-foreground border border-primary/20 hover:border-primary px-4 py-2.5 rounded-md transition-all font-medium text-sm ${className}`}
+                className={`hidden 2xl:inline-flex items-center gap-2 bg-secondary/20 hover:bg-secondary/40 text-foreground border border-primary/20 hover:border-primary px-4 py-2.5 rounded-md transition-all font-medium text-sm ${className}`}
             >
                 <Download className="h-4 w-4" />
                 Install App

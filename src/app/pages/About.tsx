@@ -118,7 +118,7 @@ export function About() {
   ];
 
   return (
-    <div className="pt-20" ref={containerRef}>
+    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
       <Helmet>
         <title>About Us - Next Revolution Tech | Global Technology Partner</title>
         <meta name="description" content="Learn about Next Revolution Tech, our mission, vision, and our journey in delivering world-class technology solutions." />

@@ -165,7 +165,7 @@ export function Process() {
   ];
 
   return (
-    <div className="pt-20" ref={containerRef}>
+    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
       <Helmet>
         <title>Our Process - Next Revolution Tech | How We Work</title>
         <meta name="description" content="Discover Next Revolution Tech's proven development process, from discovery and strategy to deployment and support." />
@@ -340,7 +340,7 @@ export function Process() {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Let's discuss your requirements and how our process can deliver the results you need
           </p>
-          <div 
+          <div
             className="relative inline-block"
             onMouseEnter={() => setHoverModalOpen(true)}
             onMouseLeave={() => setHoverModalOpen(false)}

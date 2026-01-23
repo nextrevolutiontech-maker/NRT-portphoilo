@@ -221,7 +221,7 @@ export function CaseStudies() {
 
   if (loading) {
     return (
-      <div className="pt-[120px] min-h-screen bg-background text-foreground">
+      <div className="pt-20 sm:pt-24 xl:pt-[120px] min-h-screen bg-background text-foreground">
         {/* Skeleton Hero */}
         <section className="py-8 border-b border-border/50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -258,7 +258,7 @@ export function CaseStudies() {
   }
 
   return (
-    <div className="pt-[120px]" ref={containerRef}>
+    <div className="pt-20 sm:pt-24 xl:pt-[120px]" ref={containerRef}>
       <Helmet>
         <title>Case Studies - Next Revolution Tech | Success Stories</title>
         <meta name="description" content="Read how Next Revolution Tech has helped global enterprises achieve their digital transformation goals." />

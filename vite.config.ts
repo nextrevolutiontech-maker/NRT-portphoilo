@@ -40,7 +40,11 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png'
           }
-        ]
+        ],
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#ffffff',
+        orientation: 'portrait'
       },
     }),
   ],

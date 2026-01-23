@@ -112,7 +112,7 @@ export function Contact() {
   };
 
   return (
-    <div className="pt-20" ref={containerRef}>
+    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
       <Helmet>
         <title>Contact Us - Next Revolution Tech | Get in Touch</title>
         <meta name="description" content="Contact Next Revolution Tech for enterprise software solutions. Schedule a consultation or reach out to our global team." />
@@ -200,7 +200,7 @@ export function Contact() {
                   />
                 </div>
 
-                <div 
+                <div
                   className="relative w-full"
                   onMouseEnter={() => setHoverModalOpen(true)}
                   onMouseLeave={() => setHoverModalOpen(false)}

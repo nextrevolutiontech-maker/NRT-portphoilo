@@ -84,7 +84,7 @@ export function ServiceDetail() {
     };
 
     return (
-        <div className="min-h-screen pt-20">
+        <div className="min-h-screen pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300">
             <Helmet>
                 <title>{service.title} - Next Revolution Tech</title>
                 <meta name="description" content={`Expert ${service.title} services. ${extra.subtitle}`} />

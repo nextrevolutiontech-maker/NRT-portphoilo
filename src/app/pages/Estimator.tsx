@@ -69,6 +69,9 @@ export function CostEstimator() {
     const [currentStep, setCurrentStep] = useState(0);
     const [selections, setSelections] = useState<Record<number, string[]>>({});
     const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [company, setCompany] = useState("");
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -131,7 +134,10 @@ export function CostEstimator() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    name,
                     email,
+                    phone,
+                    company,
                     total: totalCost,
                     selections
                 }),
@@ -142,7 +148,11 @@ export function CostEstimator() {
             toast.success("Estimate sent to your email!", {
                 description: "Our team will review your project details shortly."
             });
+            // Reset form
             setEmail("");
+            setName("");
+            setPhone("");
+            setCompany("");
             // Optional: Redirect or show success state
         } catch (error) {
             console.error(error);
@@ -292,16 +302,49 @@ export function CostEstimator() {
                                 <div className="max-w-md mx-auto bg-secondary/20 p-6 rounded-xl mb-8">
                                     <h3 className="text-lg font-medium text-foreground mb-4">Get a Detailed Quote</h3>
                                     <form onSubmit={handleEstimateSubmit} className="space-y-4">
-                                        <div className="flex gap-2">
-                                            <Mail className="h-5 w-5 text-muted-foreground mt-2.5" />
-                                            <input
-                                                type="email"
-                                                placeholder="Enter your email"
-                                                className="w-full bg-background border border-border rounded-lg px-4 py-2 focus:outline-none focus:border-primary"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                                required
-                                            />
+                                        <div className="space-y-4">
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Full Name (Required)"
+                                                    className="w-full bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div>
+                                                    <input
+                                                        type="email"
+                                                        placeholder="Email Address (Required)"
+                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                        required
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <input
+                                                        type="tel"
+                                                        placeholder="Phone Number (Optional)"
+                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                        value={phone}
+                                                        onChange={(e) => setPhone(e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Company Name (Optional)"
+                                                    className="w-full bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    value={company}
+                                                    onChange={(e) => setCompany(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
                                         <button
                                             type="submit"
@@ -314,7 +357,7 @@ export function CostEstimator() {
                                 </div>
 
                                 <div className="flex justify-center gap-4">
-                                    <button onClick={() => { setShowResult(false); setCurrentStep(0); setSelections({}); }} className="text-muted-foreground hover:text-foreground">
+                                    <button onClick={() => { setShowResult(false); setCurrentStep(0); setSelections({}); setName(""); setEmail(""); setPhone(""); setCompany(""); }} className="text-muted-foreground hover:text-foreground">
                                         Start Over
                                     </button>
                                     <span className="text-muted-foreground">|</span>

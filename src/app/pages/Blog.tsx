@@ -39,7 +39,7 @@ export function Blog() {
     ];
 
     return (
-        <div className="pt-20">
+        <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300">
             <Helmet>
                 <title>Tech Insights & Blog - Next Revolution Tech</title>
                 <meta name="description" content="Read expert articles on Custom Software, AI, SaaS scaling, and Digital Transformation. Stay updated with Next Revolution Tech." />
