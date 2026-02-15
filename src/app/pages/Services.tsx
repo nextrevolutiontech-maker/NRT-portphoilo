@@ -266,43 +266,68 @@ export function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary text-primary-foreground py-20 cta-section relative" style={{ overflow: 'visible', zIndex: 1 }}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="mb-6 text-3xl md:text-4xl font-bold">Ready to <span className="text-background bg-primary px-2 rounded">Scale</span> Your Vision?</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Don't settle for average. Partner with a team that delivers <strong>excellence</strong>.
-          </p>
+      {/* CTA Section - Premium Dark Redesign */}
+      <section className="relative py-24 overflow-hidden border-t border-white/5 cta-section">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-[#020410]">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
+          {/* Tech Grid Overlay */}
           <div
-            className="relative inline-block"
-            onMouseEnter={() => setHoverModalOpen(true)}
-            onMouseLeave={() => setHoverModalOpen(false)}
-          >
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors shadow-lg"
-            >
-              Get in Touch
-            </Link>
-            <HoverModal
-              isOpen={hoverModalOpen}
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
+              backgroundSize: '32px 32px'
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-panel p-8 md:p-14 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(79,70,229,0.3)] backdrop-blur-xl relative overflow-hidden">
+            {/* Glow Effects */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
+            <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none" />
+
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-white mb-6">
+              Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Scale</span> Your Vision?
+            </h2>
+            <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Don't settle for average. Partner with a team that delivers <strong className="text-foreground">excellence</strong>.
+            </p>
+
+            <div
+              className="relative inline-block group"
               onMouseEnter={() => setHoverModalOpen(true)}
               onMouseLeave={() => setHoverModalOpen(false)}
-              position="top"
-              align="center"
             >
-              <div className="space-y-2">
-                <h3 className="font-semibold text-foreground text-sm">Let's Build Together</h3>
-                <p className="text-xs text-muted-foreground">
-                  Ready to scale your vision? Get in touch with our team to discuss your project requirements.
-                </p>
-                <Link
-                  to="/contact"
-                  className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </HoverModal>
+              <Link
+                to="/contact"
+                className="relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full font-medium hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all duration-300 transform group-hover:scale-105"
+              >
+                <span>Get in Touch</span>
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <HoverModal
+                isOpen={hoverModalOpen}
+                onMouseEnter={() => setHoverModalOpen(true)}
+                onMouseLeave={() => setHoverModalOpen(false)}
+                position="top"
+                align="center"
+                className="w-80"
+              >
+                <div className="space-y-3 p-2">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                      <Zap className="h-4 w-4" />
+                    </div>
+                    <h3 className="font-semibold text-foreground text-sm">Let's Build Together</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Ready to scale your vision? Get in touch with our team to discuss your project requirements.
+                  </p>
+                </div>
+              </HoverModal>
+            </div>
           </div>
         </div>
       </section>

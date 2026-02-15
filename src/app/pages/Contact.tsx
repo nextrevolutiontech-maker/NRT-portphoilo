@@ -116,6 +116,27 @@ export function Contact() {
       <Helmet>
         <title>Contact Us - Next Revolution Tech | Get in Touch</title>
         <meta name="description" content="Contact Next Revolution Tech for enterprise software solutions. Schedule a consultation or reach out to our global team." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              "name": "Contact Next Revolution Tech",
+              "description": "Get in touch with our global team for enterprise software solutions.",
+              "url": "https://www.nextrevolutiontech.tech/contact",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "Next Revolution Tech",
+                "email": "support@nextrevolutiontech.tech",
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "contactType": "customer support",
+                  "email": "support@nextrevolutiontech.tech"
+                }
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Hero Section */}
       <section className="bg-background text-foreground py-20 border-b border-border">

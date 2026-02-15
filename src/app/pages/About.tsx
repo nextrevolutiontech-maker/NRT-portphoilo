@@ -277,40 +277,62 @@ export function About() {
         </div>
       </section>
 
-      {/* Global Presence */}
-      <section className="bg-primary text-primary-foreground py-20 global-section">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="global-text">
-              <h2 className="mb-6 text-3xl md:text-4xl font-bold">Borderless Innovation, <span className="text-background bg-primary px-2 rounded">Global Impact</span></h2>
-              <p className="text-xl text-primary-foreground/90 mb-6 leading-relaxed">
-                We operate as a fully remote, <strong>globally distributed</strong> team, collaborating seamlessly across time zones to deliver <strong>world-class</strong> solutions.
+      {/* Global Presence - Premium Dark Redesign */}
+      <section className="relative py-24 overflow-hidden border-t border-white/5">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-[#020410]">
+          <div className="absolute inset-0 bg-gradient-to-tl from-indigo-900/20 via-purple-900/10 to-pink-900/20" />
+          {/* Tech Grid Overlay */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(168, 85, 247, 0.4) 1px, transparent 0)',
+              backgroundSize: '40px 40px'
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="global-text order-2 lg:order-1">
+              <h2 className="mb-6 text-3xl md:text-5xl font-bold leading-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Borderless Innovation,</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Global Impact</span>
+              </h2>
+              <p className="text-xl text-muted-foreground/90 mb-8 leading-relaxed">
+                We operate as a fully remote, <strong className="text-foreground">globally distributed</strong> team, collaborating seamlessly across time zones to deliver <strong className="text-foreground">world-class</strong> solutions.
               </p>
-              <div className="grid grid-cols-2 gap-6 mt-8">
-                <div>
-                  <div className="text-4xl mb-2 font-bold">100%</div>
-                  <div className="text-primary-foreground/90">Remote First</div>
+
+              <div className="grid grid-cols-2 gap-px bg-gradient-to-r from-transparent via-white/10 to-transparent p-px rounded-2xl overflow-hidden backdrop-blur-sm">
+                <div className="bg-[#0A0A0A]/80 p-6 flex flex-col items-center text-center group hover:bg-[#111111] transition-colors">
+                  <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 mb-2 group-hover:scale-110 transition-transform">100%</div>
+                  <div className="text-sm uppercase tracking-wider text-muted-foreground font-medium">Remote First</div>
                 </div>
-                <div>
-                  <div className="text-4xl mb-2 font-bold">Global</div>
-                  <div className="text-primary-foreground/90">Client Base</div>
+                <div className="bg-[#0A0A0A]/80 p-6 flex flex-col items-center text-center group hover:bg-[#111111] transition-colors">
+                  <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 mb-2 group-hover:scale-110 transition-transform">Global</div>
+                  <div className="text-sm uppercase tracking-wider text-muted-foreground font-medium">Client Base</div>
                 </div>
-                <div>
-                  <div className="text-4xl mb-2 font-bold">24/7</div>
-                  <div className="text-primary-foreground/90">Operations</div>
+                <div className="bg-[#0A0A0A]/80 p-6 flex flex-col items-center text-center group hover:bg-[#111111] transition-colors">
+                  <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 mb-2 group-hover:scale-110 transition-transform">24/7</div>
+                  <div className="text-sm uppercase tracking-wider text-muted-foreground font-medium">Operations</div>
                 </div>
-                <div>
-                  <div className="text-4xl mb-2 font-bold">Multiple</div>
-                  <div className="text-primary-foreground/90">Success Stories</div>
+                <div className="bg-[#0A0A0A]/80 p-6 flex flex-col items-center text-center group hover:bg-[#111111] transition-colors">
+                  <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 mb-2 group-hover:scale-110 transition-transform">Top</div>
+                  <div className="text-sm uppercase tracking-wider text-muted-foreground font-medium">Talent</div>
                 </div>
               </div>
             </div>
-            <div className="global-image">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1571741699053-2d078c8f282a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjB3b3Jrc3BhY2UlMjBtaW5pbWFsfGVufDF8fHx8MTc2Njk1MzU5MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Global Presence"
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
+
+            <div className="global-image order-1 lg:order-2 relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-2xl blur-2xl -z-10 transform scale-105" />
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020410] via-transparent to-transparent opacity-60 z-10" />
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Global Team Collaboration"
+                  className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export function Footer() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const emailValue = formData.get("email") as string || email;
-    
+
     if (emailValue) {
       toast.success("Thanks for subscribing!", {
         description: `We'll send updates to ${emailValue}`,
@@ -31,9 +31,9 @@ export function Footer() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex flex-col items-start gap-2 mb-4">
-              <img 
-                src={logoImage} 
-                alt="Next Revolution Tech" 
+              <img
+                src={logoImage}
+                alt="Next Revolution Tech"
                 className="h-20 sm:h-32 w-auto object-contain transition-all"
                 onError={(e) => {
                   console.error('Logo failed to load:', logoImage);
@@ -46,13 +46,19 @@ export function Footer() {
               Engineering Scalable Digital Solutions for a Connected World
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://www.facebook.com/share/1H3rqGTqLi/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="https://www.instagram.com/nextrevolutiontech?igsh=MTdmMXliYXF1enIzdA==" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#E4405F] transition-colors" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="https://www.tiktok.com/@next.revolution.t" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/muhammad-ahsan-khan-founder-61a51032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="https://github.com/nextrevolutiontech-maker" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://github.com/nextrevolutiontech-maker" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
                 <Github className="h-5 w-5" />
               </a>
             </div>
@@ -119,7 +125,7 @@ export function Footer() {
                 className="bg-secondary/20 border border-border rounded px-4 py-2 text-sm w-full focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground/50"
                 required
               />
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setHoverModalOpen(true)}
                 onMouseLeave={() => setHoverModalOpen(false)}

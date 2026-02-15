@@ -152,17 +152,50 @@ export function ServiceDetail() {
             </section>
 
             {/* CTA */}
-            <section className="bg-primary text-primary-foreground py-20 text-center">
-                <div className="mx-auto max-w-4xl px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Scale with {service.title}?</h2>
-                    <p className="text-xl mb-8 opacity-90">Let's discuss your specific requirements and build a roadmap to success.</p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link to="/estimator" className="bg-background text-primary px-8 py-3 rounded-md font-bold hover:bg-muted transition-colors">
-                            Calculate Cost
-                        </Link>
-                        <Link to="/contact" className="bg-transparent border-2 border-primary-foreground text-primary-foreground px-8 py-3 rounded-md font-bold hover:bg-primary-foreground/10 transition-colors">
-                            Book Consultation
-                        </Link>
+            {/* CTA - Premium Dark Redesign */}
+            <section className="relative py-24 overflow-hidden border-t border-white/5">
+                {/* Animated Background */}
+                <div className="absolute inset-0 bg-[#020410]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
+                    {/* Tech Grid Overlay */}
+                    <div
+                        className="absolute inset-0 opacity-10"
+                        style={{
+                            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
+                            backgroundSize: '32px 32px'
+                        }}
+                    />
+                </div>
+
+                <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="glass-panel p-8 md:p-14 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(79,70,229,0.3)] backdrop-blur-xl relative overflow-hidden">
+                        {/* Glow Effects */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+                        <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
+                        <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none" />
+
+                        <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-white mb-6">
+                            Ready to Scale with <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">{service.title}</span>?
+                        </h2>
+                        <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                            Let's discuss your specific requirements and build a <strong className="text-foreground">roadmap to success</strong>.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                                to="/estimator"
+                                className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-105"
+                            >
+                                Calculate Cost
+                            </Link>
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-foreground hover:bg-white/5 border border-white/10 transition-colors hover:border-white/20"
+                            >
+                                Book Consultation
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>

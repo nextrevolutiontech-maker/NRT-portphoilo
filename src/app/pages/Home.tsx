@@ -4,11 +4,13 @@ import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Use
 import { Helmet } from "react-helmet-async";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+// import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { GravityHero } from "../components/ui/GravityHero";
 import { VideoHero } from "../components/ui/VideoHero";
 import { TechStackMarquee } from "../components/ui/TechStackMarquee";
 import { HoverModal } from "../components/ui/HoverModal";
+import { BentoGrid, BentoGridItem } from "../components/ui/BentoGrid";
+import { CyberGrid } from "../components/ui/CyberGrid";
 import { API_BASE_URL } from "../../config";
 import { toast } from "sonner";
 
@@ -197,24 +199,54 @@ export function Home() {
         <meta property="twitter:title" content="Next Revolution Tech | Enterprise Tech Partner" />
         <meta property="twitter:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
         <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
+
+        {/* Organization Schema */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Next Revolution Tech",
+              "url": "https://www.nextrevolutiontech.tech",
+              "logo": "https://www.nextrevolutiontech.tech/logo.png",
+              "sameAs": [
+                "https://facebook.com/nextrevolutiontech",
+                "https://instagram.com/nextrevolutiontech",
+                "https://linkedin.com/company/nextrevolutiontech",
+                "https://tiktok.com/@nextrevolutiontech"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+1-555-0123",
+                "contactType": "customer service",
+                "areaServed": ["US", "GB", "CA", "EU"],
+                "availableLanguage": "English"
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "US"
+              }
+            }
+          `}
+        </script>
       </Helmet>
       {/* Hero Section */}
       <section className="relative bg-background text-foreground" style={{ overflow: 'visible' }}>
         <div className="absolute inset-0 z-0 overflow-hidden">
           <GravityHero />
           {/* Subtle overlay to ensure text readability if needed */}
-          <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/20" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32" style={{ overflow: 'visible' }}>
 
-          <div className="max-w-3xl">
-            <h1 className="hero-text mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight">
-              Building <span className="text-primary">Scalable</span> Digital Solutions for a <span className="text-primary">Connected Future</span>
+          <div className="max-w-4xl mx-auto text-center relative z-20">
+            <h1 className="hero-text mb-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-tight">
+              Building <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-sm">Scalable</span> Digital Solutions
             </h1>
-            <p className="hero-text mb-6 sm:mb-8 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              We partner with global enterprises to <strong>transform ideas</strong> into powerful, <strong>secure</strong>, and ready-to-scale software ecosystems.
+            <p className="hero-text mb-8 text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              We partner with global enterprises to <strong>transform ideas</strong> into fascinating, <strong>secure</strong>, and ready-to-scale software ecosystems.
             </p>
-            <div className="hero-text flex flex-col sm:flex-row gap-4" style={{ overflow: 'visible', position: 'relative', zIndex: 1 }}>
+            <div className="hero-text flex flex-col sm:flex-row gap-4 justify-center" style={{ overflow: 'visible', position: 'relative', zIndex: 1 }}>
               <div
                 className="relative inline-block"
                 style={{ overflow: 'visible', position: 'relative', zIndex: 1000 }}
@@ -291,38 +323,74 @@ export function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-secondary/30 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 section-header">
-            <h2 className="mb-4 text-primary">Our Services</h2>
+      <section className="bg-secondary/20 py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20 section-header">
+            <h2 className="mb-6 text-primary font-mono text-sm tracking-wider uppercase">Our Expertise</h2>
+            <h3 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+              Comprehensive <span className="text-primary">Technology Solutions</span>
+            </h3>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive technology solutions designed for enterprise scale and performance
+              Designed for enterprise scale, performance, and future-readiness.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 services-grid">
+
+          <BentoGrid className="services-grid">
             {services.slice(0, 6).map((service, index) => {
               const Icon = getIcon(service.icon);
               return (
-                <div
+                <BentoGridItem
                   key={service.id || index}
-                  className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-shadow service-card"
-                >
-                  <div className="text-primary mb-4">
-                    <Icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="mb-3 text-card-foreground text-xl font-bold">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                </div>
+                  title={service.title}
+                  description={service.description}
+                  header={
+                    <div className={`flex flex-1 w-full h-full min-h-[6rem] rounded-xl items-center justify-center transition-all duration-300 group-hover/bento:scale-[1.02]
+                      ${index % 4 === 0 ? "bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-blue-500/5 group-hover/bento:from-violet-500/30 group-hover/bento:via-purple-500/20" : ""}
+                      ${index % 4 === 1 ? "bg-gradient-to-br from-pink-500/20 via-rose-500/10 to-orange-500/5 group-hover/bento:from-pink-500/30 group-hover/bento:via-rose-500/20" : ""}
+                      ${index % 4 === 2 ? "bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-indigo-500/5 group-hover/bento:from-cyan-500/30 group-hover/bento:via-blue-500/20" : ""}
+                      ${index % 4 === 3 ? "bg-gradient-to-br from-emerald-500/20 via-green-500/10 to-teal-500/5 group-hover/bento:from-emerald-500/30 group-hover/bento:via-green-500/20" : ""}
+                    `}>
+                      <div className="relative">
+                        <div className={`absolute inset-0 blur-2xl opacity-20 group-hover/bento:opacity-40 transition-opacity duration-500
+                          ${index % 4 === 0 ? "bg-violet-500" : ""}
+                          ${index % 4 === 1 ? "bg-pink-500" : ""}
+                          ${index % 4 === 2 ? "bg-cyan-500" : ""}
+                          ${index % 4 === 3 ? "bg-emerald-500" : ""}
+                        `} />
+                        <Icon className={`h-16 w-16 transition-all duration-300 group-hover/bento:scale-110 group-hover/bento:rotate-3
+                          ${index % 4 === 0 ? "text-violet-400 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" : ""}
+                          ${index % 4 === 1 ? "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]" : ""}
+                          ${index % 4 === 2 ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" : ""}
+                          ${index % 4 === 3 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" : ""}
+                        `} strokeWidth={1.5} />
+                      </div>
+                    </div>
+                  }
+                  className={index === 3 || index === 6 ? "md:col-span-2" : ""}
+                  icon={
+                    <div className={`p-2 rounded-full w-fit
+                      ${index % 4 === 0 ? "bg-violet-500/10 text-violet-400" : ""}
+                      ${index % 4 === 1 ? "bg-pink-500/10 text-pink-400" : ""}
+                      ${index % 4 === 2 ? "bg-cyan-500/10 text-cyan-400" : ""}
+                      ${index % 4 === 3 ? "bg-emerald-500/10 text-emerald-400" : ""}
+                    `}>
+                      <Icon className="h-4 w-4" strokeWidth={2} />
+                    </div>
+                  }
+                  link="/services"
+                />
               );
             })}
-          </div>
-          <div className="text-center mt-12">
+          </BentoGrid>
+
+          <div className="text-center mt-16">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-primary hover:underline"
+              className="inline-flex items-center gap-2 text-foreground bg-primary/10 hover:bg-primary/20 px-6 py-3 rounded-full transition-colors border border-primary/20 hover:border-primary/50"
             >
               View All Services
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -357,11 +425,10 @@ export function Home() {
               </div>
             </div>
             <div className="relative why-image">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHRlYW18ZW58MXx8fHwxNzY2OTAzMjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Professional Team"
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
+              <div className="relative">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-25 animate-pulse"></div>
+                <CyberGrid />
+              </div>
             </div>
           </div>
         </div>
@@ -400,19 +467,51 @@ export function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="bg-primary text-primary-foreground py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="mb-6">Ready to Transform Your Business?</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Let's discuss how we can help you build scalable, secure, and innovative technology solutions.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-md hover:bg-muted transition-colors"
-          >
-            Schedule a Consultation
-            <ArrowRight className="h-5 w-5" />
-          </Link>
+      {/* Final CTA Section - Premium Dark Tech Design */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-[#020410]">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
+          {/* Tech Grid Overlay */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
+              backgroundSize: '32px 32px'
+            }}
+          />
+          {/* Glowing Orbs */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-30 blur-3xl pointer-events-none">
+            <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-screen animate-pulse" />
+            <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-accent-secondary rounded-full mix-blend-screen animate-pulse delay-1000" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <div className="glass-panel p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl">
+            <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-white mb-6">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Let's discuss how we can help you build <span className="text-indigo-400 font-semibold">scalable</span>, <span className="text-purple-400 font-semibold">secure</span>, and <span className="text-pink-400 font-semibold">innovative</span> technology solutions.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to="/contact"
+                className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-primary to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300"
+              >
+                Schedule a Consultation
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/estimator"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-foreground hover:bg-white/5 border border-white/10 transition-colors"
+              >
+                Estimate Project Cost
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
