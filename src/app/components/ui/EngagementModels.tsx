@@ -10,16 +10,20 @@ export function EngagementModels() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Ensure elements are visible initially if JS fails, 
+            // but GSAP from() handles this. 
+            // We use clearProps to ensure no residual styles break layout.
             gsap.from(".model-card", {
                 scrollTrigger: {
                     trigger: ".models-grid",
-                    start: "top 80%",
+                    start: "top 85%", // Trigger a bit earlier
                 },
-                y: 40,
+                y: 30, // Reduced distance
                 opacity: 0,
-                duration: 0.8,
+                duration: 0.6,
                 stagger: 0.2,
-                ease: "power2.out"
+                ease: "power2.out",
+                clearProps: "all" // Clear inline styles after animation
             });
         }, containerRef);
         return () => ctx.revert();
@@ -68,10 +72,20 @@ export function EngagementModels() {
     ];
 
     return (
-        <section className="bg-background py-20" ref={containerRef}>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="relative py-24 overflow-hidden" ref={containerRef}>
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 z-0">
+                <img
+                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                    alt="Network Background"
+                    className="w-full h-full object-cover opacity-20"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="mb-4 text-primary text-3xl md:text-4xl">Engagement Models</h2>
+                    <h2 className="mb-4 text-primary text-3xl md:text-4xl font-bold">Engagement Models</h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                         Flexible cooperation models tailored to your business stage and goals.
                     </p>
@@ -82,8 +96,8 @@ export function EngagementModels() {
                         <div
                             key={index}
                             className={`relative rounded-xl p-8 border transition-all duration-300 model-card flex flex-col ${model.highlight
-                                    ? "bg-secondary/10 border-primary shadow-[0_0_30px_-10px_var(--color-primary)] scale-105 z-10"
-                                    : "bg-card border-border hover:border-primary/50 hover:shadow-lg"
+                                ? "bg-secondary/10 border-primary shadow-[0_0_30px_-10px_var(--color-primary)] scale-105 z-10"
+                                : "bg-card border-border hover:border-primary/50 hover:shadow-lg"
                                 }`}
                         >
                             {model.highlight && (
@@ -115,8 +129,8 @@ export function EngagementModels() {
                             <Link
                                 to="/contact"
                                 className={`w-full py-3 px-6 rounded-md text-center font-medium transition-colors ${model.highlight
-                                        ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
-                                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+                                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                                     }`}
                             >
                                 Get a Quote
