@@ -1,404 +1,160 @@
-
-import { useRef, useEffect, useState } from "react";
-import { Search, Lightbulb, Code2, Rocket, HeadphonesIcon, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { EngagementModels } from "../components/ui/EngagementModels";
-import { HoverModal } from "../components/ui/HoverModal";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { 
+  ArrowRight, 
+  Search, 
+  Rocket, 
+  RefreshCcw, 
+  CheckCircle2, 
+  MessageSquare,
+  Zap,
+  ArrowUpRight,
+  Target,
+  Settings,
+  TrendingUp,
+  Workflow
+} from "lucide-react";
 
 export function Process() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [hoverModalOpen, setHoverModalOpen] = useState(false);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero
-      gsap.from(".hero-text", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.2
-      });
-
-      // Process Steps
-      gsap.utils.toArray(".process-step").forEach((step: any, index) => {
-        gsap.from(step, {
-          scrollTrigger: {
-            trigger: step,
-            start: "top 85%",
-          },
-          x: index % 2 === 0 ? -50 : 50,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        });
-      });
-
-      // Methodologies
-      gsap.from(".method-card", {
-        scrollTrigger: {
-          trigger: ".methods-grid",
-          start: "top 85%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-      // Collaboration
-      gsap.from(".collab-item", {
-        scrollTrigger: {
-          trigger: ".collab-section",
-          start: "top 80%",
-        },
-        opacity: 0,
-        x: -20,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-      // Animated Connecting Lines
-      gsap.utils.toArray(".process-line-fill").forEach((line: any) => {
-        gsap.to(line, {
-          scrollTrigger: {
-            trigger: line.parentElement,
-            start: "top 60%",
-            end: "bottom 40%",
-            scrub: 0.5,
-          },
-          scaleY: 1,
-          ease: "none"
-        });
-      });
-
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
-
   const steps = [
     {
-      number: "01",
-      icon: <Search className="h-8 w-8" />,
-      title: "Discovery & Analysis",
-      description: "We begin by thoroughly understanding your business objectives, technical requirements, and project constraints.",
-      activities: [
-        "Stakeholder interviews",
-        "Requirements gathering",
-        "Technical assessment",
-        "Feasibility analysis",
-      ],
+      num: "01",
+      title: "Strategy & Audit",
+      desc: "We analyze your current tech stack, identify bottlenecks, and define clear goals for your project.",
+      color: "from-[#FFD600] to-[#FF9900]",
+      icon: <Target className="w-10 h-10" />,
+      floating: (
+        <div className="bg-black/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl">
+           <div className="text-[10px] font-black uppercase text-[#F58220] mb-4">Initial Scan</div>
+           <div className="space-y-3">
+              <div className="h-2 w-full bg-white/20 rounded-full" />
+              <div className="h-2 w-3/4 bg-white/20 rounded-full" />
+              <div className="h-2 w-1/2 bg-[#F58220] rounded-full" />
+           </div>
+        </div>
+      )
     },
     {
-      number: "02",
-      icon: <Lightbulb className="h-8 w-8" />,
-      title: "Strategy & Planning",
-      description: "Our team develops a comprehensive strategy and detailed project plan aligned with your goals.",
-      activities: [
-        "Solution architecture design",
-        "Technology stack selection",
-        "Project roadmap creation",
-        "Risk mitigation planning",
-      ],
+      num: "02",
+      title: "Design & Proto",
+      desc: "Our design team creates high-fidelity UI/UX mockups that focus on user engagement and conversion.",
+      color: "from-[#0057FF] to-[#9900FF]",
+      icon: <Workflow className="w-10 h-10" />,
+      floating: (
+        <div className="flex flex-wrap gap-3">
+           {["UI/UX", "FIGMA", "PROTOTYPE"].map(t => (
+             <div key={t} className="bg-white/10 border border-white/20 rounded-full px-5 py-2 text-[10px] font-black text-white">{t}</div>
+           ))}
+        </div>
+      )
     },
     {
-      number: "03",
-      icon: <Code2 className="h-8 w-8" />,
-      title: "Development & Testing",
-      description: "Agile development with continuous testing ensures quality and allows for iterative improvements.",
-      activities: [
-        "Sprint-based development",
-        "Automated testing",
-        "Code reviews",
-        "Performance optimization",
-      ],
-    },
-    {
-      number: "04",
-      icon: <Rocket className="h-8 w-8" />,
-      title: "Deployment & Launch",
-      description: "Seamless deployment with zero downtime and comprehensive launch support.",
-      activities: [
-        "Infrastructure setup",
-        "Staged deployment",
-        "Data migration",
-        "Go-live support",
-      ],
-    },
-    {
-      number: "05",
-      icon: <HeadphonesIcon className="h-8 w-8" />,
-      title: "Support & Optimization",
-      description: "Ongoing support and continuous improvement to ensure long-term success.",
-      activities: [
-        "24/7 monitoring",
-        "Performance tuning",
-        "Feature enhancements",
-        "Technical support",
-      ],
-    },
-  ];
-
-  const methodologies = [
-    {
-      title: "Agile Development",
-      description: "Iterative approach with regular feedback loops and flexible adaptation to change.",
-    },
-    {
-      title: "DevOps Practices",
-      description: "Automated CI/CD pipelines for faster, more reliable deployments.",
-    },
-    {
-      title: "Quality Assurance",
-      description: "Comprehensive testing strategy including automated and manual QA.",
-    },
-    {
-      title: "Security First",
-      description: "Security built into every stage of the development lifecycle.",
-    },
+      num: "03",
+      title: "Rapid Build",
+      desc: "Our engineers execute the build with speed and precision, using modern frameworks and best practices.",
+      color: "from-[#FF4D00] to-[#FF005C]",
+      icon: <Rocket className="w-10 h-10" />,
+      floating: (
+        <div className="bg-white rounded-2xl p-4 shadow-2xl">
+           <div className="flex items-center gap-3 mb-3">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+           </div>
+           <div className="text-[9px] font-mono text-black/40">npm run deploy --production</div>
+        </div>
+      )
+    }
   ];
 
   return (
-    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
+    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
       <Helmet>
-        <title>Our Process - Next Revolution Tech | How We Work</title>
-        <meta name="description" content="Discover Next Revolution Tech's proven development process, from discovery and strategy to deployment and support." />
+        <title>Our Process | Next Revolution Tech</title>
       </Helmet>
+
       {/* Hero Section */}
-      <section className="bg-background text-foreground py-20 border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="hero-text mb-6 text-4xl md:text-5xl lg:text-6xl font-bold text-primary tracking-tight">Our Process</h1>
-            <p className="hero-text text-xl text-muted-foreground leading-relaxed">
-              A <strong>proven, systematic</strong> approach to delivering exceptional technology solutions on time and within budget.
-            </p>
-          </div>
+      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-12 xl:px-24 text-center">
+        <div className="mx-auto max-w-5xl">
+           <h1 className="text-5xl sm:text-[8rem] lg:text-[9xl] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-8">
+              Engineering <br className="hidden sm:block" /><span className="text-[#F58220] italic font-italic-serif font-normal">Perfection</span> <br className="hidden sm:block" />Step by Step.
+           </h1>
+          <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/60 leading-relaxed max-w-3xl mx-auto mb-16 sm:mb-20">
+             We've removed the friction from tech development. No long meetings, no hidden costs—just a high-speed engine for your business.
+          </p>
         </div>
       </section>
 
-      {/* Process Steps */}
-      <section className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-primary text-3xl md:text-4xl">How We Work</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Our structured approach ensures <strong>transparency</strong>, <strong>quality</strong>, and successful project delivery.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative process-step"
+      {/* Steps Section */}
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24">
+         <div className="mx-auto max-w-7xl grid gap-16 lg:gap-32">
+            {steps.map((step, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className={`grid lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
               >
-                {/* Animated Connector Line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute left-[31px] top-[64px] h-[calc(100%+2rem)] w-[2px] bg-secondary/30 z-0 overflow-hidden">
-                    <div className="w-full h-full bg-primary origin-top scale-y-0 process-line-fill" />
-                  </div>
-                )}
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-                  {/* Number and Icon */}
-                  <div className="lg:col-span-2">
-                    <div className="flex flex-col items-center lg:items-start gap-4">
-                      <div className="text-5xl text-muted-foreground/30 font-bold">{step.number}</div>
-                      <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center text-primary shadow-[0_0_15px_-5px_var(--color-primary)]">
-                        {step.icon}
-                      </div>
+                 <div className={`${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                    <div className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[#F58220] mb-6 sm:mb-8">Step {step.num}</div>
+                    <h2 className="text-4xl sm:text-7xl font-black mb-6 sm:mb-10 tracking-tighter leading-tight">{step.title}</h2>
+                    <p className="text-lg sm:text-2xl font-bold text-[#0B1B35]/60 mb-10 sm:mb-14 leading-relaxed">{step.desc}</p>
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+                       <div className="flex items-center gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#0057FF] to-[#00A3FF] rounded-2xl sm:rounded-3xl border border-white/10 shadow-lg group hover:scale-105 transition-all">
+                          <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                          <span className="font-black uppercase tracking-widest text-xs sm:text-sm text-white">Quality Guaranteed</span>
+                       </div>
+                       <div className="flex items-center gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#F58220] to-[#FF4D00] rounded-2xl sm:rounded-3xl border border-white/10 shadow-lg group hover:scale-105 transition-all">
+                          <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                          <span className="font-black uppercase tracking-widest text-xs sm:text-sm text-white">High-Speed Execution</span>
+                       </div>
                     </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="lg:col-span-10 bg-secondary/10 rounded-lg p-8 border border-border hover:border-primary/30 transition-colors">
-                    <h3 className="mb-4 text-primary text-2xl font-bold">{step.title}</h3>
-                    <p className="text-foreground mb-6 text-lg leading-relaxed">{step.description}</p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {step.activities.map((activity, activityIndex) => (
-                        <div key={activityIndex} className="flex items-center gap-2">
-                          <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                          <span className="text-muted-foreground">{activity}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                 </div>
+                 <div className={`${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                    <motion.div 
+                      whileHover={{ scale: 1.02, rotate: i % 2 === 0 ? 1 : -1 }}
+                      className={`relative aspect-[16/10] rounded-3xl sm:rounded-[4rem] bg-gradient-to-br ${step.color} shadow-2xl p-10 sm:p-16 flex items-center justify-center`}
+                    >
+                       <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                       <div className="w-20 h-20 sm:w-32 sm:h-32 rounded-2xl sm:rounded-[2.5rem] bg-white/20 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white shadow-2xl">
+                          {step.icon}
+                       </div>
+                       {/* Floating UI */}
+                       <motion.div 
+                         animate={{ y: [0, -10, 0] }}
+                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                         className="absolute -top-6 -right-6 sm:-top-10 sm:-right-10 w-48 sm:w-64 z-20"
+                       >
+                          {step.floating}
+                       </motion.div>
+                    </motion.div>
+                 </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
+         </div>
       </section>
 
-      {/* Methodologies */}
-      <section className="bg-secondary/10 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-primary text-3xl md:text-4xl">Our Methodologies</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Best practices and <strong>industry standards</strong> that drive our success.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 methods-grid">
-            {methodologies.map((methodology, index) => (
-              <div
-                key={index}
-                className="bg-card p-8 rounded-lg border border-border hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-shadow method-card"
-              >
-                <h3 className="mb-3 text-primary text-xl font-bold">{methodology.title}</h3>
-                <p className="text-muted-foreground">{methodology.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Collaboration */}
-      <section className="bg-background py-20 collab-section">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="mb-6 text-primary">Transparent Communication</h2>
-              <p className="text-xl text-muted-foreground mb-6">
-                We believe in complete transparency and open communication throughout the project lifecycle.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3 collab-item">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-foreground mb-1">Regular Status Updates</div>
-                    <div className="text-muted-foreground">Weekly progress reports and monthly reviews</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 collab-item">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-foreground mb-1">Dedicated Project Manager</div>
-                    <div className="text-muted-foreground">Single point of contact for all communications</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 collab-item">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-foreground mb-1">Collaborative Tools</div>
-                    <div className="text-muted-foreground">Real-time access to project management platforms</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3 collab-item">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-foreground mb-1">Stakeholder Engagement</div>
-                    <div className="text-muted-foreground">Regular demos and feedback sessions</div>
-                  </div>
-                </li>
-              </ul>
+      {/* Final CTA */}
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24">
+         <div className="mx-auto max-w-7xl">
+            <div className="bg-[#0B1B35] rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center relative overflow-hidden shadow-2xl">
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <h2 className="text-5xl sm:text-[9rem] font-black text-white leading-[1] sm:leading-[0.8] tracking-tighter mb-12 sm:mb-16 relative z-10">
+                  Ready to <br /><span className="text-[#F58220] italic font-italic-serif font-normal">accelerate?</span>
+               </h2>
+               <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 relative z-10">
+                  <Link to="/contact" className="bg-[#F58220] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">
+                     Start My Task <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/10 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black hover:bg-white/10 transition-all">
+                     Try a Test Task
+                  </Link>
+               </div>
             </div>
-            <div className="bg-secondary/10 p-12 rounded-lg border border-border">
-              <h3 className="mb-6 text-primary">Project Timeline</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Discovery</span>
-                  <span className="text-primary">1-2 weeks</span>
-                </div>
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Planning</span>
-                  <span className="text-primary">2-3 weeks</span>
-                </div>
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Development</span>
-                  <span className="text-primary">8-16 weeks</span>
-                </div>
-                <div className="flex items-center justify-between pb-4 border-b border-border">
-                  <span className="text-muted-foreground">Testing & QA</span>
-                  <span className="text-primary">2-4 weeks</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Deployment</span>
-                  <span className="text-primary">1-2 weeks</span>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mt-6">
-                Timelines vary based on project scope and complexity
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Engagement Models */}
-      <EngagementModels />
-
-      {/* CTA Section - Premium Dark Redesign */}
-      <section className="relative py-24 overflow-hidden border-t border-white/5">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-[#020410]">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
-          {/* Tech Grid Overlay */}
-          <div
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
-              backgroundSize: '32px 32px'
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="glass-panel p-8 md:p-14 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(79,70,229,0.3)] backdrop-blur-xl relative overflow-hidden">
-            {/* Glow Effects */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
-            <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none" />
-
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-white mb-6">
-              Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Project</span> Today
-            </h2>
-            <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let's discuss your requirements and how our process can deliver the <strong className="text-foreground">results</strong> you need.
-            </p>
-
-            <div
-              className="relative inline-block group"
-              onMouseEnter={() => setHoverModalOpen(true)}
-              onMouseLeave={() => setHoverModalOpen(false)}
-            >
-              <Link
-                to="/contact"
-                className="relative inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full font-medium hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all duration-300 transform group-hover:scale-105"
-              >
-                <span>Get Started</span>
-                <Rocket className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <HoverModal
-                isOpen={hoverModalOpen}
-                onMouseEnter={() => setHoverModalOpen(true)}
-                onMouseLeave={() => setHoverModalOpen(false)}
-                position="top"
-                align="center"
-                className="w-80"
-              >
-                <div className="space-y-3 p-2">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                      <Rocket className="h-4 w-4" />
-                    </div>
-                    <h3 className="font-semibold text-foreground text-sm">Start Your Project Today</h3>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Let's discuss your requirements and how our proven process can deliver the results you need.
-                  </p>
-                </div>
-              </HoverModal>
-            </div>
-          </div>
-        </div>
+         </div>
       </section>
     </div>
   );
 }
-

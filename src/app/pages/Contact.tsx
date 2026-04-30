@@ -1,64 +1,11 @@
-
-import { useState, useRef, useEffect } from "react";
-import { Mail, Phone, MapPin, Send, Shield, Lock, FileCheck } from "lucide-react";
+import { useState } from "react";
+import { Mail, Send, ShieldCheck, Clock, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { Textarea } from "../components/ui/textarea";
-import { HoverModal } from "../components/ui/HoverModal";
 import { toast } from "sonner";
-import gsap from "gsap";
+import { motion } from "motion/react";
 import { API_BASE_URL } from "../../config";
 
 export function Contact() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero
-      gsap.from(".hero-text", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.2
-      });
-
-      // Contact Form & Info
-      gsap.from(".contact-form", {
-        x: -50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        delay: 0.5
-      });
-      gsap.from(".contact-info", {
-        x: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        delay: 0.5
-      });
-
-      // Locations
-      gsap.from(".location-card", {
-        scrollTrigger: {
-          trigger: ".locations-section",
-          start: "top 80%",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -68,9 +15,8 @@ export function Contact() {
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [hoverModalOpen, setHoverModalOpen] = useState(false);
 
-  const handleRealSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
 
@@ -81,307 +27,158 @@ export function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message');
-      }
+      if (!response.ok) throw new Error('Failed to send');
 
       setStatus('success');
-      toast.success("Message sent successfully!", {
-        description: "We will get back to you shortly.",
-        duration: 5000,
-      });
+      toast.success("Message sent!", { description: "We'll get back to you within 24 hours." });
       setFormData({ name: "", email: "", company: "", phone: "", message: "" });
-    } catch (error: any) {
-      console.error(error);
+    } catch (error) {
       setStatus('error');
-      toast.error("Failed to send message", {
-        description: error.message || "Something went wrong. Please try again.",
-      });
+      toast.error("Failed to send message", { description: "Please check if the backend is running or try again." });
     } finally {
       setStatus('idle');
     }
-  }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
+    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
       <Helmet>
-        <title>Contact Us - Next Revolution Tech | Get in Touch</title>
-        <meta name="description" content="Contact Next Revolution Tech for enterprise software solutions. Schedule a consultation or reach out to our global team." />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ContactPage",
-              "name": "Contact Next Revolution Tech",
-              "description": "Get in touch with our global team for enterprise software solutions.",
-              "url": "https://www.nextrevolutiontech.tech/contact",
-              "mainEntity": {
-                "@type": "Organization",
-                "name": "Next Revolution Tech",
-                "email": "support@nextrevolutiontech.tech",
-                "contactPoint": {
-                  "@type": "ContactPoint",
-                  "contactType": "customer support",
-                  "email": "support@nextrevolutiontech.tech"
-                }
-              }
-            }
-          `}
-        </script>
+        <title>Contact Us | Next Revolution Tech</title>
+        <meta name="description" content="Get in touch for fixes, integrations, and ongoing tech support." />
       </Helmet>
-      {/* Hero Section */}
-      <section className="bg-background text-foreground py-20 border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="hero-text mb-6 text-4xl md:text-5xl font-bold text-primary">Get In Touch</h1>
-            <p className="hero-text text-xl text-muted-foreground">
-              Ready to transform your business with cutting-edge technology? Schedule a consultation with our expert team.
+
+      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl mb-24 text-center sm:text-left">
+            <h1 className="text-5xl sm:text-7xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] mb-10">
+               Ready to stop <br />
+               <span className="text-[#F58220] italic font-italic-serif font-normal">dealing</span> with tech?
+            </h1>
+            <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/40 leading-tight max-w-2xl">
+              Fill out the form below or start with a small paid test. We respond to all inquiries within 24 hours.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Contact Form & Info */}
-      <section className="bg-background py-12 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
-            {/* Contact Form */}
-            <div className="contact-form">
-              <h2 className="mb-4 sm:mb-6 text-primary text-2xl sm:text-3xl">Send Us a Message</h2>
-              <form onSubmit={handleRealSubmit} className="space-y-4 sm:space-y-6">
-                <div>
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="mt-2"
-                  />
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Form */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white rounded-[3rem] p-8 sm:p-12 shadow-2xl border border-black/5 relative overflow-hidden"
+            >
+              <div className="absolute inset-0 opacity-5 bg-[url('/noise.svg')] pointer-events-none" />
+              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Full Name</label>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Jane Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Work Email</label>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="jane@company.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                    />
+                  </div>
                 </div>
-
                 <div>
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-2"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="company">Company Name</Label>
-                  <Input
-                    id="company"
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Company Name</label>
+                  <input
                     name="company"
                     type="text"
+                    placeholder="Acme Corp"
                     value={formData.company}
                     onChange={handleChange}
-                    className="mt-2"
+                    className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
                   />
                 </div>
-
                 <div>
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="mt-2"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea
-                    id="message"
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Your Message</label>
+                  <textarea
                     name="message"
                     required
-                    rows={6}
+                    rows={5}
+                    placeholder="Tell us about your tech hurdles..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="mt-2"
+                    className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all resize-none"
                   />
                 </div>
-
-                <div
-                  className="relative w-full"
-                  onMouseEnter={() => setHoverModalOpen(true)}
-                  onMouseLeave={() => setHoverModalOpen(false)}
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full bg-[#F58220] text-white py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-4 group"
                 >
-                  <Button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 shadow-[0_0_20px_-5px_var(--color-primary)] hover:shadow-[0_0_30px_-5px_var(--color-primary)] transition-all"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    {status === 'loading' ? 'Sending...' : 'Send Message'}
-                  </Button>
-                  <HoverModal
-                    isOpen={hoverModalOpen && status !== 'loading'}
-                    onMouseEnter={() => setHoverModalOpen(true)}
-                    onMouseLeave={() => setHoverModalOpen(false)}
-                    position="top"
-                    align="center"
-                    className="w-72"
-                  >
-                    <div className="space-y-2">
-                      <h3 className="font-semibold text-foreground text-sm">Send Your Message</h3>
-                      <p className="text-xs text-muted-foreground">
-                        Fill out the form and we'll get back to you within 24 hours. Your information is secure and confidential.
-                      </p>
-                    </div>
-                  </HoverModal>
-                </div>
-
-                {/* Privacy Note */}
-                <div className="bg-secondary/10 p-4 rounded-lg border border-border">
-                  <div className="flex items-start gap-3">
-                    <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div className="text-sm text-muted-foreground">
-                      <p className="mb-2">
-                        We respect your privacy and are committed to protecting your personal information.
-                      </p>
-                      <p>
-                        Your data is secure and will only be used to respond to your inquiry. We are GDPR compliant and never share your information with third parties.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  {status === 'loading' ? 'Sending Strategy...' : 'Send Message'} 
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
               </form>
-            </div>
+            </motion.div>
 
-            {/* Contact Information */}
-            <div className="contact-info">
-              <h2 className="mb-6 text-primary">Contact Information</h2>
-
-              {/* General Contact */}
-              <div className="bg-secondary/10 p-8 rounded-lg mb-8 border border-border">
-                <h3 className="mb-6 text-foreground text-xl font-medium">Get in Touch</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
-                      <MapPin className="h-6 w-6" />
+            {/* Info Cards */}
+            <div className="space-y-8">
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-gradient-to-br from-[#0B1B35] to-[#1A365D] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
+                <h3 className="text-3xl font-black mb-10 tracking-tighter">Direct Channels</h3>
+                <div className="space-y-8 relative z-10">
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover:bg-[#F58220] group-hover:text-white transition-all shadow-xl">
+                      <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground">Headquarters</div>
-                      <div className="text-foreground">Operating from Pakistan</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">General Inquiries</div>
+                      <a href="mailto:support@nextrevolutiontech.tech" className="text-lg sm:text-xl font-black hover:text-[#F58220] transition-colors break-all">support@nextrevolutiontech.tech</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
-                      <Mail className="h-6 w-6" />
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover:bg-[#F58220] group-hover:text-white transition-all shadow-xl">
+                      <Clock className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-sm text-muted-foreground">Email</div>
-                      <a href="mailto:support@nextrevolutiontech.tech" className="text-foreground hover:text-primary transition-colors">support@nextrevolutiontech.tech</a>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Response Guarantee</div>
+                      <div className="text-lg sm:text-xl font-black">Within 24 Business Hours</div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Trust Indicators */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
-                  <Lock className="h-6 w-6 text-primary" />
-                  <div>
-                    <div className="text-foreground font-medium">NDA Protection</div>
-                    <div className="text-sm text-muted-foreground">Your project details are secure</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
-                  <Shield className="h-6 w-6 text-primary" />
-                  <div>
-                    <div className="text-foreground font-medium">GDPR Compliant</div>
-                    <div className="text-sm text-muted-foreground">Full data protection compliance</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-secondary/10 rounded-lg border border-border">
-                  <FileCheck className="h-6 w-6 text-primary" />
-                  <div>
-                    <div className="text-foreground font-medium">ISO 27001 Certified</div>
-                    <div className="text-sm text-muted-foreground">Information security management</div>
-                  </div>
-                </div>
-              </div>
+              <motion.div 
+                whileHover={{ y: -5 }}
+                className="bg-gradient-to-br from-[#F58220] to-[#FF4D00] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
+                <ShieldCheck className="w-16 h-16 mb-8 text-white relative z-10" />
+                <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Secure & Confidential</h3>
+                <p className="text-white/80 text-lg font-bold leading-relaxed relative z-10">
+                  We sign NDAs by default for all major projects. Your data and codebase are 100% secure with our internal team.
+                </p>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Office Locations (Simplified) */}
-      <section className="bg-secondary/10 py-20 locations-section">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="mb-4 text-primary">Global Presence</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Serving clients worldwide with 24/7 support
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
-              <h3 className="mb-4 text-primary font-medium text-lg">North America</h3>
-              <div className="space-y-3 text-muted-foreground">
-                <p>Operating remotely to serve clients across US & Canada.</p>
-              </div>
-            </div>
-            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
-              <h3 className="mb-4 text-primary font-medium text-lg">Europe</h3>
-              <div className="space-y-3 text-muted-foreground">
-                <p>Serving UK and EU markets with GDPR compliant solutions.</p>
-              </div>
-            </div>
-            <div className="bg-card p-8 rounded-lg border border-border location-card hover:border-primary/50 transition-colors">
-              <h3 className="mb-4 text-primary font-medium text-lg">Middle East</h3>
-              <div className="space-y-3 text-muted-foreground">
-                <p>Strategic partnerships and localized support for MENA region.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="bg-background py-20">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-12 text-center text-primary">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground font-medium">What is your typical response time?</h4>
-              <p className="text-muted-foreground">We respond to all inquiries within 24 hours during business days.</p>
-            </div>
-            <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground font-medium">Do you sign NDAs?</h4>
-              <p className="text-muted-foreground">Yes, we are happy to sign NDAs to protect your confidential information before discussing project details.</p>
-            </div>
-            <div className="border-b border-border pb-6">
-              <h4 className="mb-2 text-foreground font-medium">What industries do you serve?</h4>
-              <p className="text-muted-foreground">We serve enterprises across all industries including finance, healthcare, retail, manufacturing, and technology sectors.</p>
-            </div>
-            <div>
-              <h4 className="mb-2 text-foreground font-medium">How do you price your services?</h4>
-              <p className="text-muted-foreground">We offer flexible pricing models including fixed-price, time and materials, and dedicated team options based on your project needs.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="h-24 bg-gradient-to-b from-[#F8F9FA] to-[#0B1B35]" />
     </div>
   );
 }

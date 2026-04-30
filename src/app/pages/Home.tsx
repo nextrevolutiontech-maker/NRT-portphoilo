@@ -1,519 +1,594 @@
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { GravityHero } from "../components/ui/GravityHero";
-import { VideoHero } from "../components/ui/VideoHero";
-import { TechStackMarquee } from "../components/ui/TechStackMarquee";
-import { HoverModal } from "../components/ui/HoverModal";
-import { BentoGrid, BentoGridItem } from "../components/ui/BentoGrid";
-import { CyberGrid } from "../components/ui/CyberGrid";
-import { API_BASE_URL } from "../../config";
-import { toast } from "sonner";
-
-// Helper to map icon names to components
-const getIcon = (name: string) => {
-  const icons: any = {
-    Code, Cloud, Cpu, BarChart3, Shield, Zap, CheckCircle2, Users, Award, TrendingUp, Database, Smartphone, Globe, Blocks, Workflow
-  };
-  return icons[name] || Code;
-};
-
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  image_url: string;
-}
-
-interface Testimonial {
-  id: number;
-  author: string;
-  role: string;
-  company: string;
-  quote: string;
-  rating: number;
-  image_url: string;
-}
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Zap, 
+  ShoppingCart,
+  Workflow,
+  Play,
+  Clock,
+  ShieldCheck,
+  Award,
+  Target,
+  Settings,
+  TrendingUp,
+  Code2,
+  Cpu,
+  Layers,
+  Globe,
+  Terminal,
+  Palette,
+  Server,
+  Cloud,
+  CheckCircle,
+  ExternalLink,
+  Bot,
+  Smartphone,
+  Gavel,
+  Baby,
+  UtensilsCrossed,
+  Sparkles,
+  ZapIcon
+} from "lucide-react";
+import { PreFooterCTA } from "../components/PreFooterCTA";
 
 export function Home() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [hoverModalOpen, setHoverModalOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ctaLinks = {
+    test: "/contact?type=test",
+    started: "/contact?type=full"
+  };
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero Entrance
-      const tl = gsap.timeline();
-      tl.from(".hero-text", {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power4.out",
-        delay: 0.5 // Wait for page load a bit
-      });
-
-      // Stats Scroll Reveal
-      gsap.from(".stat-item", {
-        scrollTrigger: {
-          trigger: ".stats-section",
-          start: "top 80%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-      // Section Headers Reveal
-      gsap.utils.toArray(".section-header").forEach((header: any) => {
-        gsap.from(header, {
-          scrollTrigger: {
-            trigger: header,
-            start: "top 85%",
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        });
-      });
-
-      // Service Cards Reveal
-      gsap.from(".service-card", {
-        scrollTrigger: {
-          trigger: ".services-grid",
-          start: "top 80%",
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-      // Why Choose Us Reveal
-      gsap.from(".reason-item", {
-        scrollTrigger: {
-          trigger: ".reasons-grid",
-          start: "top 80%",
-        },
-        x: -50,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-
-      gsap.from(".why-image", {
-        scrollTrigger: {
-          trigger: ".reasons-grid",
-          start: "top 80%",
-        },
-        scale: 0.9,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out"
-      });
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    Promise.all([
-      fetch(`${API_BASE_URL}/api/services`),
-      fetch(`${API_BASE_URL}/api/testimonials`)
-    ])
-      .then(([resServices, resTestimonials]) => Promise.all([resServices.json(), resTestimonials.json()]))
-      .then(([dataServices, dataTestimonials]) => {
-        setServices(Array.isArray(dataServices) ? dataServices : []);
-        setTestimonials(Array.isArray(dataTestimonials) ? dataTestimonials : []);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to load home data", err);
-        setLoading(false);
-      });
-  }, []);
-
-  const stats = [
-    { value: "50+", label: "Projects Delivered" },
-    { value: "98%", label: "Client Retention" },
-    { value: "10+", label: "Countries Served" },
-    { value: "24/7", label: "Support & Monitoring" },
+  const services = [
+    "JavaScript", "Frontend Development", "PHP", "Node.js", "Backend Development", 
+    "API Development", "API Integration", "React.js", "Web Development", 
+    "Payment Gateway Integration", "Next.js", "Tailwind CSS", "Web Design", 
+    "Python", ".NET", "Graphic Design", "Mobile App Development", "Android", 
+    "WordPress", "CSS", "User Interface / IA", "eCommerce", "ERP", "MySQL", 
+    "HTML5", "HTML", "Shopify", "Software Development", "Laravel", 
+    "Full Stack Development", "React Native", "Flutter", "React.js Framework", 
+    "Shopify Development", "Figma", "Chatbot", "WordPress Design", "MERN Stack", 
+    "NLP", "SaaS", "REST API", "Website Development", "AI Agents", "Agentic AI"
   ];
 
-  const reasons = [
+  const teamRoles = [
+    { role: "Frontend Developer", icon: <Code2 className="w-6 h-6" /> },
+    { role: "Backend Developer", icon: <Terminal className="w-6 h-6" /> },
+    { role: "UI/UX Designer", icon: <Palette className="w-6 h-6" /> },
+    { role: "DevOps Engineer", icon: <Cloud className="w-6 h-6" /> },
+    { role: "Quality Engineer", icon: <ShieldCheck className="w-6 h-6" /> },
+    { role: "Product Manager", icon: <Target className="w-6 h-6" /> }
+  ];
+
+  const featuredProjects = [
     {
-      icon: <Award className="h-6 w-6" />,
-      title: "Proven Expertise",
-      description: "Decades of combined experience in enterprise software development.",
+      title: "Pulse Healthcare ERP",
+      category: "Enterprise / SaaS",
+      impact: "Reduced overhead by 40%",
+      image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422316/nrt-portfolio/ev6sddad59sg3uij5e89.png",
+      color: "bg-blue-600"
     },
     {
-      icon: <Users className="h-6 w-6" />,
-      title: "Dedicated Team",
-      description: "Expert developers, architects, and consultants committed to your success.",
+      title: "BabyBloom Marketplace",
+      category: "eCommerce / Web",
+      impact: "45% More Conversions",
+      image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png",
+      color: "bg-[#F58220]"
     },
     {
-      icon: <TrendingUp className="h-6 w-6" />,
-      title: "Scalable Solutions",
-      description: "Built for growth with modern, future-proof technology stacks.",
-    },
-    {
-      icon: <Shield className="h-6 w-6" />,
-      title: "Security First",
-      description: "Enterprise-grade security and compliance built into every solution.",
-    },
+      title: "IraqBid: Auction App",
+      category: "Mobile / Real-time",
+      impact: "Zero-latency bidding",
+      image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422323/nrt-portfolio/ynlxrffuhffwgf0zl60v.png",
+      color: "bg-[#0B1B35]"
+    }
   ];
 
   return (
-    <div className="pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300" ref={containerRef}>
+    <div className="relative min-h-screen bg-[#F8F9FA] pt-24 overflow-hidden text-[#0B1B35]">
       <Helmet>
-        <title>Home - Next Revolution Tech | Enterprise Software Solutions</title>
-        <meta name="description" content="Next Revolution Tech delivers enterprise-grade software solutions, acting as your global technology partner to drive business growth through innovation." />
-        <meta name="keywords" content="Software Development, Enterprise Solutions, AI, SaaS, Cloud Computing, Next Revolution Tech, Enterprise Software USA, Software Development UK, IT Staff Augmentation Canada, B2B Tech Partner Europe, Global Tech Partner" />
-        <link rel="canonical" href="https://www.nextrevolutiontech.tech/" />
-        <meta name="content-language" content="en" />
-
-        {/* Open Graph / Facebook / LinkedIn */}
-        <meta property="og:type" content="business.business" />
-        <meta property="og:url" content="https://www.nextrevolutiontech.tech/" />
-        <meta property="og:title" content="Next Revolution Tech | Enterprise Software & AI Partner" />
-        <meta property="og:description" content="We build scalable, secure, and ready-to-scale software ecosystems for global enterprises. Your trusted technology partner in USA, UK, Canada & Europe." />
-        <meta property="og:image" content="https://www.nextrevolutiontech.tech/logo.png" />
-        <meta property="business:contact_data:country_name" content="United States" />
-
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://www.nextrevolutiontech.tech/" />
-        <meta property="twitter:title" content="Next Revolution Tech | Enterprise Tech Partner" />
-        <meta property="twitter:description" content="Global technology partner delivering enterprise-grade software solutions, AI innovations, and scalable cloud ecosystems." />
-        <meta property="twitter:image" content="https://www.nextrevolutiontech.tech/logo.png" />
-
-        {/* Organization Schema */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Next Revolution Tech",
-              "url": "https://www.nextrevolutiontech.tech",
-              "logo": "https://www.nextrevolutiontech.tech/logo.png",
-              "sameAs": [
-                "https://facebook.com/nextrevolutiontech",
-                "https://instagram.com/nextrevolutiontech",
-                "https://linkedin.com/company/nextrevolutiontech",
-                "https://tiktok.com/@nextrevolutiontech"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+1-555-0123",
-                "contactType": "customer service",
-                "areaServed": ["US", "GB", "CA", "EU"],
-                "availableLanguage": "English"
-              },
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "US"
-              }
-            }
-          `}
-        </script>
+        <title>Next Revolution Tech | Your Dedicated Tech Partner</title>
       </Helmet>
-      {/* Hero Section */}
-      <section className="relative bg-background text-foreground" style={{ overflow: 'visible' }}>
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <GravityHero />
-          {/* Subtle overlay to ensure text readability if needed */}
-          <div className="absolute inset-0 bg-background/20" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32" style={{ overflow: 'visible' }}>
 
-          <div className="max-w-4xl mx-auto text-center relative z-20">
-            <h1 className="hero-text mb-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-tight">
-              Building <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-sm">Scalable</span> Digital Solutions
-            </h1>
-            <p className="hero-text mb-8 text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              We partner with global enterprises to <strong>transform ideas</strong> into fascinating, <strong>secure</strong>, and ready-to-scale software ecosystems.
-            </p>
-            <div className="hero-text flex flex-col sm:flex-row gap-4 justify-center" style={{ overflow: 'visible', position: 'relative', zIndex: 1 }}>
-              <div
-                className="relative inline-block"
-                style={{ overflow: 'visible', position: 'relative', zIndex: 1000 }}
-                onMouseEnter={() => setHoverModalOpen(true)}
-                onMouseLeave={() => setHoverModalOpen(false)}
-              >
-                <Link
-                  to={localStorage.getItem('token') ? "/contact" : "/admin/login"}
-                  onClick={(e) => {
-                    if (!localStorage.getItem('token')) {
-                      e.preventDefault();
-                      toast.info("Login Required", {
-                        description: "Please login to schedule a consultation.",
-                        action: {
-                          label: "Go to Login",
-                          onClick: () => window.location.href = '/admin/login'
-                        }
-                      });
-                    }
-                  }}
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-primary/90 transition-all hover:scale-105 text-center font-medium shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_40px_-5px_var(--color-primary)]"
-                >
-                  Book Strategy Call
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <HoverModal
-                  isOpen={hoverModalOpen}
-                  onMouseEnter={() => setHoverModalOpen(true)}
-                  onMouseLeave={() => setHoverModalOpen(false)}
-                  position="bottom"
-                  align="start"
-                  className="!z-[10000]"
-                >
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground text-sm">Strategic Consultation</h3>
-                    <p className="text-xs text-muted-foreground">
-                      Book a free strategy call to discuss your business goals and how we can help you achieve them.
-                    </p>
-                    <Link
-                      to="/contact"
-                      className="block w-full text-center bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-3"
-                    >
-                      Schedule Now
-                    </Link>
-                  </div>
-                </HoverModal>
-              </div>
-              <Link
-                to="/services"
-                className="inline-flex items-center justify-center gap-2 bg-background/50 backdrop-blur-sm border border-primary/30 text-foreground px-8 py-4 rounded-full hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 text-center font-medium"
-              >
-                Explore Services
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Slider Section */}
-      <VideoHero />
-
-      {/* Stats Section */}
-      <section className="bg-background border-b border-border stats-section">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center stat-item">
-                <div className="text-4xl lg:text-5xl text-primary mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="bg-secondary/20 py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20 section-header">
-            <h2 className="mb-6 text-primary font-mono text-sm tracking-wider uppercase">Our Expertise</h2>
-            <h3 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
-              Comprehensive <span className="text-primary">Technology Solutions</span>
-            </h3>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Designed for enterprise scale, performance, and future-readiness.
-            </p>
-          </div>
-
-          <BentoGrid className="services-grid">
-            {services.slice(0, 6).map((service, index) => {
-              const Icon = getIcon(service.icon);
-              return (
-                <BentoGridItem
-                  key={service.id || index}
-                  title={service.title}
-                  description={service.description}
-                  header={
-                    <div className={`flex flex-1 w-full h-full min-h-[6rem] rounded-xl items-center justify-center transition-all duration-300 group-hover/bento:scale-[1.02]
-                      ${index % 4 === 0 ? "bg-gradient-to-br from-violet-500/20 via-purple-500/10 to-blue-500/5 group-hover/bento:from-violet-500/30 group-hover/bento:via-purple-500/20" : ""}
-                      ${index % 4 === 1 ? "bg-gradient-to-br from-pink-500/20 via-rose-500/10 to-orange-500/5 group-hover/bento:from-pink-500/30 group-hover/bento:via-rose-500/20" : ""}
-                      ${index % 4 === 2 ? "bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-indigo-500/5 group-hover/bento:from-cyan-500/30 group-hover/bento:via-blue-500/20" : ""}
-                      ${index % 4 === 3 ? "bg-gradient-to-br from-emerald-500/20 via-green-500/10 to-teal-500/5 group-hover/bento:from-emerald-500/30 group-hover/bento:via-green-500/20" : ""}
-                    `}>
-                      <div className="relative">
-                        <div className={`absolute inset-0 blur-2xl opacity-20 group-hover/bento:opacity-40 transition-opacity duration-500
-                          ${index % 4 === 0 ? "bg-violet-500" : ""}
-                          ${index % 4 === 1 ? "bg-pink-500" : ""}
-                          ${index % 4 === 2 ? "bg-cyan-500" : ""}
-                          ${index % 4 === 3 ? "bg-emerald-500" : ""}
-                        `} />
-                        <Icon className={`h-16 w-16 transition-all duration-300 group-hover/bento:scale-110 group-hover/bento:rotate-3
-                          ${index % 4 === 0 ? "text-violet-400 drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" : ""}
-                          ${index % 4 === 1 ? "text-pink-400 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]" : ""}
-                          ${index % 4 === 2 ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" : ""}
-                          ${index % 4 === 3 ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]" : ""}
-                        `} strokeWidth={1.5} />
-                      </div>
-                    </div>
-                  }
-                  className={index === 3 || index === 6 ? "md:col-span-2" : ""}
-                  icon={
-                    <div className={`p-2 rounded-full w-fit
-                      ${index % 4 === 0 ? "bg-violet-500/10 text-violet-400" : ""}
-                      ${index % 4 === 1 ? "bg-pink-500/10 text-pink-400" : ""}
-                      ${index % 4 === 2 ? "bg-cyan-500/10 text-cyan-400" : ""}
-                      ${index % 4 === 3 ? "bg-emerald-500/10 text-emerald-400" : ""}
-                    `}>
-                      <Icon className="h-4 w-4" strokeWidth={2} />
-                    </div>
-                  }
-                  link="/services"
-                />
-              );
-            })}
-          </BentoGrid>
-
-          <div className="text-center mt-16">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-foreground bg-primary/10 hover:bg-primary/20 px-6 py-3 rounded-full transition-colors border border-primary/20 hover:border-primary/50"
+      {/* Hero Section - PIXEL-PERFECT ALIGNMENT */}
+      <section className="relative pt-12 sm:pt-20 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 overflow-hidden">
+        {/* Background Blobs */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-[#F58220]/20 to-transparent rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#0057FF]/10 to-transparent rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
+        
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-8 relative"
             >
-              View All Services
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Marquee */}
-      <TechStackMarquee />
-
-      {/* Why Choose Us Section */}
-      <section className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center reasons-grid">
-            <div>
-              <div className="section-header">
-                <h2 className="mb-6 text-primary text-3xl md:text-4xl">Why Leaders Choose Us</h2>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  We don't just write code; we engineer <strong>business value</strong>. Our approach combines technical depth with strategic foresight.
-                </p>
-              </div>
-              <div className="space-y-6">
-                {reasons.map((reason, index) => (
-                  <div key={index} className="flex gap-4 reason-item">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                      {reason.icon}
-                    </div>
-                    <div>
-                      <h4 className="mb-2 text-foreground">{reason.title}</h4>
-                      <p className="text-muted-foreground">{reason.description}</p>
-                    </div>
+               <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black leading-[0.85] tracking-tighter mb-8 sm:mb-12 heading-brand text-[#0B1B35]">
+                 Stop Hiring <br className="hidden sm:block" />
+                 Developers for <br className="hidden sm:block" />
+                 <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">everything</span>.
+               </h1>
+              <p className="text-lg sm:text-xl xl:text-2xl text-[#0B1B35]/70 font-bold mb-10 sm:mb-12 max-w-[500px] leading-tight">
+                Get a full dedicated team for a flat monthly fee. No hiring, no overhead, just results.
+              </p>
+               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16">
+                <Link to={ctaLinks.test} className="bg-[#0B1B35] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_50px_rgba(11,27,53,0.3)] hover:scale-105 transition-all flex items-center justify-center sm:justify-start gap-4 group">
+                  Try NRT for $499
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                ))}
+                </Link>
+                <Link to="/process" className="bg-white border-2 border-[#0B1B35]/5 text-[#0B1B35] px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black hover:bg-[#F8F9FA] transition-all flex items-center justify-center sm:justify-start gap-4">
+                  See Workflow
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                </Link>
               </div>
-            </div>
-            <div className="relative why-image">
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-25 animate-pulse"></div>
-                <CyberGrid />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-12 border-t border-[#0B1B35]/5 pt-10 sm:pt-12">
+                 <div className="flex -space-x-3 sm:-space-x-4">
+                    {[1, 2, 3, 4].map((i) => (
+                      <img key={i} src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-4 border-white shadow-xl" />
+                    ))}
+                 </div>
+                 <div className="text-base sm:text-lg font-bold text-[#0B1B35]/40 italic">"The most reliable team we've ever worked with."</div>
               </div>
-            </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="lg:col-span-4 relative mt-8 lg:mt-6"
+            >
+              {/* Floating Dashboard Snippet */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10 rounded-3xl sm:rounded-[4rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(11,27,53,0.3)] border border-white/5"
+              >
+                 <div className="aspect-[0.8/1] bg-gradient-to-br from-[#0B1B35] to-[#1A365D] p-6 sm:p-14 flex flex-col justify-between">
+                    <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                    <div className="relative z-10">
+                       <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-[#F58220] flex items-center justify-center text-white mb-4 sm:mb-10 shadow-lg shadow-[#F58220]/30">
+                          <ZapIcon className="w-5 h-5 sm:w-8 sm:h-8 fill-current" />
+                       </div>
+                       <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tighter leading-[0.9] mb-3 sm:mb-8">NRT <br />Dedicated <br />Partner.</h2>
+                       <p className="text-base sm:text-xl font-bold text-white/50 leading-relaxed max-w-[240px] sm:max-w-[280px]">
+                          Your mission-critical tech handled by experts 24/7.
+                       </p>
+                    </div>
+                    <div className="relative z-10 space-y-5 sm:space-y-8">
+                       <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-[2.5rem] p-5 sm:p-8 border border-white/10">
+                          <div className="flex items-center justify-between mb-3 sm:mb-6">
+                             <div className="text-[9px] sm:text-[11px] font-black uppercase tracking-widest text-[#F58220]">Active Tasks</div>
+                             <div className="text-white text-base sm:text-xl font-black">04</div>
+                          </div>
+                          <div className="space-y-2 sm:space-y-3">
+                             <div className="h-1 sm:h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                                <motion.div initial={{ width: 0 }} animate={{ width: "70%" }} transition={{ duration: 2 }} className="h-full bg-[#F58220]" />
+                             </div>
+                             <div className="h-1 sm:h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                                <motion.div initial={{ width: 0 }} animate={{ width: "40%" }} transition={{ duration: 2, delay: 0.5 }} className="h-full bg-blue-500" />
+                             </div>
+                          </div>
+                       </div>
+                       <Link to="/estimator" className="block w-full bg-[#F58220] text-white text-center py-4 sm:py-6 rounded-xl sm:rounded-[2rem] font-black text-lg sm:text-2xl hover:scale-[1.02] transition-all shadow-2xl">
+                          Check Project Pricing
+                       </Link>
+                    </div>
+                 </div>
+              </motion.div>
+              {/* Decorative elements */}
+              <div className="absolute bottom-0 -right-10 w-40 h-40 bg-[#F58220] rounded-full blur-[100px] opacity-10" />
+              <div className="absolute top-0 -left-10 w-40 h-40 bg-blue-500 rounded-full blur-[100px] opacity-5" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="bg-secondary/30 py-20">
+      {/* Trust Section - COMPACT SINGLE LINE */}
+      <section className="py-12 bg-white border border-black/5 mx-4 sm:mx-12 lg:mx-24 rounded-[2.5rem] shadow-[0_20px_50px_rgba(11,27,53,0.03)] mb-24 flex flex-col items-center">
+        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B1B35]/20 text-center mb-10">
+           Powering growth for modern brands
+        </div>
+        <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-x-12 sm:gap-x-16 gap-y-8 px-8 w-full overflow-hidden">
+          {[
+            { name: "Shopify", color: "text-[#96BF48]" },
+            { name: "WordPress", color: "text-[#21759B]" },
+            { name: "Stripe", color: "text-[#635BFF]" },
+            { name: "PayPal", color: "text-[#003087]" },
+            { name: "Woo", color: "text-[#96588A]" }
+          ].map((brand) => (
+            <span 
+              key={brand.name} 
+              className={`text-2xl sm:text-4xl font-black tracking-tighter transition-all cursor-default select-none hover:scale-110 whitespace-nowrap ${brand.color}`}
+            >
+              {brand.name}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* What We Handle Section - SCALED DOWN */}
+      <section className="py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 section-header">
-            <h2 className="mb-4 text-primary">What Our Clients Say</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Trusted by leading enterprises worldwide
-            </p>
+          <div className="mb-12 sm:mb-16">
+             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Expertise</div>
+             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] max-w-2xl leading-[1] sm:leading-[0.95]">
+                Specialized in <br /><span className="text-[#F58220]">Mission Critical</span> <br className="hidden sm:block" />Development.
+             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id || index} className="bg-card p-8 rounded-lg border border-border service-card">
-                <p className="text-muted-foreground mb-6 italic">"{testimonial.quote}"</p>
-                <div className="border-t border-border pt-4 flex items-center gap-4">
-                  {testimonial.image_url && (
-                    <img
-                      src={testimonial.image_url}
-                      alt={testimonial.author}
-                      className="w-10 h-10 object-cover rounded-full bg-secondary"
-                    />
-                  )}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* eCommerce Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-10 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <motion.div 
+                 animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
+                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl border border-black/5 scale-[0.9] origin-top"
+               >
+                  <div className="flex items-center gap-3 mb-4">
+                     <div className="w-8 h-8 rounded-full bg-[#F58220]/10 flex items-center justify-center text-[#F58220]"><ShoppingCart className="w-4 h-4" /></div>
+                     <div className="text-[9px] font-black uppercase text-black/40">Order Confirmed</div>
+                  </div>
+                  <div className="space-y-2">
+                     <div className="h-1.5 w-full bg-black/5 rounded-full" />
+                     <div className="h-1.5 w-3/4 bg-[#F58220]/20 rounded-full" />
+                  </div>
+               </motion.div>
+               <div className="relative z-10">
+                  <h3 className="text-3xl sm:text-4xl font-black text-[#0B1B35] mb-4 tracking-tighter uppercase leading-none">eCommerce</h3>
+                  <p className="text-base sm:text-lg font-bold text-[#0B1B35]/70 leading-snug">Handling store bugs, speed optimization, and custom Shopify/Woo themes.</p>
+               </div>
+            </motion.div>
+
+            {/* Integrations Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-10 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <motion.div 
+                 animate={{ y: [0, -6, 0] }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-10 left-6 right-6 bg-[#0B1B35] rounded-[2rem] p-6 shadow-xl border border-white/10 scale-[0.9] origin-top"
+               >
+                  <div className="text-[#F58220] text-[9px] font-mono mb-3">{">"} API Bridge Active</div>
+                  <div className="space-y-1.5">
+                     <div className="h-1 w-full bg-white/10 rounded-full" />
+                     <div className="h-1 w-full bg-white/10 rounded-full" />
+                     <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
+                  </div>
+               </motion.div>
+               <div className="relative z-10 text-white">
+                  <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">Integrations</h3>
+                  <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Custom API builds, Stripe/PayPal setup, and complex system bridges.</p>
+               </div>
+            </motion.div>
+
+            {/* AI & Automation Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-10 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <motion.div 
+                 animate={{ scale: [1, 1.03, 1], rotate: [0, -1, 0] }}
+                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl flex flex-col items-center justify-center text-center scale-[0.9] origin-top"
+               >
+                  <div className="w-12 h-12 rounded-full bg-[#FF4D00]/10 flex items-center justify-center text-[#FF4D00] mb-3">
+                     <Bot className="w-6 h-6" />
+                  </div>
+                  <div className="text-[9px] font-black uppercase text-black/20 tracking-[0.2em] mb-1">Agent Neural</div>
+                  <div className="text-xs font-black text-black">BOT_ONLINE</div>
+               </motion.div>
+               <div className="relative z-10 text-white">
+                  <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">AI & Automation</h3>
+                  <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Building autonomous AI agents, backend systems, and automated workflows.</p>
+               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Simple Process - SCALED DOWN & FIXED OVERFLOW */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 sm:mb-16">
+             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">How it works</div>
+             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-[1] sm:leading-[0.95]">Simple Process. <br />Vibrant Results.</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1: Subscribe */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-8 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <motion.div 
+                 animate={{ y: [0, -10, 0] }} 
+                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-8 left-6 right-6 bg-black rounded-2xl p-6 shadow-xl border border-white/10"
+               >
+                  <div className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-4">NRT Partner Plan</div>
+                  <div className="text-3xl font-black text-white mb-6">$1,500<span className="text-xs text-white/40 font-bold">/mo</span></div>
+                  <div className="space-y-2">
+                     <div className="h-1 w-full bg-white/5 rounded-full" />
+                     <div className="h-1 w-full bg-white/5 rounded-full" />
+                     <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
+                  </div>
+               </motion.div>
+               <div className="relative z-10">
+                  <h3 className="text-5xl sm:text-6xl font-black text-[#0B1B35]/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Subscribe</h3>
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#0B1B35] mb-3 tracking-tighter uppercase leading-none relative z-20">Subscribe</h3>
+                  <p className="text-sm sm:text-base font-bold text-[#0B1B35]/70 leading-snug relative z-20">Choose a plan or start with a small test task to begin your partnership.</p>
+               </div>
+            </motion.div>
+
+            {/* Card 2: Request */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-8 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="absolute top-8 left-6 right-6 flex flex-wrap gap-2">
+                  {["API", "Bug", "React", "AI", "Dash"].map((tag, i) => (
+                    <motion.div 
+                      key={i}
+                      animate={{ y: [0, -5, 0], opacity: [0.8, 1, 0.8] }}
+                      transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
+                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1.5 text-[9px] font-black text-white uppercase tracking-[0.1em]"
+                    >
+                      {tag}
+                    </motion.div>
+                  ))}
+               </div>
+               <div className="relative z-10 text-white">
+                  <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Request</h3>
+                  <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Request</h3>
+                  <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Add as many tasks as you like to your dedicated board with zero friction.</p>
+               </div>
+            </motion.div>
+
+            {/* Card 3: Receive */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-8 flex flex-col justify-end group shadow-xl"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <motion.div 
+                 animate={{ rotate: [-1, 1, -1], y: [0, -10, 0] }}
+                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                 className="absolute top-8 left-6 right-6 bg-white rounded-2xl p-4 shadow-xl overflow-hidden"
+               >
+                  <img src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png" alt="Delivery" className="w-full h-auto rounded-lg" />
+                  <div className="mt-3 flex items-center justify-between px-1">
+                     <div className="text-[8px] font-black uppercase text-black/40">Status: Complete</div>
+                     <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white"><CheckCircle2 className="w-4 h-4" /></div>
+                  </div>
+               </motion.div>
+               <div className="relative z-10 text-white">
+                  <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Receive</h3>
+                  <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Receive</h3>
+                  <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Get high-quality technical results in just 2-3 business days on average.</p>
+               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section - VIBRANT MODERN SaaS STYLE */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 sm:mb-20">
+             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Pricing Plans</div>
+             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-tight mb-6">Flexible Plans for <br />Every Business Need</h2>
+             <p className="text-lg sm:text-xl font-bold text-[#0B1B35]/50 max-w-2xl mx-auto">Whether you need ongoing development or a one-time project, we’ve got you covered.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {/* Card 1: Starter */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="relative z-10">
+                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Small ongoing needs</div>
+                  <h3 className="text-2xl font-black text-white mb-1">Starter</h3>
+                  <div className="text-3xl font-black text-white mb-6">$1000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                  <ul className="space-y-3 mb-8">
+                    {["Ongoing fixes & tasks", "Basic integrations", "Dedicated developer", "Reliable turnaround"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/contact" className="block w-full bg-white text-[#6366f1] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Starter</Link>
+               </div>
+            </motion.div>
+
+            {/* Card 2: Growth (HIGHLIGHTED) */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#F58220] to-[#FF4D00] p-8 sm:p-10 flex flex-col justify-end group shadow-2xl scale-105 z-20 border-4 border-white/20 aspect-[4/5]"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-[50px] group-hover:scale-150 transition-transform" />
+               <div className="relative z-10">
+                  <div className="bg-white text-[#F58220] rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 w-fit shadow-lg">Most Popular</div>
+                  <h3 className="text-2xl font-black text-white mb-1">Growth</h3>
+                  <div className="text-3xl font-black text-white mb-6">$2000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                  <ul className="space-y-3 mb-8">
+                    {["Priority support", "API integrations", "Regular improvements", "More dedicated time"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white">
+                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/contact" className="block w-full bg-[#0B1B35] text-white py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all shadow-xl">Choose Growth</Link>
+               </div>
+            </motion.div>
+
+            {/* Card 3: Scale */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0ea5e9] to-[#2563eb] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="relative z-10">
+                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Scaling businesses</div>
+                  <h3 className="text-2xl font-black text-white mb-1">Scale</h3>
+                  <div className="text-3xl font-black text-white mb-6">$3500<span className="text-xs font-bold opacity-60">/mo</span></div>
+                  <ul className="space-y-3 mb-8">
+                    {["Full system handling", "Continuous optimization", "Fastest turnaround", "Dedicated focus"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/contact" className="block w-full bg-white text-[#2563eb] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Scale</Link>
+               </div>
+            </motion.div>
+
+            {/* Card 4: Project */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#ec4899] to-[#8b5cf6] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+            >
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="relative z-10">
+                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">One-off needs</div>
+                  <h3 className="text-2xl font-black text-white mb-1">Project</h3>
+                  <div className="text-3xl font-black text-white mb-6">Custom<span className="text-xs font-bold opacity-60"> Quote</span></div>
+                  <ul className="space-y-3 mb-8">
+                    {["Fixed-scope project", "Single feature build", "Custom integrations", "One-time delivery"].map((feat, i) => (
+                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/contact" className="block w-full bg-white text-[#ec4899] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Get a Quote</Link>
+               </div>
+            </motion.div>
+          </div>
+
+          <div className="text-center">
+             <p className="text-xl font-bold text-[#0B1B35]/40 mb-12 italic">“Submit your tasks, we handle everything — no need to hire or manage developers.”</p>
+             <div className="flex flex-col sm:flex-row justify-center gap-6">
+                <Link to="/contact?type=test" className="bg-[#F58220] text-white px-10 py-5 rounded-2xl text-xl font-black shadow-xl hover:scale-105 transition-all">Start a Small Paid Test</Link>
+                <Link to="/contact" className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] px-10 py-5 rounded-2xl text-xl font-black hover:bg-[#0B1B35] hover:text-white transition-all">Book a Quick Call</Link>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section - SCALED DOWN */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 sm:mb-24">
+             <h2 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-[#0B1B35] leading-[0.85] mb-8">
+                Technical <br />
+                <span className="text-[#F58220] italic font-italic-serif font-normal">Success</span> <br />
+                Stories.
+             </h2>
+             <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/40 max-w-2xl leading-tight">
+                We solve complex problems for global partners.
+             </p>
+          </div>
+
+           <div className="grid lg:grid-cols-3 gap-12">
+              {featuredProjects.map((project, i) => (
+                <motion.div 
+                   key={i} 
+                   whileHover={{ y: -8 }}
+                   className="group"
+                >
+                   <Link to="/case-studies" className="block">
+                      <div className={`relative aspect-[16/10] rounded-[3rem] overflow-hidden mb-8 ${project.color} shadow-xl`}>
+                         <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')]" />
+                         <div className="absolute inset-0 flex items-center justify-center p-10">
+                            <img 
+                               src={project.image} 
+                               alt={project.title} 
+                               className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-1000" 
+                            />
+                         </div>
+                         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B35]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                            <div className="text-white text-2xl font-black tracking-tighter">View Success Story</div>
+                         </div>
+                      </div>
+                      <div className="flex justify-between items-start gap-4 px-2">
+                         <div>
+                            <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#F58220] mb-2">{project.category}</div>
+                            <h3 className="text-xl sm:text-2xl font-black tracking-tighter text-[#0B1B35] group-hover:text-[#F58220] transition-colors">{project.title}</h3>
+                         </div>
+                         <div className="bg-[#0B1B35]/5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[#0B1B35]/60 whitespace-nowrap">
+                            {project.impact}
+                         </div>
+                      </div>
+                   </Link>
+                </motion.div>
+              ))}
+           </div>
+        </div>
+      </section>
+
+      {/* Team Section - SCALED DOWN */}
+      <section className="py-24 bg-[#F8F9FA]">
+         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="bg-[#0B1B35] rounded-[3rem] sm:rounded-[4rem] p-10 sm:p-20 relative overflow-hidden shadow-2xl">
+               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+               <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
                   <div>
-                    <div className="text-card-foreground">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}, {testimonial.company}</div>
+                     <div className="inline-flex items-center gap-2 bg-[#F58220] rounded-full px-5 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-white mb-8">Team as a Service</div>
+                     <h2 className="text-5xl sm:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-8">Your Dedicated <br /><span className="text-[#F58220]">Tech Partner.</span></h2>
+                     <p className="text-lg font-bold text-white/50 mb-10 leading-relaxed max-w-lg">Skip the recruitment cycles. Get immediate access to a full stack of engineering and design talent.</p>
+                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-12">
+                        {teamRoles.map((role, i) => (
+                          <div key={i} className="flex items-center gap-4 text-white">
+                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#F58220] border border-white/5">{role.icon}</div>
+                             <span className="text-base font-black tracking-tight">{role.role}</span>
+                          </div>
+                        ))}
+                     </div>
+                     <Link to="/contact" className="bg-[#F58220] text-white px-10 py-5 rounded-xl text-lg font-black shadow-xl hover:scale-105 transition-all flex items-center justify-center sm:justify-start gap-4 group w-full sm:w-fit">Assemble My Team <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></Link>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      {/* Final CTA Section - Premium Dark Tech Design */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-[#020410]">
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
-          {/* Tech Grid Overlay */}
-          <div
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
-              backgroundSize: '32px 32px'
-            }}
-          />
-          {/* Glowing Orbs */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-30 blur-3xl pointer-events-none">
-            <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-screen animate-pulse" />
-            <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-accent-secondary rounded-full mix-blend-screen animate-pulse delay-1000" />
-          </div>
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="glass-panel p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl backdrop-blur-xl">
-            <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-white mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Let's discuss how we can help you build <span className="text-indigo-400 font-semibold">scalable</span>, <span className="text-purple-400 font-semibold">secure</span>, and <span className="text-pink-400 font-semibold">innovative</span> technology solutions.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                to="/contact"
-                className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-primary to-purple-600 text-white px-8 py-4 rounded-full font-medium hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300"
-              >
-                Schedule a Consultation
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/estimator"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-foreground hover:bg-white/5 border border-white/10 transition-colors"
-              >
-                Estimate Project Cost
-              </Link>
+                  <div className="hidden lg:block relative">
+                     <div className="bg-white/5 backdrop-blur-3xl rounded-[3rem] p-12 border border-white/10 shadow-xl">
+                        <div className="space-y-8">
+                           {["UI/UX Design", "Frontend Dev", "Backend Dev", "DevOps", "QA Testing"].map((item) => (
+                             <div key={item} className="flex items-center justify-between group cursor-default">
+                                <span className="text-white text-xl font-black tracking-tighter group-hover:text-[#F58220] transition-colors">{item}</span>
+                                <div className="w-8 h-8 rounded-full bg-[#F58220]/20 flex items-center justify-center text-[#F58220] group-hover:bg-[#F58220] group-hover:text-white transition-all">
+                                   <CheckCircle className="w-5 h-5" />
+                                </div>
+                             </div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
+         </div>
+      </section>
+
+      {/* Expertise Marquee */}
+      <section className="py-32 bg-[#0B1B35] overflow-hidden">
+        <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap">
+           {[...services, ...services].map((skill, i) => (
+             <div key={i} className="text-white/30 text-5xl font-black tracking-tighter hover:text-white transition-colors cursor-default select-none uppercase">
+                {skill} <span className="mx-12 text-[#F58220]">/</span>
+             </div>
+           ))}
         </div>
       </section>
+      <PreFooterCTA />
     </div>
   );
 }

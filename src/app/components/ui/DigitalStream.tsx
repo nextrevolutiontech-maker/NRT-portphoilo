@@ -23,7 +23,7 @@ export const DigitalStream = () => {
         const chars = "01010101010101ABCDEFXYZ";
 
         const draw = () => {
-            ctx.fillStyle = "rgba(2, 4, 16, 0.1)"; // Fade effect
+            ctx.fillStyle = "rgba(255, 255, 255, 0.1)"; // Fade effect (Light mode)
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.font = "18px 'Space Mono', monospace";
@@ -35,7 +35,7 @@ export const DigitalStream = () => {
                 const randomColor = Math.random();
                 if (randomColor > 0.95) ctx.fillStyle = "#ec4899"; // Pink
                 else if (randomColor > 0.9) ctx.fillStyle = "#22d3ee"; // Cyan
-                else ctx.fillStyle = "#6366f1"; // Indigo (Primary)
+                else ctx.fillStyle = "#FF7E00"; // Orange (Primary)
 
                 ctx.fillText(text, i * 20, drops[i] * 20);
 

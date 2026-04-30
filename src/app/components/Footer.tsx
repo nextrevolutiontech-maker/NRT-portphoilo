@@ -1,192 +1,157 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone, Send, Shield, CheckCircle, Activity, Github } from "lucide-react";
-import { toast } from "sonner";
-import { useState } from "react";
-import { HoverModal } from "./ui/HoverModal";
-const logoImage = "/logo.png";
+import { 
+  Mail, 
+  Github, 
+  Linkedin, 
+  Twitter, 
+  Instagram, 
+  ArrowUp, 
+  Globe,
+  MessageSquare,
+  ChevronRight
+} from "lucide-react";
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [hoverModalOpen, setHoverModalOpen] = useState(false);
+  const currentYear = new Date().getFullYear();
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const emailValue = formData.get("email") as string || email;
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    if (emailValue) {
-      toast.success("Thanks for subscribing!", {
-        description: `We'll send updates to ${emailValue}`,
-        duration: 4000,
-      });
-      setEmail("");
-      e.currentTarget.reset();
-    }
+  const footerLinks = {
+    services: [
+      { name: "eCommerce Tech", href: "/services" },
+      { name: "API Integrations", href: "/services" },
+      { name: "Automation & Systems", href: "/services" },
+      { name: "Custom Solutions", href: "/services" },
+    ],
+    company: [
+      { name: "About Us", href: "/about" },
+      { name: "Our Process", href: "/process" },
+      { name: "Success Stories", href: "/case-studies" },
+      { name: "Latest Insights", href: "/blog" },
+    ],
+    legal: [
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Terms of Service", href: "/terms-of-service" },
+      { name: "GDPR Compliance", href: "/gdpr-compliance" },
+    ]
   };
 
   return (
-    <footer className="bg-card text-muted-foreground border-t border-border">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex flex-col items-start gap-2 mb-4">
-              <img
-                src={logoImage}
-                alt="Next Revolution Tech"
-                className="h-20 sm:h-32 w-auto object-contain transition-all"
-                onError={(e) => {
-                  console.error('Logo failed to load:', logoImage);
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
+    <footer className="bg-[#0B1B35] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/5">
+      {/* Background Polish */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#F58220]/50 to-transparent" />
+      
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-4 pr-0 lg:pr-12">
+            <Link to="/" className="inline-block mb-8 group">
+              <img 
+                src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777420556/nrt-portfolio/vavbbfjulz7gyhr0asls.jpg" 
+                alt="Logo" 
+                className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform brightness-110" 
               />
-              <span className="text-xl font-bold text-foreground">Next Revolution Tech</span>
-            </div>
-            <p className="text-sm text-gray-400 mb-4">
-              Engineering Scalable Digital Solutions for a Connected World
+            </Link>
+            <p className="text-white/40 text-lg font-bold leading-relaxed mb-10 max-w-sm">
+               We solve real technical problems for growing businesses through dedicated engineering partnerships.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.facebook.com/share/1H3rqGTqLi/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#1877F2] transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="https://www.instagram.com/nextrevolutiontech?igsh=MTdmMXliYXF1enIzdA==" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#E4405F] transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://www.tiktok.com/@next.revolution.t" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="TikTok">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
-              </a>
-              <a href="https://www.linkedin.com/in/muhammad-ahsan-khan-founder-61a51032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="https://github.com/nextrevolutiontech-maker" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
-                <Github className="h-5 w-5" />
-              </a>
+            <div className="flex gap-3">
+              {[
+                { icon: <Linkedin className="w-5 h-5" />, href: "#" },
+                { icon: <Twitter className="w-5 h-5" />, href: "#" },
+                { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/nextrevolutiontech" },
+                { icon: <Github className="w-5 h-5" />, href: "https://github.com/nextrevolutiontech-maker" },
+              ].map((social, i) => (
+                <a 
+                  key={i} 
+                  href={social.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:bg-[#F58220] hover:text-white hover:border-[#F58220] transition-all"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-foreground mb-4">Quick Links</h3>
-            <div className="flex items-center gap-3 text-muted-foreground mb-4">
-              <Mail className="w-5 h-5 text-primary" />
-              <a href="mailto:support@nextrevolutiontech.tech" className="hover:text-primary transition-colors">support@nextrevolutiontech.tech</a>
+          {/* Links Grid */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Solutions</h4>
+              <ul className="space-y-4">
+                {footerLinks.services.map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.href} className="text-white/50 hover:text-white text-base font-bold transition-colors flex items-center gap-2 group">
+                      <ChevronRight className="w-3.5 h-3.5 text-[#F58220] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link to="/about" className="hover:text-foreground transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-foreground transition-colors">Services</Link>
-              </li>
-              <li>
-                <Link to="/case-studies" className="hover:text-foreground transition-colors">Case Studies</Link>
-              </li>
-              <li>
-                <Link to="/process" className="hover:text-foreground transition-colors">Our Process</Link>
-              </li>
-            </ul>
+            <div>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Company</h4>
+              <ul className="space-y-4">
+                {footerLinks.company.map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.href} className="text-white/50 hover:text-white text-base font-bold transition-colors flex items-center gap-2 group">
+                      <ChevronRight className="w-3.5 h-3.5 text-[#F58220] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-foreground mb-4">Services</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="text-muted-foreground">Custom Software Development</li>
-              <li className="text-muted-foreground">SaaS Development</li>
-              <li className="text-muted-foreground">AI & Automation</li>
-              <li className="text-muted-foreground">Cloud & DevOps</li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-foreground mb-4">Contact Us</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                <span className="text-muted-foreground">Operating from Pakistan</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div className="sm:col-span-2 lg:col-span-1 border-t sm:border-t-0 border-border pt-8 sm:pt-0">
-            <h3 className="text-foreground mb-4">Stay Ahead of the Curve</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Subscribe to get the latest tech trends and insights delivered to your inbox.
-            </p>
-            <form className="flex gap-2" onSubmit={handleSubscribe}>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter email address"
-                className="bg-secondary/20 border border-border rounded px-4 py-2 text-sm w-full focus:outline-none focus:border-primary/50 text-foreground placeholder:text-muted-foreground/50"
-                required
-              />
-              <div
-                className="relative"
-                onMouseEnter={() => setHoverModalOpen(true)}
-                onMouseLeave={() => setHoverModalOpen(false)}
-              >
-                <button
-                  type="submit"
-                  className="bg-primary text-primary-foreground p-2 rounded hover:bg-primary/90 transition-colors"
-                  aria-label="Subscribe"
-                >
-                  <Send className="h-4 w-4" />
-                </button>
-                <HoverModal
-                  isOpen={hoverModalOpen}
-                  onMouseEnter={() => setHoverModalOpen(true)}
-                  onMouseLeave={() => setHoverModalOpen(false)}
-                  position="top"
-                  align="end"
-                  className="w-64"
-                >
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-foreground text-sm">Stay Updated</h3>
-                    <p className="text-xs text-muted-foreground">
-                      Subscribe to get the latest tech trends, insights, and company updates delivered to your inbox.
-                    </p>
+          {/* Connect Column */}
+          <div className="lg:col-span-3">
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Connect</h4>
+            <div className="space-y-6">
+               <a href="mailto:support@nextrevolutiontech.tech" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
+                  <div className="flex items-center gap-4 mb-2">
+                    <Mail className="w-5 h-5 text-[#F58220]" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30">Email Support</span>
                   </div>
-                </HoverModal>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        {/* Trust Signals & Status */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-4 border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
-              <Shield className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-foreground">Secure & Compliant</span>
-            </div>
-            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
-              <CheckCircle className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-foreground">ISO Certified Processes</span>
-            </div>
-            <div className="flex items-center gap-2 bg-secondary/20 px-4 py-2 rounded-full border border-border">
-              <Activity className="w-5 h-5 text-green-500" />
-              <span className="text-sm font-medium text-foreground">All Systems Operational</span>
+                  <div className="text-base font-black text-white group-hover:text-[#F58220] transition-colors truncate">
+                    support@nextrevolutiontech.tech
+                  </div>
+               </a>
+               <div className="group block p-5 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="flex items-center gap-4 mb-2">
+                    <MessageSquare className="w-5 h-5 text-[#F58220]" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30">Priority Chat</span>
+                  </div>
+                  <div className="text-base font-black text-white">
+                    24/7 Global Ops
+                  </div>
+               </div>
             </div>
           </div>
 
-          <div className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Next Revolution Tech. All rights reserved.
-          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border pt-8 text-sm text-muted-foreground flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>&copy; {new Date().getFullYear()} Next Revolution Tech. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link to="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
-            <Link to="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</Link>
-            <Link to="/gdpr-compliance" className="hover:text-foreground transition-colors">GDPR Compliance</Link>
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20">
+            © {currentYear} Next Revolution Tech. All rights reserved.
           </div>
+          <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20">
+             {footerLinks.legal.map((link) => (
+               <Link key={link.name} to={link.href} className="hover:text-[#F58220] transition-colors">{link.name}</Link>
+             ))}
+          </div>
+          <button 
+            onClick={scrollToTop}
+            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#F58220] transition-all shadow-xl group"
+          >
+             <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+          </button>
         </div>
       </div>
     </footer>

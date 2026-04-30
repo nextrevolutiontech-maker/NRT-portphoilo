@@ -5,13 +5,14 @@ export function VideoHero() {
     return (
         <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden bg-background border-y border-border group">
             {/* Dynamic Digital Stream instead of heavy video */}
-            <div className="absolute inset-0 bg-[#020410]">
+            {/* Dynamic Digital Stream instead of heavy video */}
+            <div className="absolute inset-0 bg-background">
                 <DigitalStream />
             </div>
 
-            {/* Cinematic Overlays - Reduced opacity for visibility */}
-            <div className="absolute inset-0 bg-background/5" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20" />
+            {/* Cinematic Overlays */}
+            <div className="absolute inset-0 bg-background/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
 
             {/* Tech Grid Overlay */}
             <div

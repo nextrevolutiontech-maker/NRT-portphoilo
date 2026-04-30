@@ -6,7 +6,7 @@ html,
 body {
     overflow-x: hidden;
     min-height: 100vh;
-    background-color: var(--background);
+    background-color: var(--bg-main);
 
     /* Noise Texture Overlay */
     position: relative;
@@ -27,15 +27,9 @@ body::after {
     pointer-events: none;
     z-index: -2;
     background:
-        radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 25%);
+        radial-gradient(circle at 15% 50%, rgba(11, 27, 53, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(245, 130, 32, 0.03) 0%, transparent 25%);
 }
-
-.dark body {
-    /* Kept for compatibility if dark class is explicitly toggled, 
-       but default ::after covers the ambient light now */
-}
-
 
 @layer base {
     ::-webkit-scrollbar {
@@ -43,14 +37,27 @@ body::after {
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-transparent;
+        background: transparent;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40 transition-colors;
+        background: rgba(11, 27, 53, 0.1);
+        border-radius: 9999px;
+        transition: background 0.2s ease;
     }
 
-    .dark ::-webkit-scrollbar-thumb {
-        @apply bg-muted-foreground/30 hover:bg-muted-foreground/50;
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(11, 27, 53, 0.2);
     }
+}
+
+@keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.animate-infinite-scroll {
+    display: flex;
+    width: max-content;
+    animation: infinite-scroll 60s linear infinite;
 }

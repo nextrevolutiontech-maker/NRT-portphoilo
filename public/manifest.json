@@ -3,8 +3,8 @@
     "short_name": "NRT",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#020410",
-    "theme_color": "#020410",
+    "background_color": "#F8F9FA",
+    "theme_color": "#0B1B35",
     "description": "Global technology partner delivering enterprise-grade software solutions.",
     "icons": [
         {

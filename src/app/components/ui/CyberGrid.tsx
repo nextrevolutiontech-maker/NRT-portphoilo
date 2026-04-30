@@ -2,9 +2,9 @@ import { motion } from "motion/react";
 
 export const CyberGrid = () => {
     return (
-        <div className="relative w-full h-[400px] bg-gradient-to-br from-indigo-900/20 to-purple-900/20 rounded-xl overflow-hidden border border-white/10 glass-panel">
+        <div className="relative w-full h-[400px] bg-gradient-to-br from-secondary/40 to-blue-500/10 rounded-xl overflow-hidden border border-border glass-panel">
             {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:40px_40px]" />
+            <div className="absolute inset-0 bg-grid-black/[0.03] bg-[size:40px_40px]" />
 
             {/* Animated Glowing Lines */}
             <div className="absolute inset-0">

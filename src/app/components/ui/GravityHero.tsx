@@ -23,7 +23,7 @@ export function GravityHero() {
             { component: Palette, color: "#f472b6" }, // Pink
             { component: Search, color: "#fbbf24" }, // Amber
             { component: Bot, color: "#34d399" }, // Emerald
-            { component: Brain, color: "#818cf8" }, // Indigo
+            { component: Brain, color: "#FF7E00" }, // Orange
             { component: Workflow, color: "#f87171" }, // Red
             { component: Code2, color: "#60a5fa" }, // Blue
             { component: Database, color: "#c084fc" }, // Violet
@@ -51,9 +51,9 @@ export function GravityHero() {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {/* Background Gradient Mesh */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 blur-[100px] rounded-full mix-blend-screen animate-pulse" style={{ animationDuration: '4s' }} />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/20 blur-[100px] rounded-full mix-blend-screen animate-pulse" style={{ animationDuration: '7s' }} />
+            <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/30 blur-[100px] rounded-full mix-blend-multiply animate-pulse" style={{ animationDuration: '4s' }} />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/30 blur-[100px] rounded-full mix-blend-multiply animate-pulse" style={{ animationDuration: '7s' }} />
             </div>
 
             {elements.map((el) => (

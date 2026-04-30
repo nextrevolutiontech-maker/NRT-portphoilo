@@ -2,49 +2,41 @@ import { Helmet } from "react-helmet-async";
 
 export function TermsOfService() {
     return (
-        <div className="pt-32 pb-20 bg-background min-h-screen">
+        <div className="pt-40 pb-24 bg-[#F2F2F2] min-h-screen text-[#0B1B35]">
             <Helmet>
-                <title>Terms of Service - Next Revolution Tech</title>
-                <meta name="description" content="Terms of Service for Next Revolution Tech. Read our terms and conditions for using our services." />
+                <title>Terms of Service | Next Revolution Tech</title>
             </Helmet>
 
-            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-                <h1 className="text-4xl font-bold mb-8 text-primary">Terms of Service</h1>
-                <p className="text-muted-foreground mb-8">Last Updated: January 2026</p>
+            <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 bg-white p-16 rounded-[2.5rem] shadow-sm">
+                <h1 className="text-6xl font-black mb-8 tracking-tighter">Terms of <span className="text-primary italic font-italic-serif">Service</span></h1>
+                <p className="text-muted-foreground font-bold mb-12">Last Updated: January 2026</p>
 
-                <div className="space-y-8 text-foreground">
+                <div className="space-y-12 font-bold leading-relaxed">
                     <section>
-                        <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
+                        <h2 className="text-3xl font-black mb-6 tracking-tighter">1. Terms</h2>
                         <p className="mb-4">
-                            By accessing or using the website and services of Next Revolution Tech, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+                            By accessing the website at nextrevolutiontech.tech, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-semibold mb-4">2. Services</h2>
+                        <h2 className="text-3xl font-black mb-6 tracking-tighter">2. Use License</h2>
                         <p className="mb-4">
-                            Next Revolution Tech provides software development, consulting, and design services. Specific services and deliverables are defined in individual statements of work or contracts.
+                            Permission is granted to temporarily download one copy of the materials (information or software) on Next Revolution Tech's website for personal, non-commercial transitory viewing only.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-semibold mb-4">3. Intellectual Property</h2>
+                        <h2 className="text-3xl font-black mb-6 tracking-tighter">3. Disclaimer</h2>
                         <p className="mb-4">
-                            Unless otherwise stated in a specific contract, all code, designs, and materials created by us remain our intellectual property until full payment is received and rights are transferred.
+                            The materials on Next Revolution Tech's website are provided on an 'as is' basis. Next Revolution Tech makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-semibold mb-4">4. Limitation of Liability</h2>
+                        <h2 className="text-3xl font-black mb-6 tracking-tighter">4. Limitations</h2>
                         <p className="mb-4">
-                            To the fullest extent permitted by law, Next Revolution Tech shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our services.
-                        </p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-2xl font-semibold mb-4">5. Governing Law</h2>
-                        <p className="mb-4">
-                            These Terms shall be governed by and construed in accordance with the laws of Pakistan, without regard to its conflict of law provisions.
+                            In no event shall Next Revolution Tech or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Next Revolution Tech's website.
                         </p>
                     </section>
                 </div>

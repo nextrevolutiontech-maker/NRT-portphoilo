@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -6,40 +5,24 @@ import { ArrowLeft, CheckCircle2, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { API_BASE_URL } from "../../config";
 
-// Enhanced content map for SEO and depth
 const enhancedContent: Record<string, any> = {
     "custom-software-development": {
-        subtitle: "Tailored Solutions for Complex Enterprise Challenges",
-        longDescription: "Off-the-shelf software often fails to meet unique business needs. Our custom software development service provides you with a perfectly fitted solution, built from the ground up to streamline your operations, integrate with existing systems, and scale with your growth.",
-        benefits: [
-            "Full ownership of code and IP",
-            "Seamless integration with legacy systems",
-            "Scalable architecture for future growth",
-            "Automated workflows to reduce manual errors"
-        ],
-        process: ["Discovery & Architecture", "Agile Development", "Testing & QA", "Deployment & Support"]
+        subtitle: "Tailored Solutions for Complex Challenges",
+        longDescription: "Off-the-shelf software often fails to meet unique business needs. Our custom software development service provides you with a perfectly fitted solution.",
+        benefits: ["Full ownership of code", "Seamless integration", "Scalable architecture", "Automated workflows"],
+        process: ["Discovery", "Development", "Testing", "Support"]
     },
     "saas-development": {
-        subtitle: "From Concept to Market-Leading SaaS Product",
-        longDescription: "Building a SaaS product requires more than just code; it needs a strategy. We help startups and enterprises build multi-tenant, secure, and scalable SaaS platforms that users love.",
-        benefits: [
-            "Multi-tenant architecture",
-            "Subscription & billing integration",
-            "High availability & uptime",
-            "Secure data isolation"
-        ],
-        process: ["MVP Strategy", "UX/UI Design", "Cloud Native Build", "Growth Scaling"]
+        subtitle: "From Concept to Market Leader",
+        longDescription: "Building a SaaS product requires strategy. We help you build multi-tenant, secure, and scalable platforms.",
+        benefits: ["Multi-tenant architecture", "Subscription billing", "High availability", "Secure isolation"],
+        process: ["MVP Strategy", "UX Design", "Build", "Scale"]
     },
     "ai-automation": {
-        subtitle: "Leverage the Power of Artificial Intelligence",
-        longDescription: "Automate repetitive tasks and gain predictive insights with our custom AI solutions. From Chatbots to Predictive Analytics, we bring the power of LLMs and Machine Learning to your business.",
-        benefits: [
-            "24/7 Customer Support via AI Agents",
-            "Data-driven decision making",
-            "Reduced operational costs",
-            "Predictive maintenance models"
-        ],
-        process: ["Data Assessment", "Model Training", "Integration", "Monitoring"]
+        subtitle: "Leverage Artificial Intelligence",
+        longDescription: "Automate repetitive tasks and gain predictive insights with our custom AI solutions.",
+        benefits: ["24/7 AI Support", "Data-driven decisions", "Reduced costs", "Predictive models"],
+        process: ["Assessment", "Training", "Integration", "Monitoring"]
     }
 };
 
@@ -49,153 +32,85 @@ export function ServiceDetail() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // 1. Fetch all services
         fetch(`${API_BASE_URL}/api/services`)
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) {
-                    // 2. Find matching service by slugifying the title
-                    const found = data.find((s: any) =>
-                        s.title.toLowerCase().replace(/\s+/g, '-') === slug
-                    );
+                    const found = data.find((s: any) => s.title.toLowerCase().replace(/\s+/g, '-') === slug);
                     setService(found || null);
                 }
                 setLoading(false);
             })
-            .catch(err => {
-                console.error(err);
-                setLoading(false);
-            });
+            .catch(() => setLoading(false));
     }, [slug]);
 
     if (loading) return <div className="pt-32 text-center">Loading...</div>;
     if (!service) return (
-        <div className="pt-32 text-center">
-            <h1 className="text-2xl font-bold">Service Not Found</h1>
-            <Link to="/services" className="text-primary hover:underline mt-4 block">Back to Services</Link>
+        <div className="pt-32 text-center min-h-screen bg-[#F2F2F2]">
+            <h1 className="text-4xl font-black mb-8">Service Not Found</h1>
+            <Link to="/services" className="btn-glossy">Back to Services</Link>
         </div>
     );
 
     const extra = enhancedContent[slug || ""] || {
-        subtitle: "Global-Standard Technology Services",
+        subtitle: "Premium Technology Services",
         longDescription: service.description,
         benefits: Array.isArray(service.features) ? service.features : [],
         process: ["Consultation", "Strategy", "Execution", "Delivery"]
     };
 
     return (
-        <div className="min-h-screen pt-16 sm:pt-20 xl:pt-[90px] transition-all duration-300">
+        <div className="min-h-screen pt-32 bg-[#F2F2F2] text-[#0B1B35]">
             <Helmet>
-                <title>{service.title} - Next Revolution Tech</title>
-                <meta name="description" content={`Expert ${service.title} services. ${extra.subtitle}`} />
+                <title>{service.title} | Next Revolution Tech</title>
             </Helmet>
 
-            {/* Hero Section */}
-            <section className="bg-secondary/10 py-20 border-b border-border">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <Link to="/services" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-colors">
-                        <ArrowLeft className="h-4 w-4" /> Back to Services
+            <section className="py-24 px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl">
+                    <Link to="/services" className="inline-flex items-center gap-2 font-bold text-muted-foreground hover:text-primary mb-12 transition-colors">
+                        <ArrowLeft className="w-4 h-4" /> Back to Services
                     </Link>
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
                         <div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">{service.title}</h1>
-                            <p className="text-xl md:text-2xl text-foreground font-medium mb-4">{extra.subtitle}</p>
-                            <p className="text-lg text-muted-foreground leading-relaxed mb-8">{extra.longDescription}</p>
-                            <Link to="/contact" className="bg-primary text-primary-foreground px-8 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors shadow-lg inline-flex items-center gap-2">
-                                Get Started <ArrowRight className="h-5 w-5" />
+                            <h1 className="hero-heading mb-8">{service.title}</h1>
+                            <p className="text-2xl font-bold text-primary mb-6 italic font-italic-serif">{extra.subtitle}</p>
+                            <p className="text-lg font-bold text-muted-foreground leading-relaxed mb-10">{extra.longDescription}</p>
+                            <Link to="/contact" className="btn-glossy px-10 py-5 text-xl">
+                                Get Started
                             </Link>
                         </div>
-                        <div>
-                            <ImageWithFallback
-                                src={service.image_url}
-                                alt={service.title}
-                                className="rounded-xl shadow-2xl w-full h-auto border border-border"
-                            />
+                        <div className="premium-card bg-white p-0 overflow-hidden shadow-2xl">
+                            <ImageWithFallback src={service.image_url} alt={service.title} className="w-full h-auto" />
                         </div>
                     </div>
-                </div>
-            </section>
 
-            {/* Benefits Section */}
-            <section className="bg-background py-20">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-16 text-foreground">Key Benefits</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {extra.benefits.map((benefit: string, index: number) => (
-                            <div key={index} className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors shadow-sm">
-                                <CheckCircle2 className="h-10 w-10 text-primary mb-4" />
-                                <p className="text-lg font-medium text-card-foreground">{benefit}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Process Section */}
-            <section className="bg-secondary/5 py-20">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-16 text-foreground">Our Process for {service.title}</h2>
-                    <div className="grid md:grid-cols-4 gap-4 relative">
-                        {/* Connecting Line (Mobile Hidden) */}
-                        <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-border -z-10 translate-y-[-50%]"></div>
-
-                        {extra.process.map((step: string, index: number) => (
-                            <div key={index} className="flex flex-col items-center text-center bg-background p-6 rounded-xl border border-border shadow-sm">
-                                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
-                                    {index + 1}
+                    {/* Benefits */}
+                    <div className="mb-40 text-center">
+                        <h2 className="text-5xl font-black mb-20 tracking-tighter">Key Benefits</h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {extra.benefits.map((benefit: string, index: number) => (
+                                <div key={index} className="premium-card bg-white text-left">
+                                    <div className="w-12 h-12 bg-[#F2F2F2] rounded-xl flex items-center justify-center text-primary mb-6">
+                                       <CheckCircle2 className="w-6 h-6" />
+                                    </div>
+                                    <p className="text-lg font-black tracking-tighter leading-tight">{benefit}</p>
                                 </div>
-                                <h3 className="font-bold text-lg">{step}</h3>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA */}
-            {/* CTA - Premium Dark Redesign */}
-            <section className="relative py-24 overflow-hidden border-t border-white/5">
-                {/* Animated Background */}
-                <div className="absolute inset-0 bg-[#020410]">
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-pink-900/20" />
-                    {/* Tech Grid Overlay */}
-                    <div
-                        className="absolute inset-0 opacity-10"
-                        style={{
-                            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(99, 102, 241, 0.5) 1px, transparent 0)',
-                            backgroundSize: '32px 32px'
-                        }}
-                    />
-                </div>
-
-                <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="glass-panel p-8 md:p-14 rounded-3xl border border-white/10 shadow-[0_0_50px_-12px_rgba(79,70,229,0.3)] backdrop-blur-xl relative overflow-hidden">
-                        {/* Glow Effects */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
-                        <div className="absolute bottom-0 right-0 w-64 h-64 bg-purple-500/10 blur-3xl rounded-full pointer-events-none" />
-                        <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none" />
-
-                        <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-white mb-6">
-                            Ready to Scale with <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">{service.title}</span>?
-                        </h2>
-                        <p className="text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-                            Let's discuss your specific requirements and build a <strong className="text-foreground">roadmap to success</strong>.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <Link
-                                to="/estimator"
-                                className="relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:shadow-[0_0_20px_-5px_var(--color-primary)] transition-all duration-300 hover:scale-105"
-                            >
-                                Calculate Cost
-                            </Link>
-                            <Link
-                                to="/contact"
-                                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-foreground hover:bg-white/5 border border-white/10 transition-colors hover:border-white/20"
-                            >
-                                Book Consultation
-                                <ArrowRight className="h-4 w-4" />
-                            </Link>
+                            ))}
                         </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="premium-card bg-[#0B1B35] text-white p-16 lg:p-24 text-center relative overflow-hidden shadow-2xl">
+                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -mr-40 -mt-40" />
+                         <h2 className="text-6xl font-black mb-8 tracking-tighter">Ready to <span className="text-primary italic font-italic-serif">scale</span>?</h2>
+                         <p className="text-xl font-bold text-white/60 mb-12 max-w-xl mx-auto">
+                            Let's discuss how {service.title} can transform your business operations.
+                         </p>
+                         <div className="flex flex-wrap justify-center gap-8">
+                            <Link to="/contact" className="btn-card-white w-auto px-12">Get Started Now</Link>
+                            <Link to="/estimator" className="btn-outline-nrt border-white/20 text-white hover:bg-white/10">Calculate Cost</Link>
+                         </div>
                     </div>
                 </div>
             </section>

@@ -1,135 +1,113 @@
-@custom-variant dark (&:is(.dark *));
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Outfit:wght@800;900&family=Playfair+Display:ital,wght@1,700&display=swap');
 
 :root {
-  --font-size: 16px;
-  /* Premium Dark Tech Theme (Desaturated Indigo/Black base) */
-  --background: #020410;
-  /* Deepest Indigo-Black */
-  --foreground: #e2e8f0;
-  /* Soft Blue-Grey text */
-
-  --card: #0a0f2c;
-  /* Rich Night Blue */
-  --card-foreground: #f1f5f9;
-
-  --popover: #0a0f2c;
-  --popover-foreground: #f1f5f9;
-
-  --primary: #6366f1;
-  /* Indigo 500 - Sophisticated main color */
-  --primary-foreground: #ffffff;
-
-  --secondary: #1e1b4b;
-  /* Deep Indigo 950 */
-  --secondary-foreground: #818cf8;
-  /* Indigo 400 */
-
-  --muted: #1e1b4b;
-  --muted-foreground: #94a3b8;
-
-  --accent: #312e81;
-  /* Indigo 900 */
-  --accent-foreground: #c7d2fe;
-  /* Indigo 200 */
-
-  --accent-secondary: #ec4899;
-  /* Pink 500 - Vibrant counter-accent */
-
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fecaca;
-
-  --border: #1e1b4b;
-  --input: #1e1b4b;
-  --ring: #6366f1;
-
-  --radius: 0.75rem;
-  /* Slightly more rounded */
+  /* Strict Brand Color System - Full Light Mode */
+  --navy: #0B1B35;         /* Primary: Headings, main text */
+  --deep-blue: #1A365D;     /* Secondary: Accents, specific card borders */
+  --orange: #F58220;        /* Accent: Buttons, CTAs, links ONLY */
+  
+  --bg-main: #F8F9FA;      /* Pure Light Background for ALL pages */
+  --bg-card: #FFFFFF;      /* White for Cards */
+  
+  --text-dark: #0B1B35;
+  --text-muted: rgba(11, 27, 53, 0.6);
+  
+  --border: rgba(0, 0, 0, 0.05);
+  --radius: 12px;
 }
 
-/* Glassmorphism Utilities */
-.glass-panel {
-  background: rgba(10, 15, 44, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(99, 102, 241, 0.1);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* Global Reset & Base */
+html {
+  /* Removed scroll-behavior: smooth to fix 'lazy' feel */
+  background-color: var(--bg-main);
+  color: var(--text-dark);
 }
 
-
-
-.light {
-  /* Light Mode (Optional Fallback) */
-  --background: #ffffff;
-  --foreground: #020617;
-  --card: #ffffff;
-  --card-foreground: #020617;
-  --popover: #ffffff;
-  --popover-foreground: #020617;
-  --primary: #1d4ed8;
-  --primary-foreground: #ffffff;
-  --secondary: #eff6ff;
-  --secondary-foreground: #1e3a8a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #dbeafe;
-  --accent-foreground: #1e3a8a;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #1d4ed8;
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
 }
 
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+/* Section Utilities - All Light Now */
+.section-premium {
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+/* Typography */
+.heading-brand {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--navy);
+}
 
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-  }
+.font-italic-serif {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Outfit', sans-serif;
-    letter-spacing: -0.02em;
-    /* Tighten headings for modern look */
-  }
+/* BUTTON STYLES - AS REQUESTED */
 
-  /* Stylish Utilities */
-  .font-tech {
-    font-family: 'Space Grotesk', monospace;
-  }
+.btn-primary-nrt {
+  background-color: var(--orange);
+  color: #FFFFFF;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 4px 14px rgba(245, 130, 32, 0.2);
+}
+
+.btn-primary-nrt:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(245, 130, 32, 0.3);
+}
+
+.btn-secondary-nrt {
+  background: transparent;
+  color: var(--navy);
+  border: 2px solid rgba(11, 27, 53, 0.1);
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary-nrt:hover {
+  border-color: var(--navy);
+  background: rgba(11, 27, 53, 0.05);
+}
+
+/* Premium Card - Light & Enhanced */
+.card-nrt {
+  background-color: var(--bg-card);
+  border-radius: 2.5rem;
+  padding: 3rem;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.card-nrt:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(11, 27, 53, 0.08);
+  border-color: var(--deep-blue);
+}
+
+/* Specific accent for card headers/icons */
+.card-icon-nrt {
+  background-color: var(--bg-main);
+  color: var(--deep-blue);
+  border-radius: 1rem;
 }
