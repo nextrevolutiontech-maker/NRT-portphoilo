@@ -34,6 +34,7 @@ import {
   ZapIcon
 } from "lucide-react";
 import { PreFooterCTA } from "../components/PreFooterCTA";
+import { ScrollReveal } from "../components/ui/ScrollReveal";
 
 export function Home() {
   const ctaLinks = {
@@ -104,7 +105,7 @@ export function Home() {
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
               className="lg:col-span-8 relative"
             >
                <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black leading-[0.85] tracking-tighter mb-8 sm:mb-12 heading-brand text-[#0B1B35]">
@@ -116,13 +117,13 @@ export function Home() {
                 Get a full dedicated team for a flat monthly fee. No hiring, no overhead, just results.
               </p>
                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16">
-                <Link to={ctaLinks.test} className="bg-[#0B1B35] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_50px_rgba(11,27,53,0.3)] hover:scale-105 transition-all flex items-center justify-center sm:justify-start gap-4 group">
+                <Link to={ctaLinks.test} className="bg-[#0B1B35] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_50px_rgba(11,27,53,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center sm:justify-start gap-4 group">
                   Try NRT for $499
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                 </Link>
-                <Link to="/process" className="bg-white border-2 border-[#0B1B35]/5 text-[#0B1B35] px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black hover:bg-[#F8F9FA] transition-all flex items-center justify-center sm:justify-start gap-4">
+                <Link to="/process" className="bg-white border-2 border-[#0B1B35]/5 text-[#0B1B35] px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black hover:bg-[#F8F9FA] active:scale-95 transition-all flex items-center justify-center sm:justify-start gap-4">
                   See Workflow
                   <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 </Link>
@@ -130,7 +131,15 @@ export function Home() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-12 border-t border-[#0B1B35]/5 pt-10 sm:pt-12">
                  <div className="flex -space-x-3 sm:-space-x-4">
                     {[1, 2, 3, 4].map((i) => (
-                      <img key={i} src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-4 border-white shadow-xl" />
+                      <motion.img 
+                        key={i} 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 + (i * 0.1) }}
+                        src={`https://i.pravatar.cc/100?img=${i+20}`} 
+                        alt="User" 
+                        className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-4 border-white shadow-xl" 
+                      />
                     ))}
                  </div>
                  <div className="text-base sm:text-lg font-bold text-[#0B1B35]/40 italic">"The most reliable team we've ever worked with."</div>
@@ -190,397 +199,409 @@ export function Home() {
       </section>
 
       {/* Trust Section - COMPACT SINGLE LINE */}
-      <section className="py-12 bg-white border border-black/5 mx-4 sm:mx-12 lg:mx-24 rounded-[2.5rem] shadow-[0_20px_50px_rgba(11,27,53,0.03)] mb-24 flex flex-col items-center">
-        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B1B35]/20 text-center mb-10">
-           Powering growth for modern brands
-        </div>
-        <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-x-12 sm:gap-x-16 gap-y-8 px-8 w-full overflow-hidden">
-          {[
-            { name: "Shopify", color: "text-[#96BF48]" },
-            { name: "WordPress", color: "text-[#21759B]" },
-            { name: "Stripe", color: "text-[#635BFF]" },
-            { name: "PayPal", color: "text-[#003087]" },
-            { name: "Woo", color: "text-[#96588A]" }
-          ].map((brand) => (
-            <span 
-              key={brand.name} 
-              className={`text-2xl sm:text-4xl font-black tracking-tighter transition-all cursor-default select-none hover:scale-110 whitespace-nowrap ${brand.color}`}
-            >
-              {brand.name}
-            </span>
-          ))}
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className="py-12 bg-white border border-black/5 mx-4 sm:mx-12 lg:mx-24 rounded-[2.5rem] shadow-[0_20px_50px_rgba(11,27,53,0.03)] mb-24 flex flex-col items-center">
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B1B35]/20 text-center mb-10">
+             Powering growth for modern brands
+          </div>
+          <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-x-12 sm:gap-x-16 gap-y-8 px-8 w-full overflow-hidden">
+            {[
+              { name: "Shopify", color: "text-[#96BF48]" },
+              { name: "WordPress", color: "text-[#21759B]" },
+              { name: "Stripe", color: "text-[#635BFF]" },
+              { name: "PayPal", color: "text-[#003087]" },
+              { name: "Woo", color: "text-[#96588A]" }
+            ].map((brand) => (
+              <span 
+                key={brand.name} 
+                className={`text-2xl sm:text-4xl font-black tracking-tighter transition-all cursor-default select-none hover:scale-110 whitespace-nowrap ${brand.color}`}
+              >
+                {brand.name}
+              </span>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* What We Handle Section - SCALED DOWN */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 sm:mb-16">
-             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Expertise</div>
-             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] max-w-2xl leading-[1] sm:leading-[0.95]">
-                Specialized in <br /><span className="text-[#F58220]">Mission Critical</span> <br className="hidden sm:block" />Development.
-             </h2>
+      <ScrollReveal>
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 sm:mb-16">
+               <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Expertise</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] max-w-2xl leading-[1] sm:leading-[0.95]">
+                  Specialized in <br /><span className="text-[#F58220]">Mission Critical</span> <br className="hidden sm:block" />Development.
+               </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* eCommerce Card */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-10 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <motion.div 
+                   animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
+                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl border border-black/5 scale-[0.9] origin-top"
+                 >
+                    <div className="flex items-center gap-3 mb-4">
+                       <div className="w-8 h-8 rounded-full bg-[#F58220]/10 flex items-center justify-center text-[#F58220]"><ShoppingCart className="w-4 h-4" /></div>
+                       <div className="text-[9px] font-black uppercase text-black/40">Order Confirmed</div>
+                    </div>
+                    <div className="space-y-2">
+                       <div className="h-1.5 w-full bg-black/5 rounded-full" />
+                       <div className="h-1.5 w-3/4 bg-[#F58220]/20 rounded-full" />
+                    </div>
+                 </motion.div>
+                 <div className="relative z-10">
+                    <h3 className="text-3xl sm:text-4xl font-black text-[#0B1B35] mb-4 tracking-tighter uppercase leading-none">eCommerce</h3>
+                    <p className="text-base sm:text-lg font-bold text-[#0B1B35]/70 leading-snug">Handling store bugs, speed optimization, and custom Shopify/Woo themes.</p>
+                 </div>
+              </motion.div>
+  
+              {/* Integrations Card */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-10 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <motion.div 
+                   animate={{ y: [0, -6, 0] }}
+                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-10 left-6 right-6 bg-[#0B1B35] rounded-[2rem] p-6 shadow-xl border border-white/10 scale-[0.9] origin-top"
+                 >
+                    <div className="text-[#F58220] text-[9px] font-mono mb-3">{">"} API Bridge Active</div>
+                    <div className="space-y-1.5">
+                       <div className="h-1 w-full bg-white/10 rounded-full" />
+                       <div className="h-1 w-full bg-white/10 rounded-full" />
+                       <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
+                    </div>
+                 </motion.div>
+                 <div className="relative z-10 text-white">
+                    <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">Integrations</h3>
+                    <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Custom API builds, Stripe/PayPal setup, and complex system bridges.</p>
+                 </div>
+              </motion.div>
+  
+              {/* AI & Automation Card */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-10 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <motion.div 
+                   animate={{ scale: [1, 1.03, 1], rotate: [0, -1, 0] }}
+                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl flex flex-col items-center justify-center text-center scale-[0.9] origin-top"
+                 >
+                    <div className="w-12 h-12 rounded-full bg-[#FF4D00]/10 flex items-center justify-center text-[#FF4D00] mb-3">
+                       <Bot className="w-6 h-6" />
+                    </div>
+                    <div className="text-[9px] font-black uppercase text-black/20 tracking-[0.2em] mb-1">Agent Neural</div>
+                    <div className="text-xs font-black text-black">BOT_ONLINE</div>
+                 </motion.div>
+                 <div className="relative z-10 text-white">
+                    <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">AI & Automation</h3>
+                    <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Building autonomous AI agents, backend systems, and automated workflows.</p>
+                 </div>
+              </motion.div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* eCommerce Card */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-10 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <motion.div 
-                 animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
-                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl border border-black/5 scale-[0.9] origin-top"
-               >
-                  <div className="flex items-center gap-3 mb-4">
-                     <div className="w-8 h-8 rounded-full bg-[#F58220]/10 flex items-center justify-center text-[#F58220]"><ShoppingCart className="w-4 h-4" /></div>
-                     <div className="text-[9px] font-black uppercase text-black/40">Order Confirmed</div>
-                  </div>
-                  <div className="space-y-2">
-                     <div className="h-1.5 w-full bg-black/5 rounded-full" />
-                     <div className="h-1.5 w-3/4 bg-[#F58220]/20 rounded-full" />
-                  </div>
-               </motion.div>
-               <div className="relative z-10">
-                  <h3 className="text-3xl sm:text-4xl font-black text-[#0B1B35] mb-4 tracking-tighter uppercase leading-none">eCommerce</h3>
-                  <p className="text-base sm:text-lg font-bold text-[#0B1B35]/70 leading-snug">Handling store bugs, speed optimization, and custom Shopify/Woo themes.</p>
-               </div>
-            </motion.div>
-
-            {/* Integrations Card */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-10 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <motion.div 
-                 animate={{ y: [0, -6, 0] }}
-                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-10 left-6 right-6 bg-[#0B1B35] rounded-[2rem] p-6 shadow-xl border border-white/10 scale-[0.9] origin-top"
-               >
-                  <div className="text-[#F58220] text-[9px] font-mono mb-3">{">"} API Bridge Active</div>
-                  <div className="space-y-1.5">
-                     <div className="h-1 w-full bg-white/10 rounded-full" />
-                     <div className="h-1 w-full bg-white/10 rounded-full" />
-                     <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
-                  </div>
-               </motion.div>
-               <div className="relative z-10 text-white">
-                  <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">Integrations</h3>
-                  <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Custom API builds, Stripe/PayPal setup, and complex system bridges.</p>
-               </div>
-            </motion.div>
-
-            {/* AI & Automation Card */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-10 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <motion.div 
-                 animate={{ scale: [1, 1.03, 1], rotate: [0, -1, 0] }}
-                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-10 left-6 right-6 bg-white rounded-[2rem] p-6 shadow-xl flex flex-col items-center justify-center text-center scale-[0.9] origin-top"
-               >
-                  <div className="w-12 h-12 rounded-full bg-[#FF4D00]/10 flex items-center justify-center text-[#FF4D00] mb-3">
-                     <Bot className="w-6 h-6" />
-                  </div>
-                  <div className="text-[9px] font-black uppercase text-black/20 tracking-[0.2em] mb-1">Agent Neural</div>
-                  <div className="text-xs font-black text-black">BOT_ONLINE</div>
-               </motion.div>
-               <div className="relative z-10 text-white">
-                  <h3 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter uppercase leading-none">AI & Automation</h3>
-                  <p className="text-base sm:text-lg font-bold opacity-70 leading-snug">Building autonomous AI agents, backend systems, and automated workflows.</p>
-               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       <Testimonials />
 
       {/* Simple Process - SCALED DOWN & FIXED OVERFLOW */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 sm:mb-16">
-             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">How it works</div>
-             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-[1] sm:leading-[0.95]">Simple Process. <br />Vibrant Results.</h2>
+      <ScrollReveal direction="down">
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 sm:mb-16">
+               <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">How it works</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-[1] sm:leading-[0.95]">Simple Process. <br />Vibrant Results.</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card 1: Subscribe */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-8 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <motion.div 
+                   animate={{ y: [0, -10, 0] }} 
+                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-8 left-6 right-6 bg-black rounded-2xl p-6 shadow-xl border border-white/10"
+                 >
+                    <div className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-4">NRT Partner Plan</div>
+                    <div className="text-3xl font-black text-white mb-6">$1,500<span className="text-xs text-white/40 font-bold">/mo</span></div>
+                    <div className="space-y-2">
+                       <div className="h-1 w-full bg-white/5 rounded-full" />
+                       <div className="h-1 w-full bg-white/5 rounded-full" />
+                       <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
+                    </div>
+                 </motion.div>
+                 <div className="relative z-10">
+                    <h3 className="text-5xl sm:text-6xl font-black text-[#0B1B35]/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Subscribe</h3>
+                    <h3 className="text-2xl sm:text-3xl font-black text-[#0B1B35] mb-3 tracking-tighter uppercase leading-none relative z-20">Subscribe</h3>
+                    <p className="text-sm sm:text-base font-bold text-[#0B1B35]/70 leading-snug relative z-20">Choose a plan or start with a small test task to begin your partnership.</p>
+                 </div>
+              </motion.div>
+  
+              {/* Card 2: Request */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-8 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="absolute top-8 left-6 right-6 flex flex-wrap gap-2">
+                    {["API", "Bug", "React", "AI", "Dash"].map((tag, i) => (
+                      <motion.div 
+                        key={i}
+                        animate={{ y: [0, -5, 0], opacity: [0.8, 1, 0.8] }}
+                        transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
+                        className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1.5 text-[9px] font-black text-white uppercase tracking-[0.1em]"
+                      >
+                        {tag}
+                      </motion.div>
+                    ))}
+                 </div>
+                 <div className="relative z-10 text-white">
+                    <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Request</h3>
+                    <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Request</h3>
+                    <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Add as many tasks as you like to your dedicated board with zero friction.</p>
+                 </div>
+              </motion.div>
+  
+              {/* Card 3: Receive */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-8 flex flex-col justify-end group shadow-xl"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <motion.div 
+                   animate={{ rotate: [-1, 1, -1], y: [0, -10, 0] }}
+                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute top-8 left-6 right-6 bg-white rounded-2xl p-4 shadow-xl overflow-hidden"
+                 >
+                    <img src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png" alt="Delivery" className="w-full h-auto rounded-lg" />
+                    <div className="mt-3 flex items-center justify-between px-1">
+                       <div className="text-[8px] font-black uppercase text-black/40">Status: Complete</div>
+                       <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white"><CheckCircle2 className="w-4 h-4" /></div>
+                    </div>
+                 </motion.div>
+                 <div className="relative z-10 text-white">
+                    <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Receive</h3>
+                    <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Receive</h3>
+                    <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Get high-quality technical results in just 2-3 business days on average.</p>
+                 </div>
+              </motion.div>
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1: Subscribe */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FFD600] to-[#FF9900] p-8 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <motion.div 
-                 animate={{ y: [0, -10, 0] }} 
-                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-8 left-6 right-6 bg-black rounded-2xl p-6 shadow-xl border border-white/10"
-               >
-                  <div className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-4">NRT Partner Plan</div>
-                  <div className="text-3xl font-black text-white mb-6">$1,500<span className="text-xs text-white/40 font-bold">/mo</span></div>
-                  <div className="space-y-2">
-                     <div className="h-1 w-full bg-white/5 rounded-full" />
-                     <div className="h-1 w-full bg-white/5 rounded-full" />
-                     <div className="h-1 w-1/2 bg-[#F58220] rounded-full" />
-                  </div>
-               </motion.div>
-               <div className="relative z-10">
-                  <h3 className="text-5xl sm:text-6xl font-black text-[#0B1B35]/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Subscribe</h3>
-                  <h3 className="text-2xl sm:text-3xl font-black text-[#0B1B35] mb-3 tracking-tighter uppercase leading-none relative z-20">Subscribe</h3>
-                  <p className="text-sm sm:text-base font-bold text-[#0B1B35]/70 leading-snug relative z-20">Choose a plan or start with a small test task to begin your partnership.</p>
-               </div>
-            </motion.div>
-
-            {/* Card 2: Request */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#0057FF] to-[#9900FF] p-8 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="absolute top-8 left-6 right-6 flex flex-wrap gap-2">
-                  {["API", "Bug", "React", "AI", "Dash"].map((tag, i) => (
-                    <motion.div 
-                      key={i}
-                      animate={{ y: [0, -5, 0], opacity: [0.8, 1, 0.8] }}
-                      transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
-                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full px-3 py-1.5 text-[9px] font-black text-white uppercase tracking-[0.1em]"
-                    >
-                      {tag}
-                    </motion.div>
-                  ))}
-               </div>
-               <div className="relative z-10 text-white">
-                  <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Request</h3>
-                  <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Request</h3>
-                  <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Add as many tasks as you like to your dedicated board with zero friction.</p>
-               </div>
-            </motion.div>
-
-            {/* Card 3: Receive */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#FF4D00] to-[#FF005C] p-8 flex flex-col justify-end group shadow-xl"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <motion.div 
-                 animate={{ rotate: [-1, 1, -1], y: [0, -10, 0] }}
-                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute top-8 left-6 right-6 bg-white rounded-2xl p-4 shadow-xl overflow-hidden"
-               >
-                  <img src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png" alt="Delivery" className="w-full h-auto rounded-lg" />
-                  <div className="mt-3 flex items-center justify-between px-1">
-                     <div className="text-[8px] font-black uppercase text-black/40">Status: Complete</div>
-                     <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white"><CheckCircle2 className="w-4 h-4" /></div>
-                  </div>
-               </motion.div>
-               <div className="relative z-10 text-white">
-                  <h3 className="text-5xl sm:text-6xl font-black text-white/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none">Receive</h3>
-                  <h3 className="text-2xl sm:text-3xl font-black mb-3 tracking-tighter uppercase leading-none relative z-20">Receive</h3>
-                  <p className="text-sm sm:text-base font-bold opacity-70 leading-snug relative z-20">Get high-quality technical results in just 2-3 business days on average.</p>
-               </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Pricing Section - VIBRANT MODERN SaaS STYLE */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 sm:mb-20">
-             <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Pricing Plans</div>
-             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-tight mb-6">Flexible Plans for <br />Every Business Need</h2>
-             <p className="text-lg sm:text-xl font-bold text-[#0B1B35]/50 max-w-2xl mx-auto">Whether you need ongoing development or a one-time project, we’ve got you covered.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Card 1: Starter */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="relative z-10">
-                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Small ongoing needs</div>
-                  <h3 className="text-2xl font-black text-white mb-1">Starter</h3>
-                  <div className="text-3xl font-black text-white mb-6">$1000<span className="text-xs font-bold opacity-60">/mo</span></div>
-                  <ul className="space-y-3 mb-8">
-                    {["Ongoing fixes & tasks", "Basic integrations", "Dedicated developer", "Reliable turnaround"].map((feat, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="block w-full bg-white text-[#6366f1] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Starter</Link>
-               </div>
-            </motion.div>
-
-            {/* Card 2: Growth (HIGHLIGHTED) */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#F58220] to-[#FF4D00] p-8 sm:p-10 flex flex-col justify-end group shadow-2xl scale-105 z-20 border-4 border-white/20 aspect-[4/5]"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-[50px] group-hover:scale-150 transition-transform" />
-               <div className="relative z-10">
-                  <div className="bg-white text-[#F58220] rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 w-fit shadow-lg">Most Popular</div>
-                  <h3 className="text-2xl font-black text-white mb-1">Growth</h3>
-                  <div className="text-3xl font-black text-white mb-6">$2000<span className="text-xs font-bold opacity-60">/mo</span></div>
-                  <ul className="space-y-3 mb-8">
-                    {["Priority support", "API integrations", "Regular improvements", "More dedicated time"].map((feat, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white">
-                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="block w-full bg-[#0B1B35] text-white py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all shadow-xl">Choose Growth</Link>
-               </div>
-            </motion.div>
-
-            {/* Card 3: Scale */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0ea5e9] to-[#2563eb] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="relative z-10">
-                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Scaling businesses</div>
-                  <h3 className="text-2xl font-black text-white mb-1">Scale</h3>
-                  <div className="text-3xl font-black text-white mb-6">$3500<span className="text-xs font-bold opacity-60">/mo</span></div>
-                  <ul className="space-y-3 mb-8">
-                    {["Full system handling", "Continuous optimization", "Fastest turnaround", "Dedicated focus"].map((feat, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="block w-full bg-white text-[#2563eb] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Scale</Link>
-               </div>
-            </motion.div>
-
-            {/* Card 4: Project */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#ec4899] to-[#8b5cf6] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
-            >
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="relative z-10">
-                  <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">One-off needs</div>
-                  <h3 className="text-2xl font-black text-white mb-1">Project</h3>
-                  <div className="text-3xl font-black text-white mb-6">Custom<span className="text-xs font-bold opacity-60"> Quote</span></div>
-                  <ul className="space-y-3 mb-8">
-                    {["Fixed-scope project", "Single feature build", "Custom integrations", "One-time delivery"].map((feat, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                        <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/contact" className="block w-full bg-white text-[#ec4899] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Get a Quote</Link>
-               </div>
-            </motion.div>
-          </div>
-
-          <div className="text-center">
-             <p className="text-xl font-bold text-[#0B1B35]/40 mb-12 italic">“Submit your tasks, we handle everything — no need to hire or manage developers.”</p>
-             <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <Link to="/contact?type=test" className="bg-[#F58220] text-white px-10 py-5 rounded-2xl text-xl font-black shadow-xl hover:scale-105 transition-all">Start a Small Paid Test</Link>
-                <Link to="/contact" className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] px-10 py-5 rounded-2xl text-xl font-black hover:bg-[#0B1B35] hover:text-white transition-all">Book a Quick Call</Link>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies Section - SCALED DOWN */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 sm:mb-24">
-             <h2 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-[#0B1B35] leading-[0.85] mb-8">
-                Technical <br />
-                <span className="text-[#F58220] italic font-italic-serif font-normal">Success</span> <br />
-                Stories.
-             </h2>
-             <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/40 max-w-2xl leading-tight">
-                We solve complex problems for global partners.
-             </p>
-          </div>
-
-           <div className="grid lg:grid-cols-3 gap-12">
-              {featuredProjects.map((project, i) => (
-                <motion.div 
-                   key={i} 
-                   whileHover={{ y: -8 }}
-                   className="group"
-                >
-                   <Link to="/case-studies" className="block">
-                      <div className={`relative aspect-[16/10] rounded-[3rem] overflow-hidden mb-8 ${project.color} shadow-xl`}>
-                         <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')]" />
-                         <div className="absolute inset-0 flex items-center justify-center p-10">
-                            <img 
-                               src={project.image} 
-                               alt={project.title} 
-                               className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-1000" 
-                            />
-                         </div>
-                         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B35]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
-                            <div className="text-white text-2xl font-black tracking-tighter">View Success Story</div>
-                         </div>
-                      </div>
-                      <div className="flex justify-between items-start gap-4 px-2">
-                         <div>
-                            <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#F58220] mb-2">{project.category}</div>
-                            <h3 className="text-xl sm:text-2xl font-black tracking-tighter text-[#0B1B35] group-hover:text-[#F58220] transition-colors">{project.title}</h3>
-                         </div>
-                         <div className="bg-[#0B1B35]/5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[#0B1B35]/60 whitespace-nowrap">
-                            {project.impact}
-                         </div>
-                      </div>
-                   </Link>
-                </motion.div>
-              ))}
-           </div>
-        </div>
-      </section>
-
-      {/* Team Section - SCALED DOWN */}
-      <section className="py-24 bg-[#F8F9FA]">
-         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#0B1B35] rounded-[3rem] sm:rounded-[4rem] p-10 sm:p-20 relative overflow-hidden shadow-2xl">
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-               <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-                  <div>
-                     <div className="inline-flex items-center gap-2 bg-[#F58220] rounded-full px-5 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-white mb-8">Team as a Service</div>
-                     <h2 className="text-5xl sm:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-8">Your Dedicated <br /><span className="text-[#F58220]">Tech Partner.</span></h2>
-                     <p className="text-lg font-bold text-white/50 mb-10 leading-relaxed max-w-lg">Skip the recruitment cycles. Get immediate access to a full stack of engineering and design talent.</p>
-                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-12">
-                        {teamRoles.map((role, i) => (
-                          <div key={i} className="flex items-center gap-4 text-white">
-                             <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#F58220] border border-white/5">{role.icon}</div>
-                             <span className="text-base font-black tracking-tight">{role.role}</span>
-                          </div>
-                        ))}
-                     </div>
-                     <Link to="/contact" className="bg-[#F58220] text-white px-10 py-5 rounded-xl text-lg font-black shadow-xl hover:scale-105 transition-all flex items-center justify-center sm:justify-start gap-4 group w-full sm:w-fit">Assemble My Team <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></Link>
-                  </div>
-                  <div className="hidden lg:block relative">
-                     <div className="bg-white/5 backdrop-blur-3xl rounded-[3rem] p-12 border border-white/10 shadow-xl">
-                        <div className="space-y-8">
-                           {["UI/UX Design", "Frontend Dev", "Backend Dev", "DevOps", "QA Testing"].map((item) => (
-                             <div key={item} className="flex items-center justify-between group cursor-default">
-                                <span className="text-white text-xl font-black tracking-tighter group-hover:text-[#F58220] transition-colors">{item}</span>
-                                <div className="w-8 h-8 rounded-full bg-[#F58220]/20 flex items-center justify-center text-[#F58220] group-hover:bg-[#F58220] group-hover:text-white transition-all">
-                                   <CheckCircle className="w-5 h-5" />
-                                </div>
-                             </div>
-                           ))}
-                        </div>
-                     </div>
-                  </div>
+      <ScrollReveal direction="left">
+        <section className="py-24 bg-white relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 sm:mb-20">
+               <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Pricing Plans</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-tight mb-6">Flexible Plans for <br />Every Business Need</h2>
+               <p className="text-lg sm:text-xl font-bold text-[#0B1B35]/50 max-w-2xl mx-auto">Whether you need ongoing development or a one-time project, we’ve got you covered.</p>
+            </div>
+  
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              {/* Card 1: Starter */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="relative z-10">
+                    <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Small ongoing needs</div>
+                    <h3 className="text-2xl font-black text-white mb-1">Starter</h3>
+                    <div className="text-3xl font-black text-white mb-6">$1000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                    <ul className="space-y-3 mb-8">
+                      {["Ongoing fixes & tasks", "Basic integrations", "Dedicated developer", "Reliable turnaround"].map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="block w-full bg-white text-[#6366f1] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Starter</Link>
+                 </div>
+              </motion.div>
+  
+              {/* Card 2: Growth (HIGHLIGHTED) */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#F58220] to-[#FF4D00] p-8 sm:p-10 flex flex-col justify-end group shadow-2xl scale-105 z-20 border-4 border-white/20 aspect-[4/5]"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-[50px] group-hover:scale-150 transition-transform" />
+                 <div className="relative z-10">
+                    <div className="bg-white text-[#F58220] rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 w-fit shadow-lg">Most Popular</div>
+                    <h3 className="text-2xl font-black text-white mb-1">Growth</h3>
+                    <div className="text-3xl font-black text-white mb-6">$2000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                    <ul className="space-y-3 mb-8">
+                      {["Priority support", "API integrations", "Regular improvements", "More dedicated time"].map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white">
+                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="block w-full bg-[#0B1B35] text-white py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all shadow-xl">Choose Growth</Link>
+                 </div>
+              </motion.div>
+  
+              {/* Card 3: Scale */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0ea5e9] to-[#2563eb] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="relative z-10">
+                    <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Scaling businesses</div>
+                    <h3 className="text-2xl font-black text-white mb-1">Scale</h3>
+                    <div className="text-3xl font-black text-white mb-6">$3500<span className="text-xs font-bold opacity-60">/mo</span></div>
+                    <ul className="space-y-3 mb-8">
+                      {["Full system handling", "Continuous optimization", "Fastest turnaround", "Dedicated focus"].map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="block w-full bg-white text-[#2563eb] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Scale</Link>
+                 </div>
+              </motion.div>
+  
+              {/* Card 4: Project */}
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#ec4899] to-[#8b5cf6] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+              >
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="relative z-10">
+                    <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">One-off needs</div>
+                    <h3 className="text-2xl font-black text-white mb-1">Project</h3>
+                    <div className="text-3xl font-black text-white mb-6">Custom<span className="text-xs font-bold opacity-60"> Quote</span></div>
+                    <ul className="space-y-3 mb-8">
+                      {["Fixed-scope project", "Single feature build", "Custom integrations", "One-time delivery"].map((feat, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" className="block w-full bg-white text-[#ec4899] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Get a Quote</Link>
+                 </div>
+              </motion.div>
+            </div>
+  
+            <div className="text-center">
+               <p className="text-xl font-bold text-[#0B1B35]/40 mb-12 italic">“Submit your tasks, we handle everything — no need to hire or manage developers.”</p>
+               <div className="flex flex-col sm:flex-row justify-center gap-6">
+                  <Link to="/contact?type=test" className="bg-[#F58220] text-white px-10 py-5 rounded-2xl text-xl font-black shadow-xl hover:scale-105 transition-all">Start a Small Paid Test</Link>
+                  <Link to="/contact" className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] px-10 py-5 rounded-2xl text-xl font-black hover:bg-[#0B1B35] hover:text-white transition-all">Book a Quick Call</Link>
                </div>
             </div>
-         </div>
-      </section>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Case Studies Section - SCALED DOWN */}
+      <ScrollReveal>
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 sm:mb-24">
+               <h2 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-[#0B1B35] leading-[0.85] mb-8">
+                  Technical <br />
+                  <span className="text-[#F58220] italic font-italic-serif font-normal">Success</span> <br />
+                  Stories.
+               </h2>
+               <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/40 max-w-2xl leading-tight">
+                  We solve complex problems for global partners.
+               </p>
+            </div>
+  
+             <div className="grid lg:grid-cols-3 gap-12">
+                {featuredProjects.map((project, i) => (
+                  <motion.div 
+                     key={i} 
+                     whileHover={{ y: -8 }}
+                     className="group"
+                  >
+                     <Link to="/case-studies" className="block">
+                        <div className={`relative aspect-[16/10] rounded-[3rem] overflow-hidden mb-8 ${project.color} shadow-xl`}>
+                           <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')]" />
+                           <div className="absolute inset-0 flex items-center justify-center p-10">
+                              <img 
+                                 src={project.image} 
+                                 alt={project.title} 
+                                 className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-1000" 
+                              />
+                           </div>
+                           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B35]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                              <div className="text-white text-2xl font-black tracking-tighter">View Success Story</div>
+                           </div>
+                        </div>
+                        <div className="flex justify-between items-start gap-4 px-2">
+                           <div>
+                              <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#F58220] mb-2">{project.category}</div>
+                              <h3 className="text-xl sm:text-2xl font-black tracking-tighter text-[#0B1B35] group-hover:text-[#F58220] transition-colors">{project.title}</h3>
+                           </div>
+                           <div className="bg-[#0B1B35]/5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest text-[#0B1B35]/60 whitespace-nowrap">
+                              {project.impact}
+                           </div>
+                        </div>
+                     </Link>
+                  </motion.div>
+                ))}
+             </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Team Section - SCALED DOWN */}
+      <ScrollReveal direction="right">
+        <section className="py-24 bg-[#F8F9FA]">
+           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="bg-[#0B1B35] rounded-[3rem] sm:rounded-[4rem] p-10 sm:p-20 relative overflow-hidden shadow-2xl">
+                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+                 <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                       <div className="inline-flex items-center gap-2 bg-[#F58220] rounded-full px-5 py-2 text-[9px] font-black uppercase tracking-[0.2em] text-white mb-8">Team as a Service</div>
+                       <h2 className="text-5xl sm:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-8">Your Dedicated <br /><span className="text-[#F58220]">Tech Partner.</span></h2>
+                       <p className="text-lg font-bold text-white/50 mb-10 leading-relaxed max-w-lg">Skip the recruitment cycles. Get immediate access to a full stack of engineering and design talent.</p>
+                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mb-12">
+                          {teamRoles.map((role, i) => (
+                            <div key={i} className="flex items-center gap-4 text-white">
+                               <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-[#F58220] border border-white/5">{role.icon}</div>
+                               <span className="text-base font-black tracking-tight">{role.role}</span>
+                            </div>
+                          ))}
+                       </div>
+                       <Link to="/contact" className="bg-[#F58220] text-white px-10 py-5 rounded-xl text-lg font-black shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center sm:justify-start gap-4 group w-full sm:w-fit">Assemble My Team <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></Link>
+                    </div>
+                    <div className="hidden lg:block relative">
+                       <div className="bg-white/5 backdrop-blur-3xl rounded-[3rem] p-12 border border-white/10 shadow-xl">
+                          <div className="space-y-8">
+                             {["UI/UX Design", "Frontend Dev", "Backend Dev", "DevOps", "QA Testing"].map((item) => (
+                               <div key={item} className="flex items-center justify-between group cursor-default">
+                                  <span className="text-white text-xl font-black tracking-tighter group-hover:text-[#F58220] transition-colors">{item}</span>
+                                  <div className="w-8 h-8 rounded-full bg-[#F58220]/20 flex items-center justify-center text-[#F58220] group-hover:bg-[#F58220] group-hover:text-white transition-all">
+                                     <CheckCircle className="w-5 h-5" />
+                                  </div>
+                               </div>
+                             ))}
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+      </ScrollReveal>
 
       {/* Expertise Marquee */}
       <section className="py-32 bg-[#0B1B35] overflow-hidden">

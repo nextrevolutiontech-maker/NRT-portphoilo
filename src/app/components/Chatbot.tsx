@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Minimize2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { HoverModal } from "./ui/HoverModal";
+import { API_BASE_URL } from "../../config";
 
 interface Message {
   id: number;
@@ -22,6 +23,7 @@ export function Chatbot() {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickReplies = [
@@ -51,17 +53,44 @@ export function Chatbot() {
 
     setMessages([...messages, userMessage]);
     setInputValue("");
+    setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      // Format history for Gemini SDK
+      const history = messages.map(msg => ({
+        role: msg.sender === 'user' ? 'user' : 'model',
+        parts: [{ text: msg.text }]
+      }));
+
+      const response = await fetch(`${API_BASE_URL}/api/ai/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: inputValue, history }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.message || "Failed to get AI response");
+
       const botResponse: Message = {
         id: messages.length + 2,
-        text: getBotResponse(inputValue),
+        text: data.text,
         sender: "bot",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, botResponse]);
-    }, 1000);
+    } catch (error) {
+      console.error("Chatbot Error:", error);
+      const errorMessage: Message = {
+        id: messages.length + 2,
+        text: "Sorry, I'm having trouble connecting right now. Please try again later.",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const getBotResponse = (userInput: string): string => {
@@ -183,7 +212,7 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[calc(100vh-6rem)] sm:h-[600px] max-h-[calc(100vh-2rem)] bg-card rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-border"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[1000] w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[calc(100vh-8rem)] sm:h-[600px] max-h-[calc(100vh-4rem)] bg-card/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-white/20"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary to-blue-600 text-primary-foreground p-4 flex items-center justify-between">
@@ -213,7 +242,7 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/10">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/5">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -240,6 +269,19 @@ export function Chatbot() {
                   </div>
                 </motion.div>
               ))}
+              {isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-card text-card-foreground border border-border p-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1">
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                </motion.div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
