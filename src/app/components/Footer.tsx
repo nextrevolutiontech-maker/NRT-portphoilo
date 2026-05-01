@@ -53,7 +53,7 @@ export function Footer() {
               <img 
                 src="/logo.png" 
                 alt="Logo" 
-                className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform brightness-110" 
+                className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform brightness-0 invert" 
               />
             </Link>
             <p className="text-white/40 text-lg font-bold leading-relaxed mb-10 max-w-sm">

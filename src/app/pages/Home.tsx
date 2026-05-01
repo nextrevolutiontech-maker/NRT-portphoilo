@@ -198,27 +198,32 @@ export function Home() {
         </div>
       </section>
 
-      {/* Trust Section - COMPACT SINGLE LINE */}
+      {/* Trust Section - INFINITE MARQUEE WITH LOGOS */}
       <ScrollReveal>
-        <section className="py-12 bg-white border border-black/5 mx-4 sm:mx-12 lg:mx-24 rounded-[2.5rem] shadow-[0_20px_50px_rgba(11,27,53,0.03)] mb-24 flex flex-col items-center">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B1B35]/20 text-center mb-10">
-             Powering growth for modern brands
+        <section className="py-16 bg-white border-y border-black/5 mb-24 overflow-hidden">
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0B1B35]/20 text-center mb-12">
+             Trusted by businesses built on
           </div>
-          <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-x-12 sm:gap-x-16 gap-y-8 px-8 w-full overflow-hidden">
-            {[
-              { name: "Shopify", color: "text-[#96BF48]" },
-              { name: "WordPress", color: "text-[#21759B]" },
-              { name: "Stripe", color: "text-[#635BFF]" },
-              { name: "PayPal", color: "text-[#003087]" },
-              { name: "Woo", color: "text-[#96588A]" }
-            ].map((brand) => (
-              <span 
-                key={brand.name} 
-                className={`text-2xl sm:text-4xl font-black tracking-tighter transition-all cursor-default select-none hover:scale-110 whitespace-nowrap ${brand.color}`}
-              >
-                {brand.name}
-              </span>
-            ))}
+          <div className="relative flex overflow-x-hidden">
+            <div className="flex animate-infinite-scroll whitespace-nowrap items-center gap-16 px-8">
+              {[
+                { name: "Shopify", logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg" },
+                { name: "WordPress", logo: "https://cdn.worldvectorlogo.com/logos/wordpress-icon.svg" },
+                { name: "Stripe", logo: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg" },
+                { name: "PayPal", logo: "https://cdn.worldvectorlogo.com/logos/paypal-3.svg" },
+                { name: "WooCommerce", logo: "https://cdn.worldvectorlogo.com/logos/woocommerce.svg" },
+                { name: "Shopify", logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg" },
+                { name: "WordPress", logo: "https://cdn.worldvectorlogo.com/logos/wordpress-icon.svg" },
+                { name: "Stripe", logo: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg" },
+                { name: "PayPal", logo: "https://cdn.worldvectorlogo.com/logos/paypal-3.svg" },
+                { name: "WooCommerce", logo: "https://cdn.worldvectorlogo.com/logos/woocommerce.svg" }
+              ].map((brand, i) => (
+                <div key={i} className="flex items-center gap-4 group cursor-default">
+                  <img src={brand.logo} alt={brand.name} className="h-8 sm:h-10 w-auto grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
+                  <span className="text-xl sm:text-2xl font-black tracking-tighter text-[#0B1B35]/20 group-hover:text-[#0B1B35] transition-colors uppercase">{brand.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -415,85 +420,93 @@ export function Home() {
               {/* Card 1: Starter */}
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-10 sm:p-12 flex flex-col justify-between group shadow-xl aspect-[4/5]"
               >
                  <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-                 <div className="relative z-10">
+                 <div className="relative z-10 h-full flex flex-col">
                     <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Small ongoing needs</div>
-                    <h3 className="text-2xl font-black text-white mb-1">Starter</h3>
-                    <div className="text-3xl font-black text-white mb-6">$1000<span className="text-xs font-bold opacity-60">/mo</span></div>
-                    <ul className="space-y-3 mb-8">
-                      {["Ongoing fixes & tasks", "Basic integrations", "Dedicated developer", "Reliable turnaround"].map((feat, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/contact" className="block w-full bg-white text-[#6366f1] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Starter</Link>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-black text-white mb-1">Starter</h3>
+                      <div className="text-3xl font-black text-white mb-6">$1000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                      <ul className="space-y-3 mb-8">
+                        {["Ongoing fixes & tasks", "Basic integrations", "Dedicated developer", "Reliable turnaround"].map((feat, i) => (
+                          <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                            <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Link to="/contact" className="block w-full bg-white text-[#6366f1] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all mt-auto">Choose Starter</Link>
                  </div>
               </motion.div>
   
               {/* Card 2: Growth (HIGHLIGHTED) */}
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#F58220] to-[#FF4D00] p-8 sm:p-10 flex flex-col justify-end group shadow-2xl scale-105 z-20 border-4 border-white/20 aspect-[4/5]"
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#F58220] to-[#FF4D00] p-10 sm:p-12 flex flex-col justify-between group shadow-2xl scale-105 z-20 border-4 border-white/20 aspect-[4/5]"
               >
                  <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-[50px] group-hover:scale-150 transition-transform" />
-                 <div className="relative z-10">
+                 <div className="relative z-10 h-full flex flex-col">
                     <div className="bg-white text-[#F58220] rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest mb-4 w-fit shadow-lg">Most Popular</div>
-                    <h3 className="text-2xl font-black text-white mb-1">Growth</h3>
-                    <div className="text-3xl font-black text-white mb-6">$2000<span className="text-xs font-bold opacity-60">/mo</span></div>
-                    <ul className="space-y-3 mb-8">
-                      {["Priority support", "API integrations", "Regular improvements", "More dedicated time"].map((feat, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white">
-                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/contact" className="block w-full bg-[#0B1B35] text-white py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all shadow-xl">Choose Growth</Link>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-black text-white mb-1">Growth</h3>
+                      <div className="text-3xl font-black text-white mb-6">$2000<span className="text-xs font-bold opacity-60">/mo</span></div>
+                      <ul className="space-y-3 mb-8">
+                        {["Priority support", "API integrations", "Regular improvements", "More dedicated time"].map((feat, i) => (
+                          <li key={i} className="flex items-center gap-3 text-sm font-bold text-white">
+                            <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Link to="/contact" className="block w-full bg-[#0B1B35] text-white py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all shadow-xl mt-auto">Choose Growth</Link>
                  </div>
               </motion.div>
   
               {/* Card 3: Scale */}
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0ea5e9] to-[#2563eb] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#0ea5e9] to-[#2563eb] p-10 sm:p-12 flex flex-col justify-between group shadow-xl aspect-[4/5]"
               >
                  <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-                 <div className="relative z-10">
+                 <div className="relative z-10 h-full flex flex-col">
                     <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">Scaling businesses</div>
-                    <h3 className="text-2xl font-black text-white mb-1">Scale</h3>
-                    <div className="text-3xl font-black text-white mb-6">$3500<span className="text-xs font-bold opacity-60">/mo</span></div>
-                    <ul className="space-y-3 mb-8">
-                      {["Full system handling", "Continuous optimization", "Fastest turnaround", "Dedicated focus"].map((feat, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/contact" className="block w-full bg-white text-[#2563eb] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Choose Scale</Link>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-black text-white mb-1">Scale</h3>
+                      <div className="text-3xl font-black text-white mb-6">$3500<span className="text-xs font-bold opacity-60">/mo</span></div>
+                      <ul className="space-y-3 mb-8">
+                        {["Full system handling", "Continuous optimization", "Fastest turnaround", "Dedicated focus"].map((feat, i) => (
+                          <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                            <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Link to="/contact" className="block w-full bg-white text-[#2563eb] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all mt-auto">Choose Scale</Link>
                  </div>
               </motion.div>
   
               {/* Card 4: Project */}
               <motion.div 
                 whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#ec4899] to-[#8b5cf6] p-8 sm:p-10 flex flex-col justify-end group shadow-xl aspect-[4/5]"
+                className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#ec4899] to-[#8b5cf6] p-10 sm:p-12 flex flex-col justify-between group shadow-xl aspect-[4/5]"
               >
                  <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-                 <div className="relative z-10">
+                 <div className="relative z-10 h-full flex flex-col">
                     <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-[10px] font-black text-white uppercase tracking-widest mb-4 w-fit border border-white/10">One-off needs</div>
-                    <h3 className="text-2xl font-black text-white mb-1">Project</h3>
-                    <div className="text-3xl font-black text-white mb-6">Custom<span className="text-xs font-bold opacity-60"> Quote</span></div>
-                    <ul className="space-y-3 mb-8">
-                      {["Fixed-scope project", "Single feature build", "Custom integrations", "One-time delivery"].map((feat, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
-                          <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/contact" className="block w-full bg-white text-[#ec4899] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all">Get a Quote</Link>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-black text-white mb-1">Project</h3>
+                      <div className="text-3xl font-black text-white mb-6">Custom<span className="text-xs font-bold opacity-60"> Quote</span></div>
+                      <ul className="space-y-3 mb-8">
+                        {["Fixed-scope project", "Single feature build", "Custom integrations", "One-time delivery"].map((feat, i) => (
+                          <li key={i} className="flex items-center gap-3 text-sm font-bold text-white/80">
+                            <CheckCircle2 className="w-4 h-4 text-white" /> {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Link to="/contact" className="block w-full bg-white text-[#ec4899] py-4 rounded-2xl text-center font-black text-lg hover:scale-105 transition-all mt-auto">Get a Quote</Link>
                  </div>
               </motion.div>
             </div>
@@ -603,12 +616,19 @@ export function Home() {
         </section>
       </ScrollReveal>
 
-      {/* Expertise Marquee */}
-      <section className="py-32 bg-[#0B1B35] overflow-hidden">
-        <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap">
+      {/* Expertise Marquee - MORE STYLISH WITH ICONS */}
+      <section className="py-32 bg-[#0B1B35] overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+        <div className="flex gap-16 animate-infinite-scroll whitespace-nowrap items-center">
            {[...services, ...services].map((skill, i) => (
-             <div key={i} className="text-white/30 text-5xl font-black tracking-tighter hover:text-white transition-colors cursor-default select-none uppercase">
-                {skill} <span className="mx-12 text-[#F58220]">/</span>
+             <div key={i} className="flex items-center gap-6 group">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F58220] group-hover:bg-[#F58220] group-hover:text-white transition-all duration-500">
+                   <Zap className="w-6 h-6" />
+                </div>
+                <div className="text-white/30 text-5xl font-black tracking-tighter hover:text-white transition-colors cursor-default select-none uppercase">
+                   {skill}
+                </div>
+                <div className="mx-8 text-[#F58220] opacity-30">/</div>
              </div>
            ))}
         </div>

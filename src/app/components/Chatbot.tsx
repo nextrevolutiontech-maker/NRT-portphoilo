@@ -211,11 +211,11 @@ export function Chatbot() {
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[1000] w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[calc(100vh-8rem)] sm:h-[600px] max-h-[calc(100vh-4rem)] bg-card/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-white/20"
+            className="fixed bottom-4 right-4 sm:bottom-24 sm:right-6 z-[10000] w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[500px] sm:h-[600px] max-h-[calc(100vh-12rem)] bg-card/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-white/20"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-blue-600 text-primary-foreground p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 text-primary-foreground p-4 flex items-center justify-between relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')] pointer-events-none" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <MessageCircle className="h-5 w-5" />
@@ -242,7 +242,8 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/5 relative">
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
