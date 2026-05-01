@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-const logoImage = "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777420556/nrt-portfolio/vavbbfjulz7gyhr0asls.jpg";
+const logoImage = "/logo.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

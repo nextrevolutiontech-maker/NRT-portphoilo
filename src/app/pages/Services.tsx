@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../components/SEO";
 import { Link } from "react-router-dom";
 import { 
   ShoppingCart, 
@@ -50,17 +50,18 @@ export function Services() {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
-      <Helmet>
-        <title>Our Services | Next Revolution Tech</title>
-      </Helmet>
+    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+      <SEO 
+        title="Our Services" 
+        description="Comprehensive technical services including eCommerce development, API integrations, and AI automation. We provide dedicated engineering support for growing brands."
+      />
 
       {/* SECTION 1: INTRO */}
       <section className="pt-12 pb-20 px-4 sm:px-6 lg:px-8 bg-white border-b border-black/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#F58220]/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-8">
+            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] sm:leading-[0.85] mb-8">
                What We <span className="text-[#F58220] italic font-italic-serif font-normal">Handle</span> <br />For You.
             </h1>
             <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/50 leading-tight max-w-2xl">

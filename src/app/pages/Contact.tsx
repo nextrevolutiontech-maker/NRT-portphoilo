@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Send, ShieldCheck, Clock, ArrowRight } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../components/SEO";
 import { toast } from "sonner";
 import { motion } from "motion/react";
 import { API_BASE_URL } from "../../config";
@@ -45,16 +45,16 @@ export function Contact() {
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
-      <Helmet>
-        <title>Contact Us | Next Revolution Tech</title>
-        <meta name="description" content="Get in touch for fixes, integrations, and ongoing tech support." />
-      </Helmet>
+    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+      <SEO 
+        title="Contact Us" 
+        description="Ready to stop dealing with tech hurdles? Get in touch with Next Revolution Tech for reliable fixes, custom integrations, and 24/7 dedicated support."
+      />
 
       <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl mb-24 text-center sm:text-left">
-            <h1 className="text-5xl sm:text-7xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.85] mb-10">
+            <h1 className="text-4xl sm:text-7xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95] sm:leading-[0.85] mb-10">
                Ready to stop <br />
                <span className="text-[#F58220] italic font-italic-serif font-normal">dealing</span> with tech?
             </h1>

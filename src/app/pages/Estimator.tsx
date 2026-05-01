@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Check, ChevronRight, ChevronLeft, Calculator, Globe, Smartphone, Sparkles, Cloud, Shield, Database, Blocks, Workflow, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../components/SEO";
 import { API_BASE_URL } from "../../config";
 import { toast } from "sonner";
 
@@ -121,14 +121,15 @@ export function CostEstimator() {
     };
 
     return (
-        <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
-            <Helmet>
-                <title>Cost Estimator | Next Revolution Tech</title>
-            </Helmet>
+        <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+            <SEO 
+                title="Project Cost Estimator" 
+                description="Get an instant estimate for your software development project. Whether it's AI, Web, or Mobile, our calculator helps you plan your budget."
+            />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="pt-12 pb-24 text-center sm:text-left">
-                    <h1 className="text-5xl sm:text-7xl lg:text-[8rem] font-black tracking-tighter leading-[0.85] mb-10">
+                    <h1 className="text-4xl sm:text-7xl lg:text-[8rem] font-black tracking-tighter leading-[0.95] sm:leading-[0.85] mb-10">
                        Project <br />
                        <span className="text-[#F58220] italic font-italic-serif font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Estimator</span>.
                     </h1>

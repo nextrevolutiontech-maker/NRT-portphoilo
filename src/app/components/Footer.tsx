@@ -51,7 +51,7 @@ export function Footer() {
           <div className="lg:col-span-4 pr-0 lg:pr-12">
             <Link to="/" className="inline-block mb-8 group">
               <img 
-                src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777420556/nrt-portfolio/vavbbfjulz7gyhr0asls.jpg" 
+                src="/logo.png" 
                 alt="Logo" 
                 className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform brightness-110" 
               />

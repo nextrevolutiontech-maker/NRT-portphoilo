@@ -1,4 +1,5 @@
-import { Helmet } from "react-helmet-async";
+import { SEO } from "../components/SEO";
+import { Testimonials } from "../components/Testimonials";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { 
@@ -86,10 +87,11 @@ export function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#F8F9FA] pt-24 overflow-hidden text-[#0B1B35]">
-      <Helmet>
-        <title>Next Revolution Tech | Your Dedicated Tech Partner</title>
-      </Helmet>
+    <div className="relative min-h-screen bg-[#F8F9FA] pt-24 overflow-x-hidden text-[#0B1B35]">
+      <SEO 
+        title="Your Dedicated Tech Partner"
+        description="Stop hiring developers for everything. Get a full dedicated team for a flat monthly fee. Specialized in eCommerce, APIs, and AI automation."
+      />
 
       {/* Hero Section - PIXEL-PERFECT ALIGNMENT */}
       <section className="relative pt-12 sm:pt-20 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 overflow-hidden">
@@ -295,6 +297,8 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* Simple Process - SCALED DOWN & FIXED OVERFLOW */}
       <section className="py-24 bg-white">

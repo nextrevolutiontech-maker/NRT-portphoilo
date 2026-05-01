@@ -1,7 +1,8 @@
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ShieldCheck, Zap, Award, Users } from "lucide-react";
 import { motion } from "motion/react";
+import { SEO } from "../components/SEO";
+import { Testimonials } from "../components/Testimonials";
 
 export function About() {
   const ctaLinks = {
@@ -10,16 +11,21 @@ export function About() {
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
-      <Helmet>
-        <title>About Us | Next Revolution Tech</title>
-      </Helmet>
+    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+      <SEO 
+        title="About Us" 
+        description="Learn more about Next Revolution Tech, your dedicated technology partner. We eliminate technical bottlenecks for growing businesses with 24/7 operations."
+      />
 
       <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-4xl mb-32">
-            <h1 className="text-5xl sm:text-7xl lg:text-[6.5rem] font-black mb-10 tracking-tighter leading-[0.9]">We are your <br /><span className="text-orange italic font-italic-serif font-normal">dedicated</span> <br />tech partner.</h1>
-            <p className="text-2xl font-bold text-[#0B1B35]/60 leading-relaxed max-w-2xl">
+          <div className="max-w-4xl mb-20 sm:mb-32">
+            <h1 className="text-4xl sm:text-7xl lg:text-[6.5rem] font-black mb-8 sm:mb-10 tracking-tighter leading-[0.95] sm:leading-[0.9]">
+              We are your <br />
+              <span className="text-orange italic font-italic-serif font-normal">dedicated</span> <br />
+              tech partner.
+            </h1>
+            <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/60 leading-relaxed max-w-2xl">
               We started Next Revolution Tech because we saw too many growing businesses struggling with small technical hurdles that slowed them down.
             </p>
           </div>
@@ -50,11 +56,11 @@ export function About() {
               <div className="w-20 h-20 bg-[#F8F9FA] rounded-2xl flex items-center justify-center text-orange mb-12 shadow-sm border border-black/5">
                 <ShieldCheck className="w-10 h-10" />
               </div>
-              <h2 className="text-4xl font-black mb-8 tracking-tighter">Why Us</h2>
-              <p className="text-lg font-bold text-[#0B1B35]/60 mb-10 leading-relaxed">
+              <h2 className="text-3xl sm:text-4xl font-black mb-6 sm:mb-8 tracking-tighter text-[#0B1B35]">Why Us</h2>
+              <p className="text-base sm:text-lg font-bold text-[#0B1B35]/60 mb-10 leading-relaxed">
                 We don't just fix bugs. We learn your system inside out, so we can suggest improvements and prevent future issues.
               </p>
-              <div className="grid grid-cols-2 gap-6 mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
                 <motion.div 
                   whileHover={{ y: -10, scale: 1.05 }}
                   className="p-8 bg-gradient-to-br from-[#0057FF] to-[#00A3FF] rounded-[2rem] border border-white/10 shadow-lg group relative overflow-hidden"
@@ -77,40 +83,40 @@ export function About() {
 
           {/* Leader Section - LIGHT */}
           <div className="bg-white border border-black/5 rounded-[3rem] p-16 lg:p-24 relative overflow-hidden mb-40 shadow-sm">
-             <div className="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
                 <div>
-                   <h2 className="text-6xl font-black mb-12 tracking-tighter leading-tight text-[#0B1B35]">Human-led <br />development.</h2>
-                   <blockquote className="text-3xl font-medium italic mb-12 border-l-4 border-orange pl-10 text-[#0B1B35]/80 leading-relaxed font-italic-serif">
+                   <h2 className="text-4xl sm:text-6xl font-black mb-10 sm:mb-12 tracking-tighter leading-tight text-[#0B1B35]">Human-led <br />development.</h2>
+                   <blockquote className="text-2xl sm:text-3xl font-medium italic mb-10 sm:mb-12 border-l-4 border-orange pl-6 sm:pl-10 text-[#0B1B35]/80 leading-relaxed font-italic-serif">
                       "We are your internal tech team, available whenever you need us. No more hunting for unreliable freelancers."
                    </blockquote>
-                   <div className="flex items-center gap-6">
-                      <div className="w-20 h-20 rounded-full bg-[#F8F9FA] flex items-center justify-center overflow-hidden border-4 border-black/5 shadow-sm">
+                   <div className="flex items-center gap-6 mb-12 lg:mb-0">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F8F9FA] flex items-center justify-center overflow-hidden border-4 border-black/5 shadow-sm">
                          <img src="https://i.pravatar.cc/150?img=68" alt="Founder" className="w-full h-full object-cover" />
                       </div>
                       <div>
-                         <div className="text-2xl font-black text-[#0B1B35]">Founder & CEO</div>
+                         <div className="text-xl sm:text-2xl font-black text-[#0B1B35]">Founder & CEO</div>
                          <div className="text-orange font-bold uppercase tracking-widest text-[10px]">Next Revolution Tech</div>
                       </div>
                    </div>
                 </div>
-                <div className="hidden lg:block">
-                    <div className="grid grid-cols-2 gap-8">
+                <div className="block">
+                    <div className="grid grid-cols-2 gap-4 sm:gap-8">
                        <motion.div 
                           whileHover={{ y: -10, scale: 1.05 }}
-                          className="p-12 bg-gradient-to-br from-[#F58220] to-[#FF4D00] rounded-[2.5rem] border border-white/10 shadow-2xl group relative overflow-hidden"
+                          className="p-8 sm:p-12 bg-gradient-to-br from-[#F58220] to-[#FF4D00] rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 shadow-2xl group relative overflow-hidden"
                        >
                           <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
-                          <Award className="w-12 h-12 mb-8 text-white relative z-10" />
-                          <div className="text-6xl font-black mb-2 tracking-tighter text-white relative z-10">50+</div>
+                          <Award className="w-8 h-8 sm:w-12 sm:h-12 mb-6 sm:mb-8 text-white relative z-10" />
+                          <div className="text-4xl sm:text-6xl font-black mb-2 tracking-tighter text-white relative z-10">50+</div>
                           <div className="text-[10px] font-black text-white/50 uppercase tracking-[0.4em] relative z-10 leading-tight">Fixes Delivered</div>
                        </motion.div>
                        <motion.div 
                           whileHover={{ y: -10, scale: 1.05 }}
-                          className="p-12 bg-gradient-to-br from-[#0057FF] to-[#9900FF] rounded-[2.5rem] border border-white/10 shadow-2xl group relative overflow-hidden"
+                          className="p-8 sm:p-12 bg-gradient-to-br from-[#0057FF] to-[#9900FF] rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 shadow-2xl group relative overflow-hidden"
                        >
                           <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
-                          <Users className="w-12 h-12 mb-8 text-white relative z-10" />
-                          <div className="text-6xl font-black mb-2 tracking-tighter text-white relative z-10">15+</div>
+                          <Users className="w-8 h-8 sm:w-12 sm:h-12 mb-6 sm:mb-8 text-white relative z-10" />
+                          <div className="text-4xl sm:text-6xl font-black mb-2 tracking-tighter text-white relative z-10">15+</div>
                           <div className="text-[10px] font-black text-white/50 uppercase tracking-[0.4em] relative z-10 leading-tight">Growing Brands</div>
                        </motion.div>
                     </div>
@@ -118,13 +124,15 @@ export function About() {
              </div>
           </div>
 
-          <div className="text-center">
-            <h2 className="text-5xl sm:text-7xl lg:text-[8rem] font-black mb-16 tracking-tighter leading-[0.9]">Ready to <br /><span className="italic font-italic-serif text-orange">rule</span> the tech?</h2>
-            <div className="flex flex-wrap justify-center gap-8">
-              <Link to={ctaLinks.started} className="bg-[#0B1B35] text-white py-8 px-16 text-2xl font-black rounded-2xl shadow-xl hover:bg-orange transition-all">
+          <Testimonials />
+
+          <div className="text-center mt-32 sm:mt-40">
+            <h2 className="text-4xl sm:text-7xl lg:text-[8rem] font-black mb-12 sm:mb-16 tracking-tighter leading-[0.95] sm:leading-[0.9]">Ready to <br /><span className="italic font-italic-serif text-orange">rule</span> the tech?</h2>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+              <Link to={ctaLinks.started} className="bg-[#0B1B35] text-white py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl shadow-xl hover:bg-orange transition-all">
                 Get Started
               </Link>
-              <Link to={ctaLinks.test} className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] py-8 px-16 text-2xl font-black rounded-2xl hover:bg-[#0B1B35] hover:text-white transition-all">
+              <Link to={ctaLinks.test} className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl hover:bg-[#0B1B35] hover:text-white transition-all">
                 Small Paid Test
               </Link>
             </div>
