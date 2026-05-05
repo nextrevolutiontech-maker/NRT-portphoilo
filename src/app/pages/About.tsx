@@ -142,7 +142,7 @@ export function About() {
              </div>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
-                  { name: "Muhammad Ahsan Khan", role: "Founder & CEO", tech: "Strategy / Architecture", img: "https://i.pravatar.cc/150?img=68" },
+                  { name: "Muhammad Ahsan Khan", role: "Founder & CEO", tech: "Strategy / Architecture", img: "/ahsan.png" },
                   { name: "S. Hamza", role: "Senior Developer", tech: "Node.js / React / DevOps", img: "https://i.pravatar.cc/150?img=11" },
                   { name: "Ayesha Ahmed", role: "UI/UX Lead", tech: "Figma / Motion Design", img: "https://i.pravatar.cc/150?img=32" },
                   { name: "Bilal Raza", role: "Backend Engineer", tech: "Python / AI / APIs", img: "https://i.pravatar.cc/150?img=12" },
