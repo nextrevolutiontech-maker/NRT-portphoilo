@@ -100,7 +100,7 @@ export function About() {
                      </blockquote>
                      <div className="flex items-center gap-6 mb-12 lg:mb-0">
                         <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F8F9FA] flex items-center justify-center overflow-hidden border-4 border-black/5 shadow-sm">
-                           <img src="https://i.pravatar.cc/150?img=68" alt="Founder" className="w-full h-full object-cover" />
+                           <img src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994678/nrt_team/ceo.png" alt="Founder" className="w-full h-full object-cover object-top" />
                         </div>
                         <div>
                            <div className="text-xl sm:text-2xl font-black text-[#0B1B35]">Founder & CEO</div>
@@ -142,11 +142,11 @@ export function About() {
              </div>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                  {[
-                   { name: "Muhammad Ahsan Khan", role: "Founder & Full Stack Engineer", tech: "Architecture / Strategy", img: "/ahsan.png" },
-                   { name: "Ayan", role: "Full Stack Engineer", tech: "React / Node.js / Mobile", img: "/team1.png" },
-                   { name: "Fahad", role: "Full Stack Engineer", tech: "Backend / Cloud / DevOps", img: "https://i.pravatar.cc/150?img=11" },
-                   { name: "Muzamil", role: "Marketing & Full Stack Dev", tech: "Growth / Frontend / SEO", img: "https://i.pravatar.cc/150?img=12" },
-                   { name: "Taha", role: "Full Stack Engineer", tech: "Python / AI / APIs", img: "https://i.pravatar.cc/150?img=13" },
+                   { name: "Muhammad Ahsan Khan", role: "Founder & Full Stack Engineer", tech: "Architecture / Strategy", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994668/nrt_team/ahsan_new.jpg", pos: "object-top" },
+                   { name: "Ayan", role: "Full Stack Engineer", tech: "React / Node.js / Mobile", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994671/nrt_team/ayan.jpg", pos: "object-center" },
+                   { name: "Fahad", role: "Full Stack Engineer", tech: "Backend / Cloud / DevOps", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994672/nrt_team/fahad.jpg", pos: "object-top" },
+                   { name: "Muzamil", role: "Marketing & Full Stack Dev", tech: "Growth / Frontend / SEO", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994673/nrt_team/muzamil.jpg", pos: "object-center" },
+                   { name: "Taha", role: "Full Stack Engineer", tech: "Python / AI / APIs", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994674/nrt_team/taha.jpg", pos: "object-center" },
                  ].map((member, i) => (
                   <motion.div 
                     key={i}
@@ -154,7 +154,7 @@ export function About() {
                     className="bg-white rounded-[2.5rem] p-8 border border-black/5 shadow-xl text-center group"
                   >
                      <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-4 border-orange/10 group-hover:border-orange transition-colors shadow-lg">
-                        <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover ${(member as any).pos || 'object-center'}`} />
                      </div>
                      <h3 className="text-xl font-black tracking-tight mb-1">{member.name}</h3>
                      <div className="text-orange text-[10px] font-black uppercase tracking-widest mb-4">{member.role}</div>

@@ -46,8 +46,8 @@ export function CursorFollower() {
   return (
     <>
       <style>{`
-        body { cursor: none; }
-        a, button, [role='button'] { cursor: none; }
+        body { cursor: auto; }
+        a, button, [role='button'], .cursor-pointer { cursor: pointer; }
         @media (hover: none) {
           body { cursor: auto; }
           .custom-cursor { display: none; }
@@ -55,7 +55,7 @@ export function CursorFollower() {
       `}</style>
       <div
         ref={cursorRef}
-        className="custom-cursor fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-primary bg-primary/20 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className="custom-cursor fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#F58220] bg-[#F58220]/10 pointer-events-none z-[1000000] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
       />
     </>
   );
