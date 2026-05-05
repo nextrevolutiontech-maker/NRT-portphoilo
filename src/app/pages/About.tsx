@@ -143,9 +143,9 @@ export function About() {
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   { name: "Muhammad Ahsan Khan", role: "Founder & CEO", tech: "Strategy / Architecture", img: "/ahsan.png" },
-                  { name: "S. Hamza", role: "Senior Developer", tech: "Node.js / React / DevOps", img: "https://i.pravatar.cc/150?img=11" },
-                  { name: "Ayesha Ahmed", role: "UI/UX Lead", tech: "Figma / Motion Design", img: "https://i.pravatar.cc/150?img=32" },
-                  { name: "Bilal Raza", role: "Backend Engineer", tech: "Python / AI / APIs", img: "https://i.pravatar.cc/150?img=12" },
+                  { name: "S. Hamza", role: "Senior Developer", tech: "Node.js / React / DevOps", img: "/team1.png" },
+                  { name: "Ayesha Ahmed", role: "UI/UX Lead", tech: "Figma / Motion Design", img: "/team2.png" },
+                  { name: "Bilal Raza", role: "Backend Engineer", tech: "Python / AI / APIs", img: "/team3.png" },
                   { name: "Sara Siddiqui", role: "QA Engineer", tech: "Automation / Testing", img: "https://i.pravatar.cc/150?img=5" },
                   { name: "Zubair Ali", role: "Frontend Developer", tech: "Next.js / Tailwind", img: "https://i.pravatar.cc/150?img=13" },
                   { name: "Mehak Fatima", role: "Project Manager", tech: "Agile / Communications", img: "https://i.pravatar.cc/150?img=25" },
