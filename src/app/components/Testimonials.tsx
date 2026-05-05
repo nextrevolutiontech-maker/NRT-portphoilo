@@ -56,6 +56,51 @@ const testimonials: Testimonial[] = [
     project: "PayloadCMS & Next.js Platform",
     content: "Great work. Professional and very responsive. Would recommend for any complex web application development.",
     date: "3 months ago"
+  },
+  {
+    author: "Sarah L.",
+    location: "USA",
+    flag: "🇺🇸",
+    rating: 5.0,
+    project: "eCommerce Speed Audit",
+    content: "NRT transformed our slow Shopify store into a high-performance machine. Our conversion rate increased by 25% within weeks.",
+    date: "1 month ago"
+  },
+  {
+    author: "David M.",
+    location: "UK",
+    flag: "🇬🇧",
+    rating: 5.0,
+    project: "Custom API Integration",
+    content: "Seamless integration of our legacy ERP with a modern React frontend. Their team understands complex business logic perfectly.",
+    date: "2 months ago"
+  },
+  {
+    author: "Zeeshan K.",
+    location: "Pakistan",
+    flag: "🇵🇰",
+    rating: 5.0,
+    project: "Real-estate Portal",
+    content: "The best tech team in Karachi. They delivered a complex real-estate portal on time and with zero bugs. Highly recommended for local businesses.",
+    date: "4 months ago"
+  },
+  {
+    author: "Elena R.",
+    location: "Germany",
+    flag: "🇩🇪",
+    rating: 4.9,
+    project: "Mobile App Development",
+    content: "Exceptional communication and technical depth. They handled the Flutter build with great care and attention to detail.",
+    date: "5 months ago"
+  },
+  {
+    author: "James W.",
+    location: "Australia",
+    flag: "🇦🇺",
+    rating: 5.0,
+    project: "SaaS Platform Build",
+    content: "Finding a reliable tech partner is hard, but NRT made it easy. Their dedicated developer model works perfectly for our scaling needs.",
+    date: "6 months ago"
   }
 ];
 

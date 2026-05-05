@@ -134,6 +134,41 @@ export function About() {
             </div>
           </ScrollReveal>
 
+          {/* Team Section */}
+          <section className="py-24 mb-40">
+             <div className="text-center mb-20">
+                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange mb-4">Meet the Brains</div>
+                <h2 className="text-4xl sm:text-6xl font-black tracking-tighter">Our Core <span className="text-orange italic font-italic-serif font-normal">Team</span></h2>
+             </div>
+             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {[
+                  { name: "Muhammad Ahsan Khan", role: "Founder & CEO", tech: "Strategy / Architecture", img: "https://i.pravatar.cc/150?img=68" },
+                  { name: "S. Hamza", role: "Senior Developer", tech: "Node.js / React / DevOps", img: "https://i.pravatar.cc/150?img=11" },
+                  { name: "Ayesha Ahmed", role: "UI/UX Lead", tech: "Figma / Motion Design", img: "https://i.pravatar.cc/150?img=32" },
+                  { name: "Bilal Raza", role: "Backend Engineer", tech: "Python / AI / APIs", img: "https://i.pravatar.cc/150?img=12" },
+                  { name: "Sara Siddiqui", role: "QA Engineer", tech: "Automation / Testing", img: "https://i.pravatar.cc/150?img=5" },
+                  { name: "Zubair Ali", role: "Frontend Developer", tech: "Next.js / Tailwind", img: "https://i.pravatar.cc/150?img=13" },
+                  { name: "Mehak Fatima", role: "Project Manager", tech: "Agile / Communications", img: "https://i.pravatar.cc/150?img=25" },
+                  { name: "Omar Farooq", role: "Mobile Developer", tech: "Flutter / React Native", img: "https://i.pravatar.cc/150?img=14" },
+                ].map((member, i) => (
+                  <motion.div 
+                    key={i}
+                    whileHover={{ y: -10 }}
+                    className="bg-white rounded-[2.5rem] p-8 border border-black/5 shadow-xl text-center group"
+                  >
+                     <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-4 border-orange/10 group-hover:border-orange transition-colors shadow-lg">
+                        <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+                     </div>
+                     <h3 className="text-xl font-black tracking-tight mb-1">{member.name}</h3>
+                     <div className="text-orange text-[10px] font-black uppercase tracking-widest mb-4">{member.role}</div>
+                     <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest bg-black/5 rounded-full px-4 py-2 inline-block">
+                        {member.tech}
+                     </div>
+                  </motion.div>
+                ))}
+             </div>
+          </section>
+
           <Testimonials />
 
           <ScrollReveal direction="up">

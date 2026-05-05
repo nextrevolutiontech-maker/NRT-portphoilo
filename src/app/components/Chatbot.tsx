@@ -41,7 +41,7 @@ export function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputValue.trim()) return;
 
     const userMessage: Message = {
@@ -131,7 +131,7 @@ export function Chatbot() {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className="fixed bottom-6 right-6 z-50"
+            className="fixed bottom-24 right-6 sm:bottom-6 sm:right-24 z-50"
             onMouseEnter={() => setHoverModalOpen(true)}
             onMouseLeave={() => setHoverModalOpen(false)}
           >
@@ -139,7 +139,7 @@ export function Chatbot() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="bg-primary text-primary-foreground p-4 rounded-full shadow-2xl hover:bg-primary/90 transition-colors"
+              className="bg-[#0B1B35] text-white p-4 rounded-full shadow-2xl hover:bg-[#0B1B35]/90 transition-colors border border-white/10"
             >
               <MessageCircle className="h-6 w-6" />
             </motion.button>
@@ -211,10 +211,10 @@ export function Chatbot() {
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            className="fixed bottom-4 right-4 sm:bottom-24 sm:right-6 z-[10000] w-[calc(100vw-2rem)] sm:w-[380px] md:w-[400px] max-w-[calc(100vw-2rem)] h-[500px] sm:h-[600px] max-h-[calc(100vh-12rem)] bg-card/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-white/20"
+            className="fixed bottom-0 right-0 sm:bottom-24 sm:right-6 z-[10001] w-full sm:w-[380px] md:w-[400px] h-[70vh] sm:h-[600px] bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 text-primary-foreground p-4 flex items-center justify-between relative overflow-hidden">
+            <div className="bg-gradient-to-r from-[#F58220] via-[#FF4D00] to-[#FF005C] text-white p-4 flex items-center justify-between relative overflow-hidden">
               <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')] pointer-events-none" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -242,7 +242,7 @@ export function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/5 relative">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-50/50 dark:bg-zinc-950/50 relative">
               <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
               {messages.map((message) => (
                 <motion.div
@@ -252,9 +252,9 @@ export function Chatbot() {
                   className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl ${message.sender === "user"
+                    className={`max-w-[80%] p-3 rounded-2xl shadow-sm ${message.sender === "user"
                       ? "bg-primary text-primary-foreground rounded-br-none"
-                      : "bg-card text-card-foreground border border-border rounded-bl-none shadow-sm"
+                      : "bg-white dark:bg-zinc-800 text-foreground border border-border rounded-bl-none"
                       }`}
                   >
                     <p className="text-sm">{message.text}</p>
@@ -295,7 +295,7 @@ export function Chatbot() {
                     <button
                       key={index}
                       onClick={() => handleQuickReply(reply)}
-                      className="text-xs bg-secondary hover:bg-secondary/80 text-secondary-foreground px-3 py-1.5 rounded-full transition-colors"
+                      className="text-xs bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 px-3 py-1.5 rounded-full transition-colors border border-zinc-200 dark:border-zinc-700"
                     >
                       {reply}
                     </button>

@@ -65,6 +65,26 @@ export function Process() {
            <div className="text-[9px] font-mono text-black/40">npm run deploy --production</div>
         </div>
       )
+    },
+    {
+      num: "04",
+      title: "Ongoing Support",
+      desc: "We don't disappear after launch. Your dedicated team continues to monitor, improve, and scale your product monthly.",
+      color: "from-[#00D2FF] to-[#3a7bd5]",
+      icon: <RefreshCcw className="w-10 h-10" />,
+      floating: (
+        <div className="bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl">
+           <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366]"><ShieldCheck className="w-4 h-4" /></div>
+              <div className="text-[10px] font-black uppercase text-white/40 tracking-widest">Uptime 99.9%</div>
+           </div>
+           <div className="space-y-2">
+              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                 <motion.div animate={{ width: ["0%", "100%"] }} transition={{ duration: 2, repeat: Infinity }} className="h-full bg-[#25D366]" />
+              </div>
+           </div>
+        </div>
+      )
     }
   ];
 

@@ -118,7 +118,7 @@ export function Home() {
               </p>
                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16">
                 <Link to={ctaLinks.test} className="bg-[#0B1B35] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_50px_rgba(11,27,53,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center sm:justify-start gap-4 group">
-                  Try NRT for $499
+                  Try a Test Task
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
@@ -142,7 +142,14 @@ export function Home() {
                       />
                     ))}
                  </div>
-                 <div className="text-base sm:text-lg font-bold text-[#0B1B35]/40 italic">"The most reliable team we've ever worked with."</div>
+                 <div className="space-y-1">
+                    <div className="text-base sm:text-lg font-bold text-[#0B1B35]/40 italic">"The most reliable team we've ever worked with."</div>
+                    <div className="flex items-center gap-2">
+                       <span className="text-[10px] font-black uppercase tracking-widest text-[#F58220]">🇵🇰 Based in Karachi</span>
+                       <span className="text-[10px] font-black uppercase tracking-widest text-[#0B1B35]/30">|</span>
+                       <span className="text-[10px] font-black uppercase tracking-widest text-[#0B1B35]/60">Serving Worldwide</span>
+                    </div>
+                 </div>
               </div>
             </motion.div>
 
@@ -197,6 +204,34 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Trust Stats Bar */}
+      <ScrollReveal>
+        <section className="py-12 bg-[#0B1B35] text-white">
+           <div className="mx-auto max-w-7xl px-4 flex flex-wrap justify-center gap-12 sm:gap-24">
+              <div className="text-center">
+                 <div className="text-4xl font-black tracking-tighter text-[#F58220]">5.0/5</div>
+                 <div className="text-[10px] font-black uppercase tracking-widest text-white/40">Rating</div>
+              </div>
+              <div className="text-center">
+                 <div className="text-4xl font-black tracking-tighter text-[#F58220]">15+</div>
+                 <div className="text-[10px] font-black uppercase tracking-widest text-white/40">Countries</div>
+              </div>
+              <div className="text-center">
+                 <div className="text-4xl font-black tracking-tighter text-[#F58220]">100%</div>
+                 <div className="text-[10px] font-black uppercase tracking-widest text-white/40">Success</div>
+              </div>
+              <div className="text-center">
+                 <div className="text-4xl font-black tracking-tighter text-[#F58220]">50+</div>
+                 <div className="text-[10px] font-black uppercase tracking-widest text-white/40">Experts</div>
+              </div>
+              <div className="text-center">
+                 <div className="text-4xl font-black tracking-tighter text-[#F58220]">🇵🇰</div>
+                 <div className="text-[10px] font-black uppercase tracking-widest text-white/40">Karachi Based</div>
+              </div>
+           </div>
+        </section>
+      </ScrollReveal>
 
       {/* Trust Section - INFINITE MARQUEE WITH LOGOS */}
       <ScrollReveal>
@@ -633,6 +668,30 @@ export function Home() {
            ))}
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-32 bg-white px-4 sm:px-6 lg:px-8">
+         <div className="mx-auto max-w-4xl">
+            <div className="text-center mb-16">
+               <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">FAQ</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tighter">Common Questions</h2>
+            </div>
+            <div className="space-y-6">
+               {[
+                 { q: "How is NRT different from hiring a freelancer?", a: "Unlike freelancers, our team works full-time, under one roof, with backup developers if needed. You get agency-level stability with freelancer-level speed." },
+                 { q: "What if I'm not satisfied?", a: "We offer a small paid test task before any commitment. This ensures you only pay for a full plan once you've seen our quality." },
+                 { q: "Do you work with Pakistani businesses?", a: "Yes! We serve both local Pakistani businesses and global clients with the same level of dedication." },
+                 { q: "How do I contact you?", a: "WhatsApp: 0344-2013217 | Email: nextrevolutiontech@gmail.com" }
+               ].map((faq, i) => (
+                 <div key={i} className="p-8 bg-[#F8F9FA] rounded-[2rem] border border-black/5">
+                    <h3 className="text-xl font-black mb-4 tracking-tight">{faq.q}</h3>
+                    <p className="text-lg font-bold text-[#0B1B35]/60 leading-relaxed">{faq.a}</p>
+                 </div>
+               ))}
+            </div>
+         </div>
+      </section>
+
       <PreFooterCTA />
     </div>
   );

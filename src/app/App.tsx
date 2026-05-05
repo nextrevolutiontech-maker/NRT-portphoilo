@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Chatbot } from "./components/Chatbot";
+import { motion, AnimatePresence } from "motion/react";
 import { Toaster } from "sonner";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
@@ -29,6 +30,7 @@ const Dashboard = lazy(() => import("./pages/admin/Dashboard").then(module => ({
 const PrivacyPolicy = lazy(() => import("./pages/policies/PrivacyPolicy").then(module => ({ default: module.PrivacyPolicy })));
 const TermsOfService = lazy(() => import("./pages/policies/TermsOfService").then(module => ({ default: module.TermsOfService })));
 const GDPRCompliance = lazy(() => import("./pages/policies/GDPRCompliance").then(module => ({ default: module.GDPRCompliance })));
+const Pricing = lazy(() => import("./pages/Pricing").then(module => ({ default: module.Pricing })));
 const NotFound = lazy(() => import("./pages/NotFound").then(module => ({ default: module.NotFound })));
 
 // Loading Fallback
@@ -45,6 +47,7 @@ function PublicLayout() {
     <>
       <ExitIntentPopup />
       <WhatsAppWidget />
+      <Chatbot />
       <SmoothScroll>
         <GSAPWrapper>
           <CursorFollower />
@@ -66,7 +69,6 @@ function PublicLayout() {
               </AnimatePresence>
             </main>
             <Footer />
-            <Chatbot />
           </div>
         </GSAPWrapper>
       </SmoothScroll>
@@ -99,6 +101,7 @@ export default function App() {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/estimator" element={<CostEstimator />} />
             <Route path="*" element={<NotFound />} />
           </Route>

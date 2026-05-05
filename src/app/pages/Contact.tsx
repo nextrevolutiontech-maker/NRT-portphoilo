@@ -9,6 +9,7 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    whatsapp: "",
     company: "",
     phone: "",
     message: "",
@@ -98,16 +99,29 @@ export function Contact() {
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Company Name</label>
-                  <input
-                    name="company"
-                    type="text"
-                    placeholder="Acme Corp"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
-                  />
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Company Name</label>
+                    <input
+                      name="company"
+                      type="text"
+                      placeholder="Acme Corp"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">WhatsApp Number</label>
+                    <input
+                      name="whatsapp"
+                      type="text"
+                      placeholder="e.g. 03442013217"
+                      value={formData.whatsapp}
+                      onChange={handleChange}
+                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Your Message</label>
@@ -147,16 +161,25 @@ export function Contact() {
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">General Inquiries</div>
-                      <a href="mailto:support@nextrevolutiontech.tech" className="text-lg sm:text-xl font-black hover:text-[#F58220] transition-colors break-all">support@nextrevolutiontech.tech</a>
+                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-lg sm:text-xl font-black hover:text-[#F58220] transition-colors break-all">nextrevolutiontech@gmail.com</a>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-6 group">
+                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#25D366] border border-white/10 group-hover:bg-[#25D366] group-hover:text-white transition-all shadow-xl">
+                      <MessageSquare className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">WhatsApp / Call</div>
+                      <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-6 group">
                     <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover:bg-[#F58220] group-hover:text-white transition-all shadow-xl">
-                      <Clock className="w-6 h-6" />
+                      <Globe className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Response Guarantee</div>
-                      <div className="text-lg sm:text-xl font-black">Within 24 Business Hours</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Location</div>
+                      <div className="text-lg sm:text-xl font-black">Karachi, Pakistan</div>
                     </div>
                   </div>
                 </div>

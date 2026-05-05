@@ -32,6 +32,51 @@ export function Blog() {
       category: "Tech",
       color: "from-[#11998E] to-[#38EF7D]",
       accent: "bg-white/20"
+    },
+    {
+      title: "Why Pakistani Businesses Need a Website in 2025",
+      excerpt: "The digital landscape in Pakistan is shifting. Learn why having a professional web presence is no longer optional.",
+      date: "Nov 05, 2025",
+      readTime: "7 min read",
+      category: "Growth",
+      color: "from-[#FF4D00] to-[#FF005C]",
+      accent: "bg-white/20"
+    },
+    {
+      title: "How to Hire a Dedicated Developer Without the Risk",
+      excerpt: "Avoid the common pitfalls of hiring freelancers and discover the power of dedicated engineering partnerships.",
+      date: "Nov 12, 2025",
+      readTime: "6 min read",
+      category: "Hiring",
+      color: "from-[#0057FF] to-[#00A3FF]",
+      accent: "bg-white/20"
+    },
+    {
+      title: "eCommerce in Pakistan: What You Need to Know",
+      excerpt: "From payment gateways like JazzCash to logistics, we break down the essentials of selling online in Pakistan.",
+      date: "Nov 18, 2025",
+      readTime: "10 min read",
+      category: "eCommerce",
+      color: "from-[#FFD600] to-[#FF9900]",
+      accent: "bg-white/20"
+    },
+    {
+      title: "Top 5 Tech Mistakes Small Businesses Make",
+      excerpt: "Are you over-engineering or neglecting security? Here are the top mistakes that kill business growth.",
+      date: "Dec 02, 2025",
+      readTime: "5 min read",
+      category: "Tech",
+      color: "from-[#9900FF] to-[#FF00FF]",
+      accent: "bg-white/20"
+    },
+    {
+      title: "How NRT Helped a Karachi Business Scale Online",
+      excerpt: "A deep dive into how we transformed a local retail shop into a national eCommerce success story.",
+      date: "Dec 10, 2025",
+      readTime: "8 min read",
+      category: "Case Study",
+      color: "from-[#00D2FF] to-[#3a7bd5]",
+      accent: "bg-white/20"
     }
   ];
 

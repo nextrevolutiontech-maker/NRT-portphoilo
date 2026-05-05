@@ -20,6 +20,7 @@ export function Header() {
   const navigation = [
     { name: "SERVICES", href: "/services" },
     { name: "CASE STUDIES", href: "/case-studies" },
+    { name: "PRICING", href: "/pricing" },
     { name: "PROCESS", href: "/process" },
     { name: "ABOUT", href: "/about" },
     { name: "BLOG", href: "/blog" },
@@ -60,8 +61,12 @@ export function Header() {
           </div>
 
           <div className="hidden lg:flex items-center gap-5">
+            <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="hidden xl:flex items-center gap-2 text-[11px] font-black text-[#25D366] hover:text-[#128C7E] transition-colors tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+              0344-2013217
+            </a>
             <Link to="/contact?type=test" className="text-[11px] font-black text-[#F58220] px-6 py-3 border-2 border-[#F58220] rounded-full hover:bg-[#F58220] hover:text-white transition-all tracking-wider uppercase shadow-[0_5px_15px_rgba(245,130,32,0.1)]">
-              Small Paid Test
+              Try a Test Task
             </Link>
             <Link 
               to="/contact" 
@@ -103,7 +108,7 @@ export function Header() {
                 ))}
                 <div className="pt-8 border-t border-black/5 space-y-6">
                   <Link to="/contact?type=test" className="block text-xl font-black text-center" onClick={() => setMobileMenuOpen(false)}>
-                    Small Paid Test
+                    Try a Test Task
                   </Link>
                   <Link to="/contact" className="block w-full bg-[#F58220] text-white text-center py-6 rounded-2xl font-black text-lg shadow-xl" onClick={() => setMobileMenuOpen(false)}>
                     Get Started
@@ -115,7 +120,5 @@ export function Header() {
         </AnimatePresence>
       </motion.nav>
     </header>
-  );
-}
   );
 }

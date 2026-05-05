@@ -27,6 +27,7 @@ export function Footer() {
     ],
     company: [
       { name: "About Us", href: "/about" },
+      { name: "Pricing", href: "/pricing" },
       { name: "Our Process", href: "/process" },
       { name: "Success Stories", href: "/case-studies" },
       { name: "Latest Insights", href: "/blog" },
@@ -59,6 +60,13 @@ export function Footer() {
             <p className="text-white/40 text-lg font-bold leading-relaxed mb-10 max-w-sm">
                We solve real technical problems for growing businesses through dedicated engineering partnerships.
             </p>
+            <div className="mb-10">
+               <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-4">Location</div>
+               <div className="text-white/60 text-base font-bold flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-[#F58220]" />
+                  Karachi, Pakistan
+               </div>
+            </div>
             <div className="flex gap-3">
               {[
                 { icon: <Linkedin className="w-5 h-5" />, href: "#" },
@@ -113,24 +121,24 @@ export function Footer() {
           <div className="lg:col-span-3">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Connect</h4>
             <div className="space-y-6">
-               <a href="mailto:support@nextrevolutiontech.tech" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
+               <a href="mailto:nextrevolutiontech@gmail.com" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
                   <div className="flex items-center gap-4 mb-2">
                     <Mail className="w-5 h-5 text-[#F58220]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-white/30">Email Support</span>
                   </div>
-                  <div className="text-base font-black text-white group-hover:text-[#F58220] transition-colors truncate">
-                    support@nextrevolutiontech.tech
+                  <div className="text-sm font-black text-white group-hover:text-[#F58220] transition-colors break-all">
+                    nextrevolutiontech@gmail.com
                   </div>
                </a>
-               <div className="group block p-5 rounded-2xl bg-white/5 border border-white/10">
+               <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
                   <div className="flex items-center gap-4 mb-2">
                     <MessageSquare className="w-5 h-5 text-[#F58220]" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30">Priority Chat</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30">WhatsApp / Call</span>
                   </div>
-                  <div className="text-base font-black text-white">
-                    24/7 Global Ops
+                  <div className="text-base font-black text-white group-hover:text-[#F58220] transition-colors">
+                    0344-2013217
                   </div>
-               </div>
+               </a>
             </div>
           </div>
 

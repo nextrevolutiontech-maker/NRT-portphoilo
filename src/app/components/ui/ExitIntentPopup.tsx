@@ -42,13 +42,13 @@ export function ExitIntentPopup() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                    className="fixed inset-0 z-[20000] flex items-center justify-center p-4 bg-[#0B1B35]/40 backdrop-blur-md"
                 >
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0, y: 20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                        className="relative bg-card border border-primary/20 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden"
+                        className="relative bg-white border-2 border-[#F58220]/20 w-full max-w-lg rounded-[2.5rem] shadow-[0_30px_100px_rgba(11,27,53,0.4)] overflow-hidden"
                     >
                         {/* Close Button */}
                         <button
@@ -60,18 +60,18 @@ export function ExitIntentPopup() {
 
                         <div className="flex flex-col md:flex-row">
                             {/* Content */}
-                            <div className="p-8 md:p-10 text-center">
-                                <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                                    <Calendar className="h-8 w-8 text-primary" />
-                                </div>
-
-                                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                                    Wait! Before you go...
-                                </h2>
-
-                                <p className="text-muted-foreground mb-8 text-lg">
-                                    Don't leave your project to chance. <strong>Book a free 15-minute strategy call</strong> with our lead architect.
-                                </p>
+                             <div className="p-8 md:p-12 text-center">
+                                 <div className="mx-auto w-20 h-20 bg-[#F58220]/10 rounded-full flex items-center justify-center mb-8">
+                                     <Calendar className="h-10 w-10 text-[#F58220]" />
+                                 </div>
+ 
+                                 <h2 className="text-3xl md:text-4xl font-black text-[#0B1B35] mb-4 tracking-tighter">
+                                     Wait! Before <br /><span className="text-[#F58220] italic font-italic-serif font-normal">you go...</span>
+                                 </h2>
+ 
+                                 <p className="text-[#0B1B35]/60 mb-10 text-lg font-bold leading-relaxed">
+                                     Don't leave your project to chance. <br /><strong>Book a free 15-minute strategy call</strong> <br />with our lead architect.
+                                 </p>
 
                                 <div className="flex flex-col gap-3">
                                     <Link

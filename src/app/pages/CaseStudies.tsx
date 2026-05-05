@@ -27,6 +27,7 @@ export function CaseStudies() {
     {
       title: "Pulse Healthcare ERP",
       category: "Enterprise / SaaS / ERP",
+      client: "Healthcare Provider • USA",
       result: "Built a multi-tenant platform handling 50,000+ patient records with 99.9% uptime.",
       impact: "Reduced overhead by 40%.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422316/nrt-portfolio/ev6sddad59sg3uij5e89.png",
@@ -36,6 +37,7 @@ export function CaseStudies() {
     {
       title: "BabyBloom eCommerce",
       category: "Marketplace / Web Design",
+      client: "eCommerce Brand • UK",
       result: "A premium baby product store featuring advanced filtering, a seamless checkout flow, and a custom admin panel.",
       impact: "45% Increase in mobile conversions.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png",
@@ -45,6 +47,7 @@ export function CaseStudies() {
     {
       title: "Textile Mill POS",
       category: "Industrial / FinTech / API",
+      client: "Textile Manufacturer • Pakistan",
       result: "Integrated local tax authority (FBR) APIs with a custom Textile Mill POS for real-time automated invoicing.",
       impact: "Automated 10k+ invoices/mo.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422328/nrt-portfolio/gun48fjit8uqvh2phurv.png",
@@ -54,6 +57,7 @@ export function CaseStudies() {
     {
       title: "IraqBid: Auction App",
       category: "Mobile App / Real-time",
+      client: "Auction House • Iraq",
       result: "Developed a high-performance real-time auction app with OTP verification and live bidding systems.",
       impact: "Zero-latency real-time bidding.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422323/nrt-portfolio/ynlxrffuhffwgf0zl60v.png",
@@ -63,6 +67,7 @@ export function CaseStudies() {
     {
       title: "Autonomous AI Agent",
       category: "Agentic AI / Automation",
+      client: "SaaS Startup • Global",
       result: "Deployed an autonomous agent that handles lead qualification and meeting scheduling 24/7.",
       impact: "300% Lead Generation Boost.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422319/nrt-portfolio/gz4oq5ldtbqnas3dfpsn.jpg",
@@ -72,6 +77,7 @@ export function CaseStudies() {
     {
       title: "Ghar Jaisa: Food Web",
       category: "On-Demand / Local Delivery",
+      client: "Food Tech Startup • Pakistan",
       result: "A hyper-local food delivery platform focusing on home-cooked meals with real-time order tracking.",
       impact: "500+ Daily Active Orders.",
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422326/nrt-portfolio/sdbt9yae0i4iorczinon.png",
@@ -133,6 +139,11 @@ export function CaseStudies() {
                        <div className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.3em] sm:tracking-[0.6em] text-[#F58220] mb-4 sm:mb-10">{study.category}</div>
                        <h2 className="text-4xl sm:text-7xl xl:text-8xl font-black mb-6 sm:mb-12 tracking-tighter leading-[1.1] sm:leading-[0.9]">{study.title}</h2>
                        <p className="text-lg sm:text-2xl font-bold text-[#0B1B35]/60 mb-8 sm:mb-16 leading-relaxed max-w-2xl mx-auto lg:mx-0">{study.result}</p>
+                       
+                       <div className="bg-[#0B1B35]/5 px-4 py-2 rounded-xl border border-black/5 mb-8 w-fit mx-auto lg:mx-0">
+                          <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#F58220] mb-1">Partner</div>
+                          <div className="text-sm font-black tracking-tight">{study.client}</div>
+                       </div>
                        
                        <div className="flex items-center gap-4 sm:gap-6 p-5 sm:p-8 bg-white rounded-2xl sm:rounded-[3rem] border border-black/5 mb-8 sm:mb-16 shadow-lg group-hover:shadow-2xl transition-all w-fit mx-auto lg:mx-0">
                           <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-[#F58220]/10 flex items-center justify-center text-[#F58220]">
