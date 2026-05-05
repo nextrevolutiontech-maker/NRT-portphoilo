@@ -141,16 +141,13 @@ export function About() {
                 <h2 className="text-4xl sm:text-6xl font-black tracking-tighter">Our Core <span className="text-orange italic font-italic-serif font-normal">Team</span></h2>
              </div>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {[
-                  { name: "Muhammad Ahsan Khan", role: "Founder & CEO", tech: "Strategy / Architecture", img: "/ahsan.png" },
-                  { name: "S. Hamza", role: "Senior Developer", tech: "Node.js / React / DevOps", img: "/team1.png" },
-                  { name: "Ayesha Ahmed", role: "UI/UX Lead", tech: "Figma / Motion Design", img: "/team2.png" },
-                  { name: "Bilal Raza", role: "Backend Engineer", tech: "Python / AI / APIs", img: "/team3.png" },
-                  { name: "Sara Siddiqui", role: "QA Engineer", tech: "Automation / Testing", img: "https://i.pravatar.cc/150?img=5" },
-                  { name: "Zubair Ali", role: "Frontend Developer", tech: "Next.js / Tailwind", img: "https://i.pravatar.cc/150?img=13" },
-                  { name: "Mehak Fatima", role: "Project Manager", tech: "Agile / Communications", img: "https://i.pravatar.cc/150?img=25" },
-                  { name: "Omar Farooq", role: "Mobile Developer", tech: "Flutter / React Native", img: "https://i.pravatar.cc/150?img=14" },
-                ].map((member, i) => (
+                 {[
+                   { name: "Muhammad Ahsan Khan", role: "Founder & Full Stack Engineer", tech: "Architecture / Strategy", img: "/ahsan.png" },
+                   { name: "Ayan", role: "Full Stack Engineer", tech: "React / Node.js / Mobile", img: "/team1.png" },
+                   { name: "Fahad", role: "Full Stack Engineer", tech: "Backend / Cloud / DevOps", img: "https://i.pravatar.cc/150?img=11" },
+                   { name: "Muzamil", role: "Marketing & Full Stack Dev", tech: "Growth / Frontend / SEO", img: "https://i.pravatar.cc/150?img=12" },
+                   { name: "Taha", role: "Full Stack Engineer", tech: "Python / AI / APIs", img: "https://i.pravatar.cc/150?img=13" },
+                 ].map((member, i) => (
                   <motion.div 
                     key={i}
                     whileHover={{ y: -10 }}
