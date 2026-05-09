@@ -101,51 +101,73 @@ const testimonials: Testimonial[] = [
     project: "SaaS Platform Build",
     content: "Finding a reliable tech partner is hard, but NRT made it easy. Their dedicated developer model works perfectly for our scaling needs.",
     date: "6 months ago"
+  },
+  {
+    author: "Muzammil H.",
+    location: "UAE",
+    flag: "🇦🇪",
+    rating: 5.0,
+    project: "Inventory Management System",
+    content: "Excellent execution on our warehouse management system. The real-time tracking feature is a game-changer for our logistics team.",
+    date: "1 month ago"
+  },
+  {
+    author: "Fatima A.",
+    location: "Saudi Arabia",
+    flag: "🇸🇦",
+    rating: 5.0,
+    project: "Learning Management System",
+    content: "NRT built a highly scalable LMS for our training institute. The user interface is intuitive and our students love the seamless experience.",
+    date: "3 weeks ago"
   }
 ];
 
-export function Testimonials() {
+interface TestimonialsProps {
+  limit?: number;
+}
+
+export function Testimonials({ limit }: TestimonialsProps) {
+  const displayTestimonials = limit ? testimonials.slice(0, limit) : testimonials;
+
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange/5 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2" />
+    <section className="py-32 bg-transparent relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F58220]/5 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16">
-          <div className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-orange mb-4">Social Proof</div>
-          <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35] leading-tight">
-            Trusted by Global <br /><span className="text-orange italic font-italic-serif font-normal">Partners</span>.
+        <div className="mb-20">
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-6">Social Proof</div>
+          <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0B1B35] leading-tight">
+            Trusted by Global <br /><span className="text-[#F58220] italic font-italic-serif font-normal">Partners</span>.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, i) => (
+          {displayTestimonials.map((testimonial, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-[#F8F9FA] rounded-[2.5rem] p-8 sm:p-10 border border-black/5 relative flex flex-col justify-between group"
+              className="bg-white rounded-[3rem] p-10 border border-[#0B1B35]/5 hover:border-[#F58220]/20 transition-all relative flex flex-col justify-between group shadow-xl"
             >
-              <div className="absolute top-8 right-8 text-black/5 group-hover:text-orange/10 transition-colors">
-                <Quote className="w-12 h-12 rotate-180" />
+              <div className="absolute top-8 right-8 text-[#0B1B35]/5 group-hover:text-[#F58220]/20 transition-colors">
+                <Quote className="w-12 h-12 rotate-180 fill-current" />
               </div>
 
               <div>
-                <div className="flex items-center gap-1 mb-6">
+                <div className="flex items-center gap-1.5 mb-6">
                   {[...Array(5)].map((_, starI) => (
                     <Star 
                       key={starI} 
-                      className={`w-4 h-4 fill-current ${starI < Math.floor(testimonial.rating) ? 'text-[#FFD600]' : 'text-black/10'}`} 
+                      className={`w-4 h-4 fill-current ${starI < Math.floor(testimonial.rating) ? 'text-[#FFD600]' : 'text-[#0B1B35]/10'}`} 
                     />
                   ))}
-                  <span className="ml-2 text-sm font-black text-[#0B1B35]">{testimonial.rating.toFixed(1)}</span>
+                  <span className="ml-3 text-sm font-black text-[#0B1B35]">{testimonial.rating.toFixed(1)}</span>
                 </div>
 
-                <div className="text-[9px] font-black uppercase tracking-widest text-orange mb-4">
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#F58220] mb-4">
                   {testimonial.project}
                 </div>
 
@@ -154,35 +176,32 @@ export function Testimonials() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 pt-8 border-t border-black/5">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-xl shadow-sm border border-black/5">
-                  {testimonial.flag}
+              <div className="flex items-center gap-5 pt-8 border-t border-[#0B1B35]/5 mt-auto">
+                <div className="w-12 h-12 rounded-full bg-[#0B1B35]/5 flex items-center justify-center text-2xl shadow-sm border border-[#0B1B35]/10">
+                   {testimonial.flag}
                 </div>
                 <div>
-                  <div className="text-base font-black text-[#0B1B35]">{testimonial.author}</div>
-                  <div className="text-[10px] font-bold text-[#0B1B35]/40 uppercase tracking-wider">
-                    {testimonial.location} • {testimonial.date}
-                  </div>
+                   <div className="text-base font-black text-[#0B1B35] uppercase tracking-tight">{testimonial.author}</div>
+                   <div className="text-[9px] font-black text-[#0B1B35]/30 uppercase tracking-widest">
+                      {testimonial.location} • {testimonial.date}
+                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Global Stats Footer */}
-        <div className="mt-20 py-12 border-t border-black/5 flex flex-wrap justify-center gap-12 sm:gap-24">
-           <div className="text-center">
-              <div className="text-4xl font-black text-[#0B1B35] tracking-tighter mb-1">5.0/5</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-[#0B1B35]/40">Average Rating</div>
-           </div>
-           <div className="text-center">
-              <div className="text-4xl font-black text-[#0B1B35] tracking-tighter mb-1">100%</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-[#0B1B35]/40">Job Success</div>
-           </div>
-           <div className="text-center">
-              <div className="text-4xl font-black text-[#0B1B35] tracking-tighter mb-1">15+</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-[#0B1B35]/40">Countries Served</div>
-           </div>
+        <div className="mt-24 py-16 border-t border-[#0B1B35]/5 flex flex-wrap justify-center gap-12 sm:gap-32">
+           {[
+             { val: "5.0/5", label: "Average Rating" },
+             { val: "100%", label: "Job Success" },
+             { val: "15+", label: "Countries Served" }
+           ].map((stat, i) => (
+             <div key={i} className="text-center">
+                <div className="text-4xl sm:text-5xl font-black text-[#0B1B35] tracking-tighter mb-2">{stat.val}</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#0B1B35]/40">{stat.label}</div>
+             </div>
+           ))}
         </div>
       </div>
     </section>

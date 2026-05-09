@@ -156,7 +156,7 @@ export function Footer() {
           </div>
           <button 
             onClick={scrollToTop}
-            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#F58220] transition-all shadow-xl group"
+            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#F58220] hover:text-white transition-all shadow-xl group"
           >
              <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
           </button>

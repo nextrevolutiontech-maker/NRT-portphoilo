@@ -21,6 +21,7 @@ import {
   Factory,
   Sparkles
 } from "lucide-react";
+import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
 export function CaseStudies() {
   const studies = [
@@ -87,17 +88,24 @@ export function CaseStudies() {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-hidden">
       <Helmet>
         <title>Success Stories | Next Revolution Tech</title>
       </Helmet>
 
-      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-12 xl:px-24 relative">
-        <div className="mx-auto max-w-7xl">
-           <h1 className="text-5xl sm:text-[8rem] lg:text-[10rem] font-black tracking-tighter leading-[1] sm:leading-[0.8] mb-8">
-              Technical <br className="hidden sm:block" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00] italic font-italic-serif font-normal">Success</span> <br className="hidden sm:block" />Stories.
+      {/* SECTION 1: INTRO - Dark Hero */}
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+        <InteractiveHero3D />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="mx-auto max-w-7xl relative z-10">
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-12">Case Studies</div>
+           <h1 className="text-5xl sm:text-[8rem] lg:text-[10rem] font-black tracking-tighter leading-[1] sm:leading-[0.8] mb-12">
+              Technical <br className="hidden sm:block" />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Success</span> <br className="hidden sm:block" />
+              Stories.
            </h1>
-           <p className="text-xl sm:text-3xl font-bold text-[#0B1B35]/60 leading-tight max-w-3xl">
+           <p className="text-xl sm:text-3xl font-bold text-white/50 leading-tight max-w-3xl">
               We solve complex problems for global partners. Explore our gallery of world-class engineering results.
            </p>
         </div>
@@ -166,17 +174,18 @@ export function CaseStudies() {
          </div>
       </section>
 
-      {/* Massive Final CTA */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24">
-         <div className="mx-auto max-w-7xl">
-            <div className="bg-[#0B1B35] rounded-3xl sm:rounded-[6rem] p-12 sm:p-24 lg:p-48 text-center relative overflow-hidden shadow-[0_100px_200px_-50px_rgba(11,27,53,0.5)]">
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+      {/* Massive Final CTA - Dark */}
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#060E1B] relative overflow-hidden">
+         <InteractiveHero3D />
+         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+         <div className="mx-auto max-w-7xl relative z-10">
+            <div className="bg-white/5 backdrop-blur-3xl rounded-3xl sm:rounded-[6rem] p-12 sm:p-24 lg:p-48 text-center border border-white/10 shadow-2xl overflow-hidden relative">
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] pointer-events-none" />
                <h2 className="text-5xl sm:text-[10rem] font-black text-white leading-[1] sm:leading-[0.8] mb-12 sm:mb-20 relative z-10">
-                  Ready to be <br /><span className="text-[#F58220] italic font-italic-serif font-normal">Next?</span>
+                  Ready to be <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Next?</span>
                </h2>
                <div className="flex flex-wrap justify-center gap-12 relative z-10">
-                  <Link to="/contact" className="bg-[#F58220] text-white px-12 py-6 sm:px-20 sm:py-10 rounded-2xl sm:rounded-[2.5rem] text-2xl sm:text-4xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-6 group w-full sm:w-fit">
+                  <Link to="/contact" className="bg-[#F58220] text-white px-12 py-6 sm:px-20 sm:py-10 rounded-2xl sm:rounded-[2.5rem] text-2xl sm:text-4xl font-black shadow-[0_30px_60px_rgba(245,130,32,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-6 group w-full sm:w-fit">
                      Start My Project <ArrowRight className="w-7 h-7 sm:w-10 sm:h-10 group-hover:translate-x-2 transition-transform" />
                   </Link>
                </div>

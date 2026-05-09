@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Chatbot } from "./components/Chatbot";
 import { motion, AnimatePresence } from "motion/react";
 import { Toaster } from "sonner";
 import { Suspense, lazy } from "react";
@@ -10,10 +9,10 @@ import { Loader2 } from "lucide-react";
 // Components that should load immediately
 import { ScrollToTop } from "./components/ScrollToTop";
 import { GSAPWrapper } from "./components/GSAPWrapper";
-import { CursorFollower } from "./components/ui/CursorFollower";
+// import { CursorFollower } from "./components/ui/CursorFollower";
 import { SmoothScroll } from "./components/ui/SmoothScroll";
 import { ExitIntentPopup } from "./components/ui/ExitIntentPopup";
-import { WhatsAppWidget } from "./components/ui/WhatsAppWidget";
+import { FloatingWidgets } from "./components/FloatingWidgets";
 
 // Lazy Load Pages
 const Home = lazy(() => import("./pages/Home").then(module => ({ default: module.Home })));
@@ -46,11 +45,10 @@ function PublicLayout() {
   return (
     <>
       <ExitIntentPopup />
-      <WhatsAppWidget />
-      <Chatbot />
+      <FloatingWidgets />
       <SmoothScroll>
         <GSAPWrapper>
-          <CursorFollower />
+          {/* <CursorFollower /> */}
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">

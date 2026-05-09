@@ -13,8 +13,10 @@ import {
   Target,
   Settings,
   TrendingUp,
-  Workflow
+  Workflow,
+  ShieldCheck
 } from "lucide-react";
+import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
 export function Process() {
   const steps = [
@@ -89,18 +91,24 @@ export function Process() {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-hidden">
       <Helmet>
         <title>Our Process | Next Revolution Tech</title>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-12 xl:px-24 text-center">
-        <div className="mx-auto max-w-5xl">
-           <h1 className="text-5xl sm:text-[8rem] lg:text-[9xl] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-8">
-              Engineering <br className="hidden sm:block" /><span className="text-[#F58220] italic font-italic-serif font-normal">Perfection</span> <br className="hidden sm:block" />Step by Step.
+      {/* SECTION 1: INTRO - Dark Hero */}
+      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden text-center">
+        <InteractiveHero3D />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="mx-auto max-w-5xl relative z-10">
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">Our Workflow</div>
+           <h1 className="text-5xl sm:text-[8rem] lg:text-[9rem] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-10">
+              Engineering <br className="hidden sm:block" />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Perfection</span> <br className="hidden sm:block" />
+              Step by Step.
            </h1>
-          <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/60 leading-relaxed max-w-3xl mx-auto mb-16 sm:mb-20">
+          <p className="text-xl sm:text-2xl font-bold text-white/50 leading-relaxed max-w-3xl mx-auto">
              We've removed the friction from tech development. No long meetings, no hidden costs—just a high-speed engine for your business.
           </p>
         </div>
@@ -156,19 +164,21 @@ export function Process() {
          </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24">
-         <div className="mx-auto max-w-7xl">
-            <div className="bg-[#0B1B35] rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center relative overflow-hidden shadow-2xl">
-               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
+      {/* Final CTA - Dark */}
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#060E1B] relative overflow-hidden">
+         <InteractiveHero3D />
+         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+         <div className="mx-auto max-w-7xl relative z-10">
+            <div className="bg-white/5 backdrop-blur-3xl rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center border border-white/10 shadow-2xl relative overflow-hidden">
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] pointer-events-none" />
                <h2 className="text-5xl sm:text-[9rem] font-black text-white leading-[1] sm:leading-[0.8] tracking-tighter mb-12 sm:mb-16 relative z-10">
-                  Ready to <br /><span className="text-[#F58220] italic font-italic-serif font-normal">accelerate?</span>
+                  Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">accelerate?</span>
                </h2>
                <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 relative z-10">
-                  <Link to="/contact" className="bg-[#F58220] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">
+                  <Link to="/contact" className="bg-[#F58220] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-[0_30px_60px_rgba(245,130,32,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">
                      Start My Task <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/10 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black hover:bg-white/10 transition-all">
+                  <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black hover:bg-white hover:text-[#0B1B35] transition-all">
                      Try a Test Task
                   </Link>
                </div>

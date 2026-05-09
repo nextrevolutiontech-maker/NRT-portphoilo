@@ -1,17 +1,17 @@
 :root {
-  /* Strict Brand Color System - Full Light Mode */
-  --navy: #0B1B35;         /* Primary: Headings, main text */
-  --deep-blue: #1A365D;     /* Secondary: Accents, specific card borders */
-  --orange: #F58220;        /* Accent: Buttons, CTAs, links ONLY */
+  /* Strict Brand Color System - Premium Dark Mode */
+  --navy: #0B1B35;         /* Deepest Navy */
+  --deep-blue: #1A365D;     /* Secondary Dark */
+  --orange: #F58220;        /* Brand Accent */
   
-  --bg-main: #F8F9FA;      /* Pure Light Background for ALL pages */
-  --bg-card: #FFFFFF;      /* White for Cards */
+  --bg-main: #060E1B;      /* Rich Dark Background */
+  --bg-card: #0B1B35;      /* Navy for Cards */
   
-  --text-dark: #0B1B35;
-  --text-muted: rgba(11, 27, 53, 0.6);
+  --text-dark: #FFFFFF;    /* White text for dark bg */
+  --text-muted: rgba(255, 255, 255, 0.6);
   
-  --border: rgba(0, 0, 0, 0.05);
-  --radius: 12px;
+  --border: rgba(255, 255, 255, 0.1);
+  --radius: 16px;
 }
 
 /* Global Reset & Base */

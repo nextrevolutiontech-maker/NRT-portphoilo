@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { SEO } from "../components/SEO";
 import { Testimonials } from "../components/Testimonials";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
+import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
 export function About() {
   const ctaLinks = {
@@ -12,30 +13,39 @@ export function About() {
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-x-hidden">
       <SEO 
         title="About Us" 
         description="Learn more about Next Revolution Tech, your dedicated technology partner. We eliminate technical bottlenecks for growing businesses with 24/7 operations."
       />
 
-      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      {/* SECTION 1: INTRO - Dark Hero */}
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+        <InteractiveHero3D />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="mx-auto max-w-7xl relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="max-w-4xl mb-20 sm:mb-32"
+            className="max-w-4xl"
           >
-            <h1 className="text-4xl sm:text-7xl lg:text-[6.5rem] font-black mb-8 sm:mb-10 tracking-tighter leading-[0.95] sm:leading-[0.9]">
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">Who We Are</div>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black mb-10 tracking-tighter leading-[0.9]">
               We are your <br />
-              <span className="text-orange italic font-italic-serif font-normal">dedicated</span> <br />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">dedicated</span> <br />
               tech partner.
             </h1>
-            <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/60 leading-relaxed max-w-2xl">
-              We started Next Revolution Tech because we saw too many growing businesses struggling with small technical hurdles that slowed them down.
+            <p className="text-xl sm:text-2xl font-bold text-white/50 leading-relaxed max-w-2xl">
+              We solve real technical problems for growing businesses — so you don’t have to manage multiple developers or deal with constant issues.
             </p>
           </motion.div>
-
+        </div>
+      </section>
+      {/* SECTION 2: MISSION & VALUES */}
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24">
+        <div className="mx-auto max-w-7xl">
           <ScrollReveal direction="up" distance={40}>
             <div className="grid md:grid-cols-2 gap-10 mb-40">
               <div className="relative overflow-hidden rounded-[3rem] bg-white p-12 sm:p-16 shadow-xl border border-black/5 group">
@@ -134,50 +144,78 @@ export function About() {
             </div>
           </ScrollReveal>
 
-          {/* Team Section */}
-          <section className="py-24 mb-40">
-             <div className="text-center mb-20">
-                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange mb-4">Meet the Brains</div>
-                <h2 className="text-4xl sm:text-6xl font-black tracking-tighter">Our Core <span className="text-orange italic font-italic-serif font-normal">Team</span></h2>
+          {/* Team Section - Transparent Blur Redesign */}
+          <section className="py-24 mb-40 bg-[#0B1B35]/80 backdrop-blur-3xl rounded-[3rem] relative overflow-hidden border border-white/10 mx-4 sm:mx-6 lg:mx-12 xl:mx-24 shadow-2xl">
+             <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('/noise.svg')]" />
+             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#F58220]/10 rounded-full blur-[120px] pointer-events-none" />
+             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+             <div className="text-center mb-16 relative z-10 px-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                   <Users className="w-4 h-4 text-[#F58220]" />
+                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">The Collective</span>
+                </div>
+                <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-white">
+                   Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Engineers.</span>
+                </h2>
              </div>
-             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 px-6 sm:px-8 relative z-10 pb-8">
                  {[
-                   { name: "Muhammad Ahsan Khan", role: "Founder & Full Stack Engineer", tech: "Architecture / Strategy", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994668/nrt_team/ahsan_new.jpg", pos: "object-top" },
-                   { name: "Ayan", role: "Full Stack Engineer", tech: "React / Node.js / Mobile", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994671/nrt_team/ayan.jpg", pos: "object-center" },
-                   { name: "Fahad", role: "Full Stack Engineer", tech: "Backend / Cloud / DevOps", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994672/nrt_team/fahad.jpg", pos: "object-top" },
-                   { name: "Muzamil", role: "Marketing & Full Stack Dev", tech: "Growth / Frontend / SEO", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994673/nrt_team/muzamil.jpg", pos: "object-center" },
-                   { name: "Taha", role: "Full Stack Engineer", tech: "Python / AI / APIs", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1777994674/nrt_team/taha.jpg", pos: "object-center" },
+                   { name: "Ahsan Khan", role: "Founder & Lead", tech: "Architecture", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/c_fill,g_face,w_500,h_500/v1777994668/nrt_team/ahsan_new.jpg", pos: "object-top", color: "from-blue-500" },
+                   { name: "Ayan", role: "Full Stack Engineer", tech: "Mobile / React", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/c_fill,g_face,w_500,h_500/v1777994671/nrt_team/ayan.jpg", pos: "object-center", color: "from-purple-500" },
+                   { name: "Fahad", role: "Full Stack Engineer", tech: "DevOps / Cloud", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/c_fill,g_face,w_500,h_500,e_contrast:30,e_vibrance:20/v1777994672/nrt_team/fahad.jpg", pos: "object-top", color: "from-orange-500" },
+                   { name: "Muzamil", role: "Marketing & Dev", tech: "Growth / SEO", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/c_fill,g_face,w_500,h_500/v1777994673/nrt_team/muzamil.jpg", pos: "object-center", color: "from-emerald-500" },
+                   { name: "Taha", role: "Full Stack Engineer", tech: "AI / Python", img: "https://res.cloudinary.com/de4oqb7rz/image/upload/c_fill,g_face,w_500,h_500/v1777994674/nrt_team/taha.jpg", pos: "object-center", color: "from-red-500" },
                  ].map((member, i) => (
-                  <motion.div 
-                    key={i}
-                    whileHover={{ y: -10 }}
-                    className="bg-white rounded-[2.5rem] p-8 border border-black/5 shadow-xl text-center group"
-                  >
-                     <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-4 border-orange/10 group-hover:border-orange transition-colors shadow-lg">
-                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover ${(member as any).pos || 'object-center'}`} />
-                     </div>
-                     <h3 className="text-xl font-black tracking-tight mb-1">{member.name}</h3>
-                     <div className="text-orange text-[10px] font-black uppercase tracking-widest mb-4">{member.role}</div>
-                     <div className="text-[10px] font-bold text-black/40 uppercase tracking-widest bg-black/5 rounded-full px-4 py-2 inline-block">
-                        {member.tech}
-                     </div>
-                  </motion.div>
-                ))}
+                   <motion.div 
+                     key={i}
+                     whileHover={{ y: -8 }}
+                     className="bg-white/5 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-5 border border-white/10 text-center group relative overflow-hidden transition-all duration-500 hover:bg-white/[0.08] hover:border-white/20 shadow-2xl"
+                   >
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-gradient-to-b from-white/5 to-transparent" />
+                      
+                      <div className="relative w-20 h-20 sm:w-28 sm:h-28 mx-auto mb-4 sm:mb-6">
+                         <div className={`absolute inset-0 bg-gradient-to-br ${member.color} to-transparent rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`} />
+                         <div className="relative w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-white/10 group-hover:border-[#F58220] transition-colors duration-500 shadow-2xl z-10 bg-[#0B1B35]">
+                            <img 
+                              src={member.img} 
+                              alt={member.name} 
+                              className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${(member as any).pos || 'object-center'}`} 
+                            />
+                            <div className={`absolute inset-0 bg-gradient-to-t ${member.color}/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                         </div>
+                      </div>
+
+                      <h3 className="text-sm sm:text-base font-black tracking-tight text-white mb-1 uppercase line-clamp-1">{member.name}</h3>
+                      <div className="text-[#F58220] text-[8px] font-black uppercase tracking-[0.15em] mb-4 line-clamp-1">{member.role}</div>
+                      
+                      <div className="relative flex flex-col gap-2">
+                         <div className="text-[8px] font-bold text-white/30 uppercase tracking-widest bg-white/5 rounded-lg px-2 py-1.5 border border-white/5 transition-colors group-hover:bg-white/10 group-hover:text-white/60">
+                            {member.tech}
+                         </div>
+                      </div>
+                   </motion.div>
+                 ))}
              </div>
           </section>
 
           <Testimonials />
 
+          {/* Final CTA Section - Dark */}
           <ScrollReveal direction="up">
-            <div className="text-center mt-32 sm:mt-40">
-              <h2 className="text-4xl sm:text-7xl lg:text-[8rem] font-black mb-12 sm:mb-16 tracking-tighter leading-[0.95] sm:leading-[0.9]">Ready to <br /><span className="italic font-italic-serif text-orange">rule</span> the tech?</h2>
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-                <Link to={ctaLinks.started} className="bg-[#0B1B35] text-white py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl shadow-xl hover:bg-orange transition-all">
-                  Get Started
-                </Link>
-                <Link to={ctaLinks.test} className="bg-white border-2 border-[#0B1B35] text-[#0B1B35] py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl hover:bg-[#0B1B35] hover:text-white transition-all">
-                  Small Paid Test
-                </Link>
+            <div className="text-center mt-32 sm:mt-40 bg-[#0B1B35]/80 backdrop-blur-3xl rounded-[4rem] p-16 sm:p-32 border border-white/10 relative overflow-hidden shadow-2xl mb-32 mx-4 sm:mx-6 lg:mx-12 xl:mx-24">
+              <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+              <div className="relative z-10">
+                <h2 className="text-4xl sm:text-7xl lg:text-[8rem] font-black mb-16 tracking-tighter leading-[0.9] text-white">Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Rule</span> Your Tech?</h2>
+                <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+                  <Link to={ctaLinks.started} className="bg-[#F58220] text-white py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl shadow-[0_30px_60px_rgba(245,130,32,0.4)] hover:scale-105 transition-all">
+                    Get Started Now
+                  </Link>
+                  <Link to={ctaLinks.test} className="bg-white/5 border-2 border-white/20 text-white py-6 sm:py-8 px-10 sm:px-16 text-xl sm:text-2xl font-black rounded-2xl hover:bg-white hover:text-[#0B1B35] transition-all">
+                    Small Paid Test
+                  </Link>
+                </div>
               </div>
             </div>
           </ScrollReveal>

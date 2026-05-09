@@ -61,7 +61,7 @@ export function HoverModal({
           animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
           exit={{ opacity: 0, y: position === "bottom" ? -10 : position === "top" ? 10 : 0, x: position === "right" ? -10 : position === "left" ? 10 : 0, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className={`absolute ${getPositionClasses()} ${getAlignClasses()} w-64 bg-background border border-border rounded-lg shadow-xl p-4 z-[9999] pointer-events-auto ${className}`}
+          className={`absolute ${getPositionClasses()} ${getAlignClasses()} w-64 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border border-border rounded-xl shadow-2xl p-4 z-[9999] pointer-events-auto ${className}`}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           style={{ pointerEvents: 'auto', isolation: 'isolate' }}
@@ -73,7 +73,7 @@ export function HoverModal({
             </div>
           )}
           {/* Arrow pointing to trigger element */}
-          <div className={`absolute ${getArrowPosition()} w-4 h-4 bg-background border-l border-t border-border`}></div>
+          <div className={`absolute ${getArrowPosition()} w-4 h-4 bg-white/95 dark:bg-zinc-950/95 border-l border-t border-border`}></div>
         </motion.div>
       )}
     </AnimatePresence>

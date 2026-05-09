@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Mail, Send, ShieldCheck, Clock, ArrowRight } from "lucide-react";
+import { Mail, Send, ShieldCheck, Clock, ArrowRight, MessageSquare, Globe } from "lucide-react";
 import { SEO } from "../components/SEO";
 import { toast } from "sonner";
 import { motion } from "motion/react";
 import { API_BASE_URL } from "../../config";
+import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -31,11 +32,14 @@ export function Contact() {
       if (!response.ok) throw new Error('Failed to send');
 
       setStatus('success');
-      toast.success("Message sent!", { description: "We'll get back to you within 24 hours." });
-      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+      toast.success("Message Sent Successfully!", { 
+        description: "Our strategy team will review and respond within 24 hours.",
+        style: { background: '#0B1B35', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }
+      });
+      setFormData({ name: "", email: "", whatsapp: "", company: "", phone: "", message: "" });
     } catch (error) {
       setStatus('error');
-      toast.error("Failed to send message", { description: "Please check if the backend is running or try again." });
+      toast.error("Transmission Error", { description: "Please check your connection or contact us directly via WhatsApp." });
     } finally {
       setStatus('idle');
     }
@@ -46,36 +50,60 @@ export function Contact() {
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-[#F8F9FA] text-[#0B1B35] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-x-hidden">
       <SEO 
         title="Contact Us" 
         description="Ready to stop dealing with tech hurdles? Get in touch with Next Revolution Tech for reliable fixes, custom integrations, and 24/7 dedicated support."
       />
 
-      <section className="pt-12 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-4xl mb-24 text-center sm:text-left">
-            <h1 className="text-4xl sm:text-7xl lg:text-[7.5rem] font-black tracking-tighter leading-[0.95] sm:leading-[0.85] mb-10">
+      {/* SECTION 1: INTRO - Dark Hero */}
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+        <InteractiveHero3D />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="mx-auto max-w-7xl relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="max-w-4xl"
+          >
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">Get In Touch</div>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
                Ready to stop <br />
-               <span className="text-[#F58220] italic font-italic-serif font-normal">dealing</span> with tech?
+               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">dealing</span> with <br />
+               tech hurdles?
             </h1>
-            <p className="text-xl sm:text-2xl font-bold text-[#0B1B35]/40 leading-tight max-w-2xl">
+            <p className="text-xl sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
               Fill out the form below or start with a small paid test. We respond to all inquiries within 24 hours.
             </p>
-          </div>
+          </motion.div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform translate-y-[1px]">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[60px] sm:h-[100px] fill-[#F8FAFC]">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113,51.11,1200,80V0Z" opacity=".1"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".2"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+          </svg>
+        </div>
+      </section>
 
+        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 xl:px-24 mb-40 mt-24 sm:mt-40 relative z-20">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             {/* Form */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-[3rem] p-8 sm:p-12 shadow-2xl border border-black/5 relative overflow-hidden"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-3xl rounded-[3rem] p-8 sm:p-12 shadow-[0_32px_64px_-16px_rgba(11,27,53,0.1)] border border-white relative overflow-hidden group"
             >
-              <div className="absolute inset-0 opacity-5 bg-[url('/noise.svg')] pointer-events-none" />
+              <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')] pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#F58220]/5 rounded-full blur-3xl group-hover:bg-[#F58220]/10 transition-colors duration-700" />
+              
               <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Full Name</label>
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0B1B35]/40 ml-4">Full Name</label>
                     <input
                       name="name"
                       type="text"
@@ -83,11 +111,11 @@ export function Contact() {
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                      className="w-full bg-white/50 border border-[#0B1B35]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220] font-bold transition-all shadow-sm hover:border-[#F58220]/20"
                     />
                   </div>
-                  <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Work Email</label>
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0B1B35]/40 ml-4">Work Email</label>
                     <input
                       name="email"
                       type="email"
@@ -95,36 +123,36 @@ export function Contact() {
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                      className="w-full bg-white/50 border border-[#0B1B35]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220] font-bold transition-all shadow-sm hover:border-[#F58220]/20"
                     />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Company Name</label>
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0B1B35]/40 ml-4">Company Name</label>
                     <input
                       name="company"
                       type="text"
                       placeholder="Acme Corp"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                      className="w-full bg-white/50 border border-[#0B1B35]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220] font-bold transition-all shadow-sm hover:border-[#F58220]/20"
                     />
                   </div>
-                  <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">WhatsApp Number</label>
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0B1B35]/40 ml-4">WhatsApp Number</label>
                     <input
                       name="whatsapp"
                       type="text"
                       placeholder="e.g. 03442013217"
                       value={formData.whatsapp}
                       onChange={handleChange}
-                      className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all"
+                      className="w-full bg-white/50 border border-[#0B1B35]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220] font-bold transition-all shadow-sm hover:border-[#F58220]/20"
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-[#0B1B35]/40 ml-4">Your Message</label>
+                <div className="space-y-3">
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0B1B35]/40 ml-4">Your Message</label>
                   <textarea
                     name="message"
                     required
@@ -132,15 +160,15 @@ export function Contact() {
                     placeholder="Tell us about your tech hurdles..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-[#F8F9FA] border border-black/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 font-bold transition-all resize-none"
+                    className="w-full bg-white/50 border border-[#0B1B35]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#F58220] font-bold transition-all resize-none shadow-sm hover:border-[#F58220]/20"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-[#F58220] text-white py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-4 group"
+                  className="w-full bg-[#F58220] text-white py-6 rounded-2xl text-xl font-black shadow-[0_20px_40px_-10px_rgba(245,130,32,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:hover:scale-100"
                 >
-                  {status === 'loading' ? 'Sending Strategy...' : 'Send Message'} 
+                  {status === 'loading' ? 'Establishing Connection...' : 'Send Strategy Message'} 
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
@@ -149,57 +177,68 @@ export function Contact() {
             {/* Info Cards */}
             <div className="space-y-8">
               <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-[#0B1B35] to-[#1A365D] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden"
+                className="bg-gradient-to-br from-[#0B1B35] via-[#102341] to-[#0B1B35] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden border border-white/5 group"
               >
-                <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
-                <h3 className="text-3xl font-black mb-10 tracking-tighter">Direct Channels</h3>
+                <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#F58220]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#F58220]/10 transition-colors" />
+                
+                <h3 className="text-3xl font-black mb-10 tracking-tighter relative z-10">Direct Channels</h3>
                 <div className="space-y-8 relative z-10">
-                  <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover:bg-[#F58220] group-hover:text-white transition-all shadow-xl">
-                      <Mail className="w-6 h-6" />
+                  <div className="flex items-center gap-6 group/item">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover/item:bg-[#F58220] group-hover/item:text-white transition-all shadow-xl">
+                      <Mail className="w-7 h-7" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">General Inquiries</div>
-                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-lg sm:text-xl font-black hover:text-[#F58220] transition-colors break-all">nextrevolutiontech@gmail.com</a>
+                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-base sm:text-lg font-black hover:text-[#F58220] transition-colors break-words lg:break-all xl:break-normal">
+                        nextrevolutiontech@gmail.com
+                      </a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#25D366] border border-white/10 group-hover:bg-[#25D366] group-hover:text-white transition-all shadow-xl">
-                      <MessageSquare className="w-6 h-6" />
+                  <div className="flex items-center gap-6 group/item">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#25D366] border border-white/10 group-hover/item:bg-[#25D366] group-hover/item:text-white transition-all shadow-xl">
+                      <MessageSquare className="w-7 h-7" />
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">WhatsApp / Call</div>
-                      <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
+                      <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-xl sm:text-2xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#F58220] border border-white/10 group-hover:bg-[#F58220] group-hover:text-white transition-all shadow-xl">
-                      <Globe className="w-6 h-6" />
+                  <div className="flex items-center gap-6 group/item">
+                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#3B82F6] border border-white/10 group-hover/item:bg-[#3B82F6] group-hover/item:text-white transition-all shadow-xl">
+                      <Globe className="w-7 h-7" />
                     </div>
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Location</div>
-                      <div className="text-lg sm:text-xl font-black">Karachi, Pakistan</div>
+                      <div className="text-xl sm:text-2xl font-black">Karachi, Pakistan</div>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-[#F58220] to-[#FF4D00] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden"
+                className="bg-gradient-to-br from-[#F58220] to-[#FF4D00] rounded-[3rem] p-10 sm:p-12 text-white shadow-2xl relative overflow-hidden group"
               >
                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
-                <ShieldCheck className="w-16 h-16 mb-8 text-white relative z-10" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl translate-y-1/2 translate-x-1/2" />
+                <ShieldCheck className="w-16 h-16 mb-8 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Secure & Confidential</h3>
-                <p className="text-white/80 text-lg font-bold leading-relaxed relative z-10">
+                <p className="text-white/90 text-lg font-bold leading-relaxed relative z-10">
                   We sign NDAs by default for all major projects. Your data and codebase are 100% secure with our internal team.
                 </p>
               </motion.div>
             </div>
           </div>
         </div>
-      </section>
 
       <div className="h-24 bg-gradient-to-b from-[#F8F9FA] to-[#0B1B35]" />
     </div>

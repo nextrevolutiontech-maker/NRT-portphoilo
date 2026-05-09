@@ -72,21 +72,21 @@ export function EngagementModels() {
     ];
 
     return (
-        <section className="relative py-24 overflow-hidden" ref={containerRef}>
+        <section className="relative py-24 overflow-hidden bg-white" ref={containerRef}>
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
                     src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
                     alt="Network Background"
-                    className="w-full h-full object-cover opacity-20"
+                    className="w-full h-full object-cover opacity-[0.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-white/90 to-white" />
             </div>
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="mb-4 text-primary text-3xl md:text-4xl font-bold">Engagement Models</h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                    <h2 className="mb-4 text-[#0B1B35] text-4xl sm:text-5xl font-black tracking-tighter uppercase">Engagement Models</h2>
+                    <p className="text-xl text-[#0B1B35]/60 max-w-2xl mx-auto leading-relaxed font-bold italic">
                         Flexible cooperation models tailored to your business stage and goals.
                     </p>
                 </div>
@@ -95,42 +95,42 @@ export function EngagementModels() {
                     {models.map((model, index) => (
                         <div
                             key={index}
-                            className={`relative rounded-xl p-8 border transition-all duration-300 model-card flex flex-col ${model.highlight
-                                ? "bg-secondary/10 border-primary shadow-[0_0_30px_-10px_var(--color-primary)] scale-105 z-10"
-                                : "bg-card border-border hover:border-primary/50 hover:shadow-lg"
+                            className={`relative rounded-[2.5rem] p-10 border transition-all duration-300 model-card flex flex-col ${model.highlight
+                                ? "bg-white border-[#F58220] shadow-[0_20px_50px_-12px_rgba(245,130,32,0.15)] scale-105 z-10"
+                                : "bg-[#F8FAFC] border-[#0B1B35]/5 hover:border-[#F58220]/30 hover:shadow-xl"
                                 }`}
                         >
                             {model.highlight && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-semibold px-4 py-1 rounded-full shadow-md">
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#F58220] text-white text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-full shadow-lg">
                                     Most Popular
                                 </div>
                             )}
 
-                            <div className="mb-6 w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-primary mx-auto">
+                            <div className="mb-8 w-20 h-20 bg-[#F58220]/10 rounded-2xl flex items-center justify-center text-[#F58220] mx-auto">
                                 {model.icon}
                             </div>
 
-                            <h3 className="text-2xl font-bold text-center text-foreground mb-2">{model.title}</h3>
-                            <div className="text-primary text-sm font-medium text-center mb-6 uppercase tracking-wider">{model.subtitle}</div>
+                            <h3 className="text-3xl font-black text-center text-[#0B1B35] mb-2 tracking-tighter uppercase">{model.title}</h3>
+                            <div className="text-[#F58220] text-[10px] font-black text-center mb-8 uppercase tracking-widest">{model.subtitle}</div>
 
-                            <p className="text-muted-foreground text-center mb-8 leading-relaxed">
+                            <p className="text-[#0B1B35]/60 text-center mb-10 leading-relaxed font-bold italic">
                                 {model.description}
                             </p>
 
-                            <div className="space-y-4 mb-8 flex-grow">
+                            <div className="space-y-4 mb-10 flex-grow">
                                 {model.features.map((feature, i) => (
                                     <div key={i} className="flex items-start gap-3">
-                                        <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm text-foreground/80">{feature}</span>
+                                        <CheckCircle2 className="h-5 w-5 text-[#F58220] flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm font-bold text-[#0B1B35]/80">{feature}</span>
                                     </div>
                                 ))}
                             </div>
 
                             <Link
                                 to="/contact"
-                                className={`w-full py-3 px-6 rounded-md text-center font-medium transition-colors ${model.highlight
-                                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
-                                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                className={`w-full py-5 px-8 rounded-2xl text-center font-black text-lg transition-all ${model.highlight
+                                    ? "bg-[#F58220] text-white hover:scale-105 shadow-xl"
+                                    : "bg-[#0B1B35]/5 text-[#0B1B35] hover:bg-[#0B1B35]/10"
                                     }`}
                             >
                                 Get a Quote
