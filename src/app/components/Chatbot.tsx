@@ -139,9 +139,9 @@ export function Chatbot() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="bg-[#0B1B35] text-white p-4 rounded-full shadow-2xl hover:bg-[#0B1B35]/90 transition-colors border border-white/10"
+              className="bg-[#0F172A] text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-[#0F172A]/90 transition-colors border border-white/10"
             >
-              <MessageCircle className="h-6 w-6" />
+              <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
             </motion.button>
             <HoverModal
               isOpen={hoverModalOpen}
@@ -214,7 +214,7 @@ export function Chatbot() {
             className="fixed bottom-0 right-0 sm:bottom-24 sm:right-6 z-[10001] w-full sm:w-[380px] md:w-[400px] h-[70vh] sm:h-[600px] bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#F58220] via-[#FF4D00] to-[#FF005C] text-white p-4 flex items-center justify-between relative overflow-hidden">
+            <div className="bg-gradient-to-r from-[#3A5CCC] via-[#27324A] to-[#3A5CCC] text-white p-4 flex items-center justify-between relative overflow-hidden">
               <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')] pointer-events-none" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">

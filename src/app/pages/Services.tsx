@@ -25,7 +25,7 @@ export function Services() {
       title: "eCommerce Tech",
       desc: "Fix your store issues, improve speed, and keep everything running smoothly without interruptions.",
       features: ["Bug fixing", "Speed optimization", "Theme customization"],
-      color: "from-[#FFD600] to-[#FF9900]",
+      color: "from-[#27324A] to-[#27324A]",
       accent: "bg-white/10"
     },
     {
@@ -41,7 +41,7 @@ export function Services() {
       title: "Automation & Systems",
       desc: "Reduce manual work and build smart systems that save time and scale your operations.",
       features: ["Workflow automation", "Backend management", "System health checks"],
-      color: "from-[#FF4D00] to-[#FF005C]",
+      color: "from-[#27324A] to-[#3A5CCC]",
       accent: "bg-white/10"
     },
     {
@@ -72,23 +72,23 @@ export function Services() {
 
   const whyChooseUs = [
     { icon: <Users className="w-6 h-6" />, text: "No need to hire multiple developers", color: "from-[#0057FF] to-[#00A3FF]" },
-    { icon: <Clock className="w-6 h-6" />, text: "Fast turnaround on tasks", color: "from-[#F58220] to-[#FF4D00]" },
+    { icon: <Clock className="w-6 h-6" />, text: "Fast turnaround on tasks", color: "from-[#3A5CCC] to-[#27324A]" },
     { icon: <Target className="w-6 h-6" />, text: "Long-term technical partner", color: "from-[#6366f1] to-[#a855f7]" },
     { icon: <ShieldCheck className="w-6 h-6" />, text: "Reliable and consistent support", color: "from-[#11998E] to-[#38EF7D]" }
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
       <SEO 
         title="Our Services" 
         description="Comprehensive technical services including eCommerce development, API integrations, and AI automation. We provide dedicated engineering support for growing brands."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -96,10 +96,10 @@ export function Services() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-4xl"
           >
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">What We Do</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">What We Do</div>
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
                Solutions That <br />
-               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Scale</span> Your <br />
+               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Scale</span> Your <br />
                Business.
             </h1>
             <p className="text-xl sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
@@ -138,7 +138,7 @@ export function Services() {
                       ))}
                     </ul>
                   </div>
-                  <Link to="/contact" className="relative z-10 inline-flex items-center justify-center w-full bg-white text-[#0B1B35] py-3.5 rounded-xl text-base font-black hover:scale-105 transition-all group">
+                  <Link to="/contact" className="relative z-10 inline-flex items-center justify-center w-full bg-white text-[#0F172A] py-3.5 rounded-xl text-base font-black hover:scale-105 transition-all group">
                     Get Started <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
@@ -150,11 +150,11 @@ export function Services() {
 
       {/* SECTION 3: WHY BUSINESSES CHOOSE US - Light */}
       <ScrollReveal direction="down">
-        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-[#0B1B35]/5">
+        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-[#0F172A]/5">
           <div className="mx-auto max-w-7xl">
             <div className="text-center mb-20">
-               <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-6">Values</div>
-               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0B1B35] leading-tight">Why Growing Brands <br />Partner With Us</h2>
+               <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Values</div>
+               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight">Why Growing Brands <br />Partner With Us</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {whyChooseUs.map((item, i) => (
@@ -164,7 +164,7 @@ export function Services() {
                   className={`flex flex-col gap-6 p-8 rounded-[2.5rem] bg-gradient-to-br ${item.color} shadow-lg group transition-all border border-white/10 overflow-hidden relative`}
                 >
                   <div className="absolute inset-0 opacity-5 bg-[url('/noise.svg')] pointer-events-none" />
-                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-[#0B1B35] shadow-sm relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-[#0F172A] shadow-sm relative z-10">
                     {item.icon}
                   </div>
                   <span className="text-xl font-black tracking-tight text-white relative z-10 leading-tight">{item.text}</span>
@@ -177,17 +177,17 @@ export function Services() {
 
       {/* SECTION 4: CTA (CHOOSE SETUP) - Dark */}
       <ScrollReveal direction="up">
-        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-[#060E1B] relative overflow-hidden">
+        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-[#0F172A] relative overflow-hidden">
            <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
            <div className="mx-auto max-w-4xl relative z-10">
               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-white leading-tight mb-16">
                  Choose the Right Setup <br />for Your Business
               </h2>
               <div className="flex flex-col sm:flex-row justify-center gap-8">
-                 <Link to="/pricing" className="bg-[#F58220] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all">
+                 <Link to="/pricing" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all">
                     View Pricing Plans
                  </Link>
-                 <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-[#0B1B35] transition-all">
+                 <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-[#0F172A] transition-all">
                     Start a Small Paid Test
                  </Link>
               </div>

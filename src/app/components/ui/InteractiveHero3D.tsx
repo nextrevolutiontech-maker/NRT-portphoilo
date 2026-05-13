@@ -51,7 +51,7 @@ export function InteractiveHero3D() {
     updateSize();
 
     // Create a 3D Network
-    const count = 200; // Optimized count
+    const count = 100; // Reduced for performance
     const points: THREE.Vector3[] = [];
     for (let i = 0; i < count; i++) {
       points.push(new THREE.Vector3(
@@ -64,9 +64,9 @@ export function InteractiveHero3D() {
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.PointsMaterial({
       size: 0.15,
-      color: '#F58220',
+      color: '#3A5CCC',
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.6, // Lowered opacity
       blending: THREE.AdditiveBlending
     });
 
@@ -75,7 +75,7 @@ export function InteractiveHero3D() {
 
     // Blue glow particles
     const bluePoints: THREE.Vector3[] = [];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 15; i++) { // Reduced count
       bluePoints.push(new THREE.Vector3(
         (Math.random() - 0.5) * 20,
         (Math.random() - 0.5) * 20,
@@ -87,14 +87,14 @@ export function InteractiveHero3D() {
       size: 0.3,
       color: '#0057FF',
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.3,
       blending: THREE.AdditiveBlending
     });
     const blueParticles = new THREE.Points(blueGeo, blueMat);
     scene.add(blueParticles);
 
     // Lines - Pre-allocate Buffer
-    const maxLines = count * 10; // Max lines we expect to draw
+    const maxLines = 400; // Cap max lines for performance
     const linePositions = new Float32Array(maxLines * 2 * 3);
     const linesGeometry = new THREE.BufferGeometry();
     const linePositionAttr = new THREE.BufferAttribute(linePositions, 3);
@@ -102,9 +102,9 @@ export function InteractiveHero3D() {
     linesGeometry.setAttribute('position', linePositionAttr);
     
     const linesMaterial = new THREE.LineBasicMaterial({ 
-      color: '#F58220', 
+      color: '#3A5CCC', 
       transparent: true, 
-      opacity: 0.2,
+      opacity: 0.15,
       blending: THREE.AdditiveBlending
     });
     const lines = new THREE.LineSegments(linesGeometry, linesMaterial);
@@ -135,22 +135,23 @@ export function InteractiveHero3D() {
       targetY += (mouseY - targetY) * 0.05;
 
       particles.rotation.y += 0.0004;
-      particles.rotation.x += 0.0002;
       blueParticles.rotation.y -= 0.0001;
 
-      scene.rotation.y = targetX * 0.4; // More pronounced
+      scene.rotation.y = targetX * 0.4;
       scene.rotation.x = -targetY * 0.4;
 
-      // Update Lines
+      // Update Lines - Optimized distance checks
       const positions = particles.geometry.attributes.position.array as Float32Array;
       let lineIndex = 0;
-      const thresholdSq = 16; // 4 * 4
+      const thresholdSq = 12; // Adjusted
 
       for (let i = 0; i < count; i++) {
+        if (lineIndex >= maxLines) break;
         const ix = positions[i * 3];
         const iy = positions[i * 3 + 1];
         const iz = positions[i * 3 + 2];
 
+        // Only check a subset of particles for connections to save CPU
         for (let j = i + 1; j < count; j++) {
           if (lineIndex >= maxLines) break;
 

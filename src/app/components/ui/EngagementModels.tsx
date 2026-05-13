@@ -85,8 +85,8 @@ export function EngagementModels() {
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="mb-4 text-[#0B1B35] text-4xl sm:text-5xl font-black tracking-tighter uppercase">Engagement Models</h2>
-                    <p className="text-xl text-[#0B1B35]/60 max-w-2xl mx-auto leading-relaxed font-bold italic">
+                    <h2 className="mb-4 text-[#0F172A] text-4xl sm:text-5xl font-black tracking-tighter uppercase">Engagement Models</h2>
+                    <p className="text-xl text-[#0F172A]/60 max-w-2xl mx-auto leading-relaxed font-bold italic">
                         Flexible cooperation models tailored to your business stage and goals.
                     </p>
                 </div>
@@ -96,32 +96,32 @@ export function EngagementModels() {
                         <div
                             key={index}
                             className={`relative rounded-[2.5rem] p-10 border transition-all duration-300 model-card flex flex-col ${model.highlight
-                                ? "bg-white border-[#F58220] shadow-[0_20px_50px_-12px_rgba(245,130,32,0.15)] scale-105 z-10"
-                                : "bg-[#F8FAFC] border-[#0B1B35]/5 hover:border-[#F58220]/30 hover:shadow-xl"
+                                ? "bg-white border-[#3A5CCC] shadow-[0_20px_50px_-12px_rgba(58,92,204,0.15)] scale-105 z-10"
+                                : "bg-[#F3F4F6] border-[#0F172A]/5 hover:border-[#3A5CCC]/30 hover:shadow-xl"
                                 }`}
                         >
                             {model.highlight && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#F58220] text-white text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-full shadow-lg">
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#3A5CCC] text-white text-[10px] font-black uppercase tracking-widest px-6 py-2 rounded-full shadow-lg">
                                     Most Popular
                                 </div>
                             )}
 
-                            <div className="mb-8 w-20 h-20 bg-[#F58220]/10 rounded-2xl flex items-center justify-center text-[#F58220] mx-auto">
+                            <div className="mb-8 w-20 h-20 bg-[#3A5CCC]/10 rounded-2xl flex items-center justify-center text-[#3A5CCC] mx-auto">
                                 {model.icon}
                             </div>
 
-                            <h3 className="text-3xl font-black text-center text-[#0B1B35] mb-2 tracking-tighter uppercase">{model.title}</h3>
-                            <div className="text-[#F58220] text-[10px] font-black text-center mb-8 uppercase tracking-widest">{model.subtitle}</div>
+                            <h3 className="text-3xl font-black text-center text-[#0F172A] mb-2 tracking-tighter uppercase">{model.title}</h3>
+                            <div className="text-[#3A5CCC] text-[10px] font-black text-center mb-8 uppercase tracking-widest">{model.subtitle}</div>
 
-                            <p className="text-[#0B1B35]/60 text-center mb-10 leading-relaxed font-bold italic">
+                            <p className="text-[#0F172A]/60 text-center mb-10 leading-relaxed font-bold italic">
                                 {model.description}
                             </p>
 
                             <div className="space-y-4 mb-10 flex-grow">
                                 {model.features.map((feature, i) => (
                                     <div key={i} className="flex items-start gap-3">
-                                        <CheckCircle2 className="h-5 w-5 text-[#F58220] flex-shrink-0 mt-0.5" />
-                                        <span className="text-sm font-bold text-[#0B1B35]/80">{feature}</span>
+                                        <CheckCircle2 className="h-5 w-5 text-[#3A5CCC] flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm font-bold text-[#0F172A]/80">{feature}</span>
                                     </div>
                                 ))}
                             </div>
@@ -129,8 +129,8 @@ export function EngagementModels() {
                             <Link
                                 to="/contact"
                                 className={`w-full py-5 px-8 rounded-2xl text-center font-black text-lg transition-all ${model.highlight
-                                    ? "bg-[#F58220] text-white hover:scale-105 shadow-xl"
-                                    : "bg-[#0B1B35]/5 text-[#0B1B35] hover:bg-[#0B1B35]/10"
+                                    ? "bg-[#3A5CCC] text-white hover:scale-105 shadow-xl"
+                                    : "bg-[#0F172A]/5 text-[#0F172A] hover:bg-[#0F172A]/10"
                                     }`}
                             >
                                 Get a Quote

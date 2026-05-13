@@ -24,15 +24,15 @@ export function Process() {
       num: "01",
       title: "Strategy & Audit",
       desc: "We analyze your current tech stack, identify bottlenecks, and define clear goals for your project.",
-      color: "from-[#FFD600] to-[#FF9900]",
+      color: "from-[#27324A] to-[#27324A]",
       icon: <Target className="w-10 h-10" />,
       floating: (
         <div className="bg-black/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl">
-           <div className="text-[10px] font-black uppercase text-[#F58220] mb-4">Initial Scan</div>
+           <div className="text-[10px] font-black uppercase text-[#3A5CCC] mb-4">Initial Scan</div>
            <div className="space-y-3">
               <div className="h-2 w-full bg-white/20 rounded-full" />
               <div className="h-2 w-3/4 bg-white/20 rounded-full" />
-              <div className="h-2 w-1/2 bg-[#F58220] rounded-full" />
+              <div className="h-2 w-1/2 bg-[#3A5CCC] rounded-full" />
            </div>
         </div>
       )
@@ -55,7 +55,7 @@ export function Process() {
       num: "03",
       title: "Rapid Build",
       desc: "Our engineers execute the build with speed and precision, using modern frameworks and best practices.",
-      color: "from-[#FF4D00] to-[#FF005C]",
+      color: "from-[#27324A] to-[#3A5CCC]",
       icon: <Rocket className="w-10 h-10" />,
       floating: (
         <div className="bg-white rounded-2xl p-4 shadow-2xl">
@@ -91,21 +91,21 @@ export function Process() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-hidden">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
       <Helmet>
         <title>Our Process | Next Revolution Tech</title>
       </Helmet>
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden text-center">
+      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden text-center">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-5xl relative z-10">
-           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">Our Workflow</div>
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Our Workflow</div>
            <h1 className="text-5xl sm:text-[8rem] lg:text-[9rem] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-10">
               Engineering <br className="hidden sm:block" />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Perfection</span> <br className="hidden sm:block" />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Perfection</span> <br className="hidden sm:block" />
               Step by Step.
            </h1>
           <p className="text-xl sm:text-2xl font-bold text-white/50 leading-relaxed max-w-3xl mx-auto">
@@ -126,15 +126,15 @@ export function Process() {
                 className={`grid lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
               >
                  <div className={`${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
-                    <div className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[#F58220] mb-6 sm:mb-8">Step {step.num}</div>
+                    <div className="text-[10px] sm:text-[12px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[#3A5CCC] mb-6 sm:mb-8">Step {step.num}</div>
                     <h2 className="text-4xl sm:text-7xl font-black mb-6 sm:mb-10 tracking-tighter leading-tight">{step.title}</h2>
-                    <p className="text-lg sm:text-2xl font-bold text-[#0B1B35]/60 mb-10 sm:mb-14 leading-relaxed">{step.desc}</p>
+                    <p className="text-lg sm:text-2xl font-bold text-[#0F172A]/60 mb-10 sm:mb-14 leading-relaxed">{step.desc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                        <div className="flex items-center gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#0057FF] to-[#00A3FF] rounded-2xl sm:rounded-3xl border border-white/10 shadow-lg group hover:scale-105 transition-all">
                           <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                           <span className="font-black uppercase tracking-widest text-xs sm:text-sm text-white">Quality Guaranteed</span>
                        </div>
-                       <div className="flex items-center gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#F58220] to-[#FF4D00] rounded-2xl sm:rounded-3xl border border-white/10 shadow-lg group hover:scale-105 transition-all">
+                       <div className="flex items-center gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#3A5CCC] to-[#27324A] rounded-2xl sm:rounded-3xl border border-white/10 shadow-lg group hover:scale-105 transition-all">
                           <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                           <span className="font-black uppercase tracking-widest text-xs sm:text-sm text-white">High-Speed Execution</span>
                        </div>
@@ -165,20 +165,20 @@ export function Process() {
       </section>
 
       {/* Final CTA - Dark */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#060E1B] relative overflow-hidden">
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] relative overflow-hidden">
          <InteractiveHero3D />
          <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
          <div className="mx-auto max-w-7xl relative z-10">
             <div className="bg-white/5 backdrop-blur-3xl rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center border border-white/10 shadow-2xl relative overflow-hidden">
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] pointer-events-none" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
                <h2 className="text-5xl sm:text-[9rem] font-black text-white leading-[1] sm:leading-[0.8] tracking-tighter mb-12 sm:mb-16 relative z-10">
-                  Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">accelerate?</span>
+                  Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">accelerate?</span>
                </h2>
                <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 relative z-10">
-                  <Link to="/contact" className="bg-[#F58220] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-[0_30px_60px_rgba(245,130,32,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">
+                  <Link to="/contact" className="bg-[#3A5CCC] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">
                      Start My Task <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black hover:bg-white hover:text-[#0B1B35] transition-all">
+                  <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black hover:bg-white hover:text-[#0F172A] transition-all">
                      Try a Test Task
                   </Link>
                </div>

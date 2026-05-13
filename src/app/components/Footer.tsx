@@ -40,10 +40,10 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#0B1B35] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/5">
+    <footer className="bg-[#0F172A] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/5">
       {/* Background Polish */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#F58220]/50 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#3A5CCC]/50 to-transparent" />
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
@@ -61,9 +61,9 @@ export function Footer() {
                We solve real technical problems for growing businesses through dedicated engineering partnerships.
             </p>
             <div className="mb-10">
-               <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-4">Location</div>
+               <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#3A5CCC] mb-4">Location</div>
                <div className="text-white/60 text-base font-bold flex items-center gap-2">
-                  <Globe className="w-4 h-4 text-[#F58220]" />
+                  <Globe className="w-4 h-4 text-[#3A5CCC]" />
                   Karachi, Pakistan
                </div>
             </div>
@@ -79,7 +79,7 @@ export function Footer() {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:bg-[#F58220] hover:text-white hover:border-[#F58220] transition-all"
+                  className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:bg-[#3A5CCC] hover:text-white hover:border-[#3A5CCC] transition-all"
                 >
                   {social.icon}
                 </a>
@@ -90,12 +90,12 @@ export function Footer() {
           {/* Links Grid */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-8">
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Solutions</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#3A5CCC] mb-8">Solutions</h4>
               <ul className="space-y-4">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
                     <Link to={link.href} className="text-white/50 hover:text-white text-base font-bold transition-colors flex items-center gap-2 group">
-                      <ChevronRight className="w-3.5 h-3.5 text-[#F58220] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3.5 h-3.5 text-[#3A5CCC] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       {link.name}
                     </Link>
                   </li>
@@ -103,12 +103,12 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Company</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#3A5CCC] mb-8">Company</h4>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <Link to={link.href} className="text-white/50 hover:text-white text-base font-bold transition-colors flex items-center gap-2 group">
-                      <ChevronRight className="w-3.5 h-3.5 text-[#F58220] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3.5 h-3.5 text-[#3A5CCC] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       {link.name}
                     </Link>
                   </li>
@@ -119,23 +119,23 @@ export function Footer() {
 
           {/* Connect Column */}
           <div className="lg:col-span-3">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#F58220] mb-8">Connect</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#3A5CCC] mb-8">Connect</h4>
             <div className="space-y-6">
-               <a href="mailto:nextrevolutiontech@gmail.com" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
+               <a href="mailto:nextrevolutiontech@gmail.com" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#3A5CCC]/50 transition-all">
                   <div className="flex items-center gap-4 mb-2">
-                    <Mail className="w-5 h-5 text-[#F58220]" />
+                    <Mail className="w-5 h-5 text-[#3A5CCC]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-white/30">Email Support</span>
                   </div>
-                  <div className="text-sm font-black text-white group-hover:text-[#F58220] transition-colors break-all">
+                  <div className="text-sm font-black text-white group-hover:text-[#3A5CCC] transition-colors break-all">
                     nextrevolutiontech@gmail.com
                   </div>
                </a>
-               <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#F58220]/50 transition-all">
+               <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#3A5CCC]/50 transition-all">
                   <div className="flex items-center gap-4 mb-2">
-                    <MessageSquare className="w-5 h-5 text-[#F58220]" />
+                    <MessageSquare className="w-5 h-5 text-[#3A5CCC]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-white/30">WhatsApp / Call</span>
                   </div>
-                  <div className="text-base font-black text-white group-hover:text-[#F58220] transition-colors">
+                  <div className="text-base font-black text-white group-hover:text-[#3A5CCC] transition-colors">
                     0344-2013217
                   </div>
                </a>
@@ -151,12 +151,12 @@ export function Footer() {
           </div>
           <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20">
              {footerLinks.legal.map((link) => (
-               <Link key={link.name} to={link.href} className="hover:text-[#F58220] transition-colors">{link.name}</Link>
+               <Link key={link.name} to={link.href} className="hover:text-[#3A5CCC] transition-colors">{link.name}</Link>
              ))}
           </div>
           <button 
             onClick={scrollToTop}
-            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#F58220] hover:text-white transition-all shadow-xl group"
+            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#3A5CCC] hover:text-white transition-all shadow-xl group"
           >
              <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
           </button>

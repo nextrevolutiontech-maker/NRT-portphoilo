@@ -7,12 +7,13 @@ import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
 export function Pricing() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'weekly'>('monthly');
 
   const packages = [
     {
       name: "Starter",
-      price: "$1,000",
-      period: "/month",
+      price: billingCycle === 'monthly' ? "$1,000" : "$299",
+      period: billingCycle === 'monthly' ? "/month" : "/week",
       desc: "Ideal for small ongoing maintenance and routine technical tasks.",
       color: "from-[#6366f1] to-[#a855f7]",
       features: [
@@ -27,8 +28,8 @@ export function Pricing() {
     },
     {
       name: "Performance Pro",
-      price: "$1,500",
-      period: "/month",
+      price: billingCycle === 'monthly' ? "$1,500" : "$449",
+      period: billingCycle === 'monthly' ? "/month" : "/week",
       desc: "Dedicated to speed, security, and technical infrastructure health.",
       color: "from-[#11998E] to-[#38EF7D]",
       features: [
@@ -43,10 +44,10 @@ export function Pricing() {
     },
     {
       name: "Growth",
-      price: "$2,000",
-      period: "/month",
+      price: billingCycle === 'monthly' ? "$2,000" : "$599",
+      period: billingCycle === 'monthly' ? "/month" : "/week",
       desc: "Perfect for scaling businesses needing full-stack firepower.",
-      color: "from-[#F58220] to-[#FF4D00]",
+      color: "from-[#3A5CCC] to-[#27324A]",
       features: [
         "Full Stack Development",
         "Custom API & Webhooks",
@@ -59,8 +60,8 @@ export function Pricing() {
     },
     {
       name: "AI Automation",
-      price: "$2,500",
-      period: "/month",
+      price: billingCycle === 'monthly' ? "$2,500" : "$749",
+      period: billingCycle === 'monthly' ? "/month" : "/week",
       desc: "Specialized in autonomous agents and AI-driven workflows.",
       color: "from-[#8E2DE2] to-[#4A00E0]",
       features: [
@@ -75,8 +76,8 @@ export function Pricing() {
     },
     {
       name: "Scale",
-      price: "$3,500",
-      period: "/month",
+      price: billingCycle === 'monthly' ? "$3,500" : "$999",
+      period: billingCycle === 'monthly' ? "/month" : "/week",
       desc: "Enterprise-grade builds and high-level technical architecture.",
       color: "from-[#0ea5e9] to-[#2563eb]",
       features: [
@@ -94,7 +95,7 @@ export function Pricing() {
       price: "Let's Talk",
       period: "",
       desc: "A custom team or fixed-scope build dedicated to your vision.",
-      color: "from-[#0B1B35] to-[#1A365D]",
+      color: "from-[#0F172A] to-[#161F33]",
       features: [
         "Fixed Scope Execution",
         "Zero-to-One MVP Build",
@@ -127,21 +128,21 @@ export function Pricing() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
       <Helmet>
         <title>Pricing | Next Revolution Tech</title>
         <meta name="description" content="Transparent pricing for dedicated engineering teams. Choose the plan that fits your growth." />
       </Helmet>
 
       {/* Hero - Dark Hero */}
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10 text-center">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">Investment Plans</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Investment Plans</div>
           <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.9] mb-10">
-            Simple Pricing. <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Infinite</span> Growth.
+            Simple Pricing. <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Infinite</span> Growth.
           </h1>
           <p className="text-xl sm:text-2xl font-bold text-white/50 max-w-2xl mx-auto leading-relaxed">
             Choose a dedicated developer plan or assemble a custom team. No hiring fees, no overhead, just elite engineering.
@@ -149,8 +150,39 @@ export function Pricing() {
         </div>
       </section>
 
+      {/* Billing Toggle */}
+      <section className="py-12 bg-[#F3F4F6] border-b border-[#0F172A]/5">
+        <div className="mx-auto max-w-7xl px-4 flex flex-col items-center">
+          <div className="bg-white p-1.5 rounded-2xl flex items-center shadow-lg border border-[#0F172A]/5">
+            <button
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
+                billingCycle === 'monthly' 
+                ? "bg-[#3A5CCC] text-white shadow-lg" 
+                : "text-[#0F172A]/40 hover:text-[#0F172A]"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingCycle('weekly')}
+              className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
+                billingCycle === 'weekly' 
+                ? "bg-[#3A5CCC] text-white shadow-lg" 
+                : "text-[#0F172A]/40 hover:text-[#0F172A]"
+              }`}
+            >
+              Weekly
+            </button>
+          </div>
+          <div className="mt-4 text-[10px] font-black uppercase tracking-[0.2em] text-[#3A5CCC]">
+            {billingCycle === 'monthly' ? "Save 15% with monthly billing" : "Short-term commitment"}
+          </div>
+        </div>
+      </section>
+
       {/* Packages */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 xl:px-24 bg-[#F8FAFC]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 xl:px-24 bg-[#F3F4F6]">
         <div className="mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {packages.map((pkg, i) => (
             <motion.div
@@ -164,7 +196,7 @@ export function Pricing() {
               <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
               <div className="relative z-10 flex flex-col h-full">
                 {pkg.highlight && (
-                  <div className="bg-white text-[#F58220] rounded-full px-3 py-1 text-[8px] font-black uppercase tracking-widest mb-4 w-fit shadow-xl">
+                  <div className="bg-white text-[#3A5CCC] rounded-full px-3 py-1 text-[8px] font-black uppercase tracking-widest mb-4 w-fit shadow-xl">
                     Most Popular
                   </div>
                 )}
@@ -186,7 +218,7 @@ export function Pricing() {
 
                 <Link
                   to="/contact"
-                  className={`block w-full py-3.5 rounded-xl text-center font-black text-base transition-all shadow-xl hover:scale-105 ${pkg.highlight ? 'bg-[#0B1B35] text-white' : 'bg-white text-[#0B1B35]'}`}
+                  className={`block w-full py-3.5 rounded-xl text-center font-black text-base transition-all shadow-xl hover:scale-105 ${pkg.highlight ? 'bg-[#0F172A] text-white' : 'bg-white text-[#0F172A]'}`}
                 >
                   {pkg.cta}
                 </Link>
@@ -197,22 +229,22 @@ export function Pricing() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 bg-white px-4 sm:px-6 lg:px-8 xl:px-24 border-y border-[#0B1B35]/5">
+      <section className="py-32 bg-white px-4 sm:px-6 lg:px-8 xl:px-24 border-y border-[#0F172A]/5">
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-20">
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-4">Common Questions</div>
-            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0B1B35]">Everything you <br /><span className="text-[#F58220] italic font-italic-serif font-normal">need</span> to know</h2>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">Common Questions</div>
+            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter text-[#0F172A]">Everything you <br /><span className="text-[#3A5CCC] italic font-italic-serif font-normal">need</span> to know</h2>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-[#F8FAFC] rounded-[2rem] overflow-hidden border border-[#0B1B35]/5">
+              <div key={i} className="bg-[#F3F4F6] rounded-[2rem] overflow-hidden border border-[#0F172A]/5">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full p-8 flex items-center justify-between text-left hover:bg-[#0B1B35]/5 transition-colors"
+                  className="w-full p-8 flex items-center justify-between text-left hover:bg-[#0F172A]/5 transition-colors"
                 >
-                  <span className="text-xl sm:text-2xl font-black tracking-tight text-[#0B1B35]">{faq.q}</span>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border border-[#0B1B35]/10 transition-transform ${openFaq === i ? 'rotate-180 bg-[#0B1B35] text-white' : ''}`}>
+                  <span className="text-xl sm:text-2xl font-black tracking-tight text-[#0F172A]">{faq.q}</span>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border border-[#0F172A]/10 transition-transform ${openFaq === i ? 'rotate-180 bg-[#0F172A] text-white' : ''}`}>
                     {openFaq === i ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                   </div>
                 </button>
@@ -224,7 +256,7 @@ export function Pricing() {
                       exit={{ height: 0, opacity: 0 }}
                       className="px-8 pb-8"
                     >
-                      <p className="text-lg font-bold text-[#0B1B35]/60 leading-relaxed">
+                      <p className="text-lg font-bold text-[#0F172A]/60 leading-relaxed">
                         {faq.a}
                       </p>
                     </motion.div>
@@ -234,13 +266,13 @@ export function Pricing() {
             ))}
           </div>
 
-          <div className="mt-20 p-12 bg-[#060E1B] rounded-[3.5rem] text-center text-white relative overflow-hidden shadow-2xl border border-white/5">
+          <div className="mt-20 p-12 bg-[#0F172A] rounded-[3.5rem] text-center text-white relative overflow-hidden shadow-2xl border border-white/5">
             <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
             <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Still have questions?</h3>
             <p className="text-white/50 text-xl font-bold mb-10 relative z-10">We're here to help. Reach out to us via WhatsApp or Email.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
               <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:scale-105 transition-all">WhatsApp Us</a>
-              <Link to="/contact" className="bg-white/5 border border-white/10 text-white px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:bg-white hover:text-[#0B1B35] transition-all">Contact Form</Link>
+              <Link to="/contact" className="bg-white/5 border border-white/10 text-white px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:bg-white hover:text-[#0F172A] transition-all">Contact Form</Link>
             </div>
           </div>
         </div>

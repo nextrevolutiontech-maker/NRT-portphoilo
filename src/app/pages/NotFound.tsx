@@ -4,7 +4,7 @@ import { Home, ArrowLeft } from "lucide-react";
 
 export function NotFound() {
   return (
-    <div className="pt-32 min-h-screen bg-[#F2F2F2] text-[#0B1B35] flex items-center justify-center text-center px-4">
+    <div className="pt-32 min-h-screen bg-[#F2F2F2] text-[#0F172A] flex items-center justify-center text-center px-4">
       <Helmet>
         <title>404 - Page Not Found | Next Revolution Tech</title>
       </Helmet>

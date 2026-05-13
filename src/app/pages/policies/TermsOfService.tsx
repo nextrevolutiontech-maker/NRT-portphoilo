@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 export function TermsOfService() {
     return (
-        <div className="pt-40 pb-24 bg-[#F2F2F2] min-h-screen text-[#0B1B35]">
+        <div className="pt-40 pb-24 bg-[#F2F2F2] min-h-screen text-[#0F172A]">
             <Helmet>
                 <title>Terms of Service | Next Revolution Tech</title>
             </Helmet>

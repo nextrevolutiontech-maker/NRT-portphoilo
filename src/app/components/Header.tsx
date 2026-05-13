@@ -30,7 +30,7 @@ export function Header() {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        scrolled ? "bg-white/90 backdrop-blur-2xl py-3 border-b border-[#0B1B35]/5 shadow-2xl" : "bg-transparent py-4 sm:py-6"
+        scrolled ? "bg-white/90 backdrop-blur-2xl py-3 border-b border-[#0F172A]/5 shadow-2xl" : "bg-transparent py-4 sm:py-6"
       }`}
     >
       <motion.nav 
@@ -54,7 +54,7 @@ export function Header() {
                 key={item.name}
                 to={item.href}
                 className={`text-[10px] font-black tracking-[0.2em] px-5 py-2.5 rounded-full transition-all uppercase ${
-                  scrolled ? "text-[#0B1B35]/50 hover:text-[#0B1B35] hover:bg-[#0B1B35]/5" : "text-white/50 hover:text-white hover:bg-white/10"
+                  scrolled ? "text-[#0F172A]/50 hover:text-[#0F172A] hover:bg-[#0F172A]/5" : "text-white/50 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {item.name}
@@ -70,14 +70,14 @@ export function Header() {
               0344-2013217
             </a>
             <Link to="/contact?type=test" className={`text-[11px] font-black px-6 py-3 border-2 rounded-full transition-all tracking-wider uppercase ${
-              scrolled ? "text-[#F58220] border-[#F58220] hover:bg-[#F58220] hover:text-white" : "text-white border-white/20 hover:bg-white hover:text-[#0B1B35]"
+              scrolled ? "text-[#3A5CCC] border-[#3A5CCC] hover:bg-[#3A5CCC] hover:text-white" : "text-white border-white/20 hover:bg-white hover:text-[#0F172A]"
             }`}>
               Try a Test Task
             </Link>
             <Magnetic>
               <Link 
                 to="/contact" 
-                className="bg-gradient-to-r from-[#F58220] to-[#FF4D00] text-white px-8 py-3.5 rounded-full text-[12px] font-black shadow-xl hover:scale-105 transition-all uppercase tracking-wider"
+                className="bg-gradient-to-r from-[#3A5CCC] to-[#27324A] text-white px-8 py-3.5 rounded-full text-[12px] font-black shadow-xl hover:scale-105 transition-all uppercase tracking-wider"
               >
                 Get Started
               </Link>
@@ -85,7 +85,7 @@ export function Header() {
           </div>
 
           <button
-            className={`lg:hidden p-3 rounded-xl transition-colors ${scrolled ? "text-[#0B1B35] hover:bg-[#0B1B35]/5" : "text-white hover:bg-white/10"}`}
+            className={`lg:hidden p-3 rounded-xl transition-colors ${scrolled ? "text-[#0F172A] hover:bg-[#0F172A]/5" : "text-white hover:bg-white/10"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
@@ -98,14 +98,14 @@ export function Header() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="lg:hidden mt-6 bg-[#0B1B35] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl backdrop-blur-3xl"
+              className="lg:hidden mt-6 bg-[#0F172A] rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl backdrop-blur-3xl"
             >
               <div className="p-10 space-y-8">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block text-2xl font-black tracking-tighter text-white hover:text-[#F58220] transition-colors uppercase"
+                    className="block text-2xl font-black tracking-tighter text-white hover:text-[#3A5CCC] transition-colors uppercase"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -115,7 +115,7 @@ export function Header() {
                   <Link to="/contact?type=test" className="block text-xl font-black text-white text-center" onClick={() => setMobileMenuOpen(false)}>
                     Try a Test Task
                   </Link>
-                  <Link to="/contact" className="block w-full bg-[#F58220] text-white text-center py-6 rounded-2xl font-black text-lg shadow-xl" onClick={() => setMobileMenuOpen(false)}>
+                  <Link to="/contact" className="block w-full bg-[#3A5CCC] text-white text-center py-6 rounded-2xl font-black text-lg shadow-xl" onClick={() => setMobileMenuOpen(false)}>
                     Get Started
                   </Link>
                 </div>

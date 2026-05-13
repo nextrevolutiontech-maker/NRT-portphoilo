@@ -72,25 +72,25 @@ export function CinematicReelsShowcase() {
     return (
         <section
             ref={containerRef}
-            className="relative py-32 overflow-hidden bg-white border-y border-[#0B1B35]/5"
+            className="relative py-32 overflow-hidden bg-white border-y border-[#0F172A]/5"
         >
             {/* Dynamic Background Elements */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F58220]/5 to-transparent" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-[#F58220]/10 blur-[120px] rounded-full point-events-none opacity-30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#3A5CCC]/5 to-transparent" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-[#3A5CCC]/10 blur-[120px] rounded-full point-events-none opacity-30" />
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
                 {/* Aggressive Copy & Header */}
                 <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
                     <div className="max-w-2xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F58220]/10 border border-[#F58220]/20 rounded-full text-[#F58220] text-xs font-semibold tracking-wide mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#3A5CCC]/10 border border-[#3A5CCC]/20 rounded-full text-[#3A5CCC] text-xs font-semibold tracking-wide mb-6">
                             <Sparkles className="w-4 h-4" />
                             <span>Showcasing Digital Excellence</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B35] mb-6 tracking-tight">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F172A] mb-6 tracking-tight">
                             Enterprise Innovations.
                         </h2>
-                        <p className="text-lg text-[#0B1B35]/60 leading-relaxed font-bold">
+                        <p className="text-lg text-[#0F172A]/60 leading-relaxed font-bold">
                             Explore our curated portfolio of high-performance digital solutions, engineered to drive measurable growth and scale industry leaders.
                         </p>
                     </div>
@@ -98,7 +98,7 @@ export function CinematicReelsShowcase() {
                     <div className="shrink-0 flex items-center justify-start md:justify-end w-full md:w-auto">
                         <Link
                             to="/case-studies"
-                            className="urgency-cta group relative inline-flex items-center justify-center gap-2 bg-[#0B1B35]/5 backdrop-blur-sm text-[#0B1B35] border border-[#0B1B35]/10 px-8 py-4 rounded-full font-black hover:bg-[#0B1B35]/10 transition-all duration-300 hover:scale-105"
+                            className="urgency-cta group relative inline-flex items-center justify-center gap-2 bg-[#0F172A]/5 backdrop-blur-sm text-[#0F172A] border border-[#0F172A]/10 px-8 py-4 rounded-full font-black hover:bg-[#0F172A]/10 transition-all duration-300 hover:scale-105"
                         >
                             <span className="relative z-10">View Full Portfolio</span>
                             <ArrowRight className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" />
@@ -112,7 +112,7 @@ export function CinematicReelsShowcase() {
                         <div
                             key={reel.id}
                             ref={el => reelsRef.current[index] = el}
-                            className="reel-card group relative aspect-[9/16] rounded-2xl overflow-hidden border border-[#0B1B35]/5 shadow-2xl bg-[#0B1B35]/5 cursor-pointer"
+                            className="reel-card group relative aspect-[9/16] rounded-2xl overflow-hidden border border-[#0F172A]/5 shadow-2xl bg-[#0F172A]/5 cursor-pointer"
                         >
                             {/* Video Element */}
                             <video
@@ -126,21 +126,21 @@ export function CinematicReelsShowcase() {
                             />
 
                             {/* Overlays */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B35]/80 via-[#0B1B35]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-[#0F172A]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
                             {/* Content */}
                             <div className="absolute inset-0 p-6 flex flex-col justify-end">
                                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mb-4 border border-white/20 group-hover:bg-[#F58220] group-hover:border-[#F58220] transition-colors">
+                                    <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center mb-4 border border-white/20 group-hover:bg-[#3A5CCC] group-hover:border-[#3A5CCC] transition-colors">
                                         <Play className="w-5 h-5 text-white ml-1" />
                                     </div>
-                                    <span className="text-[#F58220] text-xs font-bold tracking-wider uppercase mb-2 block">{reel.category}</span>
+                                    <span className="text-[#3A5CCC] text-xs font-bold tracking-wider uppercase mb-2 block">{reel.category}</span>
                                     <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">{reel.title}</h3>
                                 </div>
                             </div>
 
                             {/* Glowing Border effect on hover */}
-                            <div className="absolute inset-0 border-2 border-[#F58220]/0 group-hover:border-[#F58220]/50 transition-colors duration-300 rounded-2xl" />
+                            <div className="absolute inset-0 border-2 border-[#3A5CCC]/0 group-hover:border-[#3A5CCC]/50 transition-colors duration-300 rounded-2xl" />
                         </div>
                     ))}
                 </div>

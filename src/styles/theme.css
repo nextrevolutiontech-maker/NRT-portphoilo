@@ -1,43 +1,44 @@
 :root {
-  /* Strict Brand Color System - Premium Dark Mode */
-  --navy: #0B1B35;         /* Deepest Navy */
-  --deep-blue: #1A365D;     /* Secondary Dark */
-  --orange: #F58220;        /* Brand Accent */
+  /* Enterprise Brand Color System - Steel Blue & Deep Slate */
+  --brand: #3A5CCC;         /* Steel Blue */
+  --deep-slate: #0F172A;    /* Primary Background */
+  --surface: #161F33;       /* Surface Background */
   
-  --bg-main: #060E1B;      /* Rich Dark Background */
-  --bg-card: #0B1B35;      /* Navy for Cards */
+  --bg-main: #0F172A;      
+  --bg-card: #161F33;      
   
-  --text-dark: #FFFFFF;    /* White text for dark bg */
-  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-primary: #F3F4F6;  /* Faded White */
+  --text-muted: #9CA3AF;    /* Premium Gray */
   
-  --border: rgba(255, 255, 255, 0.1);
-  --radius: 16px;
+  --border: rgba(255, 255, 255, 0.06); /* Refined, transparent border */
+  --radius: 12px;
 }
 
 /* Global Reset & Base */
 html {
-  /* Removed scroll-behavior: smooth to fix 'lazy' feel */
   background-color: var(--bg-main);
-  color: var(--text-dark);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
-/* Section Utilities - All Light Now */
-.section-premium {
-  background-color: var(--bg-main);
-  border-bottom: 1px solid var(--border);
+/* Subtle Global Grain Texture - Removed heavy SVG filter for performance */
+body::before {
+  content: none;
 }
 
-/* Typography */
+/* Typography Refinement */
 .heading-brand {
-  font-family: 'Outfit', sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: var(--navy);
+  font-weight: 700; /* Less heavy than 900 */
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 .font-italic-serif {
@@ -45,36 +46,35 @@ body {
   font-style: italic;
 }
 
-/* BUTTON STYLES - AS REQUESTED */
-
+/* BUTTON STYLES - Stripe/Linear Style */
 .btn-primary-nrt {
-  background-color: var(--orange);
-  color: #FFFFFF;
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 800;
+  background-color: var(--brand);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
   font-size: 14px;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  box-shadow: 0 4px 14px rgba(245, 130, 32, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary-nrt:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 8px 25px rgba(245, 130, 32, 0.3);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(58, 92, 204, 0.25);
 }
 
 .btn-secondary-nrt {
-  background: transparent;
-  color: var(--navy);
-  border: 2px solid rgba(11, 27, 53, 0.1);
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 800;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
   font-size: 14px;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -83,29 +83,34 @@ body {
 }
 
 .btn-secondary-nrt:hover {
-  border-color: var(--navy);
-  background: rgba(11, 27, 53, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Premium Card - Light & Enhanced */
+/* Premium Card - Optimized for Performance */
 .card-nrt {
-  background-color: var(--bg-card);
-  border-radius: 2.5rem;
-  padding: 3rem;
+  background-color: rgba(22, 31, 51, 0.8); /* More solid, less blur */
+  border-radius: 24px;
+  padding: 2.5rem;
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-nrt:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(11, 27, 53, 0.08);
-  border-color: var(--deep-blue);
+  border-color: rgba(58, 92, 204, 0.3);
+  background-color: rgba(22, 31, 51, 0.9);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Specific accent for card headers/icons */
+/* Icon Container */
 .card-icon-nrt {
-  background-color: var(--bg-main);
-  color: var(--deep-blue);
-  border-radius: 1rem;
+  background-color: rgba(58, 92, 204, 0.1);
+  color: var(--brand);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 24px;
 }

@@ -22,7 +22,7 @@ export function Blog() {
       date: "Oct 12, 2025",
       readTime: "8 min read",
       category: "eCommerce",
-      color: "from-[#F58220] to-[#FF4D00]",
+      color: "from-[#3A5CCC] to-[#27324A]",
       accent: "bg-white/20"
     },
     {
@@ -40,7 +40,7 @@ export function Blog() {
       date: "Nov 05, 2025",
       readTime: "7 min read",
       category: "Growth",
-      color: "from-[#FF4D00] to-[#FF005C]",
+      color: "from-[#27324A] to-[#3A5CCC]",
       accent: "bg-white/20"
     },
     {
@@ -58,7 +58,7 @@ export function Blog() {
       date: "Nov 18, 2025",
       readTime: "10 min read",
       category: "eCommerce",
-      color: "from-[#FFD600] to-[#FF9900]",
+      color: "from-[#27324A] to-[#27324A]",
       accent: "bg-white/20"
     },
     {
@@ -91,22 +91,22 @@ export function Blog() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0B1B35] overflow-hidden">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
       <Helmet>
         <title>Blog | Next Revolution Tech</title>
         <meta name="description" content="Tech insights, eCommerce strategies, and development tips for growing businesses." />
       </Helmet>
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0B1B35] text-white relative overflow-hidden">
+      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10 text-center sm:text-left">
-           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#F58220] mb-8">NRT Insights</div>
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">NRT Insights</div>
            <h1 className="text-5xl sm:text-7xl lg:text-[8rem] font-black tracking-tighter leading-[0.85] mb-12">
               Latest <br />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Insights</span> & <br />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Insights</span> & <br />
               Strategies.
            </h1>
            <p className="text-xl sm:text-3xl font-bold text-white/50 leading-tight max-w-2xl">
@@ -162,12 +162,12 @@ export function Blog() {
 
           {/* Newsletter / CTA - Dark */}
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24 mb-32">
-            <div className="relative rounded-[3rem] sm:rounded-[4rem] bg-[#060E1B] text-white p-12 sm:p-20 lg:p-24 text-center overflow-hidden shadow-2xl border border-white/5">
+            <div className="relative rounded-[3rem] sm:rounded-[4rem] bg-[#0F172A] text-white p-12 sm:p-20 lg:p-24 text-center overflow-hidden shadow-2xl border border-white/5">
                <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F58220]/10 rounded-full blur-[120px] pointer-events-none" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
                
                <div className="relative z-10">
-                 <h2 className="text-4xl sm:text-7xl font-black mb-6 tracking-tighter leading-[0.9]">Stay <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#F58220] to-[#FF4D00]">Updated</span>.</h2>
+                 <h2 className="text-4xl sm:text-7xl font-black mb-6 tracking-tighter leading-[0.9]">Stay <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Updated</span>.</h2>
                  <p className="text-lg sm:text-xl font-bold text-white/50 mb-12 max-w-xl mx-auto">
                     Get our latest tech insights and growth strategies delivered straight to your inbox.
                  </p>
@@ -177,10 +177,10 @@ export function Blog() {
                        <input 
                          type="email" 
                          placeholder="Enter your email" 
-                         className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#F58220]/50 transition-all placeholder:text-white/20 shadow-inner"
+                         className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#3A5CCC]/50 transition-all placeholder:text-white/20 shadow-inner"
                        />
                     </div>
-                    <button className="bg-[#F58220] text-white px-10 py-5 rounded-2xl text-lg font-black shadow-[0_20px_40px_rgba(245,130,32,0.3)] hover:scale-105 transition-all whitespace-nowrap">
+                    <button className="bg-[#3A5CCC] text-white px-10 py-5 rounded-2xl text-lg font-black shadow-[0_20px_40px_rgba(58,92,204,0.3)] hover:scale-105 transition-all whitespace-nowrap">
                        Subscribe Now
                     </button>
                  </form>
