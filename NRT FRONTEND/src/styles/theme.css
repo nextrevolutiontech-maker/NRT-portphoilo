@@ -1,0 +1,116 @@
+:root {
+  /* Enterprise Brand Color System - Steel Blue & Deep Slate */
+  --brand: #3A5CCC;         /* Steel Blue */
+  --deep-slate: #0F172A;    /* Primary Background */
+  --surface: #161F33;       /* Surface Background */
+  
+  --bg-main: #0F172A;      
+  --bg-card: #161F33;      
+  
+  --text-primary: #F3F4F6;  /* Faded White */
+  --text-muted: #9CA3AF;    /* Premium Gray */
+  
+  --border: rgba(255, 255, 255, 0.06); /* Refined, transparent border */
+  --radius: 12px;
+}
+
+/* Global Reset & Base */
+html {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Subtle Global Grain Texture - Removed heavy SVG filter for performance */
+body::before {
+  content: none;
+}
+
+/* Typography Refinement */
+.heading-brand {
+  font-weight: 700; /* Less heavy than 900 */
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.font-italic-serif {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* BUTTON STYLES - Stripe/Linear Style */
+.btn-primary-nrt {
+  background-color: var(--brand);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary-nrt:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(58, 92, 204, 0.25);
+}
+
+.btn-secondary-nrt {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary-nrt:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Premium Card - Optimized for Performance */
+.card-nrt {
+  background-color: rgba(22, 31, 51, 0.8); /* More solid, less blur */
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-nrt:hover {
+  border-color: rgba(58, 92, 204, 0.3);
+  background-color: rgba(22, 31, 51, 0.9);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Icon Container */
+.card-icon-nrt {
+  background-color: rgba(58, 92, 204, 0.1);
+  color: var(--brand);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
