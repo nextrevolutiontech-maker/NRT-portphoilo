@@ -114,12 +114,12 @@ export function ServiceDetail() {
             </div>
 
             {/* CTA - Dark */}
-            <section className="px-4 py-20 bg-[#F3F4F6]">
-                <div className="bg-[#0F172A] rounded-[4rem] p-16 lg:p-32 text-center relative overflow-hidden shadow-2xl border border-white/5">
+            <section className="px-4 py-20 bg-transparent">
+                <div className="bg-[#0B0F19] rounded-[4rem] p-16 lg:p-32 text-center relative overflow-hidden shadow-2xl border border-white/5">
                      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
                      <div className="relative z-10">
-                       <h2 className="text-5xl sm:text-7xl font-black mb-10 tracking-tighter text-white leading-tight">Ready to <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">scale</span>?</h2>
+                       <h2 className="text-5xl sm:text-7xl font-black mb-10 tracking-tighter text-white leading-tight">Ready to <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">scale</span>?</h2>
                        <p className="text-xl sm:text-2xl font-bold text-white/50 mb-16 max-w-xl mx-auto leading-relaxed">
                           Let's discuss how {service.title} can transform your business operations.
                        </p>
@@ -127,7 +127,7 @@ export function ServiceDetail() {
                           <Link to="/contact" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all">Get Started Now</Link>
                           <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-[#0F172A] transition-all">View Pricing</Link>
                        </div>
-                    </div>
+                     </div>
                 </div>
             </section>
         </div>

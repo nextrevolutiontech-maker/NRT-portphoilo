@@ -19,7 +19,8 @@ export default defineConfig({
     viteCompression(),
     Sitemap({
       hostname: 'https://www.nextrevolutiontech.tech',
-      dynamicRoutes: ['/services', '/case-studies', '/about', '/contact', '/process']
+      dynamicRoutes: ['/services', '/case-studies', '/about', '/contact', '/process'],
+      generateRobotsTxt: false
     }),
     VitePWA({
       registerType: 'autoUpdate',

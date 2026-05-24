@@ -18,11 +18,11 @@
 html {
   background-color: var(--bg-main);
   color: var(--text-primary);
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* Disabled smooth-scroll to prevent conflict with Lenis smooth scroll */
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'NRT-Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
@@ -42,7 +42,7 @@ body::before {
 }
 
 .font-italic-serif {
-  font-family: 'Playfair Display', serif;
+  font-family: 'NRT-Playfair', serif;
   font-style: italic;
 }
 

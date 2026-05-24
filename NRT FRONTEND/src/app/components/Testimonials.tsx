@@ -133,20 +133,21 @@ const testimonials: Testimonial[] = [
 
 interface TestimonialsProps {
   limit?: number;
+  theme?: "light" | "dark";
 }
 
-export function Testimonials({ limit }: TestimonialsProps) {
+export function Testimonials({ limit, theme = "light" }: TestimonialsProps) {
   const displayTestimonials = limit ? testimonials.slice(0, limit) : testimonials;
 
   return (
-    <section className="py-32 bg-transparent relative overflow-hidden">
+    <section className={`py-32 bg-transparent relative overflow-hidden ${theme === 'dark' ? 'text-white' : 'text-[#0F172A]'}`}>
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3A5CCC]/5 rounded-full blur-[80px] -z-10 translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[60px] -z-10 -translate-x-1/2 translate-y-1/2" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mb-20">
           <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Social Proof</div>
-          <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#0F172A] leading-tight">
+          <h2 className={`text-5xl sm:text-7xl font-bold tracking-tight leading-tight ${theme === 'dark' ? 'text-white' : 'text-[#0F172A]'}`}>
             Trusted by Global <br /><span className="text-[#3A5CCC] italic font-italic-serif font-normal">Partners</span>.
           </h2>
         </div>
@@ -159,12 +160,16 @@ export function Testimonials({ limit }: TestimonialsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group relative bg-white/[0.6] rounded-[2rem] p-7 border border-[#0F172A]/5 hover:border-[#3A5CCC]/30 hover:bg-white transition-all duration-500 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-[0_20px_50px_rgba(58,92,204,0.1)] flex flex-col justify-between overflow-hidden"
+              className={`group relative rounded-[2rem] p-7 border transition-all duration-500 flex flex-col justify-between overflow-hidden ${
+                theme === 'dark'
+                ? 'bg-white/[0.02] border-white/5 hover:border-[#3A5CCC]/40 hover:bg-white/[0.04] shadow-2xl text-white'
+                : 'bg-white/[0.6] border-[#0F172A]/5 hover:border-[#3A5CCC]/30 hover:bg-white shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-[0_20px_50px_rgba(58,92,204,0.1)] text-[#0F172A]'
+              }`}
             >
               {/* Subtle Ambient Glow on Hover */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3A5CCC]/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              <div className="absolute top-6 right-6 text-[#0F172A]/5 group-hover:text-[#3A5CCC]/20 transition-colors">
+              <div className={`absolute top-6 right-6 transition-colors ${theme === 'dark' ? 'text-white/5 group-hover:text-[#3A5CCC]/20' : 'text-[#0F172A]/5 group-hover:text-[#3A5CCC]/20'}`}>
                 <Quote className="w-8 h-8 rotate-180 fill-current" />
               </div>
 
@@ -173,10 +178,10 @@ export function Testimonials({ limit }: TestimonialsProps) {
                   {[...Array(5)].map((_, starI) => (
                     <Star 
                       key={starI} 
-                      className={`w-3 h-3 fill-current ${starI < Math.floor(testimonial.rating) ? 'text-[#3A5CCC]' : 'text-[#0F172A]/10'}`} 
+                      className={`w-3 h-3 fill-current ${starI < Math.floor(testimonial.rating) ? 'text-[#3A5CCC]' : (theme === 'dark' ? 'text-white/10' : 'text-[#0F172A]/10')}`} 
                     />
                   ))}
-                  <span className="ml-3 text-[10px] font-black text-[#0F172A]/40 uppercase tracking-widest">{testimonial.rating.toFixed(1)} Rating</span>
+                  <span className={`ml-3 text-[10px] font-black uppercase tracking-widest ${theme === 'dark' ? 'text-white/40' : 'text-[#0F172A]/40'}`}>{testimonial.rating.toFixed(1)} Rating</span>
                 </div>
 
                 <div className="inline-flex items-center gap-2 text-[8px] font-black uppercase tracking-[0.2em] text-[#3A5CCC] mb-3 px-3 py-1 bg-[#3A5CCC]/5 rounded-full border border-[#3A5CCC]/10">
@@ -184,13 +189,15 @@ export function Testimonials({ limit }: TestimonialsProps) {
                   {testimonial.project}
                 </div>
 
-                <p className="text-base font-bold text-[#0F172A]/80 leading-relaxed mb-8 italic">
+                <p className={`text-base font-bold leading-relaxed mb-8 italic ${theme === 'dark' ? 'text-white/80' : 'text-[#0F172A]/80'}`}>
                   "{testimonial.content}"
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 pt-6 border-t border-[#0F172A]/5 mt-auto">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold shadow-sm border border-[#0F172A]/10 transform group-hover:scale-110 transition-transform ${
+              <div className={`flex items-center gap-4 pt-6 border-t mt-auto ${theme === 'dark' ? 'border-white/5' : 'border-[#0F172A]/5'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold shadow-sm border transform group-hover:scale-110 transition-transform ${
+                  theme === 'dark' ? 'border-white/10' : 'border-[#0F172A]/10'
+                } ${
                   i % 4 === 0 ? 'bg-[#3A5CCC] text-white' : 
                   i % 4 === 1 ? 'bg-emerald-500 text-white' : 
                   i % 4 === 2 ? 'bg-purple-500 text-white' : 
@@ -199,8 +206,8 @@ export function Testimonials({ limit }: TestimonialsProps) {
                    {testimonial.author.charAt(0)}
                 </div>
                 <div>
-                   <div className="text-xs font-bold text-[#0F172A] uppercase tracking-tight group-hover:text-[#3A5CCC] transition-colors">{testimonial.author}</div>
-                   <div className="text-[8px] font-bold text-[#0F172A]/30 uppercase tracking-[0.2em]">
+                   <div className={`text-xs font-bold uppercase tracking-tight transition-colors ${theme === 'dark' ? 'text-white group-hover:text-[#3A5CCC]' : 'text-[#0F172A] group-hover:text-[#3A5CCC]'}`}>{testimonial.author}</div>
+                   <div className={`text-[8px] font-bold uppercase tracking-[0.2em] ${theme === 'dark' ? 'text-white/30' : 'text-[#0F172A]/30'}`}>
                       {testimonial.location} • {testimonial.date}
                    </div>
                 </div>
@@ -209,15 +216,15 @@ export function Testimonials({ limit }: TestimonialsProps) {
           ))}
         </div>
 
-        <div className="mt-24 py-16 border-t border-[#0F172A]/5 flex flex-wrap justify-center gap-12 sm:gap-32">
+        <div className={`mt-24 py-16 border-t flex flex-wrap justify-center gap-12 sm:gap-32 ${theme === 'dark' ? 'border-white/5' : 'border-[#0F172A]/5'}`}>
            {[
              { val: "5.0/5", label: "Average Rating" },
              { val: "100%", label: "Job Success" },
              { val: "15+", label: "Countries Served" }
            ].map((stat, i) => (
              <div key={i} className="text-center">
-                <div className="text-4xl sm:text-5xl font-black text-[#0F172A] tracking-tighter mb-2">{stat.val}</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#0F172A]/40">{stat.label}</div>
+                <div className={`text-4xl sm:text-5xl font-black tracking-tighter mb-2 ${theme === 'dark' ? 'text-white' : 'text-[#0F172A]'}`}>{stat.val}</div>
+                <div className={`text-[10px] font-black uppercase tracking-widest ${theme === 'dark' ? 'text-white/40' : 'text-[#0F172A]/40'}`}>{stat.label}</div>
              </div>
            ))}
         </div>

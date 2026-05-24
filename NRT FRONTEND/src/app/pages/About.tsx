@@ -173,10 +173,10 @@ export function About() {
 
           {/* Final CTA Section - Enterprise Style */}
           <ScrollReveal direction="up">
-            <div className="text-center mt-32 bg-[#0F172A] rounded-[2.5rem] p-16 sm:p-24 border border-white/5 relative overflow-hidden shadow-2xl mb-32">
+            <div className="text-center mt-32 bg-[#0B0F19] rounded-[2.5rem] p-16 sm:p-24 border border-white/5 relative overflow-hidden shadow-2xl mb-32">
               <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
               <div className="relative z-10">
-                <h2 className="text-4xl sm:text-6xl font-bold mb-12 tracking-tight leading-[0.95] text-white">Scale your engineering <br /><span className="font-italic-serif italic font-normal text-[#3A5CCC]">seamlessly</span>.</h2>
+                <h2 className="text-4xl sm:text-6xl font-bold mb-12 tracking-tight leading-[0.95] text-white">Scale your engineering <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">seamlessly</span>.</h2>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link to={ctaLinks.started} className="btn-primary-nrt px-12 py-6 text-xl">
                     Get Started Now

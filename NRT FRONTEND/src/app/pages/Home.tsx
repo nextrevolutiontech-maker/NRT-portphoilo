@@ -138,7 +138,7 @@ export function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#F3F4F6] overflow-x-hidden text-[#0F172A]">
+    <div className="relative min-h-screen bg-[#080B11] overflow-x-hidden text-white">
       <SEO 
         title="One Team. Every Solution. | Dedicated Developers for Scale"
         description="We provide dedicated developers and complete digital solutions so businesses can scale without repeatedly hiring freelancers for every new project."
@@ -199,63 +199,80 @@ export function Home() {
                         <span>Global Delivery</span>
                      </div>
                   </div>
-               </div>
             </div>
+          </div>
 
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="lg:col-span-4 relative flex items-center justify-center lg:scale-110"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="lg:col-span-4 w-full lg:mt-6"
             >
-              {/* Outer Decorative Ring - Simplified Animations */}
-              <div className="absolute inset-0 rounded-full border border-[#3A5CCC]/5 animate-[spin_30s_linear_infinite] scale-125" />
-              <div className="absolute inset-0 rounded-full border border-white/[0.03] animate-[spin_25s_linear_infinite_reverse] scale-115" />
+              {/* Premium Dashboard Panel Mockup */}
+              <div className="relative rounded-3xl border border-white/10 bg-[#161F33]/60 backdrop-blur-xl p-6 sm:p-8 shadow-2xl overflow-hidden group">
+                <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')] pointer-events-none" />
+                
+                {/* Header of the panel */}
+                <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
+                  </div>
+                  <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">NRT_PIPELINE</div>
+                </div>
 
-              <div className="relative z-10 aspect-square rounded-full overflow-hidden shadow-2xl border border-white/10 bg-[#0F172A]/80 backdrop-blur-xl p-12 sm:p-16 flex flex-col items-center justify-center text-center group">
-                 <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')] pointer-events-none" />
-                 
-                 <motion.div 
-                   animate={{ y: [0, -5, 0] }}
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#3A5CCC] flex items-center justify-center text-white mb-8 shadow-xl shadow-[#3A5CCC]/20 group-hover:scale-110 transition-transform"
-                 >
-                    <ZapIcon className="w-8 h-8 sm:w-10 sm:h-10 fill-current" />
-                 </motion.div>
+                {/* Main metric */}
+                <div className="space-y-1 mb-6">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#3A5CCC]">Sprint Capacity</div>
+                  <div className="text-3xl font-black text-white tracking-tight flex items-baseline gap-2">
+                    94.8% <span className="text-xs font-semibold text-emerald-400">Optimal</span>
+                  </div>
+                </div>
 
-                 <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-[0.95] mb-6">NRT <br />Dedicated <br />Partner.</h2>
-                 
-                 <p className="text-base sm:text-lg font-bold text-white/40 leading-tight mb-10 max-w-[220px]">
-                    Your mission-critical tech handled 24/7.
-                 </p>
-
-                 <div className="w-full max-w-[200px] bg-white/5 rounded-2xl p-5 border border-white/10 mb-8">
-                    <div className="flex items-center justify-between mb-3">
-                       <div className="text-[10px] font-black uppercase tracking-widest text-[#3A5CCC]">Active Tasks</div>
-                       <div className="text-white text-2xl font-black">04</div>
+                {/* Pipeline List */}
+                <div className="space-y-4 mb-8">
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-white/40">Current Queue</div>
+                  {[
+                    { name: "Deploy Vercel Edge Cache", status: "Active", val: 88, color: "bg-[#3A5CCC]" },
+                    { name: "Optimize PostgreSQL queries", status: "Review", val: 100, color: "bg-emerald-500" },
+                    { name: "Integrate Stripe billing flow", status: "Testing", val: 65, color: "bg-purple-500" }
+                  ].map((task, i) => (
+                    <div key={i} className="bg-white/[0.01] border border-white/5 rounded-2xl p-4 space-y-3">
+                      <div className="flex justify-between items-center text-xs font-semibold text-white/80">
+                        <span>{task.name}</span>
+                        <span className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          task.status === "Active" ? "bg-[#3A5CCC]/10 text-[#3A5CCC] border border-[#3A5CCC]/20" :
+                          task.status === "Review" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
+                          "bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                        }`}>{task.status}</span>
+                      </div>
+                      <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }} 
+                          animate={{ width: `${task.val}%` }} 
+                          transition={{ duration: 1.2, delay: 0.2 + i * 0.1 }}
+                          className={`h-full ${task.color}`} 
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                       <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                          <motion.div initial={{ width: 0 }} animate={{ width: "70%" }} className="h-full bg-[#3A5CCC]" />
-                       </div>
-                       <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                          <motion.div initial={{ width: 0 }} animate={{ width: "40%" }} className="h-full bg-blue-500" />
-                       </div>
-                    </div>
-                 </div>
+                  ))}
+                </div>
 
-                 <Link to="/estimator" className="text-xs font-black text-[#3A5CCC] uppercase tracking-[0.2em] hover:text-white transition-colors">
+                <div className="text-center">
+                  <Link to="/estimator" className="inline-flex items-center text-xs font-black text-[#3A5CCC] uppercase tracking-[0.2em] hover:text-white transition-colors">
                     Check Pricing →
-                 </Link>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Trust Stats Bar */}
+      {/* Trust Stats Bar - Redesigned Dark & Premium */}
       <ScrollReveal>
-        <section className="py-20 bg-white border-y border-[#0F172A]/5">
+        <section className="py-16 bg-[#0B0F19]/50 border-y border-white/5">
            <div className="mx-auto max-w-7xl px-4 flex flex-wrap justify-center gap-12 sm:gap-24">
               {[
                 { val: "5.0/5", label: "Rating" },
@@ -265,8 +282,8 @@ export function Home() {
                 { val: "🇵🇰", label: "Karachi Based" }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                   <div className="text-4xl sm:text-5xl font-black tracking-tighter text-[#3A5CCC] mb-2">{stat.val}</div>
-                   <div className="text-[10px] font-black uppercase tracking-widest text-[#0F172A]/40">{stat.label}</div>
+                   <div className="text-3xl sm:text-4xl font-black tracking-tighter text-white mb-2">{stat.val}</div>
+                   <div className="text-[9px] font-black uppercase tracking-widest text-white/40">{stat.label}</div>
                 </div>
               ))}
            </div>
@@ -275,13 +292,13 @@ export function Home() {
 
       {/* Logo Marquee - Compact & Spaced */}
       <ScrollReveal>
-        <section className="py-12 overflow-hidden bg-[#0F172A] relative border-y border-white/5">
+        <section className="py-10 overflow-hidden bg-[#0F172A] relative border-b border-white/5">
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-          <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30 text-center mb-10 relative z-10">
+          <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-white/20 text-center mb-8 relative z-10">
              Trusted by businesses built on
           </div>
           <div className="relative flex overflow-x-hidden z-10">
-            <div className="flex animate-infinite-scroll whitespace-nowrap items-center gap-32 px-16">
+            <div className="flex animate-infinite-scroll whitespace-nowrap items-center gap-24 px-16">
               {[
                 { name: "Shopify", logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg" },
                 { name: "WordPress", logo: "https://cdn.worldvectorlogo.com/logos/wordpress-icon.svg" },
@@ -295,332 +312,294 @@ export function Home() {
                 { name: "PayPal", logo: "https://cdn.worldvectorlogo.com/logos/paypal-3.svg" },
                 { name: "WooCommerce", logo: "https://cdn.worldvectorlogo.com/logos/woocommerce.svg" }
               ]).map((brand, i) => (
-                <div key={i} className="flex items-center gap-4 group">
-                  <img src={brand.logo} alt={brand.name} className="h-6 sm:h-8 w-auto brightness-0 invert opacity-40 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-500" />
-                  <span className="text-xl font-bold tracking-tighter text-white/10 group-hover:text-white transition-colors uppercase">{brand.name}</span>
+                <div key={i} className="flex items-center gap-3.5 group">
+                  <img src={brand.logo} alt={brand.name} className="h-5 sm:h-6 w-auto brightness-0 invert opacity-20 group-hover:opacity-60 transition-all duration-500" />
+                  <span className="text-sm font-black tracking-tighter text-white/5 group-hover:text-white/40 transition-colors uppercase">{brand.name}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
       </ScrollReveal>
-
-      {/* Expertise Section */}
       <ScrollReveal>
-        <section className="py-32 relative overflow-hidden bg-white/30">
+        <section className="py-32 relative overflow-hidden bg-[#080B11]">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3A5CCC]/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
           
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
             <div className="mb-20">
-               <div className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Expertise</div>
-               <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#0F172A] leading-tight mb-8">
+               <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Expertise</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight mb-8">
                  Engineered for <br /><span className="text-[#3A5CCC] italic font-italic-serif font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Scale</span>.
                </h2>
-               <p className="text-xl sm:text-2xl font-medium text-[#0F172A]/50 max-w-2xl leading-snug">
+               <p className="text-lg sm:text-xl font-bold text-white/50 max-w-2xl leading-relaxed">
                  From core infrastructure to complex product engineering, we provide the technical depth required for modern business.
                </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* eCommerce Card */}
-              <TiltCard className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#161F33] p-10 group shadow-2xl border border-white/5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Card 1: Digital Commerce - Large Bento Span */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#161F33] p-8 sm:p-10 border border-white/5 shadow-2xl flex flex-col justify-between group col-span-1 md:col-span-2 lg:col-span-2 min-h-[400px] hover:-translate-y-1.5 transition-all duration-500">
                  <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ y: [0, -8, 0], rotate: [0, 1, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-12 left-8 right-8 bg-white/[0.03] rounded-[2rem] p-8 shadow-2xl border border-white/10 scale-[0.9] origin-top"
-                 >
-                    <div className="flex items-center justify-between mb-8">
-                       <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[#3A5CCC]/30 flex items-center justify-center text-[#3A5CCC]"><ShoppingCart className="w-4 h-4" /></div>
-                          <div className="text-[10px] font-bold uppercase text-white/80 tracking-widest">Checkout</div>
+                 
+                 {/* Coded Visual Mockup */}
+                 <div className="flex flex-col sm:flex-row gap-6 items-center w-full max-w-[550px] mx-auto opacity-90 mb-8 sm:mb-0">
+                    {/* Invoice Panel */}
+                    <div className="w-full sm:w-1/2 bg-white/5 border border-white/10 rounded-2xl p-5 font-mono text-[10px] space-y-4">
+                       <div className="flex justify-between border-b border-white/10 pb-3">
+                          <span className="text-white/40">Invoice #NRT-8842</span>
+                          <span className="text-emerald-400 font-bold">PAID</span>
                        </div>
-                    </div>
-                    <div className="space-y-5">
-                       <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-white/20 rounded-xl shrink-0" />
-                          <div className="space-y-2 w-full">
-                             <div className="h-1.5 w-3/4 bg-white/30 rounded-full" />
-                             <div className="h-1 w-1/2 bg-white/15 rounded-full" />
+                       <div className="space-y-2">
+                          <div className="flex justify-between">
+                             <span className="text-white/80">Premium Development</span>
+                             <span className="text-white">$1,500.00</span>
+                          </div>
+                          <div className="flex justify-between text-white/50 text-[9px]">
+                             <span>Sprint Capacity (1 wk)</span>
+                             <span>Included</span>
                           </div>
                        </div>
-                       <div className="pt-6 border-t border-white/20">
-                          <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                             <motion.div initial={{ width: 0 }} animate={{ width: "92%" }} className="h-full bg-[#3A5CCC]" />
+                       <div className="border-t border-white/10 pt-3 flex justify-between font-bold text-xs text-white">
+                          <span>Total</span>
+                          <span>$1,500.00</span>
+                       </div>
+                    </div>
+                    {/* Sleek Credit Card */}
+                    <div className="w-full sm:w-1/2 bg-gradient-to-tr from-[#3A5CCC] to-[#1d2d63] border border-white/10 rounded-2xl p-5 flex flex-col justify-between aspect-[1.58/1] shadow-2xl text-white">
+                       <div className="flex justify-between items-start">
+                          <ShoppingCart className="w-6 h-6 opacity-80" />
+                          <span className="text-[8px] font-black tracking-widest uppercase opacity-60">Corporate</span>
+                       </div>
+                       <div className="space-y-2">
+                          <div className="text-sm font-bold tracking-widest">•••• •••• •••• 8842</div>
+                          <div className="flex justify-between text-[8px] uppercase tracking-widest opacity-60">
+                             <span>Next Rev Tech</span>
+                             <span>08/29</span>
                           </div>
                        </div>
                     </div>
-                 </motion.div>
-                 <div className="relative z-10 mt-auto text-white">
-                    <h3 className="text-3xl font-bold mb-4 tracking-tight uppercase leading-none">Digital Commerce</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug">Scaling performance and reliability for high-traffic commerce platforms.</p>
                  </div>
-              </TiltCard>
+
+                 <div className="relative z-10 text-white mt-6">
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight uppercase leading-none">Digital Commerce</h3>
+                    <p className="text-sm font-medium opacity-50 leading-relaxed max-w-xl">Scaling performance, real-time sync, and transaction security for high-volume enterprise platforms.</p>
+                 </div>
+              </div>
   
-              {/* Integrations Card */}
-              <TiltCard className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#0F172A] p-10 group shadow-2xl border border-white/5">
+              {/* Card 2: Integrations - Small Bento Span */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#0F172A] p-8 border border-white/5 shadow-2xl flex flex-col justify-between group col-span-1 min-h-[400px] hover:-translate-y-1.5 transition-all duration-500">
                  <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ y: [0, -6, 0] }}
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-12 left-8 right-8 bg-white/[0.03] backdrop-blur-md rounded-[2rem] p-6 border border-white/10 shadow-2xl scale-[0.9] origin-top font-mono"
-                 >
-                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/20">
-                       <div className="flex gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-[#3A5CCC]" />
-                          <div className="w-2 h-2 rounded-full bg-white/30" />
+                 
+                 {/* Coded Syntax Editor & Webhook Console */}
+                 <div className="flex flex-col gap-3">
+                    {/* IDE Editor Mockup */}
+                    <div className="bg-[#0B0F19] border border-white/10 rounded-2xl shadow-2xl font-mono text-[10px] leading-relaxed select-none overflow-hidden">
+                       {/* Tab Bar */}
+                       <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.02] border-b border-white/5">
+                          <div className="flex items-center gap-1.5">
+                             <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                             <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
+                             <div className="w-2 h-2 rounded-full bg-green-500/50" />
+                          </div>
+                          <div className="flex items-center gap-1.5 px-3 py-1 bg-white/[0.04] rounded-lg border border-white/5 text-[9px] font-semibold text-white/70">
+                             <span className="text-blue-400 text-[8px] font-bold">TS</span>
+                             webhook.ts
+                          </div>
+                          <div className="w-12" />
                        </div>
-                       <div className="text-[8px] text-white/80 uppercase tracking-widest">BRIDGE_ACTIVE</div>
-                    </div>
-                    <div className="space-y-4">
-                       <div className="flex items-center gap-3">
-                          <span className="text-[#3A5CCC] text-[9px] font-bold">{">"}</span>
-                          <div className="h-1 w-3/4 bg-white/30 rounded-full" />
-                       </div>
-                       <div className="pt-4">
-                          <div className="flex gap-1">
-                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                               <div key={i} className={`h-4 w-full rounded-sm ${i < 5 ? 'bg-[#3A5CCC]/80' : 'bg-white/15'}`} />
-                             ))}
+                       {/* Code area */}
+                       <div className="p-4 space-y-1 font-mono text-[9.5px]">
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">1</span>
+                             <span><span className="text-purple-400">const</span> <span className="text-blue-400">webhook</span> = <span className="text-purple-400">async</span> (req, res) =&gt; &#123;</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">2</span>
+                             <span className="pl-4"><span className="text-purple-400">const</span> sig = req.headers[<span className="text-emerald-400">'sig'</span>];</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">3</span>
+                             <span className="pl-4"><span className="text-purple-400">const</span> event = stripe.construct(req.body, sig);</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">4</span>
+                             <span className="pl-4"><span className="text-purple-400">if</span> (event.type === <span className="text-emerald-400">'charge.success'</span>) &#123;</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">5</span>
+                             <span className="pl-8 text-yellow-300">await <span className="text-blue-300">db</span>.activateSprint();</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">6</span>
+                             <span className="pl-4">&#125;</span>
+                          </div>
+                          <div className="flex gap-3">
+                             <span className="text-white/20 select-none text-right w-3">7</span>
+                             <span>&#125;;</span>
                           </div>
                        </div>
                     </div>
-                 </motion.div>
-                 <div className="relative z-10 text-white mt-auto">
-                    <h3 className="text-3xl font-bold mb-4 tracking-tight uppercase leading-none">Integrations</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug">Complex ecosystem connectivity and custom middleware engineering.</p>
-                 </div>
-              </TiltCard>
-   
-              {/* AI & Automation Card */}
-              <TiltCard className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#161F33] p-10 group shadow-2xl border border-white/5">
-                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ scale: [1, 1.03, 1], rotate: [0, -1, 0] }}
-                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-12 left-8 right-8 bg-white/[0.02] rounded-[2rem] p-8 shadow-2xl flex flex-col items-center justify-center text-center scale-[0.9] origin-top border border-white/10"
-                 >
-                    <div className="relative mb-8">
-                       <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-white relative z-10 border border-white/30 shadow-lg">
-                          <Bot className="w-8 h-8 text-[#3A5CCC]" />
+                    {/* Mini Terminal / Console log */}
+                    <div className="bg-[#0B0F19]/90 border border-white/5 rounded-xl p-3 sm:p-4 font-mono text-[9px] flex items-center justify-between shadow-lg">
+                       <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-black">200 OK</span>
+                          <span className="text-white/60">POST /api/webhooks</span>
                        </div>
+                       <span className="text-white/30 font-semibold">12ms</span>
                     </div>
-                    <div className="space-y-4 w-full">
-                       <div className="flex items-center justify-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-[#3A5CCC] animate-pulse" />
-                          <div className="text-[9px] font-bold uppercase text-white/80 tracking-[0.2em]">Agent Active</div>
-                       </div>
-                       <div className="bg-white/15 rounded-xl p-4 border border-white/20">
-                          <div className="text-[10px] font-bold text-[#3A5CCC] uppercase mb-1 tracking-widest">Core efficiency</div>
-                          <div className="text-2xl font-bold text-white tracking-tight">+85%</div>
-                       </div>
-                    </div>
-                 </motion.div>
-                 <div className="relative z-10 text-white mt-auto">
-                    <h3 className="text-3xl font-bold mb-4 tracking-tight uppercase leading-none">AI & Automation</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug">Building autonomous agents and intelligent backend workflows.</p>
                  </div>
-              </TiltCard>
 
-              {/* Mobile App Card */}
-              <TiltCard className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#0F172A] p-10 group shadow-2xl border border-white/5">
-                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ y: [0, -10, 0], rotate: [0, 1, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-4 left-1/2 -translate-x-1/2 w-44 aspect-[9/16] bg-[#161F33] rounded-[2rem] p-4 shadow-2xl border border-white/10 scale-[0.8] origin-top overflow-hidden"
-                 >
-                    <div className="flex justify-between items-center mb-6 px-1">
-                       <div className="w-2 h-2 rounded-full bg-white/10" />
-                       <div className="text-[6px] font-mono text-white/20">SYSTEM_UP</div>
-                       <div className="w-2 h-2 rounded-full bg-[#3A5CCC]/40" />
-                    </div>
-                    <div className="space-y-3">
-                       <div className="h-20 rounded-xl bg-white/[0.03] border border-white/5" />
-                       <div className="h-12 rounded-xl bg-white/[0.02] border border-white/5" />
-                       <div className="flex gap-2">
-                          <div className="w-full h-8 rounded-lg bg-[#3A5CCC]/10 border border-[#3A5CCC]/20" />
-                          <div className="w-full h-8 rounded-lg bg-white/[0.02] border border-white/5" />
-                       </div>
-                    </div>
-                 </motion.div>
-                 <div className="relative z-10 text-white mt-auto">
-                    <h3 className="text-3xl font-bold mb-4 tracking-tight uppercase leading-none">Mobile Apps</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug">Native and cross-platform mobile experiences for global scaling.</p>
+                 <div className="relative z-10 text-white mt-6">
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight uppercase leading-none">Integrations</h3>
+                    <p className="text-sm font-medium opacity-50 leading-relaxed">Complex ecosystem connectivity and custom middleware APIs engineered for zero failure rates.</p>
                  </div>
-              </TiltCard>
+              </div>
+    
+              {/* Card 3: AI & Automation - Small Bento Span */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#0F172A] p-8 border border-white/5 shadow-2xl flex flex-col justify-between group col-span-1 min-h-[400px] hover:-translate-y-1.5 transition-all duration-500">
+                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+                 
+                 {/* Visual Node Agent Canvas */}
+                 <div className="bg-[#0B0F19] border border-white/10 rounded-2xl p-5 shadow-2xl relative min-h-[160px] overflow-hidden flex flex-col justify-between">
+                    <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
+                    
+                    <div className="relative z-10 flex flex-col gap-3">
+                       {/* Node 1: Input */}
+                       <div className="flex items-center justify-between bg-white/[0.02] border border-white/5 rounded-xl p-3">
+                          <div className="flex items-center gap-2 text-[9px] font-bold text-white/80">
+                             <span className="w-1.5 h-1.5 rounded-full bg-[#3A5CCC]" />
+                             User Request Node
+                          </div>
+                          <span className="text-[8px] text-white/30 font-mono">active</span>
+                       </div>
 
-              {/* DevOps Card */}
-              <TiltCard className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#0F172A] p-10 group shadow-2xl border border-white/5">
-                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ scale: [1, 1.02, 1] }}
-                   transition={{ duration: 4, repeat: Infinity }}
-                   className="absolute top-12 left-8 right-8 bg-[#161F33] rounded-[2rem] p-6 shadow-2xl border border-white/10 scale-[0.9] origin-top font-mono"
-                 >
-                    <div className="flex items-center gap-2 text-[#3A5CCC] text-[9px] mb-6">
-                       <div className="w-1.5 h-1.5 rounded-full bg-[#3A5CCC] animate-pulse" />
-                       <span>SERVER_CLUSTER_A</span>
-                    </div>
-                    <div className="space-y-4">
-                       <div className="flex justify-between text-[7px] text-white/30 uppercase">
-                          <span>Load Balance</span>
-                          <span className="text-[#3A5CCC]">Optimal</span>
+                       {/* Connection Line */}
+                       <div className="h-4 flex justify-center items-center">
+                          <div className="w-0.5 h-full bg-gradient-to-b from-[#3A5CCC] to-purple-500" />
                        </div>
-                       <div className="flex gap-1 h-12 items-end">
-                          {[20, 40, 30, 60, 45, 80, 50, 90, 70].map((h, i) => (
-                            <div key={i} className="w-full bg-[#3A5CCC]/20 rounded-t-[1px]" style={{ height: `${h}%` }} />
-                          ))}
+
+                       {/* Node 2: Agent LLM */}
+                       <div className="flex items-center justify-between bg-[#3A5CCC]/10 border border-[#3A5CCC]/20 rounded-xl p-3">
+                          <div className="flex items-center gap-2 text-[9px] font-bold text-white">
+                             <Bot className="w-3.5 h-3.5 text-[#3A5CCC]" />
+                             Agentic LLM router
+                          </div>
+                          <span className="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">processing</span>
                        </div>
                     </div>
-                 </motion.div>
-                 <div className="relative z-10 text-white mt-auto">
-                    <h3 className="text-3xl font-bold mb-4 tracking-tight uppercase leading-none">Cloud & DevOps</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug">Infrastructure as code and high-availability systems architecture.</p>
                  </div>
-              </TiltCard>
+
+                 <div className="relative z-10 text-white mt-6">
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight uppercase leading-none">AI & Automation</h3>
+                    <p className="text-sm font-medium opacity-50 leading-relaxed">Building production-grade autonomous agent flows and custom LLM interfaces.</p>
+                 </div>
+              </div>
+ 
+              {/* Card 4: Mobile Apps - Small Bento Span */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#161F33] p-8 border border-white/5 shadow-2xl flex flex-col justify-between group col-span-1 min-h-[400px] hover:-translate-y-1.5 transition-all duration-500">
+                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+                 
+                 {/* Coded Phone Mockup */}
+                 <div className="mx-auto w-40 aspect-[9/16] bg-[#0B0F19] border border-white/15 rounded-[1.8rem] p-3 flex flex-col justify-between shadow-2xl relative">
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-3.5 bg-black rounded-full z-20 flex items-center justify-center">
+                       <div className="w-1.5 h-1.5 rounded-full bg-white/15" />
+                    </div>
+                    <div className="flex justify-between items-center text-[6px] text-white/40 font-mono pt-2 pb-1.5 border-b border-white/5">
+                       <span>09:41</span>
+                       <div className="flex items-center gap-1">
+                          <span className="w-1 h-1 bg-white/40 rounded-full" />
+                          <span className="w-1 h-1 bg-white/40 rounded-full" />
+                          <span className="w-1.5 h-1 bg-white/40 rounded-sm" />
+                       </div>
+                    </div>
+                    <div className="space-y-2 py-2 flex-1 flex flex-col justify-center">
+                       <div className="bg-[#3A5CCC]/10 border border-[#3A5CCC]/25 rounded-xl p-2.5 space-y-1">
+                          <div className="text-[5px] text-white/50 uppercase font-black tracking-wider">Project Phase</div>
+                          <div className="text-xs font-black text-white flex items-center justify-between">
+                             <span>Build v1.2</span>
+                             <span className="text-[#3A5CCC] text-[6px] bg-[#3A5CCC]/10 px-1 py-0.5 rounded font-mono font-bold">94%</span>
+                          </div>
+                       </div>
+                       {/* SVG Mini Chart Mockup */}
+                       <div className="bg-white/[0.02] border border-white/5 rounded-xl p-2 h-12 flex flex-col justify-between">
+                          <div className="text-[5.5px] text-white/30 uppercase font-black tracking-widest">Velocity</div>
+                          <svg viewBox="0 0 100 30" className="w-full h-8 overflow-visible">
+                             <path d="M0,25 Q15,5 30,15 T60,5 T90,20" fill="none" stroke="#3A5CCC" strokeWidth="1.5" />
+                             <circle cx="90" cy="20" r="2" fill="#3A5CCC" />
+                          </svg>
+                       </div>
+                    </div>
+                    <div className="h-1 w-12 bg-white/20 rounded-full mx-auto mt-1" />
+                 </div>
+
+                 <div className="relative z-10 text-white mt-6">
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight uppercase leading-none">Mobile Apps</h3>
+                    <p className="text-sm font-medium opacity-50 leading-relaxed">High-fidelity React Native and Flutter builds optimized for app store compliance.</p>
+                 </div>
+              </div>
+ 
+              {/* Card 5: Cloud & DevOps - Small Bento Span */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-[#161F33] p-8 sm:p-10 border border-white/5 shadow-2xl flex flex-col justify-between group col-span-1 min-h-[400px] hover:-translate-y-1.5 transition-all duration-500">
+                 <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+                 
+                 {/* Visual Cluster Panel */}
+                 <div className="flex flex-col gap-3.5 w-full max-w-[500px] mx-auto font-mono text-[9px] select-none text-white/40 mb-8 sm:mb-0">
+                    {[
+                      { node: "neon-db-prod-cluster", lat: "9ms", status: "Active", col: "text-emerald-400 border-emerald-500/20" },
+                      { node: "vercel-edge-middleware", lat: "4ms", status: "Active", col: "text-emerald-400 border-emerald-500/20" },
+                      { node: "aws-s3-static-bucket", lat: "15ms", status: "Syncing", col: "text-amber-400 border-amber-500/20" }
+                    ].map((srv, i) => (
+                      <div key={i} className="flex flex-col sm:flex-row gap-2 justify-between items-start sm:items-center bg-white/[0.01] border border-white/5 rounded-2xl p-4">
+                         <div className="flex items-center gap-2.5">
+                            <span className={`w-1.5 h-1.5 rounded-full ${srv.status === "Active" ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`} />
+                            <span className="text-white/80 font-bold">{srv.node}</span>
+                         </div>
+                         <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+                            <span>Latency: {srv.lat}</span>
+                            <span className={`px-2 py-0.5 border rounded-full text-[8px] uppercase tracking-wider ${srv.col}`}>{srv.status}</span>
+                         </div>
+                      </div>
+                    ))}
+                 </div>
+
+                 <div className="relative z-10 text-white mt-6">
+                    <h3 className="text-2xl font-bold mb-3 tracking-tight uppercase leading-none">Cloud & DevOps</h3>
+                    <p className="text-sm font-medium opacity-50 leading-relaxed max-w-xl">Infrastructure as code, automated pipelines (CI/CD), security firewalls, and reliable edge scaling.</p>
+                 </div>
+              </div>
             </div>
           </div>
         </section>
       </ScrollReveal>
 
-      <Testimonials limit={6} />
+      <Testimonials limit={6} theme="dark" />
 
-      {/* Simple Process */}
+      {/* Simple Process - Redesigned Premium Layout */}
       <ScrollReveal direction="down">
-        <section className="py-24 bg-transparent">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 sm:mb-16">
-               <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">How it works</div>
-               <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-[#0F172A] leading-[1] sm:leading-[0.95]">Simple Process. <br /><span className="text-[#3A5CCC] italic font-italic-serif font-normal">Reliable</span> Results.</h2>
+        <section className="py-32 bg-[#0B0F19] border-t border-white/5">
+          <div className="mx-auto max-w-7xl xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
+            <div className="mb-20 text-center sm:text-left">
+               <div className="text-[9px] font-bold uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">How it works</div>
+               <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1] sm:leading-[0.95]">Simple Process. <br /><span className="text-[#3A5CCC] italic font-italic-serif font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Reliable</span> Results.</h2>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Card 1: Subscribe */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-gradient-to-br from-[#27324A] to-[#27324A] p-8 flex flex-col justify-end group shadow-xl"
-              >
-                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ y: [0, -10, 0] }} 
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-8 left-6 right-6 bg-black rounded-2xl p-6 shadow-xl border border-white/10"
-                 >
-                    <div className="text-white/40 text-[9px] font-black uppercase tracking-widest mb-4">NRT Partner Plan</div>
-                    <div className="text-3xl font-black text-white mb-6">$1,500<span className="text-xs text-white/40 font-bold">/mo</span></div>
-                    <div className="space-y-2">
-                       <div className="h-1 w-full bg-white/5 rounded-full" />
-                       <div className="h-1 w-full bg-white/5 rounded-full" />
-                       <div className="h-1 w-1/2 bg-[#3A5CCC] rounded-full" />
-                    </div>
-                 </motion.div>
-                 <div className="relative z-10">
-                    <h3 className="text-5xl font-black text-[#0F172A]/10 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Subscribe</h3>
-                    <h3 className="text-2xl sm:text-3xl font-black text-[#0F172A] mb-3 tracking-tighter uppercase leading-none relative z-20">Subscribe</h3>
-                    <p className="text-sm font-bold text-[#0F172A]/70 leading-snug relative z-20">Choose a plan or start with a small test task to begin your partnership.</p>
-                 </div>
-              </motion.div>
-  
-              {/* Card 2: Request */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-[#161F33] p-8 flex flex-col justify-end group shadow-2xl border border-white/5"
-              >
-                 <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
-                 <div className="absolute top-8 left-6 right-6 flex flex-wrap gap-2">
-                    {["API", "Bug", "React", "AI", "Dash"].map((tag, i) => (
-                      <motion.div 
-                        key={i}
-                        animate={{ y: [0, -5, 0], opacity: [0.8, 1, 0.8] }}
-                        transition={{ duration: 3, delay: i * 0.2, repeat: Infinity }}
-                        className="bg-[#3A5CCC]/10 border border-[#3A5CCC]/20 rounded-full px-3 py-1.5 text-[9px] font-bold text-[#3A5CCC] uppercase tracking-[0.1em]"
-                      >
-                        {tag}
-                      </motion.div>
-                    ))}
-                 </div>
-                 <div className="relative z-10 text-white">
-                    <h3 className="text-5xl font-bold text-white/5 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Request</h3>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight uppercase leading-none relative z-20">Request</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug relative z-20">Add as many tasks as you like to your dedicated board with zero friction.</p>
-                 </div>
-              </motion.div>
-  
-              {/* Card 3: Receive */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-[#0F172A] p-8 flex flex-col justify-end group shadow-2xl border border-white/5"
-              >
-                 <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
-                 <motion.div 
-                   animate={{ rotate: [-1, 1, -1], y: [0, -10, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                   className="absolute top-8 left-6 right-6 bg-[#161F33] rounded-2xl p-4 shadow-2xl border border-white/10 overflow-hidden"
-                 >
-                    <img src="https://res.cloudinary.com/de4oqb7rz/image/upload/v1777422324/nrt-portfolio/fxrl8jxwne52fpd0vq1t.png" alt="Delivery" className="w-full h-auto rounded-lg" />
-                    <div className="mt-3 flex items-center justify-between px-1">
-                       <div className="text-[8px] font-bold uppercase text-white/30">Status: Complete</div>
-                       <div className="w-6 h-6 rounded-full bg-[#3A5CCC]/20 flex items-center justify-center text-[#3A5CCC]"><CheckCircle2 className="w-4 h-4" /></div>
-                    </div>
-                 </motion.div>
-                 <div className="relative z-10 text-white">
-                    <h3 className="text-5xl font-bold text-white/5 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Receive</h3>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight uppercase leading-none relative z-20">Receive</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug relative z-20">Get high-quality technical results in just 2-3 business days on average.</p>
-                 </div>
-              </motion.div>
-
-              {/* Card 4: Optimize */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-[#161F33] p-8 flex flex-col justify-end group shadow-2xl border border-white/5"
-              >
-                 <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
-                 <div className="absolute top-8 left-6 right-6 bg-white/[0.03] backdrop-blur-md rounded-2xl p-4 border border-white/10">
-                    <div className="text-[8px] font-bold text-white/30 uppercase mb-2">Performance Score</div>
-                    <div className="text-4xl font-bold text-white">99%</div>
-                 </div>
-                 <div className="relative z-10 text-white">
-                    <h3 className="text-5xl font-bold text-white/5 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Optimize</h3>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight uppercase leading-none relative z-20">Optimize</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug relative z-20">We continuously refine your code for speed and scalability.</p>
-                 </div>
-              </motion.div>
-
-              {/* Card 5: Scale */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-[#0F172A] p-8 flex flex-col justify-end group shadow-2xl border border-white/5"
-              >
-                 <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
-                 <div className="absolute top-8 left-6 right-6 flex items-center justify-center">
-                    <TrendingUp className="w-20 h-20 text-[#3A5CCC]/20" />
-                 </div>
-                 <div className="relative z-10 text-white">
-                    <h3 className="text-5xl font-bold text-white/5 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Scale</h3>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight uppercase leading-none relative z-20">Scale</h3>
-                    <p className="text-sm font-medium opacity-50 leading-snug relative z-20">As you grow, we scale your team and systems with you seamlessly.</p>
-                 </div>
-              </motion.div>
-
-              {/* Card 6: Support */}
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="relative overflow-hidden rounded-[3rem] aspect-[4/5] bg-[#161F33] p-8 flex flex-col justify-end group shadow-2xl border border-white/5"
-              >
-                 <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
-                 <div className="absolute top-8 left-6 right-6 bg-[#0F172A] rounded-2xl p-4 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-2">
-                       <div className="w-2 h-2 rounded-full bg-[#3A5CCC] animate-pulse" />
-                       <div className="text-[8px] font-bold text-white/60 uppercase">Support Online</div>
-                    </div>
-                 </div>
-                 <div className="relative z-10 text-white">
-                    <h3 className="text-5xl font-bold text-white/5 mb-2 tracking-tighter absolute -bottom-4 left-0 select-none pointer-events-none uppercase">Support</h3>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight uppercase leading-none relative z-20">Support</h3>
-                    <p className="text-sm font-bold opacity-70 leading-snug relative z-20">Direct access to your developers via Slack, WhatsApp, or Email.</p>
-                 </div>
-              </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {[
+                { step: "01", name: "Subscribe", desc: "Choose a customizable plan or start with a test task to begin your dedicated partnership." },
+                { step: "02", name: "Submit Tasks", desc: "Add design, backend, frontend or DevOps tasks to your board. One backlog, pure efficiency." },
+                { step: "03", name: "Fast Iterations", desc: "Watch active sprints advance daily. Track progress inside our dedicated Slack and Jira." },
+                { step: "04", name: "Receive", desc: "Get production-grade deliverables in just 2-3 business days on average." },
+                { step: "05", name: "Optimize", desc: "We continuously refine, test, and profile your application for speed and stability." },
+                { step: "06", name: "Scale", desc: "Seamlessly expand your technical squad and system integrations as your operations grow." }
+              ].map((item, i) => (
+                <div key={i} className="bg-white/[0.02] p-10 rounded-[2.5rem] border border-white/5 shadow-2xl flex flex-col justify-between min-h-[260px] hover:border-[#3A5CCC]/40 hover:bg-white/[0.04] transition-all duration-300">
+                   <div className="text-5xl font-black text-[#3A5CCC]/20 font-mono mb-6">{item.step}</div>
+                   <div>
+                      <h3 className="text-xl font-bold tracking-tight text-white mb-3 uppercase">{item.name}</h3>
+                      <p className="text-sm font-medium text-white/50 leading-relaxed">{item.desc}</p>
+                   </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -663,20 +642,42 @@ export function Home() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {plans.map((plan, i) => (
-                <motion.div key={i} whileHover={{ y: -8 }} className={`relative overflow-hidden rounded-[2.5rem] bg-white/[0.03] p-8 sm:p-10 flex flex-col justify-between shadow-2xl border ${plan.featured ? 'border-[#3A5CCC] ring-4 ring-[#3A5CCC]/10' : 'border-white/5'}`}>
+                <motion.div 
+                  key={i} 
+                  whileHover={{ y: -6 }} 
+                  className={`relative overflow-hidden rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between shadow-2xl border transition-all duration-300 ${
+                    plan.featured 
+                    ? 'bg-white/[0.05] border-[#3A5CCC]/40' 
+                    : 'bg-white/[0.02] border-white/5'
+                  }`}
+                >
                    <div className="absolute inset-0 opacity-[0.02] bg-[url('/noise.svg')]" />
                    <div className="relative z-10">
-                      <h3 className="text-lg font-bold text-[#3A5CCC] mb-1 uppercase tracking-wider">{plan.name}</h3>
-                      <div className="text-4xl font-bold text-white mb-8">{plan.price}<span className="text-sm font-medium text-white/20 ml-2">{plan.period}</span></div>
+                      <div className="flex justify-between items-center mb-3">
+                         <h3 className="text-xs font-black text-white uppercase tracking-wider">{plan.name}</h3>
+                         {plan.featured && (
+                            <span className="text-[8px] font-bold uppercase tracking-widest text-[#3A5CCC] bg-[#3A5CCC]/10 border border-[#3A5CCC]/25 px-2.5 py-1 rounded-full">
+                               Recommended
+                            </span>
+                         )}
+                      </div>
+                      <div className="text-3xl font-black text-white mb-8">
+                         {plan.price}
+                         <span className="text-xs font-semibold text-white/30 ml-2 uppercase tracking-widest">{plan.period}</span>
+                      </div>
                       <ul className="space-y-4 mb-10">
                         {plan.features.map((f, j) => (
-                          <li key={j} className="flex items-center gap-3 text-sm font-medium text-white/60">
-                             <CheckCircle2 className="w-4 h-4 text-[#3A5CCC]" /> {f}
+                          <li key={j} className="flex items-center gap-3 text-sm font-semibold text-white/50">
+                             <CheckCircle2 className="w-3.5 h-3.5 text-[#3A5CCC]" /> {f}
                           </li>
                         ))}
                       </ul>
                    </div>
-                   <Link to="/contact" className={`block w-full py-5 rounded-2xl text-center font-bold text-lg transition-all ${plan.featured ? 'bg-[#3A5CCC] text-white shadow-lg hover:bg-[#4F7FFF]' : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'}`}>
+                   <Link to="/contact" className={`block w-full py-4 rounded-2xl text-center font-bold text-sm uppercase tracking-widest transition-all duration-300 ${
+                     plan.featured 
+                     ? 'bg-[#3A5CCC] text-white shadow-lg shadow-[#3A5CCC]/10 hover:bg-[#3A5CCC]/90' 
+                     : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'
+                   }`}>
                       {plan.featured ? 'Get Started' : 'Select Plan'}
                    </Link>
                 </motion.div>
@@ -787,7 +788,7 @@ export function Home() {
                </motion.div>
                <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8">
                   Frequently Asked <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Questions.</span>
+                  <span className="text-[#3A5CCC] italic font-italic-serif font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Questions.</span>
                </h2>
                <p className="text-xl font-bold text-white/30 max-w-2xl leading-relaxed">
                   Everything you need to know about our partnership process and technical capabilities.

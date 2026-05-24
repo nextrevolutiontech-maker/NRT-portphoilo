@@ -22,7 +22,7 @@ export function PreFooterCTA({
   buttonText = "Assemble My Team"
 }: PreFooterCTAProps) {
   return (
-    <section className="relative pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white overflow-hidden">
+    <section className="relative pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#080B11] text-white overflow-hidden">
       <InteractiveHero3D />
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
       
@@ -30,9 +30,9 @@ export function PreFooterCTA({
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#3A5CCC]/5 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[60px] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl relative z-10">
+      <div className="mx-auto max-w-7xl xl:max-w-[1400px] relative z-10">
         <ScrollReveal direction="up" distance={60}>
-          <div className="bg-white/[0.04] backdrop-blur-xl rounded-[3.5rem] sm:rounded-[4.5rem] p-8 sm:p-16 lg:p-20 border border-white/10 relative overflow-hidden group shadow-[0_50px_100px_rgba(0,0,0,0.4)] transition-all duration-700 hover:border-white/20">
+          <div className="bg-white/[0.02] backdrop-blur-xl rounded-[3.5rem] sm:rounded-[4.5rem] p-8 sm:p-16 lg:p-20 border border-white/5 relative overflow-hidden group shadow-[0_50px_100px_rgba(0,0,0,0.4)] transition-all duration-700 hover:border-white/10">
             <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#3A5CCC]/5 rounded-full blur-2xl group-hover:bg-[#3A5CCC]/10 transition-colors duration-700" />
             
@@ -45,11 +45,11 @@ export function PreFooterCTA({
 
                 <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.85] mb-10 text-white">
                    {headline || (
-                     <>
-                       Ready to <br />
-                       <span className="font-italic-serif italic font-normal text-[#3A5CCC]">Scale</span> <br />
-                       Your Tech?
-                     </>
+                      <>
+                        Ready to <br />
+                        <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Scale</span> <br />
+                        Your Tech?
+                      </>
                    )}
                 </h2>
 

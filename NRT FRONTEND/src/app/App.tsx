@@ -14,23 +14,23 @@ import { SmoothScroll } from "./components/ui/SmoothScroll";
 import { ExitIntentPopup } from "./components/ui/ExitIntentPopup";
 import { FloatingWidgets } from "./components/FloatingWidgets";
 
-// Lazy Load Pages
-const Home = lazy(() => import("./pages/Home").then(module => ({ default: module.Home })));
-const About = lazy(() => import("./pages/About").then(module => ({ default: module.About })));
-const Services = lazy(() => import("./pages/Services").then(module => ({ default: module.Services })));
-const ServiceDetail = lazy(() => import("./pages/ServiceDetail").then(module => ({ default: module.ServiceDetail })));
-const CaseStudies = lazy(() => import("./pages/CaseStudies").then(module => ({ default: module.CaseStudies })));
-const Process = lazy(() => import("./pages/Process").then(module => ({ default: module.Process })));
-const Contact = lazy(() => import("./pages/Contact").then(module => ({ default: module.Contact })));
-const Blog = lazy(() => import("./pages/Blog").then(module => ({ default: module.Blog })));
-const CostEstimator = lazy(() => import("./pages/Estimator").then(module => ({ default: module.CostEstimator })));
-const Login = lazy(() => import("./pages/admin/Login").then(module => ({ default: module.Login })));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard").then(module => ({ default: module.Dashboard })));
-const PrivacyPolicy = lazy(() => import("./pages/policies/PrivacyPolicy").then(module => ({ default: module.PrivacyPolicy })));
-const TermsOfService = lazy(() => import("./pages/policies/TermsOfService").then(module => ({ default: module.TermsOfService })));
-const GDPRCompliance = lazy(() => import("./pages/policies/GDPRCompliance").then(module => ({ default: module.GDPRCompliance })));
-const Pricing = lazy(() => import("./pages/Pricing").then(module => ({ default: module.Pricing })));
-const NotFound = lazy(() => import("./pages/NotFound").then(module => ({ default: module.NotFound })));
+// Page Component Imports
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Services } from "./pages/Services";
+import { ServiceDetail } from "./pages/ServiceDetail";
+import { CaseStudies } from "./pages/CaseStudies";
+import { Process } from "./pages/Process";
+import { Contact } from "./pages/Contact";
+import { Blog } from "./pages/Blog";
+import { CostEstimator } from "./pages/Estimator";
+import { Login } from "./pages/admin/Login";
+import { Dashboard } from "./pages/admin/Dashboard";
+import { PrivacyPolicy } from "./pages/policies/PrivacyPolicy";
+import { TermsOfService } from "./pages/policies/TermsOfService";
+import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
+import { Pricing } from "./pages/Pricing";
+import { NotFound } from "./pages/NotFound";
 
 // Loading Fallback
 const PageLoader = () => (

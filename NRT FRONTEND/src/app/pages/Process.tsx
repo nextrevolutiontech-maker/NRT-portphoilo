@@ -165,14 +165,14 @@ export function Process() {
       </section>
 
       {/* Final CTA - Dark */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] relative overflow-hidden">
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#080B11] relative overflow-hidden">
          <InteractiveHero3D />
          <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-         <div className="mx-auto max-w-7xl relative z-10">
-            <div className="bg-white/5 backdrop-blur-3xl rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center border border-white/10 shadow-2xl relative overflow-hidden">
+         <div className="mx-auto max-w-7xl xl:max-w-[1400px] relative z-10">
+            <div className="bg-white/[0.02] backdrop-blur-3xl rounded-3xl sm:rounded-[5rem] p-12 sm:p-24 lg:p-40 text-center border border-white/5 shadow-2xl relative overflow-hidden">
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
                <h2 className="text-5xl sm:text-[9rem] font-black text-white leading-[1] sm:leading-[0.8] tracking-tighter mb-12 sm:mb-16 relative z-10">
-                  Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">accelerate?</span>
+                  Ready to <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">accelerate?</span>
                </h2>
                <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 relative z-10">
                   <Link to="/contact" className="bg-[#3A5CCC] text-white px-10 py-6 sm:px-16 sm:py-8 rounded-2xl sm:rounded-[2.5rem] text-xl sm:text-3xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 sm:gap-5 group">

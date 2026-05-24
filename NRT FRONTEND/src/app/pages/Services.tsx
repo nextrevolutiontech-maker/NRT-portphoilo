@@ -175,19 +175,19 @@ export function Services() {
         </section>
       </ScrollReveal>
 
-      {/* SECTION 4: CTA (CHOOSE SETUP) - Dark */}
+      {/* SECTION 4: CTA (CHOOSE SETUP) - Light / Clean */}
       <ScrollReveal direction="up">
-        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-[#0F172A] relative overflow-hidden">
-           <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+        <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-transparent relative overflow-hidden border-t border-[#0F172A]/5">
+           <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
            <div className="mx-auto max-w-4xl relative z-10">
-              <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-white leading-tight mb-16">
+              <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight mb-16">
                  Choose the Right Setup <br />for Your Business
               </h2>
               <div className="flex flex-col sm:flex-row justify-center gap-8">
                  <Link to="/pricing" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all">
                     View Pricing Plans
                  </Link>
-                 <Link to="/contact?type=test" className="bg-white/5 border-2 border-white/20 text-white px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-[#0F172A] transition-all">
+                 <Link to="/contact?type=test" className="bg-white border border-[#0F172A]/10 text-[#0F172A] px-12 py-6 rounded-2xl text-xl font-black hover:bg-[#0F172A] hover:text-white transition-all">
                     Start a Small Paid Test
                  </Link>
               </div>
