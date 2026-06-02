@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Check, ChevronRight, ChevronLeft, Calculator, Globe, Smartphone, Sparkles, Cloud, Shield, Database, Blocks, Workflow, ArrowUpRight } from "lucide-react";
+import { Check, ChevronRight, ChevronLeft, Calculator, Globe, Smartphone, Sparkles, Cloud, Shield, Database, Blocks, Workflow, ArrowUpRight, Layers, Palette, Wand2, Key, CreditCard, LayoutDashboard, Bot, MessageSquareText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { API_BASE_URL } from "../../config";
@@ -44,9 +44,9 @@ const steps: Step[] = [
         title: "Design",
         description: "How should it look and feel?",
         options: [
-            { id: "basic", label: "Basic / Template", cost: 200, gradient: "from-gray-500/10 to-transparent" },
-            { id: "custom", label: "Custom UI/UX", cost: 600, gradient: "from-[#3A5CCC]/10 to-transparent" },
-            { id: "premium", label: "Premium Animations", cost: 1200, gradient: "from-purple-600/10 to-transparent" },
+            { id: "basic", label: "Basic / Template", cost: 200, icon: <Layers className="h-6 w-6" />, gradient: "from-gray-500/10 to-transparent" },
+            { id: "custom", label: "Custom UI/UX", cost: 600, icon: <Palette className="h-6 w-6" />, gradient: "from-[#3A5CCC]/10 to-transparent" },
+            { id: "premium", label: "Premium Animations", cost: 1200, icon: <Wand2 className="h-6 w-6" />, gradient: "from-purple-600/10 to-transparent" },
         ]
     },
     {
@@ -55,11 +55,11 @@ const steps: Step[] = [
         description: "What functionality do you need?",
         multiSelect: true,
         options: [
-            { id: "auth", label: "User Auth", cost: 200, gradient: "from-blue-600/10 to-transparent" },
-            { id: "payment", label: "Payments", cost: 350, gradient: "from-green-600/10 to-transparent" },
-            { id: "cms", label: "Admin Dashboard", cost: 500, gradient: "from-indigo-600/10 to-transparent" },
-            { id: "ai", label: "AI Integration", cost: 800, gradient: "from-purple-600/10 to-transparent" },
-            { id: "chat", label: "Real-time Chat", cost: 400, gradient: "from-cyan-600/10 to-transparent" },
+            { id: "auth", label: "User Auth", cost: 200, icon: <Key className="h-6 w-6" />, gradient: "from-blue-600/10 to-transparent" },
+            { id: "payment", label: "Payments", cost: 350, icon: <CreditCard className="h-6 w-6" />, gradient: "from-green-600/10 to-transparent" },
+            { id: "cms", label: "Admin Dashboard", cost: 500, icon: <LayoutDashboard className="h-6 w-6" />, gradient: "from-indigo-600/10 to-transparent" },
+            { id: "ai", label: "AI Integration", cost: 800, icon: <Bot className="h-6 w-6" />, gradient: "from-purple-600/10 to-transparent" },
+            { id: "chat", label: "Real-time Chat", cost: 400, icon: <MessageSquareText className="h-6 w-6" />, gradient: "from-cyan-600/10 to-transparent" },
         ]
     }
 ];
@@ -174,27 +174,60 @@ export function CostEstimator() {
                                                         return (
                                                             <motion.div
                                                                 key={option.id}
-                                                                whileHover={{ scale: 1.02 }}
+                                                                whileHover={{ scale: 1.02, y: -4 }}
                                                                 whileTap={{ scale: 0.98 }}
                                                                 onClick={() => handleSelect(steps[currentStep].id, option.id, steps[currentStep].multiSelect || false)}
-                                                                className={`relative p-8 rounded-[2.5rem] border-2 cursor-pointer transition-all overflow-hidden ${isSelected ? "border-[#3A5CCC] bg-white shadow-2xl" : "border-black/5 bg-[#F3F4F6] hover:border-[#3A5CCC]/30"}`}
+                                                                className={`relative p-8 rounded-[2rem] sm:rounded-[2.5rem] cursor-pointer transition-all duration-300 overflow-hidden group ${
+                                                                    isSelected 
+                                                                    ? "bg-white shadow-[0_20px_40px_-10px_rgba(58,92,204,0.2)] ring-2 ring-[#3A5CCC] border-transparent" 
+                                                                    : "bg-gradient-to-br from-[#F8FAFC] to-[#F1F5F9] border border-black/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] hover:shadow-xl hover:border-[#3A5CCC]/20"
+                                                                }`}
                                                             >
-                                                                {isSelected && <div className={`absolute inset-0 bg-gradient-to-br ${option.gradient} opacity-40 pointer-events-none`} />}
-                                                                
+                                                                <div className={`absolute inset-0 bg-gradient-to-br ${option.gradient} transition-opacity duration-500 ${isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-40"}`} />
+                                                                <div className={`absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl transition-all duration-500 ${isSelected ? "bg-[#3A5CCC]/20" : "bg-transparent group-hover:bg-[#3A5CCC]/10"}`} />
+
                                                                 <div className="relative z-10">
-                                                                    <div className="flex items-center justify-between mb-6">
-                                                                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${isSelected ? "bg-[#3A5CCC] text-white" : "bg-white text-[#0F172A] shadow-sm"}`}>
+                                                                    <div className="flex items-center justify-between mb-8">
+                                                                       <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                                                                           isSelected 
+                                                                           ? "bg-[#3A5CCC] text-white shadow-lg shadow-[#3A5CCC]/30" 
+                                                                           : "bg-white text-[#0F172A] shadow-md group-hover:scale-110 group-hover:text-[#3A5CCC]"
+                                                                       }`}>
                                                                           {option.icon || <Check className="w-6 h-6" />}
                                                                        </div>
-                                                                       {isSelected && (
-                                                                          <div className="w-8 h-8 rounded-full bg-[#3A5CCC] text-white flex items-center justify-center shadow-lg">
-                                                                             <Check className="w-5 h-5" />
-                                                                          </div>
-                                                                       )}
+                                                                       
+                                                                       <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                                                                           isSelected 
+                                                                           ? "bg-[#3A5CCC] border-[#3A5CCC] text-white scale-100 opacity-100 shadow-md" 
+                                                                           : "border-black/10 text-transparent scale-90 opacity-50 group-hover:border-[#3A5CCC]/30 group-hover:scale-100"
+                                                                       }`}>
+                                                                          <Check className="w-4 h-4" strokeWidth={3} />
+                                                                       </div>
                                                                     </div>
-                                                                    <div className={`font-black text-2xl tracking-tighter mb-2 ${isSelected ? "text-[#0F172A]" : "text-[#0F172A]/60"}`}>{option.label}</div>
-                                                                    {option.description && <p className="text-xs font-bold text-[#0F172A]/40 mb-4">{option.description}</p>}
-                                                                    {option.cost > 0 && <div className="text-[#3A5CCC] font-black text-xl">+ ${option.cost}</div>}
+                                                                    
+                                                                    <div className="space-y-2">
+                                                                        <div className={`font-black text-2xl tracking-tight transition-colors duration-300 ${
+                                                                            isSelected ? "text-[#0F172A]" : "text-[#0F172A]/70 group-hover:text-[#0F172A]"
+                                                                        }`}>
+                                                                            {option.label}
+                                                                        </div>
+                                                                        {option.description && (
+                                                                            <p className={`text-sm font-bold transition-colors duration-300 ${
+                                                                                isSelected ? "text-[#0F172A]/60" : "text-[#0F172A]/40 group-hover:text-[#0F172A]/50"
+                                                                            }`}>
+                                                                                {option.description}
+                                                                            </p>
+                                                                        )}
+                                                                        {option.cost > 0 && (
+                                                                            <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-black transition-all duration-300 mt-3 ${
+                                                                                isSelected 
+                                                                                ? "bg-[#3A5CCC]/10 text-[#3A5CCC]" 
+                                                                                : "bg-black/5 text-[#0F172A]/40 group-hover:bg-[#3A5CCC]/5 group-hover:text-[#3A5CCC]"
+                                                                            }`}>
+                                                                                + ${option.cost}
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
                                                                 </div>
                                                             </motion.div>
                                                         );
