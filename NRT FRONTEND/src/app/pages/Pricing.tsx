@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle2, MessageSquare, Zap, Clock, ShieldCheck, ArrowRight, Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
+import { SEO } from "../components/SEO";
 
 export function Pricing() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -129,10 +129,10 @@ export function Pricing() {
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
-      <Helmet>
-        <title>Pricing | Next Revolution Tech</title>
-        <meta name="description" content="Transparent pricing for dedicated engineering teams. Choose the plan that fits your growth." />
-      </Helmet>
+      <SEO
+        title="Pricing"
+        description="Transparent weekly and monthly pricing for website, eCommerce, API, automation, and dedicated engineering support from Next Revolution Tech."
+      />
 
       {/* Hero - Dark Hero */}
       <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
@@ -142,10 +142,10 @@ export function Pricing() {
         <div className="mx-auto max-w-7xl relative z-10 text-center">
           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Investment Plans</div>
           <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.9] mb-10">
-            Simple Pricing. <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Infinite</span> Growth.
+            Pricing that fits <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">real</span> workloads.
           </h1>
           <p className="text-xl sm:text-2xl font-bold text-white/50 max-w-2xl mx-auto leading-relaxed">
-            Choose a dedicated developer plan or assemble a custom team. No hiring fees, no overhead, just elite engineering.
+            Start with a small task, choose weekly support, or build a custom team around your website, app, API, or automation work.
           </p>
         </div>
       </section>

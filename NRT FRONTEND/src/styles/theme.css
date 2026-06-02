@@ -1,16 +1,21 @@
 :root {
-  /* Enterprise Brand Color System - Steel Blue & Deep Slate */
-  --brand: #3A5CCC;         /* Steel Blue */
-  --deep-slate: #0F172A;    /* Primary Background */
-  --surface: #161F33;       /* Surface Background */
+  /* NRT Studio Palette: graphite, teal, cobalt, warm white */
+  --brand: #14B8A6;           /* Signal Teal */
+  --brand-secondary: #3A5CCC;   /* Cobalt Accent */
+  --deep-slate: #0A0D14;      /* Deep Obsidian Dark bg */
+  --surface: #1E293B;         /* Card Surface */
   
-  --bg-main: #0F172A;      
-  --bg-card: #161F33;      
+  --bg-main: #0A0D14;      
+  --bg-card: #131A2A;         /* Slate-Navy Card Base */
   
-  --text-primary: #F3F4F6;  /* Faded White */
-  --text-muted: #9CA3AF;    /* Premium Gray */
+  --text-primary: #F8FAFC;    /* Warm Crisp White */
+  --text-secondary: #E2E8F0;  /* High Contrast Slate Gray */
+  --text-muted: #94A3B8;      /* Slate Gray Muted */
+  --text-muted-strong: #CBD5E1; /* Slate 300 — improved contrast on dark surfaces */
+  --text-subtle: rgba(248, 250, 252, 0.65); /* Readable secondary copy on dark */
   
-  --border: rgba(255, 255, 255, 0.06); /* Refined, transparent border */
+  --border: rgba(255, 255, 255, 0.08); /* Refined border */
+  --border-bright: rgba(255, 255, 255, 0.15); /* High-contrast border */
   --radius: 12px;
 }
 
@@ -29,14 +34,9 @@ body {
   position: relative;
 }
 
-/* Subtle Global Grain Texture - Removed heavy SVG filter for performance */
-body::before {
-  content: none;
-}
-
 /* Typography Refinement */
 .heading-brand {
-  font-weight: 700; /* Less heavy than 900 */
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
 }
@@ -44,6 +44,41 @@ body::before {
 .font-italic-serif {
   font-family: 'NRT-Playfair', serif;
   font-style: italic;
+}
+
+/* Typography utilities — minimum readable sizes, enterprise hierarchy */
+.text-nrt-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.text-nrt-nav {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.text-nrt-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.text-nrt-body {
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.text-nrt-body-strong {
+  font-weight: 600;
+  line-height: 1.6;
 }
 
 /* BUTTON STYLES - Stripe/Linear Style */
@@ -65,13 +100,13 @@ body::before {
 .btn-primary-nrt:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
-  box-shadow: 0 4px 12px rgba(58, 92, 204, 0.25);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
 }
 
 .btn-secondary-nrt {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-bright);
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -83,28 +118,31 @@ body::before {
 }
 
 .btn-secondary-nrt:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Premium Card - Optimized for Performance */
 .card-nrt {
-  background-color: rgba(22, 31, 51, 0.8); /* More solid, less blur */
+  background-color: rgba(19, 26, 42, 0.85); /* Slightly brighter card base */
+  backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 2.5rem;
-  border: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-bright);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
 }
 
 .card-nrt:hover {
-  border-color: rgba(58, 92, 204, 0.3);
-  background-color: rgba(22, 31, 51, 0.9);
-  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+  border-color: rgba(20, 184, 166, 0.4);
+  background-color: rgba(30, 41, 59, 0.85); /* Slate 800 hover for high contrast */
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(20, 184, 166, 0.05);
+  transform: translateY(-2px);
 }
 
 /* Icon Container */
 .card-icon-nrt {
-  background-color: rgba(58, 92, 204, 0.1);
+  background-color: rgba(20, 184, 166, 0.1);
   color: var(--brand);
   width: 48px;
   height: 48px;

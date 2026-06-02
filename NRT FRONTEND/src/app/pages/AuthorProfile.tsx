@@ -1,0 +1,159 @@
+import { Link, useParams } from "react-router-dom";
+import { motion } from "motion/react";
+import { ExternalLink, Award, Code2, Rocket, BrainCircuit, CheckCircle2 } from "lucide-react";
+import { SEO } from "../components/SEO";
+import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
+
+export function AuthorProfile() {
+  const { slug } = useParams();
+
+  // Currently only supporting the founder profile as requested.
+  if (slug !== "muhammad-ahsan-khan") {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F3F4F6] text-[#0F172A] p-6">
+        <h1 className="text-4xl font-black mb-4">Author Not Found</h1>
+        <Link to="/blog" className="bg-[#0F172A] text-white px-6 py-3 rounded-xl font-bold">Back to Blog</Link>
+      </div>
+    );
+  }
+
+  const author = {
+    name: "Muhammad Ahsan Khan",
+    role: "Founder & Lead Solutions Architect",
+    image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1740927508/nrt-portfolio/dp2_k9oov6.png",
+    linkedin: "https://www.linkedin.com/in/muhammad-ahsan-khan-238b69352/",
+    bio: "Muhammad Ahsan Khan is the Founder and Lead Solutions Architect at Next Revolution Tech. With extensive experience in enterprise systems, he specializes in architecting high-performance ERPs, scalable SaaS platforms, and deploying autonomous AI workflow automations for global clients.",
+    specializations: [
+      { name: "Enterprise ERP Systems", icon: <Award className="w-5 h-5 text-[#0057FF]" /> },
+      { name: "SaaS Architecture", icon: <Code2 className="w-5 h-5 text-[#8E2DE2]" /> },
+      { name: "Agentic AI Automation", icon: <BrainCircuit className="w-5 h-5 text-[#14B8A6]" /> },
+      { name: "Cloud Infrastructure", icon: <Rocket className="w-5 h-5 text-[#FF9900]" /> }
+    ],
+    experience: [
+      "Architected Pulse Healthcare ERP, reducing clinic overhead by 40%.",
+      "Deployed autonomous AI agents for B2B SaaS startups, boosting lead qualification by 300%.",
+      "Engineered Textile Mill Web POS with direct FBR API integration.",
+      "Lead developer on 50+ successful enterprise software deliveries."
+    ],
+    caseStudies: [
+      { title: "Pulse Healthcare ERP", link: "/case-studies/pulse-healthcare-erp" },
+      { title: "Autonomous AI Router", link: "/case-studies/autonomous-ai-agent" },
+      { title: "Textile Mill Web POS", link: "/case-studies/textile-mill-pos" }
+    ]
+  };
+
+  return (
+    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
+      <SEO
+        title={`${author.name} - ${author.role} | NRT`}
+        description={author.bio}
+        schemaType="Person"
+      />
+
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+        <InteractiveHero3D />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        
+        <div className="mx-auto max-w-7xl relative z-10 grid lg:grid-cols-12 gap-16 items-center">
+           <div className="lg:col-span-8">
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Author Profile</div>
+              <h1 className="text-5xl sm:text-7xl font-black mb-4 tracking-tighter leading-tight">{author.name}</h1>
+              <div className="text-xl sm:text-2xl font-bold text-white/50 mb-8 font-italic-serif italic">{author.role}</div>
+              <p className="text-lg font-semibold text-white/80 leading-relaxed max-w-2xl mb-10">
+                 {author.bio}
+              </p>
+              <a href={author.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#0A66C2] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-[#084e96] transition-colors">
+                 Connect on LinkedIn <ExternalLink className="w-5 h-5" />
+              </a>
+           </div>
+
+           <div className="lg:col-span-4 flex justify-center lg:justify-end">
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-white/10 shadow-2xl overflow-hidden p-2 bg-white/5 backdrop-blur-md">
+                 <img src={author.image} alt={author.name} className="w-full h-full object-cover rounded-full" />
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24">
+         <div className="mx-auto max-w-7xl grid lg:grid-cols-12 gap-16 items-start">
+            
+            <div className="lg:col-span-7 space-y-16">
+               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-black/5 shadow-xl">
+                  <h2 className="text-3xl font-black tracking-tighter mb-8">Specializations</h2>
+                  <div className="grid sm:grid-cols-2 gap-6">
+                     {author.specializations.map((spec, i) => (
+                       <div key={i} className="flex items-center gap-4 bg-[#F3F4F6] p-5 rounded-xl border border-black/5">
+                          <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center shrink-0">
+                             {spec.icon}
+                          </div>
+                          <span className="font-bold text-[#0F172A]">{spec.name}</span>
+                       </div>
+                     ))}
+                  </div>
+               </div>
+
+               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-black/5 shadow-xl">
+                  <h2 className="text-3xl font-black tracking-tighter mb-8">Track Record & Experience</h2>
+                  <ul className="space-y-6">
+                     {author.experience.map((exp, i) => (
+                       <li key={i} className="flex items-start gap-4">
+                          <CheckCircle2 className="w-6 h-6 text-[#14B8A6] shrink-0 mt-0.5" />
+                          <span className="text-lg font-semibold text-[#0F172A]/80 leading-relaxed">{exp}</span>
+                       </li>
+                     ))}
+                  </ul>
+               </div>
+            </div>
+
+            <div className="lg:col-span-5 space-y-10 lg:sticky lg:top-32">
+               <div className="bg-gradient-to-br from-[#0F172A] to-[#161F33] text-white p-10 rounded-[2rem] shadow-2xl relative overflow-hidden border border-white/5">
+                  <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
+                  <div className="relative z-10">
+                     <h3 className="text-2xl font-black mb-6 tracking-tighter">Authored Case Studies</h3>
+                     <div className="space-y-4">
+                        {author.caseStudies.map((cs, i) => (
+                          <Link key={i} to={cs.link} className="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors group">
+                             <span className="font-bold">{cs.title}</span>
+                             <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
+                          </Link>
+                        ))}
+                     </div>
+                  </div>
+               </div>
+
+               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-black/5 mt-8">
+                  <h3 className="text-2xl font-black mb-6 tracking-tighter">Recent Articles</h3>
+                  <div className="space-y-4">
+                     <Link to="/blog/custom-erp-cost" className="flex flex-col p-4 bg-[#F3F4F6] hover:bg-white border border-black/5 rounded-xl transition-colors group">
+                        <span className="text-xs font-bold text-[#3A5CCC] uppercase mb-1">ERP & Automation</span>
+                        <span className="font-bold text-[#0F172A] group-hover:text-[#3A5CCC] transition-colors">Custom ERP Development Cost: Ultimate Guide</span>
+                     </Link>
+                     <Link to="/blog/best-erp-manufacturing" className="flex flex-col p-4 bg-[#F3F4F6] hover:bg-white border border-black/5 rounded-xl transition-colors group">
+                        <span className="text-xs font-bold text-[#3A5CCC] uppercase mb-1">Manufacturing</span>
+                        <span className="font-bold text-[#0F172A] group-hover:text-[#3A5CCC] transition-colors">Why Excel is Costing You Millions</span>
+                     </Link>
+                  </div>
+               </div>
+
+               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-black/5 mt-8">
+                  <h3 className="text-2xl font-black mb-6 tracking-tighter">Related Services</h3>
+                  <div className="flex flex-col gap-3">
+                     <Link to="/services/custom-software-development" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                        Custom ERP Development
+                        <ExternalLink className="w-4 h-4 text-black/30" />
+                     </Link>
+                     <Link to="/services/ai-automation" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                        AI Workflow Automation
+                        <ExternalLink className="w-4 h-4 text-black/30" />
+                     </Link>
+                  </div>
+               </div>
+
+            </div>
+
+         </div>
+      </section>
+    </div>
+  );
+}

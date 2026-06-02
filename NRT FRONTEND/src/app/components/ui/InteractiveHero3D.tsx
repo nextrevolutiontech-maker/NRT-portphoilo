@@ -8,23 +8,24 @@ export function InteractiveHero3D() {
     if (!containerRef.current) return;
 
     let isMounted = true;
+    let isIntersecting = true;
     const container = containerRef.current;
 
-    // Ensure container is clean
+    // Clear previous canvases to avoid multiple WebGL contexts
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
 
-    // Create Canvas Dynamically to avoid context conflicts
     const canvas = document.createElement('canvas');
     canvas.style.display = 'block';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
-    canvas.style.opacity = '0.7';
+    canvas.style.opacity = '0.55';
     container.appendChild(canvas);
 
+    // Three.js Core Setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
     
     let renderer: THREE.WebGLRenderer;
     try {
@@ -35,9 +36,12 @@ export function InteractiveHero3D() {
         powerPreference: "high-performance"
       });
     } catch (e) {
-      console.error("WebGL Initialization failed", e);
+      console.error("WebGL initialization failed:", e);
       return;
     }
+
+    // Detect mobile device to apply performance limits
+    const isMobile = window.innerWidth < 768;
 
     const updateSize = () => {
       const width = window.innerWidth;
@@ -45,73 +49,177 @@ export function InteractiveHero3D() {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
     };
 
     updateSize();
+    camera.position.z = 10;
 
-    // Create a 3D Network
-    const count = 100; // Reduced for performance
-    const points: THREE.Vector3[] = [];
-    for (let i = 0; i < count; i++) {
-      points.push(new THREE.Vector3(
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 15
-      ));
-    }
+    // Define 3D Node Modules (Positions & Shapes)
+    const nodesData = [
+      { id: "SaaS", name: "SaaS Engine", pos: new THREE.Vector3(-3.5, 2, 0), color: 0x14B8A6, type: "cube" },
+      { id: "ERP", name: "ERP Database", pos: new THREE.Vector3(3.2, -1.8, -1), color: 0x8B5CF6, type: "cylinder" },
+      { id: "AI", name: "AI Brain Core", pos: new THREE.Vector3(0, 3, -2), color: 0x10B981, type: "sphere" },
+      { id: "API", name: "API Gateway", pos: new THREE.Vector3(-2.8, -2.5, 0), color: 0x3B82F6, type: "torus" },
+      { id: "Cloud", name: "Cloud System", pos: new THREE.Vector3(3.5, 2.2, -2.5), color: 0xF97316, type: "saturn" }
+    ];
 
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.PointsMaterial({
-      size: 0.15,
-      color: '#3A5CCC',
-      transparent: true,
-      opacity: 0.6, // Lowered opacity
-      blending: THREE.AdditiveBlending
+    const group = new THREE.Group();
+    scene.add(group);
+
+    const meshes: THREE.Object3D[] = [];
+    const pointsMap: Record<string, THREE.Vector3> = {};
+
+    // Generate Visual 3D Meshes for each software module node
+    nodesData.forEach(n => {
+      const nodeGroup = new THREE.Group();
+      nodeGroup.position.copy(n.pos);
+      group.add(nodeGroup);
+      meshes.push(nodeGroup);
+      pointsMap[n.id] = n.pos;
+
+      // Base Materials
+      const meshMat = new THREE.MeshBasicMaterial({ 
+        color: n.color, 
+        wireframe: true, 
+        transparent: true, 
+        opacity: 0.25 
+      });
+      const coreMat = new THREE.MeshBasicMaterial({ 
+        color: n.color, 
+        transparent: true, 
+        opacity: 0.7 
+      });
+
+      if (isMobile) {
+        // Fast representation on mobile (simple small spheres)
+        const geo = new THREE.SphereGeometry(0.2, 8, 8);
+        const core = new THREE.Mesh(geo, coreMat);
+        nodeGroup.add(core);
+      } else {
+        // Premium 3D geometry representation on Desktop
+        if (n.type === "cube") {
+          const geo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+          const wire = new THREE.Mesh(geo, meshMat);
+          const core = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.2, 0.2), coreMat);
+          nodeGroup.add(wire, core);
+        } else if (n.type === "cylinder") {
+          // Database disks stack representation
+          const diskGeo = new THREE.CylinderGeometry(0.4, 0.4, 0.12, 10);
+          for (let i = 0; i < 3; i++) {
+            const disk = new THREE.Mesh(diskGeo, meshMat);
+            disk.position.y = (i - 1) * 0.25;
+            nodeGroup.add(disk);
+          }
+          const core = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.75, 8), coreMat);
+          nodeGroup.add(core);
+        } else if (n.type === "sphere") {
+          const geo = new THREE.SphereGeometry(0.35, 12, 12);
+          const wire = new THREE.Mesh(geo, meshMat);
+          const core = new THREE.Mesh(new THREE.SphereGeometry(0.15, 8, 8), coreMat);
+          nodeGroup.add(wire, core);
+        } else if (n.type === "torus") {
+          const geo = new THREE.TorusGeometry(0.3, 0.08, 6, 16);
+          const wire = new THREE.Mesh(geo, meshMat);
+          nodeGroup.add(wire);
+        } else if (n.type === "saturn") {
+          // Sphere with a surrounding ring
+          const core = new THREE.Mesh(new THREE.SphereGeometry(0.25, 10, 10), coreMat);
+          const ringGeo = new THREE.RingGeometry(0.35, 0.45, 16);
+          const ringMat = new THREE.MeshBasicMaterial({ color: n.color, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+          const ring = new THREE.Mesh(ringGeo, ringMat);
+          ring.rotation.x = Math.PI / 2.5;
+          nodeGroup.add(core, ring);
+        }
+      }
     });
 
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
+    // Create Connection Lines (API / Data Pathways)
+    const connections = [
+      { from: "SaaS", to: "AI" },
+      { from: "AI", to: "ERP" },
+      { from: "ERP", to: "API" },
+      { from: "API", to: "SaaS" },
+      { from: "Cloud", to: "AI" },
+      { from: "Cloud", to: "ERP" }
+    ];
 
-    // Blue glow particles
-    const bluePoints: THREE.Vector3[] = [];
-    for (let i = 0; i < 15; i++) { // Reduced count
-      bluePoints.push(new THREE.Vector3(
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20
-      ));
-    }
-    const blueGeo = new THREE.BufferGeometry().setFromPoints(bluePoints);
-    const blueMat = new THREE.PointsMaterial({
-      size: 0.3,
-      color: '#0057FF',
+    const linesGroup = new THREE.Group();
+    group.add(linesGroup);
+
+    const lineMat = new THREE.LineBasicMaterial({
+      color: 0x3A5CCC,
       transparent: true,
-      opacity: 0.3,
-      blending: THREE.AdditiveBlending
+      opacity: 0.15
     });
-    const blueParticles = new THREE.Points(blueGeo, blueMat);
-    scene.add(blueParticles);
 
-    // Lines - Pre-allocate Buffer
-    const maxLines = 400; // Cap max lines for performance
-    const linePositions = new Float32Array(maxLines * 2 * 3);
-    const linesGeometry = new THREE.BufferGeometry();
-    const linePositionAttr = new THREE.BufferAttribute(linePositions, 3);
-    linePositionAttr.setUsage(THREE.DynamicDrawUsage);
-    linesGeometry.setAttribute('position', linePositionAttr);
-    
-    const linesMaterial = new THREE.LineBasicMaterial({ 
-      color: '#3A5CCC', 
+    connections.forEach(conn => {
+      const pStart = pointsMap[conn.from];
+      const pEnd = pointsMap[conn.to];
+      if (pStart && pEnd) {
+        const lineGeo = new THREE.BufferGeometry().setFromPoints([pStart, pEnd]);
+        const line = new THREE.Line(lineGeo, lineMat);
+        linesGroup.add(line);
+      }
+    });
+
+    // Animate Flowing Data Packets (Photons)
+    const packetsCount = isMobile ? 6 : 12;
+    const packets: { 
+      from: THREE.Vector3; 
+      to: THREE.Vector3; 
+      progress: number; 
+      speed: number; 
+      mesh: THREE.Mesh 
+    }[] = [];
+
+    const packetMat = new THREE.MeshBasicMaterial({ 
+      color: 0x14B8A6, 
       transparent: true, 
-      opacity: 0.15,
-      blending: THREE.AdditiveBlending
+      opacity: 0.9 
     });
-    const lines = new THREE.LineSegments(linesGeometry, linesMaterial);
-    scene.add(lines);
+    const packetGeo = new THREE.SphereGeometry(0.08, 6, 6);
 
-    camera.position.z = 8;
+    for (let i = 0; i < packetsCount; i++) {
+      const conn = connections[i % connections.length];
+      const pStart = pointsMap[conn.from];
+      const pEnd = pointsMap[conn.to];
+      
+      if (pStart && pEnd) {
+        const packetMesh = new THREE.Mesh(packetGeo, packetMat);
+        group.add(packetMesh);
+        
+        packets.push({
+          from: pStart,
+          to: pEnd,
+          progress: Math.random(), // Stagger starts
+          speed: 0.005 + Math.random() * 0.008,
+          mesh: packetMesh
+        });
+      }
+    }
 
+    // Ambient background particle dust (glowing stars)
+    const starsCount = isMobile ? 30 : 70;
+    const starsPoints: THREE.Vector3[] = [];
+    for (let i = 0; i < starsCount; i++) {
+      starsPoints.push(new THREE.Vector3(
+        (Math.random() - 0.5) * 16,
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 10
+      ));
+    }
+    const starsGeo = new THREE.BufferGeometry().setFromPoints(starsPoints);
+    const starsMat = new THREE.PointsMaterial({
+      size: 0.06,
+      color: 0x3A5CCC,
+      transparent: true,
+      opacity: 0.4
+    });
+    const stars = new THREE.Points(starsGeo, starsMat);
+    group.add(stars);
+
+    // Mouse Tracking Parallax Setup
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -122,78 +230,77 @@ export function InteractiveHero3D() {
       mouseY = -(event.clientY / window.innerHeight - 0.5) * 2;
     };
 
+    // Intersection Observer to pause rendering when scrolled out of view (Lighthouse Optimization)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isIntersecting = entry.isIntersecting;
+      });
+    }, { threshold: 0.05 });
+
+    observer.observe(container);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', updateSize);
 
     let animationFrameId: number;
 
+    // 60FPS WebGL Render Loop
     const animate = () => {
       if (!isMounted) return;
       animationFrameId = requestAnimationFrame(animate);
 
-      targetX += (mouseX - targetX) * 0.05;
-      targetY += (mouseY - targetY) * 0.05;
+      // Only perform compute and draw calls if hero canvas is currently visible
+      if (isIntersecting) {
+        // Smooth cursor inertia tracking
+        targetX += (mouseX - targetX) * 0.04;
+        targetY += (mouseY - targetY) * 0.04;
 
-      particles.rotation.y += 0.0004;
-      blueParticles.rotation.y -= 0.0001;
+        // Apply Parallax Rotations
+        group.rotation.y = targetX * 0.35;
+        group.rotation.x = -targetY * 0.25;
 
-      scene.rotation.y = targetX * 0.4;
-      scene.rotation.x = -targetY * 0.4;
+        // Spin individual node meshes locally
+        meshes.forEach((m, idx) => {
+          m.rotation.y += 0.01 + (idx * 0.005);
+          m.rotation.x += 0.005;
+        });
 
-      // Update Lines - Optimized distance checks
-      const positions = particles.geometry.attributes.position.array as Float32Array;
-      let lineIndex = 0;
-      const thresholdSq = 12; // Adjusted
+        // Rotate background dust
+        stars.rotation.y += 0.0003;
 
-      for (let i = 0; i < count; i++) {
-        if (lineIndex >= maxLines) break;
-        const ix = positions[i * 3];
-        const iy = positions[i * 3 + 1];
-        const iz = positions[i * 3 + 2];
-
-        // Only check a subset of particles for connections to save CPU
-        for (let j = i + 1; j < count; j++) {
-          if (lineIndex >= maxLines) break;
-
-          const dx = ix - positions[j * 3];
-          const dy = iy - positions[j * 3 + 1];
-          const dz = iz - positions[j * 3 + 2];
-          const distSq = dx * dx + dy * dy + dz * dz;
-
-          if (distSq < thresholdSq) {
-            linePositions[lineIndex * 6] = ix;
-            linePositions[lineIndex * 6 + 1] = iy;
-            linePositions[lineIndex * 6 + 2] = iz;
-            linePositions[lineIndex * 6 + 3] = positions[j * 3];
-            linePositions[lineIndex * 6 + 4] = positions[j * 3 + 1];
-            linePositions[lineIndex * 6 + 5] = positions[j * 3 + 2];
-            lineIndex++;
+        // Animate dynamic data packets along path segments
+        packets.forEach(p => {
+          p.progress += p.speed;
+          if (p.progress >= 1) {
+            p.progress = 0; // Loop packet
           }
-        }
+          // Linear interpolation between nodes
+          p.mesh.position.lerpVectors(p.from, p.to, p.progress);
+          
+          // Hover pulse effect
+          const scale = 1 + Math.sin(p.progress * Math.PI) * 0.4;
+          p.mesh.scale.set(scale, scale, scale);
+        });
+
+        renderer.render(scene, camera);
       }
-
-      linePositionAttr.needsUpdate = true;
-      linesGeometry.setDrawRange(0, lineIndex * 2);
-
-      renderer.render(scene, camera);
     };
 
     animate();
 
+    // Memory cleanups on unmount
     return () => {
       isMounted = false;
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateSize);
+      observer.disconnect();
       
-      // Cleanup
       scene.clear();
-      geometry.dispose();
-      material.dispose();
-      blueGeo.dispose();
-      blueMat.dispose();
-      linesGeometry.dispose();
-      linesMaterial.dispose();
+      starsGeo.dispose();
+      starsMat.dispose();
+      packetGeo.dispose();
+      packetMat.dispose();
+      lineMat.dispose();
       renderer.dispose();
       
       if (container.contains(canvas)) {
@@ -205,7 +312,7 @@ export function InteractiveHero3D() {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none opacity-60"
+      className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none"
     />
   );
 }

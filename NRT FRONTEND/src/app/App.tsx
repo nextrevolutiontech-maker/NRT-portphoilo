@@ -20,9 +20,17 @@ import { About } from "./pages/About";
 import { Services } from "./pages/Services";
 import { ServiceDetail } from "./pages/ServiceDetail";
 import { CaseStudies } from "./pages/CaseStudies";
+import { CaseStudyDetail } from "./pages/CaseStudyDetail";
 import { Process } from "./pages/Process";
 import { Contact } from "./pages/Contact";
 import { Blog } from "./pages/Blog";
+import { BlogDetail } from "./pages/BlogDetail";
+import { ResourcesHub } from "./pages/ResourcesHub";
+import { TechStack } from "./pages/TechStack";
+import { DiscoveryFramework } from "./pages/DiscoveryFramework";
+import { AuthorProfile } from "./pages/AuthorProfile";
+import { IndustryLanding } from "./pages/IndustryLanding";
+import { Portfolio } from "./pages/Portfolio";
 import { CostEstimator } from "./pages/Estimator";
 import { Login } from "./pages/admin/Login";
 import { Dashboard } from "./pages/admin/Dashboard";
@@ -93,12 +101,20 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
             <Route path="/process" element={<Process />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/resources" element={<ResourcesHub />} />
+            <Route path="/tech-stack" element={<TechStack />} />
+            <Route path="/discovery-framework" element={<DiscoveryFramework />} />
+            <Route path="/author/:slug" element={<AuthorProfile />} />
+            <Route path="/solutions/:industry" element={<IndustryLanding />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/estimator" element={<CostEstimator />} />
             <Route path="*" element={<NotFound />} />

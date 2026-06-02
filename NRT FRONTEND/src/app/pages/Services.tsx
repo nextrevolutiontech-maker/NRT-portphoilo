@@ -22,49 +22,55 @@ export function Services() {
   const services = [
     {
       icon: <ShoppingCart className="w-8 h-8" />,
-      title: "eCommerce Tech",
-      desc: "Fix your store issues, improve speed, and keep everything running smoothly without interruptions.",
-      features: ["Bug fixing", "Speed optimization", "Theme customization"],
+      title: "ERP & Business Automation",
+      desc: "Say goodbye to manual stock registers and inventory leaks. We build customized ERPs, POS systems, and admin portals that run your operations in real-time.",
+      features: ["Custom ERP dashboards", "Inventory reconciliations", "Multi-warehouse sync"],
+      image: "/assets/projects/babybloom/shop.png",
       color: "from-[#27324A] to-[#27324A]",
       accent: "bg-white/10"
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "API Integrations",
-      desc: "Connect your systems, fix broken APIs, and automate processes so your business runs without delays.",
-      features: ["Custom API builds", "Stripe / PayPal setup", "Webhook automation"],
+      title: "Enterprise Integrations",
+      desc: "Connect your payment gateways, local FBR tax APIs, CRM pipelines, and shipping couriers with stable fallback error handling.",
+      features: ["Payment gateways", "FBR Tax API integrations", "Courier tracking sync"],
+      image: "/assets/services/erp-dashboard.png",
       color: "from-[#0057FF] to-[#9900FF]",
       accent: "bg-white/10"
     },
     {
       icon: <Workflow className="w-8 h-8" />,
-      title: "Automation & Systems",
-      desc: "Reduce manual work and build smart systems that save time and scale your operations.",
-      features: ["Workflow automation", "Backend management", "System health checks"],
+      title: "AI Workflow Automation",
+      desc: "Automate repetitive daily tasks. We build intelligent agentic LLM flows that qualify website leads, process emails, and sync logs 24/7.",
+      features: ["AI email sorting", "Lead qualification flows", "Autonomous agent systems"],
+      image: "/agentic_ai_dashboard.png",
       color: "from-[#27324A] to-[#3A5CCC]",
       accent: "bg-white/10"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: "Mobile App Dev",
-      desc: "Native and cross-platform mobile apps that provide a seamless experience for your users.",
-      features: ["React Native", "Flutter builds", "App Store deployment"],
+      title: "Custom SaaS Development",
+      desc: "Turn your business idea into a market-ready web or mobile SaaS product. We manage the full cycle from database schema to responsive frontend.",
+      features: ["Full-stack databases", "Dynamic admin consoles", "React Native & Flutter"],
+      image: "/iraqbid-5.png",
       color: "from-[#00D2FF] to-[#3a7bd5]",
       accent: "bg-white/10"
     },
     {
       icon: <Layers className="w-8 h-8" />,
-      title: "UI/UX Design",
-      desc: "Modern, high-converting designs that make your brand stand out and keep users engaged.",
-      features: ["Figma prototypes", "User flow mapping", "Responsive design"],
+      title: "UI/UX Product Design",
+      desc: "Modern, high-converting product designs engineered to maximize sales conversion and user operation speed.",
+      features: ["Figma prototypes", "Interactive mockups", "UX friction audits"],
+      image: "/babybloom-home.png",
       color: "from-[#9900FF] to-[#FF00FF]",
       accent: "bg-white/10"
     },
     {
       icon: <ShieldCheck className="w-8 h-8" />,
-      title: "DevOps & Cloud",
-      desc: "Secure, scalable cloud infrastructure that ensures your business stays online 24/7.",
-      features: ["AWS / Azure setup", "Server maintenance", "Security auditing"],
+      title: "DevOps & Edge Scale",
+      desc: "Secure, scalable cloud infrastructure that ensures your business systems stay online 24/7 with zero downtime.",
+      features: ["CI/CD deploy pipelines", "Security firewall audits", "Database backup clocks"],
+      image: "/pulse-admin.png",
       color: "from-[#11998E] to-[#38EF7D]",
       accent: "bg-white/10"
     }
@@ -81,11 +87,11 @@ export function Services() {
     <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
       <SEO 
         title="Our Services" 
-        description="Comprehensive technical services including eCommerce development, API integrations, and AI automation. We provide dedicated engineering support for growing brands."
+        description="Website, eCommerce, API, automation, mobile app, UI/UX, and cloud services from Next Revolution Tech in Karachi for businesses that need reliable delivery."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="pt-28 sm:pt-32 pb-28 sm:pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[radial-gradient(circle_at_18%_16%,rgba(20,184,166,0.16),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(58,92,204,0.18),transparent_34%),linear-gradient(135deg,#061014_0%,#0B1120_50%,#111827_100%)] text-white relative overflow-hidden">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
@@ -98,12 +104,12 @@ export function Services() {
           >
             <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">What We Do</div>
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
-               Solutions That <br />
-               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Scale</span> Your <br />
-               Business.
+               Technical work that <br />
+               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC]">actually</span> keeps <br />
+               moving.
             </h1>
             <p className="text-xl sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
-              We solve real technical problems for growing businesses — so you don’t have to manage multiple developers or deal with constant issues.
+              We help businesses repair broken flows, improve speed, connect tools, and ship new features without juggling a different developer for every task.
             </p>
           </motion.div>
         </div>
@@ -113,15 +119,18 @@ export function Services() {
       <ScrollReveal direction="up">
         <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 relative z-20">
           <div className="mx-auto max-w-7xl">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
               {services.map((service, i) => (
                 <motion.div 
                   key={i} 
                   whileHover={{ y: -10, scale: 1.01 }}
-                  className={`relative overflow-hidden rounded-[2rem] bg-gradient-to-br ${service.color} p-6 sm:p-8 shadow-xl border border-white/10 group flex flex-col justify-between`}
+                  className={`relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-br ${service.color} p-5 sm:p-8 shadow-xl border border-white/10 group flex flex-col justify-between`}
                 >
                   <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
                   <div className="relative z-10">
+                    <div className="mb-6 overflow-hidden rounded-2xl border border-white/15 bg-black/20 shadow-2xl [transform:rotateX(4deg)]">
+                      <img src={service.image} alt={service.title} className="aspect-[16/10] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" />
+                    </div>
                     <div className={`w-12 h-12 ${service.accent} backdrop-blur-md rounded-xl flex items-center justify-center text-white mb-5 border border-white/20`}>
                       {service.icon}
                     </div>
@@ -154,7 +163,7 @@ export function Services() {
           <div className="mx-auto max-w-7xl">
             <div className="text-center mb-20">
                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Values</div>
-               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight">Why Growing Brands <br />Partner With Us</h2>
+               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight">Why clients keep <br />coming back</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {whyChooseUs.map((item, i) => (
@@ -181,7 +190,7 @@ export function Services() {
            <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
            <div className="mx-auto max-w-4xl relative z-10">
               <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight mb-16">
-                 Choose the Right Setup <br />for Your Business
+                 Choose the setup that <br />matches the job
               </h2>
               <div className="flex flex-col sm:flex-row justify-center gap-8">
                  <Link to="/pricing" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all">

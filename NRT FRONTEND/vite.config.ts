@@ -19,8 +19,25 @@ export default defineConfig({
     viteCompression(),
     Sitemap({
       hostname: 'https://www.nextrevolutiontech.tech',
-      dynamicRoutes: ['/services', '/case-studies', '/about', '/contact', '/process'],
-      generateRobotsTxt: false
+      dynamicRoutes: [
+        '/services', 
+        '/case-studies', 
+        '/about', 
+        '/contact', 
+        '/process',
+        '/portfolio',
+        '/solutions/manufacturing-erp',
+        '/solutions/school-management',
+        '/solutions/clinic-software',
+        '/solutions/logistics-software',
+        '/solutions/erp-services',
+        '/blog/custom-erp-cost',
+        '/blog/best-erp-manufacturing',
+        '/blog/odoo-vs-custom-erp',
+        '/blog/ai-automation-small-business',
+        '/blog/inventory-software-guide'
+      ],
+      generateRobotsTxt: true
     }),
     VitePWA({
       registerType: 'autoUpdate',

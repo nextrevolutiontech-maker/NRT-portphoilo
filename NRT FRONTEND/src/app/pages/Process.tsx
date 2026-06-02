@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { 
@@ -17,6 +16,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
+import { SEO } from "../components/SEO";
 
 export function Process() {
   const steps = [
@@ -92,9 +92,10 @@ export function Process() {
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
-      <Helmet>
-        <title>Our Process | Next Revolution Tech</title>
-      </Helmet>
+      <SEO
+        title="Our Process"
+        description="See how Next Revolution Tech scopes, designs, builds, tests, launches, and supports websites, apps, APIs, and automation projects."
+      />
 
       {/* SECTION 1: INTRO - Dark Hero */}
       <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden text-center">
@@ -104,12 +105,12 @@ export function Process() {
         <div className="mx-auto max-w-5xl relative z-10">
            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Our Workflow</div>
            <h1 className="text-5xl sm:text-[8rem] lg:text-[9rem] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-10">
-              Engineering <br className="hidden sm:block" />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Perfection</span> <br className="hidden sm:block" />
-              Step by Step.
+              From first message <br className="hidden sm:block" />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">to launch</span> <br className="hidden sm:block" />
+              without confusion.
            </h1>
           <p className="text-xl sm:text-2xl font-bold text-white/50 leading-relaxed max-w-3xl mx-auto">
-             We've removed the friction from tech development. No long meetings, no hidden costs—just a high-speed engine for your business.
+             We keep the work visible: scope first, build in batches, test the important flows, and stay available after launch.
           </p>
         </div>
       </section>

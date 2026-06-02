@@ -5,6 +5,7 @@ import { SEO } from "../components/SEO";
 import { Testimonials } from "../components/Testimonials";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
+import { FOUNDER } from "../../config/brand";
 
 export function About() {
   const ctaLinks = {
@@ -103,11 +104,23 @@ export function About() {
                      </blockquote>
                      <div className="flex items-center gap-5">
                         <div className="w-14 h-14 rounded-full bg-[#F3F4F6] flex items-center justify-center overflow-hidden border border-black/5 shadow-sm">
-                           <img src="/avatars/portrait-1.png" alt="Founder" className="w-full h-full object-cover" />
+                           <img 
+                              src={FOUNDER.imageUrl} 
+                              alt={FOUNDER.name} 
+                              className="w-full h-full object-cover object-center" 
+                           />
                         </div>
                         <div>
-                           <div className="text-lg font-bold text-[#0F172A]">Founder & CEO</div>
-                           <div className="text-[#3A5CCC] font-bold uppercase tracking-widest text-[9px]">Next Revolution Tech</div>
+                           <div className="text-lg font-bold text-[#0F172A]">{FOUNDER.name}</div>
+                           <div className="text-sm font-semibold text-[#0F172A]/60 mb-1">{FOUNDER.title}</div>
+                           <a 
+                             href={FOUNDER.linkedInUrl} 
+                             target="_blank" 
+                             rel="noopener noreferrer" 
+                             className="text-[#3A5CCC] text-nrt-label hover:underline"
+                           >
+                             Connect on LinkedIn →
+                           </a>
                         </div>
                      </div>
                   </div>

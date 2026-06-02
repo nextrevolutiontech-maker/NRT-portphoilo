@@ -113,6 +113,60 @@ export function ServiceDetail() {
                 </div>
             </div>
 
+            {/* Related Success Stories */}
+            <div className="py-20 bg-white">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16">
+                        <div>
+                            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">Proof of Concept</div>
+                            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-[#0F172A]">Related Success Stories</h2>
+                        </div>
+                        <Link to="/case-studies" className="mt-6 sm:mt-0 inline-flex items-center gap-2 font-black text-[#0F172A] hover:text-[#3A5CCC] uppercase tracking-widest text-xs transition-colors">
+                            View All Cases <ArrowLeft className="w-4 h-4 rotate-135" />
+                        </Link>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {slug === 'custom-software-development' && (
+                            <Link to="/case-studies/pulse-healthcare-erp" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
+                                <div className="w-12 h-12 bg-[#3A5CCC]/10 text-[#3A5CCC] rounded-xl flex items-center justify-center mb-6">
+                                    <CheckCircle2 className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-2xl font-black mb-3">Pulse Healthcare ERP</h3>
+                                <p className="text-[#0F172A]/60 font-medium mb-6">Multi-tenant ERP system reducing overhead by 40%.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#3A5CCC] group-hover:text-[#0F172A] transition-colors">
+                                    Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
+                                </span>
+                            </Link>
+                        )}
+                        {slug === 'ai-automation' && (
+                            <Link to="/case-studies/autonomous-ai-agent" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
+                                <div className="w-12 h-12 bg-[#14B8A6]/10 text-[#14B8A6] rounded-xl flex items-center justify-center mb-6">
+                                    <CheckCircle2 className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-2xl font-black mb-3">Autonomous AI Agent</h3>
+                                <p className="text-[#0F172A]/60 font-medium mb-6">300% boost in lead qualification across global time zones.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#14B8A6] group-hover:text-[#0F172A] transition-colors">
+                                    Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
+                                </span>
+                            </Link>
+                        )}
+                        {slug === 'custom-software-development' && (
+                            <Link to="/case-studies/textile-mill-pos" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
+                                <div className="w-12 h-12 bg-[#FF9900]/10 text-[#FF9900] rounded-xl flex items-center justify-center mb-6">
+                                    <CheckCircle2 className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-2xl font-black mb-3">Textile Mill POS</h3>
+                                <p className="text-[#0F172A]/60 font-medium mb-6">Automated 10k+ invoices/month with FBR API sync.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#FF9900] group-hover:text-[#0F172A] transition-colors">
+                                    Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
+                                </span>
+                            </Link>
+                        )}
+                    </div>
+                </div>
+            </div>
+
             {/* CTA - Dark */}
             <section className="px-4 py-20 bg-transparent">
                 <div className="bg-[#0B0F19] rounded-[4rem] p-16 lg:p-32 text-center relative overflow-hidden shadow-2xl border border-white/5">
