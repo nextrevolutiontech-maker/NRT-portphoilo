@@ -44,9 +44,9 @@ const steps: Step[] = [
         title: "Design",
         description: "How should it look and feel?",
         options: [
-            { id: "basic", label: "Basic / Template", cost: 500, gradient: "from-gray-500/10 to-transparent" },
-            { id: "custom", label: "Custom UI/UX", cost: 1500, gradient: "from-[#3A5CCC]/10 to-transparent" },
-            { id: "premium", label: "Premium Animations", cost: 3000, gradient: "from-purple-600/10 to-transparent" },
+            { id: "basic", label: "Basic / Template", cost: 200, gradient: "from-gray-500/10 to-transparent" },
+            { id: "custom", label: "Custom UI/UX", cost: 600, gradient: "from-[#3A5CCC]/10 to-transparent" },
+            { id: "premium", label: "Premium Animations", cost: 1200, gradient: "from-purple-600/10 to-transparent" },
         ]
     },
     {
@@ -55,11 +55,11 @@ const steps: Step[] = [
         description: "What functionality do you need?",
         multiSelect: true,
         options: [
-            { id: "auth", label: "User Auth", cost: 500, gradient: "from-blue-600/10 to-transparent" },
-            { id: "payment", label: "Payments", cost: 800, gradient: "from-green-600/10 to-transparent" },
-            { id: "cms", label: "Admin Dashboard", cost: 1200, gradient: "from-indigo-600/10 to-transparent" },
-            { id: "ai", label: "AI Integration", cost: 2000, gradient: "from-purple-600/10 to-transparent" },
-            { id: "chat", label: "Real-time Chat", cost: 1000, gradient: "from-cyan-600/10 to-transparent" },
+            { id: "auth", label: "User Auth", cost: 200, gradient: "from-blue-600/10 to-transparent" },
+            { id: "payment", label: "Payments", cost: 350, gradient: "from-green-600/10 to-transparent" },
+            { id: "cms", label: "Admin Dashboard", cost: 500, gradient: "from-indigo-600/10 to-transparent" },
+            { id: "ai", label: "AI Integration", cost: 800, gradient: "from-purple-600/10 to-transparent" },
+            { id: "chat", label: "Real-time Chat", cost: 400, gradient: "from-cyan-600/10 to-transparent" },
         ]
     }
 ];
