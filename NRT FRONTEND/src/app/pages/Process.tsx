@@ -98,13 +98,15 @@ export function Process() {
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
+
+      {/* SECTION 1: INTRO - Dark Hero */}
       <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden text-center">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-5xl relative z-10">
            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Our Workflow</div>
-           <h1 className="text-5xl sm:text-[8rem] lg:text-[9rem] font-black tracking-tighter leading-[1] sm:leading-[0.85] mb-10">
+           <h1 className="text-4xl sm:text-6xl lg:text-[6rem] font-black tracking-tighter leading-[1.1] sm:leading-[1] mb-10">
               From first message <br className="hidden sm:block" />
               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">to launch</span> <br className="hidden sm:block" />
               without confusion.
