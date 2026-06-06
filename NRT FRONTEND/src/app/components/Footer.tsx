@@ -30,7 +30,8 @@ export function Footer() {
       { name: "Pricing", href: "/pricing" },
       { name: "Our Process", href: "/process" },
       { name: "Success Stories", href: "/case-studies" },
-      { name: "Latest Insights", href: "/blog" },
+      { name: "Live Portfolio", href: "/portfolio" },
+      { name: "Resources Hub", href: "/resources" },
     ],
     legal: [
       { name: "Privacy Policy", href: "/privacy-policy" },
@@ -57,7 +58,7 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="Next Revolution Tech"
-                className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform brightness-0 invert"
+                className="h-20 sm:h-24 w-auto object-contain transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-90 brightness-0 invert"
               />
             </Link>
             <p className="text-white/60 text-base text-nrt-body leading-relaxed mb-10 max-w-sm">

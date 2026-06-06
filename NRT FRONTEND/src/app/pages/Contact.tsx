@@ -52,8 +52,8 @@ export function Contact() {
   return (
     <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
       <SEO 
-        title="Contact Us" 
-        description="Ready to stop dealing with tech hurdles? Get in touch with Next Revolution Tech for reliable fixes, custom integrations, and 24/7 dedicated support."
+        title="Contact Us | Strategy Call" 
+        description="Schedule a strategy session with Next Revolution Tech to discuss ERP implementation, AI automation, and business process optimization."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
@@ -68,14 +68,13 @@ export function Contact() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-4xl"
           >
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6 sm:mb-8">Get In Touch</div>
-            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] sm:leading-[0.9] mb-8 sm:mb-10">
-               Ready to stop <br />
-               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">dealing</span> with <br />
-               tech hurdles?
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6 sm:mb-8">Strategy Session</div>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95] sm:leading-[0.9] mb-8 sm:mb-10">
+               Ready To Improve <br />
+               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Operations?</span>
             </h1>
             <p className="text-lg sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
-              Fill out the form below or start with a small paid test. We respond within 24 hours.
+              Let's identify bottlenecks, automate workflows, and build systems that support long-term business growth. We respond within 24 hours.
             </p>
           </motion.div>
         </div>
@@ -157,7 +156,7 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us about your tech hurdles..."
+                    placeholder="Tell us about your operational challenges or project goals..."
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all resize-none shadow-sm hover:border-[#3A5CCC]/20"
@@ -168,7 +167,7 @@ export function Contact() {
                   disabled={status === 'loading'}
                   className="w-full bg-[#3A5CCC] text-white py-4 sm:py-6 rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_40px_-10px_rgba(58,92,204,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:hover:scale-100"
                 >
-                  {status === 'loading' ? 'Establishing Connection...' : 'Send Strategy Message'} 
+                  {status === 'loading' ? 'Establishing Connection...' : 'Request Strategy Call'} 
                   <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
@@ -193,7 +192,7 @@ export function Contact() {
                       <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">General Inquiries</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Partnerships & Strategy</div>
                       <a href="mailto:nextrevolutiontech@gmail.com" className="text-sm sm:text-lg font-black hover:text-[#3A5CCC] transition-colors break-all lg:break-all xl:break-normal">
                         nextrevolutiontech@gmail.com
                       </a>
@@ -204,7 +203,7 @@ export function Contact() {
                       <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">WhatsApp / Call</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Direct Line</div>
                       <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-2xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
                     </div>
                   </div>
@@ -233,7 +232,7 @@ export function Contact() {
                 <ShieldCheck className="w-16 h-16 mb-8 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Secure & Confidential</h3>
                 <p className="text-white/90 text-lg font-bold leading-relaxed relative z-10">
-                  We sign NDAs by default for all major projects. Your data and codebase are 100% secure with our internal team.
+                  We sign NDAs by default for all enterprise engagements. Your operational data, trade secrets, and system architectures are strictly confidential.
                 </p>
               </motion.div>
             </div>

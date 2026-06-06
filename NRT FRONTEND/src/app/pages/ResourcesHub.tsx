@@ -1,109 +1,238 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { BookOpen, Code2, Rocket, Newspaper, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, FileText, ArrowRight } from "lucide-react";
 import { SEO } from "../components/SEO";
+import { resourcesData, ResourceCategory, ResourceArticle } from "../data/resources";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
+const categories: ResourceCategory[] = [
+  "ERP Systems",
+  "AI Automation",
+  "Business Process Optimization",
+  "Custom Software",
+  "Business Operations",
+  "Dedicated Teams",
+  "Digital Transformation"
+];
+
+const painPoints = [
+  "Manual Reporting",
+  "Spreadsheet Dependency",
+  "Operational Bottlenecks",
+  "Disconnected Systems",
+  "Workflow Delays",
+  "Lack Of Visibility"
+];
+
 export function ResourcesHub() {
-  const resources = [
-    {
-      title: "Case Studies",
-      desc: "Deep technical breakdowns of our past enterprise ERP and SaaS deployments.",
-      icon: <Rocket className="w-10 h-10" />,
-      link: "/case-studies",
-      color: "from-[#0057FF] to-[#00A3FF]",
-      metrics: "ROI & Architecture"
-    },
-    {
-      title: "Technology Stack",
-      desc: "Explore the frameworks, cloud infrastructure, and AI models we trust in production.",
-      icon: <Code2 className="w-10 h-10" />,
-      link: "/tech-stack",
-      color: "from-[#8E2DE2] to-[#4A00E0]",
-      metrics: "React / Node / AWS"
-    },
-    {
-      title: "Discovery Framework",
-      desc: "Our proprietary 4-week methodology for auditing legacy systems and scoping new builds.",
-      icon: <BookOpen className="w-10 h-10" />,
-      link: "/discovery-framework",
-      color: "from-[#11998E] to-[#38EF7D]",
-      metrics: "Audit & Planning"
-    },
-    {
-      title: "Engineering Blog",
-      desc: "Insights, guides, and tutorials on AI automation, software scaling, and team building.",
-      icon: <Newspaper className="w-10 h-10" />,
-      link: "/blog",
-      color: "from-[#FF9900] to-[#FF5500]",
-      metrics: "Thought Leadership"
-    }
-  ];
+  const [activeCategory, setActiveCategory] = useState<ResourceCategory | "All">("All");
+
+  const filteredResources = activeCategory === "All" 
+    ? resourcesData 
+    : resourcesData.filter(r => r.category === activeCategory);
+
+  const pillarResources = resourcesData.filter(r => r.isPillar);
 
   return (
     <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
       <SEO
-        title="Engineering Resources & Hub"
-        description="Explore NRT's technical case studies, technology stack, discovery frameworks, and engineering insights."
+        title="Knowledge Hub | Next Revolution Tech"
+        description="Practical insights on ERP systems, AI automation, workflow optimization and business growth."
       />
 
+      {/* HERO SECTION */}
       <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
-        <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         
-        <div className="mx-auto max-w-7xl relative z-10">
-           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-12">Knowledge Hub</div>
-           <h1 className="text-5xl sm:text-[8rem] lg:text-[10rem] font-black tracking-tighter leading-[1] sm:leading-[0.8] mb-12">
-              Engineering <br className="hidden sm:block" />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Resources.</span>
+        <div className="mx-auto max-w-7xl relative z-10 text-center lg:text-left">
+           <div className="inline-block text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8 bg-[#3A5CCC]/10 px-4 py-2 rounded-full border border-[#3A5CCC]/20">
+              GEO Authority Hub
+           </div>
+           <h1 className="text-4xl sm:text-[5rem] lg:text-[7rem] font-black tracking-tighter leading-[1] sm:leading-[0.9] mb-8">
+              Knowledge For <br className="hidden lg:block" />
+              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#6084F2]">Smarter Operations.</span>
            </h1>
-           <p className="text-xl sm:text-3xl font-bold text-white/50 leading-tight max-w-3xl">
-              Frameworks, architectures, and deep dives into how we scale enterprise systems.
+           <p className="text-lg sm:text-2xl font-medium text-white/60 leading-relaxed max-w-3xl mx-auto lg:mx-0">
+              Practical insights on ERP systems, AI automation, workflow optimization and business growth for decision makers.
            </p>
         </div>
       </section>
 
-      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24">
-         <div className="mx-auto max-w-7xl">
-            <div className="grid md:grid-cols-2 gap-8">
-               {resources.map((res, i) => (
-                 <motion.div 
-                   key={i}
-                   initial={{ opacity: 0, y: 30 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                   viewport={{ once: true }}
-                 >
-                   <Link 
-                     to={res.link}
-                     className="block group relative p-10 sm:p-14 bg-white rounded-[2.5rem] border border-black/5 shadow-xl hover:shadow-2xl transition-all overflow-hidden h-full"
-                   >
-                      <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${res.color} opacity-5 blur-[80px] group-hover:opacity-20 transition-opacity duration-700`} />
-                      
-                      <div className="flex justify-between items-start mb-12">
-                         <div className="w-16 h-16 rounded-2xl bg-[#F3F4F6] flex items-center justify-center text-[#3A5CCC] group-hover:scale-110 transition-transform duration-500 shadow-inner">
-                            {res.icon}
-                         </div>
-                         <div className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-[#0F172A]/30 group-hover:bg-[#0F172A] group-hover:text-white transition-all">
-                            <ArrowUpRight className="w-5 h-5" />
-                         </div>
-                      </div>
+      {/* WHAT WE HELP BUSINESSES SOLVE (GEO SECTION) */}
+      <section className="py-20 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-b border-black/5">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+            <div>
+              <h2 className="text-3xl font-black tracking-tight text-[#0F172A]">What We Help Businesses Solve</h2>
+              <p className="text-[#0F172A]/60 mt-2 font-medium">Core operational challenges we engineer out of your business.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {painPoints.map((point, idx) => (
+              <div key={idx} className="bg-[#F8FAFC] rounded-2xl p-6 border border-black/5 hover:border-[#3A5CCC]/30 transition-colors flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#3A5CCC] shrink-0" />
+                <span className="font-bold text-sm leading-tight text-[#0F172A]">{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                      <div className="inline-block px-3 py-1 bg-[#F3F4F6] text-[#0F172A]/60 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
-                         {res.metrics}
-                      </div>
+      {/* PILLAR CONTENT / FEATURED */}
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC]">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16">
+            <h2 className="text-4xl font-black tracking-tighter text-[#0F172A] mb-4">Featured Resources</h2>
+            <p className="text-lg text-[#0F172A]/60 font-medium">Essential guides on architecture, automation, and operational efficiency.</p>
+          </div>
 
-                      <h2 className="text-3xl sm:text-4xl font-black mb-4 tracking-tighter text-[#0F172A]">{res.title}</h2>
-                      <p className="text-lg font-bold text-[#0F172A]/60 leading-relaxed">
-                         {res.desc}
-                      </p>
-                   </Link>
-                 </motion.div>
-               ))}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {pillarResources.slice(0, 4).map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} featured />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTENT CLUSTERS / ALL RESOURCES */}
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+             <h2 className="text-4xl font-black tracking-tighter text-[#0F172A]">Knowledge Clusters</h2>
+          </div>
+
+          {/* Categories */}
+          <div className="flex flex-wrap gap-2 mb-12">
+            <button
+              onClick={() => setActiveCategory("All")}
+              className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+                activeCategory === "All" 
+                ? "bg-[#0F172A] text-white" 
+                : "bg-[#F3F4F6] text-[#0F172A]/70 hover:bg-[#E2E8F0]"
+              }`}
+            >
+              All Topics
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
+                  activeCategory === cat 
+                  ? "bg-[#3A5CCC] text-white shadow-md shadow-[#3A5CCC]/20" 
+                  : "bg-[#F3F4F6] text-[#0F172A]/70 hover:bg-[#E2E8F0]"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredResources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('/noise.svg')]" />
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/20 rounded-full blur-[120px] -z-10" />
+         
+         <div className="mx-auto max-w-4xl text-center relative z-10">
+            <h2 className="text-4xl sm:text-6xl font-black tracking-tighter mb-8">
+              Need Help Improving <span className="text-[#3A5CCC]">Operations?</span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-white/70 font-medium mb-12">
+              Let's identify inefficiencies, automate workflows and build systems that support long-term growth.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center gap-3 bg-white text-[#0F172A] px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform duration-300 w-full sm:w-auto"
+              >
+                 Book Strategy Call <ArrowRight className="w-6 h-6" />
+              </Link>
+              <Link 
+                to="/dedicated-teams" 
+                className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-white/20 hover:border-white/40 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
+              >
+                 Hire Dedicated Team
+              </Link>
             </div>
          </div>
       </section>
     </div>
+  );
+}
+
+function ResourceCard({ resource, featured = false }: { resource: ResourceArticle; featured?: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className={`group relative bg-white border border-black/10 hover:border-[#3A5CCC]/50 rounded-3xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-[#3A5CCC]/10 transition-all flex flex-col h-full overflow-hidden ${featured ? 'bg-gradient-to-b from-white to-[#F8FAFC]' : ''}`}
+    >
+      {/* Meta */}
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 relative z-10">
+        <div className="inline-flex px-3 py-1 bg-[#3A5CCC]/10 text-[#3A5CCC] text-xs font-black uppercase tracking-wider rounded-md">
+          {resource.category}
+        </div>
+        <div className="flex items-center gap-2 text-xs font-bold text-[#0F172A]/50">
+          <FileText className="w-4 h-4" />
+          {resource.readingTime}
+        </div>
+      </div>
+
+      {/* Title */}
+      <h3 className={`font-black tracking-tight text-[#0F172A] mb-6 group-hover:text-[#3A5CCC] transition-colors relative z-10 ${featured ? 'text-3xl' : 'text-2xl'}`}>
+        <Link to={resource.link} className="focus:outline-none">
+          <span className="absolute inset-0 z-0" aria-hidden="true" />
+          {resource.title}
+        </Link>
+      </h3>
+
+      {/* Structural Problem/Outcome (Not a generic blog desc) */}
+      <div className="flex-grow space-y-4 mb-8 relative z-10">
+        <div>
+          <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-1">Business Problem</span>
+          <p className="text-sm font-medium text-[#0F172A]/80 leading-relaxed border-l-2 border-[#E2E8F0] pl-3">
+            {resource.businessProblem}
+          </p>
+        </div>
+        <div>
+          <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-1">Expected Outcome</span>
+          <p className="text-sm font-medium text-[#3A5CCC] leading-relaxed border-l-2 border-[#3A5CCC]/30 pl-3">
+            {resource.expectedOutcome}
+          </p>
+        </div>
+      </div>
+
+      {/* Internal Linking / Tags */}
+      <div className="pt-6 border-t border-black/5 mt-auto relative z-10">
+        <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-3">Related Solutions</span>
+        <div className="flex flex-wrap gap-2">
+          {resource.relatedSolutions.map((sol, i) => (
+            <span key={i} className="text-xs font-bold text-[#0F172A]/60 bg-[#F3F4F6] px-2.5 py-1 rounded-md">
+              {sol}
+            </span>
+          ))}
+        </div>
+      </div>
+      
+      {/* Action Indicator */}
+      <div className="absolute top-6 right-6 sm:top-8 sm:right-8 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+         <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center text-white">
+            <ArrowUpRight className="w-5 h-5" />
+         </div>
+      </div>
+    </motion.div>
   );
 }

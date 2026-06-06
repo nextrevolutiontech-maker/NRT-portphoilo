@@ -21,13 +21,14 @@ export function Header() {
   const navigation = [
     { name: "SOLUTIONS", href: "/services" },
     { name: "CASE STUDIES", href: "/case-studies" },
-    { name: "RESOURCES", href: "/blog" },
+    { name: "RESOURCES", href: "/resources" },
     { 
       name: "COMPANY", 
       href: "/about",
       dropdown: [
         { name: "About", href: "/about" },
         { name: "Process", href: "/process" },
+        { name: "Live Portfolio", href: "/portfolio" },
         { name: "Founder", href: "/author/muhammad-ahsan-khan" },
         { name: "Contact", href: "/contact" }
       ]
@@ -56,7 +57,7 @@ export function Header() {
             <img
               src={logoImage}
               alt="Next Revolution Tech"
-              className={`h-9 sm:h-11 w-auto object-contain transition-transform duration-300 hover:scale-[1.02] ${
+              className={`h-14 sm:h-16 w-auto object-contain transition-all duration-500 ease-out hover:scale-105 hover:opacity-90 ${
                 !scrolled && 'brightness-0 invert'
               }`}
             />
@@ -98,6 +99,19 @@ export function Header() {
 
           {/* Right CTA Area - Clear Hierarchy */}
           <div className="hidden xl:flex items-center gap-4">
+            {/* Secondary CTA */}
+            <Magnetic>
+              <Link 
+                to="/dedicated-teams" 
+                className={`px-5 py-3 rounded-full text-nrt-nav font-black uppercase tracking-wider text-sm transition-all border ${
+                  scrolled 
+                    ? "border-[#0F172A]/10 text-[#0F172A] hover:bg-[#0F172A]/5" 
+                    : "border-white/20 text-white hover:bg-white/10"
+                }`}
+              >
+                Hire Dedicated Team
+              </Link>
+            </Magnetic>
             {/* Primary CTA */}
             <Magnetic>
               <Link 
@@ -157,7 +171,14 @@ export function Header() {
                   </div>
                 ))}
                 
-                <div className="pt-6 border-t border-white/10 space-y-5">
+                <div className="pt-6 border-t border-white/10 space-y-3">
+                  <Link 
+                    to="/dedicated-teams" 
+                    className="block w-full border border-white/20 text-white hover:bg-white/10 text-center py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Hire Dedicated Team
+                  </Link>
                   {/* Primary CTA */}
                   <Link 
                     to="/contact" 

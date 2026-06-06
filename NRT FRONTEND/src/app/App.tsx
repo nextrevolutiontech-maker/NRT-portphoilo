@@ -39,6 +39,7 @@ import { TermsOfService } from "./pages/policies/TermsOfService";
 import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
 import { Pricing } from "./pages/Pricing";
 import { NotFound } from "./pages/NotFound";
+import { DedicatedTeamsLanding } from "./pages/DedicatedTeamsLanding";
 
 // Loading Fallback
 const PageLoader = () => (
@@ -60,19 +61,11 @@ function PublicLayout() {
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={location.pathname}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                >
-                  <Suspense fallback={<PageLoader />}>
-                    <Outlet />
-                  </Suspense>
-                </motion.div>
-              </AnimatePresence>
+              <div key={location.pathname} className="w-full h-full">
+                <Suspense fallback={<PageLoader />}>
+                  <Outlet />
+                </Suspense>
+              </div>
             </main>
             <Footer />
           </div>
@@ -107,9 +100,8 @@ export default function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/resources" element={<ResourcesHub />} />
+            <Route path="/resources/:slug" element={<BlogDetail />} />
             <Route path="/tech-stack" element={<TechStack />} />
             <Route path="/discovery-framework" element={<DiscoveryFramework />} />
             <Route path="/author/:slug" element={<AuthorProfile />} />
@@ -117,6 +109,7 @@ export default function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/estimator" element={<CostEstimator />} />
+            <Route path="/dedicated-teams" element={<DedicatedTeamsLanding />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

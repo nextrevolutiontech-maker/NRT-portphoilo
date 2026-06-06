@@ -40,7 +40,8 @@ import {
   ZapIcon,
   Plus,
   Minus,
-  MessageSquare
+  MessageSquare,
+  Users
 } from "lucide-react";
 import { PreFooterCTA } from "../components/PreFooterCTA";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
@@ -343,38 +344,39 @@ export function Home() {
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
         
         <div className="mx-auto max-w-7xl relative z-10">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <div className="lg:col-span-8">
-               <h1 ref={headlineRef} className="text-4xl sm:text-6xl xl:text-7xl font-bold leading-[0.95] tracking-tight mb-8 sm:mb-12 text-white">
-                 We build and automate <br className="hidden sm:block" />
-                 <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC]">custom SaaS, ERPs, and AI workflows</span>.
+          <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+               <h1 ref={headlineRef} className="text-4xl sm:text-6xl xl:text-[5.5rem] font-black leading-[1.05] tracking-tighter mb-8 sm:mb-10 text-white">
+                 Scale Faster With <br className="hidden sm:block" />
+                 <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#00E5FF]">ERP Systems, AI Automation</span> <br className="hidden sm:block" />
+                 & Dedicated Teams
                </h1>
-              <p ref={subtextRef} className="text-lg sm:text-xl xl:text-2xl text-slate-200 text-nrt-body mb-10 sm:mb-12 max-w-[650px] leading-snug">
-                Next Revolution Tech converts manual operations into streamlined systems. We design, deploy, and scale custom enterprise software, integrations, and automated workflows.
+              <p ref={subtextRef} className="text-lg sm:text-xl xl:text-2xl text-slate-200 text-nrt-body mb-10 sm:mb-14 max-w-[800px] leading-relaxed font-medium">
+                We help growing businesses eliminate operational bottlenecks, automate workflows, centralize business processes and accelerate growth through ERP systems, AI automation and custom software solutions.
               </p>
-               <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16">
+               <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-16 sm:mb-20 justify-center">
                  <Magnetic>
                    <button 
                      onClick={() => setIsAuditModalOpen(true)}
-                     className="btn-primary-nrt px-10 py-5 text-lg cursor-pointer flex items-center justify-center text-white"
+                     className="btn-primary-nrt px-10 py-5 text-lg cursor-pointer flex items-center justify-center text-white shadow-[0_10px_40px_rgba(20,184,166,0.3)] hover:scale-105 transition-all"
                    >
-                     Free ERP Planning Session
+                     Book Strategy Call
                      <ArrowRight className="w-5 h-5 ml-3 animate-pulse" />
                    </button>
                  </Magnetic>
                  <Magnetic>
-                    <Link to="/portfolio" className="btn-secondary-nrt px-10 py-5 text-lg">
-                      Explore Portfolio
+                    <Link to="/case-studies" className="btn-secondary-nrt px-10 py-5 text-lg shadow-xl backdrop-blur-md">
+                      View Enterprise Case Studies
                       <ArrowRight className="w-5 h-5 ml-3" />
                     </Link>
                   </Magnetic>
                </div>
-               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-12 border-t border-white/10 pt-10 sm:pt-12">
+               
+               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12 border-t border-white/10 pt-10 sm:pt-12 w-full max-w-3xl mx-auto">
                   <div className="flex -space-x-2 sm:-space-x-3">
                      {['A', 'J', 'S', 'M'].map((letter, i) => (
                        <div 
                          key={i} 
-                         className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full border-4 border-[#0F172A] shadow-lg flex items-center justify-center text-xs sm:text-sm font-bold text-white ${
+                         className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full border-4 border-[#060B19] shadow-lg flex items-center justify-center text-xs sm:text-sm font-bold text-white ${
                            i === 0 ? 'bg-[#3A5CCC]' : 
                            i === 1 ? 'bg-emerald-500' : 
                            i === 2 ? 'bg-purple-500' : 
@@ -385,112 +387,62 @@ export function Home() {
                        </div>
                      ))}
                   </div>
-                   <div className="space-y-1">
+                   <div className="space-y-1 text-left">
                       <div className="text-base sm:text-lg font-medium text-slate-200 italic">&ldquo;The most reliable technical partner we&apos;ve integrated.&rdquo;</div>
-                      <div className="flex items-center gap-2 text-slate-300 text-nrt-label">
-                         <span className="text-[#3A5CCC]">🇵🇰 Karachi Based</span>
+                      <div className="flex items-center gap-2 text-slate-300 text-nrt-label mt-2">
+                         <span className="text-[#00E5FF]">Global Delivery</span>
                          <span>|</span>
-                         <span>Global Delivery</span>
+                         <span>Trusted by 50+ Enterprises</span>
                       </div>
                    </div>      
                 </div>
-            </div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:col-span-4 w-full lg:mt-6"
-            >
-              {/* Premium Dashboard Panel Mockup */}
-              <div 
-                ref={dashboardRef}
-                style={tiltStyle}
-                onMouseMove={handleDashboardMouseMove}
-                onMouseEnter={handleDashboardMouseEnter}
-                onMouseLeave={handleDashboardMouseLeave}
-                className="relative rounded-3xl border border-white/10 bg-[#161F33]/60 backdrop-blur-xl p-6 sm:p-8 shadow-2xl overflow-hidden group cursor-default select-none"
-              >
-                {/* Spotlight background glow */}
-                {isDashboardHovered && (
-                  <div 
-                    className="absolute pointer-events-none rounded-full blur-[100px] opacity-40 transition-opacity duration-300"
-                    style={{
-                      width: '250px',
-                      height: '250px',
-                      background: 'radial-gradient(circle, rgba(58,92,204,0.3) 0%, rgba(20,184,166,0.1) 70%, transparent 100%)',
-                      left: `${spotlightPos.x - 125}px`,
-                      top: `${spotlightPos.y - 125}px`,
-                      mixBlendMode: 'screen',
-                    }}
-                  />
-                )}
-                <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')] pointer-events-none" />
-                
-                {/* Header of the panel */}
-                <div className="flex items-center justify-between pb-4 border-b border-white/5 mb-6">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block"></span>
-                  </div>
-                  <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">NRT_PIPELINE</div>
-                </div>
-
-                {/* Main metric */}
-                <div className="space-y-1 mb-6">
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#3A5CCC]">Sprint Capacity</div>
-                  <div className="text-3xl font-black text-white tracking-tight flex items-baseline gap-2">
-                    94.8% <span className="text-xs font-semibold text-emerald-400 animate-pulse">Optimal</span>
-                  </div>
-                </div>
-
-                {/* Pipeline List */}
-                <div className="space-y-4 mb-8">
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-white/40">Current Queue</div>
-                  {pipelineTasks.map((task, i) => (
-                    <div 
-                      key={i} 
-                      className="relative bg-white/[0.01] border border-white/5 rounded-2xl p-4 space-y-3 transition-all duration-300 hover:bg-white/[0.03] hover:border-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)] cursor-pointer overflow-hidden group/card"
-                    >
-                      <div className="flex justify-between items-center text-xs font-semibold text-white/80 relative z-10">
-                        <span>{task.name}</span>
-                        <span className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full transition-all duration-300 ${
-                          task.status === "Active" ? "bg-[#3A5CCC]/10 text-[#3A5CCC] border border-[#3A5CCC]/20" :
-                          task.status === "Review" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse" :
-                          "bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                        }`}>{task.status}</span>
-                      </div>
-                      <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden relative z-10">
-                        <motion.div 
-                          animate={{ width: `${task.val}%` }} 
-                          transition={{ duration: 0.8, ease: "easeInOut" }}
-                          className={`h-full ${task.color}`} 
-                        />
-                      </div>
-                      {/* Glow Overlay border on hover */}
-                      <div 
-                        className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl border border-white/10" 
-                        style={{
-                          boxShadow: task.status === "Active" ? "inset 0 0 12px rgba(58,92,204,0.15)" : 
-                                     task.status === "Review" ? "inset 0 0 12px rgba(16,185,129,0.15)" : 
-                                     "inset 0 0 12px rgba(168,85,247,0.15)"
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-center relative z-10">
-                  <Link to="/estimator" className="inline-flex items-center text-xs font-black text-[#3A5CCC] uppercase tracking-[0.2em] hover:text-white transition-colors">
-                    Check Pricing →
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* How We Help Businesses Grow Section */}
+      <ScrollReveal>
+        <section className="py-20 sm:py-24 bg-[#0B0F19] relative border-b border-white/10 overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="mb-16 text-center max-w-3xl mx-auto">
+               <div className="text-nrt-eyebrow text-[#14B8A6] mb-6">Value Drivers</div>
+               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                 How We Help Businesses <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#3A5CCC] italic font-italic-serif font-normal">Grow</span>
+               </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="card-nrt flex flex-col group">
+                <div className="card-icon-nrt">
+                   <Settings className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-white">Optimize Operations</h3>
+                <p className="text-slate-300 text-nrt-body">
+                  Implement ERP systems that centralize data, streamline workflows and improve visibility.
+                </p>
+              </div>
+              <div className="card-nrt flex flex-col group">
+                <div className="card-icon-nrt">
+                   <ZapIcon className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-white">Automate Workflows</h3>
+                <p className="text-slate-300 text-nrt-body">
+                  Reduce repetitive tasks using AI automation and intelligent business processes.
+                </p>
+              </div>
+              <div className="card-nrt flex flex-col group">
+                <div className="card-icon-nrt">
+                   <Layers className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-white">Extend Your Team</h3>
+                <p className="text-slate-300 text-nrt-body">
+                  Scale development capacity with dedicated engineers, designers and technical specialists.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* Trust Stats Bar - Redesigned Dark & Premium */}
       <ScrollReveal>
@@ -551,12 +503,12 @@ export function Home() {
           
           <div className="mx-auto max-w-7xl xl:max-w-[1400px] px-4 sm:px-6 lg:px-8">
             <div className="mb-16">
-               <div className="text-nrt-eyebrow text-[#3A5CCC] mb-6">Expertise</div>
+               <div className="text-nrt-eyebrow text-[#3A5CCC] mb-6">Business Growth Solutions</div>
                <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.08] mb-8">
-                 Real work, not just <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC] italic font-italic-serif font-normal">pretty screens</span>.
+                 Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC] italic font-italic-serif font-normal">Outcomes</span>, <br />Not Just Output.
                </h2>
                <p className="text-lg sm:text-xl text-nrt-body text-slate-200 max-w-2xl leading-relaxed">
-                 The services clients usually come to us for: custom ERP portals, workflow automations that save real hours, responsive SaaS builds, and integrations that scale.
+                 We don't just write code. We implement systems that reduce manual work, increase visibility, and scale operations across your entire organization.
                </p>
             </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -795,6 +747,73 @@ export function Home() {
         </section>
       </ScrollReveal>
 
+      {/* Business Outcomes Section */}
+      <ScrollReveal>
+        <section className="py-20 sm:py-24 bg-[#131A2A] relative border-b border-white/10 overflow-hidden">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#14B8A6]/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="mb-16 text-center max-w-3xl mx-auto">
+               <div className="text-nrt-eyebrow text-[#3A5CCC] mb-6">Real Results</div>
+               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                 Business Outcomes We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#3A5CCC] italic font-italic-serif font-normal">Deliver</span>
+               </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                "Reduce Manual Work",
+                "Increase Operational Visibility",
+                "Automate Repetitive Processes",
+                "Improve Team Productivity",
+                "Centralize Business Data",
+                "Scale Without Operational Chaos"
+              ].map((outcome, i) => (
+                <div key={i} className="bg-slate-900/60 border border-white/10 rounded-2xl p-6 flex items-center gap-4 group hover:border-[#14B8A6]/40 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#14B8A6]/20 transition-colors">
+                    <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+                  </div>
+                  <span className="text-lg font-bold text-slate-200">{outcome}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Engagement Model Section */}
+      <ScrollReveal>
+        <section className="py-20 sm:py-24 bg-[#0B0F19] relative border-b border-white/10 overflow-hidden">
+          <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#3A5CCC]/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="mb-16 text-center max-w-3xl mx-auto">
+               <div className="text-nrt-eyebrow text-[#14B8A6] mb-6">Engagement Models</div>
+               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+                 Choose The Model That <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#3A5CCC] italic font-italic-serif font-normal">Fits Your Business</span>
+               </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="card-nrt flex flex-col group text-center items-center">
+                <div className="card-icon-nrt">
+                   <Settings className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-white">ERP & AI Automation</h3>
+                <p className="text-slate-300 text-nrt-body max-w-sm">
+                  For companies looking to improve operations and business efficiency.
+                </p>
+              </div>
+              <div className="card-nrt flex flex-col group text-center items-center">
+                <div className="card-icon-nrt">
+                   <Users className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 tracking-tight text-white">Dedicated Technology Teams</h3>
+                <p className="text-slate-300 text-nrt-body max-w-sm">
+                  For companies needing long-term technical execution and development support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* Featured Projects Section */}
       <ScrollReveal>
         <section className="py-20 sm:py-24 bg-[#0B0F19] border-t border-white/10 relative overflow-hidden">
@@ -835,7 +854,7 @@ export function Home() {
                       <p className="text-sm text-slate-300 leading-relaxed font-medium">{project.impact}</p>
                     </div>
                     <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                      <Link to="/portfolio" className="text-xs font-black uppercase tracking-wider text-[#3A5CCC] hover:text-white transition-colors inline-flex items-center gap-1.5">
+                      <Link to="/case-studies" className="text-xs font-black uppercase tracking-wider text-[#3A5CCC] hover:text-white transition-colors inline-flex items-center gap-1.5">
                         Inspect System <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
@@ -986,13 +1005,13 @@ export function Home() {
                           <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">Team as a Service</span>
                        </div>
                        
-                       <h2 className="text-6xl sm:text-8xl font-black text-white tracking-tight leading-[1.05] mb-10">
-                          Your Dedicated <br />
-                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC] italic font-italic-serif font-normal">Tech Partner.</span>
+                        <h2 className="text-5xl sm:text-7xl font-black text-white tracking-tight leading-[1.05] mb-10">
+                          Need a Dedicated <br />
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC] italic font-italic-serif font-normal">Technology Team?</span>
                        </h2>
                        
                        <p className="text-xl font-bold text-slate-300 mb-12 leading-relaxed max-w-lg">
-                          Skip the recruitment cycles. Get immediate access to a full stack of elite engineering and design talent for a flat monthly fee.
+                          Access experienced developers, designers and engineers without the overhead of building an in-house team.
                        </p>
 
                        <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -1072,10 +1091,11 @@ export function Home() {
 
             <div className="grid gap-6">
                {[
-                 { q: "How is NRT different from hiring a freelancer?", a: "Unlike freelancers, our team works full-time, under one roof, with backup developers if needed. You get agency-level stability with freelancer-level speed." },
-                 { q: "What if I'm not satisfied with the work?", a: "We offer a small paid test task before any long-term commitment. This ensures you only invest in a full plan once you've seen our world-class quality." },
-                 { q: "Do you work with Pakistani businesses?", a: "Yes! We serve both local Pakistani market leaders and global clients with the same level of technical excellence and dedication." },
-                 { q: "How do I contact you for a custom project?", a: "You can reach us directly via WhatsApp at 0344-2013217 or email us at nextrevolutiontech@gmail.com for a free consultation." }
+                 { q: "What is your approach to implementing ERP Systems?", a: "We don't just install software; we align the ERP with your core business processes. From centralized databases to custom portal interfaces, we ensure that the system eliminates manual bottlenecks and provides real-time operational visibility." },
+                 { q: "How can AI Automation help my business?", a: "AI Automation replaces repetitive, manual tasks with intelligent workflows. This includes automating customer support, qualifying leads, and streamlining data entry, allowing your team to focus on high-value growth initiatives." },
+                 { q: "Do you build custom software from scratch?", a: "Yes. Whether you need a specialized SaaS platform, an internal management dashboard, or a complex integration with legacy systems, our engineering team builds secure, scalable, and tailored software solutions." },
+                 { q: "How does the Dedicated Technology Team model work?", a: "You get immediate access to a full stack of elite engineers, designers, and project managers without the recruitment overhead. They integrate directly with your operations to provide continuous technical execution for your long-term roadmap." },
+                 { q: "How is NRT different from a typical development agency?", a: "We are an outcome-driven business transformation partner. We focus on delivering operational efficiency, scalability, and business growth through technology, rather than just writing code." }
                ].map((faq, i) => (
                  <FAQItem key={i} faq={faq} index={i} />
                ))}

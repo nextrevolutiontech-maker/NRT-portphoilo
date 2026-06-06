@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "motion/react";
-import { ExternalLink, Award, Code2, Rocket, BrainCircuit, CheckCircle2 } from "lucide-react";
+import { ExternalLink, Award, Code2, Rocket, BrainCircuit, CheckCircle2, LineChart } from "lucide-react";
 import { SEO } from "../components/SEO";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 
@@ -19,27 +19,36 @@ export function AuthorProfile() {
 
   const author = {
     name: "Muhammad Ahsan Khan",
-    role: "Founder & Lead Solutions Architect",
+    role: "Founder & Business Systems Architect",
     image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1740927508/nrt-portfolio/dp2_k9oov6.png",
     linkedin: "https://www.linkedin.com/in/muhammad-ahsan-khan-238b69352/",
-    bio: "Muhammad Ahsan Khan is the Founder and Lead Solutions Architect at Next Revolution Tech. With extensive experience in enterprise systems, he specializes in architecting high-performance ERPs, scalable SaaS platforms, and deploying autonomous AI workflow automations for global clients.",
+    bio: "Muhammad Ahsan Khan is the Founder and Business Systems Architect at Next Revolution Tech. He specializes in designing enterprise ERP systems, deploying AI automation, and driving business process optimization to help organizations achieve operational efficiency and scalability.",
     specializations: [
       { name: "Enterprise ERP Systems", icon: <Award className="w-5 h-5 text-[#0057FF]" /> },
-      { name: "SaaS Architecture", icon: <Code2 className="w-5 h-5 text-[#8E2DE2]" /> },
       { name: "Agentic AI Automation", icon: <BrainCircuit className="w-5 h-5 text-[#14B8A6]" /> },
+      { name: "Business Process Optimization", icon: <LineChart className="w-5 h-5 text-[#E11D48]" /> },
+      { name: "SaaS Architecture", icon: <Code2 className="w-5 h-5 text-[#8E2DE2]" /> },
       { name: "Cloud Infrastructure", icon: <Rocket className="w-5 h-5 text-[#FF9900]" /> }
     ],
     experience: [
-      "Architected Pulse Healthcare ERP, reducing clinic overhead by 40%.",
-      "Deployed autonomous AI agents for B2B SaaS startups, boosting lead qualification by 300%.",
-      "Engineered Textile Mill Web POS with direct FBR API integration.",
-      "Lead developer on 50+ successful enterprise software deliveries."
+      "Architected enterprise healthcare ERP systems, improving operational visibility and reducing manual administrative effort.",
+      "Deployed autonomous AI agents for SaaS platforms, streamlining business workflows and enhancing lead qualification processes.",
+      "Engineered retail operations platforms and custom business software with complex financial API integrations.",
+      "Lead technical consultant and architect on 50+ successful business transformation projects."
     ],
     caseStudies: [
-      { title: "Pulse Healthcare ERP", link: "/case-studies/pulse-healthcare-erp" },
-      { title: "Autonomous AI Router", link: "/case-studies/autonomous-ai-agent" },
-      { title: "Textile Mill Web POS", link: "/case-studies/textile-mill-pos" }
-    ]
+      { title: "Healthcare Operations ERP Platform", link: "/case-studies/pulse-healthcare-erp" },
+      { title: "AI-Powered Workflow Automation System", link: "/case-studies/autonomous-ai-agent" },
+      { title: "Retail Operations & Inventory Platform", link: "/case-studies/textile-mill-pos" }
+    ],
+    whyFounded: {
+      title: "Why I Founded Next Revolution Tech",
+      content: [
+        "Throughout my career, I observed a recurring pattern: ambitious businesses were constantly being held back by their own internal operations. They were relying on fragile spreadsheets, disconnected legacy systems, and manual data entry that consumed thousands of hours.",
+        "Most software agencies were focused on building isolated apps, not solving core operational bottlenecks. I realized that what businesses truly needed wasn't just code—they needed integrated business systems.",
+        "I founded NRT to bridge this gap. Our focus on ERP Systems, AI Automation, and Business Process Optimization was born out of the necessity to give organizations complete visibility into their operations and the scalable infrastructure needed to grow without friction."
+      ]
+    }
   };
 
   return (
@@ -69,7 +78,7 @@ export function AuthorProfile() {
 
            <div className="lg:col-span-4 flex justify-center lg:justify-end">
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-white/10 shadow-2xl overflow-hidden p-2 bg-white/5 backdrop-blur-md">
-                 <img src={author.image} alt={author.name} className="w-full h-full object-cover rounded-full" />
+                 <img src={author.image} alt={author.name} className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500" />
               </div>
            </div>
         </div>
@@ -93,8 +102,20 @@ export function AuthorProfile() {
                   </div>
                </div>
 
+               <div className="bg-[#0F172A] text-white p-10 sm:p-12 rounded-[2rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')]" />
+                  <div className="relative z-10">
+                     <h2 className="text-3xl font-black tracking-tighter mb-8">{author.whyFounded.title}</h2>
+                     <div className="space-y-6 text-lg font-medium text-white/80 leading-relaxed">
+                        {author.whyFounded.content.map((paragraph, i) => (
+                           <p key={i}>{paragraph}</p>
+                        ))}
+                     </div>
+                  </div>
+               </div>
+
                <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-black/5 shadow-xl">
-                  <h2 className="text-3xl font-black tracking-tighter mb-8">Track Record & Experience</h2>
+                  <h2 className="text-3xl font-black tracking-tighter mb-8">Track Record & Business Value</h2>
                   <ul className="space-y-6">
                      {author.experience.map((exp, i) => (
                        <li key={i} className="flex items-start gap-4">
@@ -110,12 +131,12 @@ export function AuthorProfile() {
                <div className="bg-gradient-to-br from-[#0F172A] to-[#161F33] text-white p-10 rounded-[2rem] shadow-2xl relative overflow-hidden border border-white/5">
                   <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
                   <div className="relative z-10">
-                     <h3 className="text-2xl font-black mb-6 tracking-tighter">Authored Case Studies</h3>
+                     <h3 className="text-2xl font-black mb-6 tracking-tighter">Enterprise Case Studies</h3>
                      <div className="space-y-4">
                         {author.caseStudies.map((cs, i) => (
                           <Link key={i} to={cs.link} className="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors group">
                              <span className="font-bold">{cs.title}</span>
-                             <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
+                             <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-white transition-colors shrink-0 ml-4" />
                           </Link>
                         ))}
                      </div>
@@ -140,11 +161,23 @@ export function AuthorProfile() {
                   <h3 className="text-2xl font-black mb-6 tracking-tighter">Related Services</h3>
                   <div className="flex flex-col gap-3">
                      <Link to="/services/custom-software-development" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
-                        Custom ERP Development
+                        ERP Systems Development
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
                      <Link to="/services/ai-automation" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
                         AI Workflow Automation
+                        <ExternalLink className="w-4 h-4 text-black/30" />
+                     </Link>
+                     <Link to="/services/process-automation" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                        Business Process Automation
+                        <ExternalLink className="w-4 h-4 text-black/30" />
+                     </Link>
+                     <Link to="/services/custom-software-development" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                        Custom Business Software
+                        <ExternalLink className="w-4 h-4 text-black/30" />
+                     </Link>
+                     <Link to="/services/dedicated-teams" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                        Dedicated Technology Teams
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
                   </div>

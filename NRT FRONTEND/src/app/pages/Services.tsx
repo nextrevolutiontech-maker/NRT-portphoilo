@@ -11,7 +11,11 @@ import {
   Users,
   ShieldCheck,
   Smartphone,
-  Layers
+  Layers,
+  Settings,
+  Globe,
+  Palette,
+  Server
 } from "lucide-react";
 import { motion } from "motion/react";
 import { PreFooterCTA } from "../components/PreFooterCTA";
@@ -21,66 +25,48 @@ import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 export function Services() {
   const services = [
     {
-      icon: <ShoppingCart className="w-8 h-8" />,
-      title: "ERP & Business Automation",
-      desc: "Say goodbye to manual stock registers and inventory leaks. We build customized ERPs, POS systems, and admin portals that run your operations in real-time.",
-      features: ["Custom ERP dashboards", "Inventory reconciliations", "Multi-warehouse sync"],
-      image: "/assets/projects/babybloom/shop.png",
+      icon: <Settings className="w-8 h-8" />,
+      title: "ERP Systems",
+      desc: "Centralize operations, eliminate spreadsheet chaos, improve reporting and gain complete visibility across your business.",
+      outcomes: ["Real-time visibility", "Faster decisions", "Improved operational control"],
+      image: "/assets/services/erp-dashboard.png",
       color: "from-[#27324A] to-[#27324A]",
       accent: "bg-white/10"
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Enterprise Integrations",
-      desc: "Connect your payment gateways, local FBR tax APIs, CRM pipelines, and shipping couriers with stable fallback error handling.",
-      features: ["Payment gateways", "FBR Tax API integrations", "Courier tracking sync"],
-      image: "/assets/services/erp-dashboard.png",
+      title: "AI Automation",
+      desc: "Automate repetitive work, approvals, reporting and workflows using AI-powered systems.",
+      outcomes: ["Reduced manual work", "Higher productivity", "Faster execution"],
+      image: "/agentic_ai_dashboard.png",
       color: "from-[#0057FF] to-[#9900FF]",
       accent: "bg-white/10"
     },
     {
       icon: <Workflow className="w-8 h-8" />,
-      title: "AI Workflow Automation",
-      desc: "Automate repetitive daily tasks. We build intelligent agentic LLM flows that qualify website leads, process emails, and sync logs 24/7.",
-      features: ["AI email sorting", "Lead qualification flows", "Autonomous agent systems"],
-      image: "/agentic_ai_dashboard.png",
-      color: "from-[#27324A] to-[#3A5CCC]",
-      accent: "bg-white/10"
-    },
-    {
-      icon: <Smartphone className="w-8 h-8" />,
-      title: "Custom SaaS Development",
-      desc: "Turn your business idea into a market-ready web or mobile SaaS product. We manage the full cycle from database schema to responsive frontend.",
-      features: ["Full-stack databases", "Dynamic admin consoles", "React Native & Flutter"],
-      image: "/iraqbid-5.png",
-      color: "from-[#00D2FF] to-[#3a7bd5]",
-      accent: "bg-white/10"
-    },
-    {
-      icon: <Layers className="w-8 h-8" />,
-      title: "UI/UX Product Design",
-      desc: "Modern, high-converting product designs engineered to maximize sales conversion and user operation speed.",
-      features: ["Figma prototypes", "Interactive mockups", "UX friction audits"],
-      image: "/babybloom-home.png",
-      color: "from-[#9900FF] to-[#FF00FF]",
-      accent: "bg-white/10"
-    },
-    {
-      icon: <ShieldCheck className="w-8 h-8" />,
-      title: "DevOps & Edge Scale",
-      desc: "Secure, scalable cloud infrastructure that ensures your business systems stay online 24/7 with zero downtime.",
-      features: ["CI/CD deploy pipelines", "Security firewall audits", "Database backup clocks"],
+      title: "Custom Business Software",
+      desc: "Build software around your business processes instead of forcing your team to adapt to generic tools.",
+      outcomes: ["Better efficiency", "Scalable operations", "Process optimization"],
       image: "/pulse-admin.png",
       color: "from-[#11998E] to-[#38EF7D]",
+      accent: "bg-white/10"
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "Dedicated Technology Teams",
+      desc: "Extend your internal capabilities with dedicated developers, engineers and technology specialists.",
+      outcomes: ["Faster delivery", "Flexible scaling", "Long-term support"],
+      image: "/iraqbid-5.png",
+      color: "from-[#3A5CCC] to-[#27324A]",
       accent: "bg-white/10"
     }
   ];
 
   const whyChooseUs = [
-    { icon: <Users className="w-6 h-6" />, text: "No need to hire multiple developers", color: "from-[#0057FF] to-[#00A3FF]" },
-    { icon: <Clock className="w-6 h-6" />, text: "Fast turnaround on tasks", color: "from-[#3A5CCC] to-[#27324A]" },
-    { icon: <Target className="w-6 h-6" />, text: "Long-term technical partner", color: "from-[#6366f1] to-[#a855f7]" },
-    { icon: <ShieldCheck className="w-6 h-6" />, text: "Reliable and consistent support", color: "from-[#11998E] to-[#38EF7D]" }
+    { icon: <Target className="w-6 h-6" />, text: "Operational Efficiency", color: "from-[#0057FF] to-[#00A3FF]" },
+    { icon: <Zap className="w-6 h-6" />, text: "Business Automation", color: "from-[#3A5CCC] to-[#27324A]" },
+    { icon: <Settings className="w-6 h-6" />, text: "ERP Expertise", color: "from-[#6366f1] to-[#a855f7]" },
+    { icon: <Users className="w-6 h-6" />, text: "Dedicated Teams", color: "from-[#11998E] to-[#38EF7D]" }
   ];
 
   return (
@@ -102,15 +88,22 @@ export function Services() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-4xl"
           >
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">What We Do</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Solutions</div>
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] mb-10">
-               Technical work that <br />
-               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC]">actually</span> keeps <br />
-               moving.
+               Business Systems That <br />
+               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] via-[#7DD3FC] to-[#3A5CCC]">Drive Growth</span>
             </h1>
-            <p className="text-xl sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
-              We help businesses repair broken flows, improve speed, connect tools, and ship new features without juggling a different developer for every task.
+            <p className="text-xl sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl mb-10">
+              From ERP systems and AI automation to dedicated technology teams, we help businesses streamline operations, improve visibility and scale with confidence.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+               <Link to="/contact" className="btn-primary-nrt px-10 py-4 text-lg">
+                  Book Strategy Call <ArrowRight className="w-5 h-5 ml-3" />
+               </Link>
+               <Link to="/portfolio" className="btn-secondary-nrt px-10 py-4 text-lg text-white">
+                  View Case Studies <ArrowRight className="w-5 h-5 ml-3" />
+               </Link>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -119,7 +112,7 @@ export function Services() {
       <ScrollReveal direction="up">
         <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 relative z-20">
           <div className="mx-auto max-w-7xl">
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8">
               {services.map((service, i) => (
                 <motion.div 
                   key={i} 
@@ -128,21 +121,21 @@ export function Services() {
                 >
                   <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
                   <div className="relative z-10">
-                    <div className="mb-6 overflow-hidden rounded-2xl border border-white/15 bg-black/20 shadow-2xl [transform:rotateX(4deg)]">
-                      <img src={service.image} alt={service.title} className="aspect-[16/10] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" />
+                    <div className="mb-6 overflow-hidden rounded-2xl border border-white/15 bg-black/20 shadow-2xl [transform:rotateX(4deg)] hidden sm:block">
+                      <img src={service.image} alt={service.title} className="aspect-[21/9] w-full object-cover opacity-90 transition duration-700 group-hover:scale-105" />
                     </div>
                     <div className={`w-12 h-12 ${service.accent} backdrop-blur-md rounded-xl flex items-center justify-center text-white mb-5 border border-white/20`}>
                       {service.icon}
                     </div>
-                    <h2 className="text-xl sm:text-2xl font-black mb-3 tracking-tighter leading-tight text-white">{service.title}</h2>
+                    <h2 className="text-xl sm:text-3xl font-black mb-3 tracking-tighter leading-tight text-white">{service.title}</h2>
                     <p className="text-white/70 text-sm font-bold mb-6 leading-relaxed">
                       {service.desc}
                     </p>
-                    <ul className="space-y-2 mb-6">
-                      {service.features.map((feat, fi) => (
-                        <li key={fi} className="flex items-center gap-2.5 text-[9px] font-black uppercase tracking-widest text-white/60">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                          {feat}
+                    <ul className="space-y-3 mb-6">
+                      {service.outcomes.map((outcome, fi) => (
+                        <li key={fi} className="flex items-center gap-2.5 text-[11px] font-black uppercase tracking-widest text-white/90">
+                          <CheckCircle2 className="w-4 h-4 text-[#14B8A6]" />
+                          {outcome}
                         </li>
                       ))}
                     </ul>
@@ -151,6 +144,64 @@ export function Services() {
                     Get Started <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* SUPPORTING CAPABILITIES */}
+      <ScrollReveal direction="up">
+        <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC] relative z-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16">
+               <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">Under the Hood</div>
+               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-[#0F172A] leading-tight">
+                  Supporting Capabilities
+               </h2>
+               <p className="text-[#0F172A]/60 mt-4 max-w-2xl text-lg font-medium">
+                  The technical foundation that powers our business solutions. We maintain deep expertise in core development domains to deliver comprehensive results.
+               </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { title: "Web Development", icon: <Globe className="w-6 h-6 text-[#3A5CCC]" /> },
+                { title: "Mobile Apps", icon: <Smartphone className="w-6 h-6 text-[#14B8A6]" /> },
+                { title: "UI/UX Design", icon: <Palette className="w-6 h-6 text-[#9900FF]" /> },
+                { title: "DevOps & Cloud", icon: <Server className="w-6 h-6 text-[#11998E]" /> }
+              ].map((cap, i) => (
+                <div key={i} className="flex flex-col items-center p-8 rounded-3xl bg-white border border-[#0F172A]/5 hover:shadow-xl transition-all text-center group">
+                  <div className="w-12 h-12 rounded-xl bg-[#F8FAFC] shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    {cap.icon}
+                  </div>
+                  <h3 className="font-bold text-[#0F172A]">{cap.title}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* INDUSTRIES WE SERVE */}
+      <ScrollReveal direction="up">
+        <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+          <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#14B8A6]/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2" />
+          
+          <div className="mx-auto max-w-7xl relative z-10">
+            <div className="mb-16 text-center">
+               <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14B8A6] mb-4">Global Reach</div>
+               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-white leading-tight">
+                  Industries We Transform
+               </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {[
+                "Healthcare", "E-Commerce", "Real Estate", "Logistics", "SaaS / Tech"
+              ].map((industry, i) => (
+                <div key={i} className="py-6 px-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-center font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+                  {industry}
+                </div>
               ))}
             </div>
           </div>
@@ -184,20 +235,20 @@ export function Services() {
         </section>
       </ScrollReveal>
 
-      {/* SECTION 4: CTA (CHOOSE SETUP) - Light / Clean */}
+      {/* SECTION 4: CTA (STRATEGY) - Light / Clean */}
       <ScrollReveal direction="up">
         <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-transparent relative overflow-hidden border-t border-[#0F172A]/5">
            <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
            <div className="mx-auto max-w-4xl relative z-10">
-              <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight mb-16">
-                 Choose the setup that <br />matches the job
+              <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-[#0F172A] leading-tight mb-8">
+                 Ready to transform <br />your operations?
               </h2>
-              <div className="flex flex-col sm:flex-row justify-center gap-8">
-                 <Link to="/pricing" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all">
-                    View Pricing Plans
-                 </Link>
-                 <Link to="/contact?type=test" className="bg-white border border-[#0F172A]/10 text-[#0F172A] px-12 py-6 rounded-2xl text-xl font-black hover:bg-[#0F172A] hover:text-white transition-all">
-                    Start a Small Paid Test
+              <p className="text-xl font-medium text-[#0F172A]/60 max-w-2xl mx-auto mb-16">
+                 Let's discuss how ERP systems, AI automation, or a dedicated technology team can accelerate your business growth.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
+                 <Link to="/contact" className="bg-[#3A5CCC] text-white px-12 py-5 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3">
+                    Book Strategy Call <ArrowRight className="w-5 h-5" />
                  </Link>
               </div>
            </div>
@@ -205,8 +256,8 @@ export function Services() {
       </ScrollReveal>
 
       <PreFooterCTA 
-        headline="Ready to scale your tech operations?"
-        subtext="Our dedicated engineering team is standing by to handle your development, integrations, and ongoing improvements."
+        headline="Scale without the operational chaos."
+        subtext="Join the businesses that rely on Next Revolution Tech for their core enterprise systems and automation."
       />
     </div>
   );

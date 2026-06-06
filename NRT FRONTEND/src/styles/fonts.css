@@ -51,6 +51,6 @@
 /* Font Variables (if not using Tailwind config) */
 :root {
     --font-sans: 'NRT-Inter', sans-serif;
-    --font-heading: 'NRT-Outfit', sans-serif;
+    --font-heading: 'NRT-Sora', 'Sora', sans-serif;
     --font-tech: 'Space Grotesk', monospace;
 }
