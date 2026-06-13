@@ -50,17 +50,17 @@ export function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <SEO 
         title="Contact Us | Strategy Call" 
         description="Schedule a strategy session with Next Revolution Tech to discuss ERP implementation, AI automation, and business process optimization."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-24 sm:pt-32 pb-24 sm:pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="pt-24 sm:pt-32 pb-24 sm:pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
         <InteractiveHero3D />
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -68,12 +68,12 @@ export function Contact() {
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-4xl"
           >
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6 sm:mb-8">Strategy Session</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-6 sm:mb-8">Strategy Session</div>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95] sm:leading-[0.9] mb-8 sm:mb-10">
                Ready To Improve <br />
-               <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Operations?</span>
+               <span className="text-orange-600">Operations?</span>
             </h1>
-            <p className="text-lg sm:text-2xl font-bold text-white/50 leading-tight max-w-2xl">
+            <p className="text-lg sm:text-2xl font-bold text-slate-900/50 leading-tight max-w-2xl">
               Let's identify bottlenecks, automate workflows, and build systems that support long-term business growth. We respond within 24 hours.
             </p>
           </motion.div>
@@ -94,15 +94,15 @@ export function Contact() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-12 shadow-[0_32px_64px_-16px_rgba(11,27,53,0.1)] border border-white relative overflow-hidden group"
+              className="bg-white/80 backdrop-blur-3xl rounded-[2.5rem] sm:rounded-[3rem] p-8 sm:p-12 shadow-[0_32px_64px_-16px_rgba(11,27,53,0.1)] border border-slate-200 relative overflow-hidden group"
             >
-              <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')] pointer-events-none" />
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#3A5CCC]/5 rounded-full blur-3xl group-hover:bg-[#3A5CCC]/10 transition-colors duration-700" />
+              <div className="absolute inset-0 opacity-[0.01] bg-[url('/noise.svg')] pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-600/5 rounded-full blur-3xl group-hover:bg-orange-600/10 transition-colors duration-700" />
               
               <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0F172A]/40 ml-4">Full Name</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Full Name</label>
                     <input
                       name="name"
                       type="text"
@@ -110,11 +110,11 @@ export function Contact() {
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-[#3A5CCC]/20"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0F172A]/40 ml-4">Work Email</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Work Email</label>
                     <input
                       name="email"
                       type="email"
@@ -122,36 +122,36 @@ export function Contact() {
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-[#3A5CCC]/20"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
                     />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-3">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0F172A]/40 ml-4">Company Name</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Company Name</label>
                     <input
                       name="company"
                       type="text"
                       placeholder="Acme Corp"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-[#3A5CCC]/20"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0F172A]/40 ml-4">WhatsApp Number</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">WhatsApp Number</label>
                     <input
                       name="whatsapp"
                       type="text"
                       placeholder="e.g. 03442013217"
                       value={formData.whatsapp}
                       onChange={handleChange}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-[#3A5CCC]/20"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
                     />
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-[#0F172A]/40 ml-4">Your Message</label>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-4">Your Message</label>
                   <textarea
                     name="message"
                     required
@@ -159,13 +159,13 @@ export function Contact() {
                     placeholder="Tell us about your operational challenges or project goals..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all resize-none shadow-sm hover:border-[#3A5CCC]/20"
+                    className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all resize-none shadow-sm hover:border-orange-600/20"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full bg-[#3A5CCC] text-white py-4 sm:py-6 rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_40px_-10px_rgba(58,92,204,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:hover:scale-100"
+                  className="w-full bg-orange-600 text-white py-4 sm:py-6 rounded-2xl text-lg sm:text-xl font-black shadow-[0_20px_40px_-10px_rgba(58,92,204,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4 group disabled:opacity-50 disabled:hover:scale-100"
                 >
                   {status === 'loading' ? 'Establishing Connection...' : 'Request Strategy Call'} 
                   <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
@@ -180,39 +180,45 @@ export function Contact() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-[#0F172A] via-[#161f33] to-[#0F172A] rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-12 text-white shadow-2xl relative overflow-hidden border border-white/5 group"
+                className="bg-gradient-to-br from-[#0F172A] via-[#161f33] to-[#0F172A] rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-12 text-slate-900 shadow-2xl relative overflow-hidden border border-slate-300 group"
               >
                 <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')] pointer-events-none" />
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#3A5CCC]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#3A5CCC]/10 transition-colors" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-orange-600/10 transition-colors" />
                 
-                <h3 className="text-3xl font-black mb-10 tracking-tighter relative z-10">Direct Channels</h3>
+                <div className="bg-white/80 backdrop-blur-3xl rounded-[2.5rem] p-12 shadow-2xl border border-slate-200 mb-8">
+                  <div className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-6">Headquarters</div>
+                  <div className="text-2xl font-black text-slate-900 mb-2">Next Revolution Tech</div>
+                  <div className="text-slate-900/80 font-medium mb-2">Karachi, Pakistan</div>
+                  <div className="text-slate-900/60 text-sm font-medium">Serving clients globally from the heart of Pakistan's tech hub.</div>
+                </div>
+
                 <div className="space-y-6 sm:space-y-8 relative z-10">
                   <div className="flex items-center gap-4 sm:gap-6 group/item">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#3A5CCC] border border-white/10 group-hover/item:bg-[#3A5CCC] group-hover/item:text-white transition-all shadow-xl">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-orange-600 border border-slate-300 group-hover/item:bg-orange-600 group-hover/item:text-white transition-all shadow-xl">
                       <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Partnerships & Strategy</div>
-                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-sm sm:text-lg font-black hover:text-[#3A5CCC] transition-colors break-all lg:break-all xl:break-normal">
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Partnerships & Strategy</div>
+                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-sm sm:text-lg font-black hover:text-orange-600 transition-colors break-all lg:break-all xl:break-normal">
                         nextrevolutiontech@gmail.com
                       </a>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6 group/item">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#25D366] border border-white/10 group-hover/item:bg-[#25D366] group-hover/item:text-white transition-all shadow-xl">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#25D366] border border-slate-300 group-hover/item:bg-[#25D366] group-hover/item:text-slate-900 transition-all shadow-xl">
                       <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Direct Line</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Direct Line</div>
                       <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-2xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6 group/item">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#3B82F6] border border-white/10 group-hover/item:bg-[#3B82F6] group-hover/item:text-white transition-all shadow-xl">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 rounded-2xl flex items-center justify-center text-[#3B82F6] border border-slate-300 group-hover/item:bg-[#3B82F6] group-hover/item:text-slate-900 transition-all shadow-xl">
                       <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-1">Location</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Location</div>
                       <div className="text-lg sm:text-2xl font-black">Karachi, Pakistan</div>
                     </div>
                   </div>
@@ -225,13 +231,13 @@ export function Contact() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-[#3A5CCC] to-[#27324A] rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-12 text-white shadow-2xl relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#3A5CCC] to-[#27324A] rounded-[2rem] sm:rounded-[3rem] p-5 sm:p-12 text-slate-900 shadow-2xl relative overflow-hidden group"
               >
                 <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
                 <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl translate-y-1/2 translate-x-1/2" />
-                <ShieldCheck className="w-16 h-16 mb-8 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                <ShieldCheck className="w-16 h-16 mb-8 text-slate-900 relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Secure & Confidential</h3>
-                <p className="text-white/90 text-lg font-bold leading-relaxed relative z-10">
+                <p className="text-slate-900/90 text-lg font-bold leading-relaxed relative z-10">
                   We sign NDAs by default for all enterprise engagements. Your operational data, trade secrets, and system architectures are strictly confidential.
                 </p>
               </motion.div>

@@ -69,14 +69,25 @@ export function SEO({
         })}
       </script>
 
-      {/* 2. Organization Schema (Always Present) */}
+      {/* 2. Organization / LocalBusiness Schema (Always Present) */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": "LocalBusiness",
           "name": "Next Revolution Tech",
+          "image": `${siteUrl}/logo.png`,
+          "@id": siteUrl,
           "url": siteUrl,
-          "logo": `${siteUrl}/logo.png`,
+          "telephone": "+923442013217",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gulistan-e-Johar",
+            "addressLocality": "Karachi",
+            "addressRegion": "Sindh",
+            "postalCode": "75290",
+            "addressCountry": "PK"
+          },
+          "foundingDate": "2022",
           "sameAs": [
             "https://www.linkedin.com/company/next-revolution-tech",
             "https://twitter.com/nextrevtech"

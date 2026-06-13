@@ -47,8 +47,8 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0F172A] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+    <footer className="bg-white border-t border-slate-300 text-slate-900 pt-24 pb-12 relative overflow-hidden border-t border-white/5">
+      <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#3A5CCC]/50 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24 relative z-10">
@@ -58,18 +58,20 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="Next Revolution Tech"
-                className="h-20 sm:h-24 w-auto object-contain transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-90 brightness-0 invert"
+                className="h-20 sm:h-24 w-auto object-contain transition-all duration-500 ease-out group-hover:scale-105 group-hover:opacity-90"
               />
             </Link>
-            <p className="text-white/60 text-base text-nrt-body leading-relaxed mb-10 max-w-sm">
+            <p className="text-slate-900/60 text-base text-nrt-body leading-relaxed mb-10 max-w-sm">
               We solve real technical problems for growing businesses through dedicated engineering
               partnerships.
             </p>
-            <div className="mb-10">
-              <div className="text-nrt-eyebrow text-[#3A5CCC] mb-4">Location</div>
-              <div className="text-white/75 text-base font-semibold flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[#3A5CCC]" />
-                Karachi, Pakistan
+            <div className="mb-10 space-y-4">
+              <div>
+                <div className="text-nrt-eyebrow text-orange-600 mb-2">Location</div>
+                <div className="text-slate-900/75 text-base font-semibold flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-orange-600 shrink-0" />
+                  <span>Karachi, Pakistan</span>
+                </div>
               </div>
             </div>
             <div className="flex gap-3">
@@ -80,7 +82,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/55 hover:bg-[#3A5CCC] hover:text-white hover:border-[#3A5CCC] transition-all"
+                  className="w-11 h-11 rounded-xl bg-white border border-slate-300 flex items-center justify-center text-slate-900/55 hover:bg-orange-600 hover:text-slate-900 hover:border-orange-600 transition-all"
                 >
                   {social.icon}
                 </a>
@@ -90,15 +92,15 @@ export function Footer() {
 
           <div className="lg:col-span-5 grid grid-cols-2 gap-8">
             <div>
-              <h4 className="text-nrt-eyebrow text-[#3A5CCC] mb-8">Solutions</h4>
+              <h4 className="text-nrt-eyebrow text-orange-600 mb-8">Solutions</h4>
               <ul className="space-y-4">
                 {footerLinks.services.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-white/60 hover:text-white text-base font-semibold transition-colors flex items-center gap-2 group"
+                      className="text-slate-900/60 hover:text-slate-900 text-base font-semibold transition-colors flex items-center gap-2 group"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-[#3A5CCC] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3.5 h-3.5 text-orange-600 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       {link.name}
                     </Link>
                   </li>
@@ -106,15 +108,15 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-nrt-eyebrow text-[#3A5CCC] mb-8">Company</h4>
+              <h4 className="text-nrt-eyebrow text-orange-600 mb-8">Company</h4>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-white/60 hover:text-white text-base font-semibold transition-colors flex items-center gap-2 group"
+                      className="text-slate-900/60 hover:text-slate-900 text-base font-semibold transition-colors flex items-center gap-2 group"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-[#3A5CCC] opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3.5 h-3.5 text-orange-600 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       {link.name}
                     </Link>
                   </li>
@@ -124,17 +126,17 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-nrt-eyebrow text-[#3A5CCC] mb-8">Connect</h4>
+            <h4 className="text-nrt-eyebrow text-orange-600 mb-8">Connect</h4>
             <div className="space-y-6">
               <a
                 href="mailto:nextrevolutiontech@gmail.com"
-                className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#3A5CCC]/50 transition-all"
+                className="group block p-5 rounded-2xl bg-white border border-slate-300 hover:border-orange-600/50 transition-all"
               >
                 <div className="flex items-center gap-4 mb-2">
-                  <Mail className="w-5 h-5 text-[#3A5CCC]" />
-                  <span className="text-nrt-label text-white/50">Email Support</span>
+                  <Mail className="w-5 h-5 text-orange-600" />
+                  <span className="text-nrt-label text-slate-900/50">Email Support</span>
                 </div>
-                <div className="text-sm font-semibold text-white group-hover:text-[#3A5CCC] transition-colors break-all">
+                <div className="text-sm font-semibold text-slate-900 group-hover:text-orange-600 transition-colors break-all">
                   nextrevolutiontech@gmail.com
                 </div>
               </a>
@@ -142,13 +144,13 @@ export function Footer() {
                 href="https://wa.me/923442013217"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-[#3A5CCC]/50 transition-all"
+                className="group block p-5 rounded-2xl bg-white border border-slate-300 hover:border-orange-600/50 transition-all"
               >
                 <div className="flex items-center gap-4 mb-2">
-                  <MessageSquare className="w-5 h-5 text-[#3A5CCC]" />
-                  <span className="text-nrt-label text-white/50">WhatsApp / Call</span>
+                  <MessageSquare className="w-5 h-5 text-orange-600" />
+                  <span className="text-nrt-label text-slate-900/50">WhatsApp / Call</span>
                 </div>
-                <div className="text-base font-semibold text-white group-hover:text-[#3A5CCC] transition-colors">
+                <div className="text-base font-semibold text-slate-900 group-hover:text-orange-600 transition-colors">
                   0344-2013217
                 </div>
               </a>
@@ -157,12 +159,12 @@ export function Footer() {
         </div>
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-nrt-label text-white/35">
+          <div className="text-nrt-label text-slate-900/35">
             © {currentYear} Next Revolution Tech. All rights reserved.
           </div>
-          <div className="flex flex-wrap justify-center gap-8 text-nrt-label text-white/35">
+          <div className="flex flex-wrap justify-center gap-8 text-nrt-label text-slate-900/35">
             {footerLinks.legal.map((link) => (
-              <Link key={link.name} to={link.href} className="hover:text-[#3A5CCC] transition-colors">
+              <Link key={link.name} to={link.href} className="hover:text-orange-600 transition-colors">
                 {link.name}
               </Link>
             ))}
@@ -170,7 +172,7 @@ export function Footer() {
           <button
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#3A5CCC] hover:text-white transition-all shadow-xl group"
+            className="w-10 h-10 rounded-xl bg-white border border-slate-300 flex items-center justify-center text-slate-900 hover:bg-orange-600 hover:text-slate-900 transition-all shadow-xl group"
           >
             <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
           </button>

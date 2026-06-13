@@ -54,10 +54,10 @@ export function Login() {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md p-8 bg-zinc-900/50 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl z-10 mx-4"
+                className="w-full max-w-md p-8 bg-zinc-900/50 backdrop-blur-xl border border-slate-300 rounded-2xl shadow-2xl z-10 mx-4"
             >
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back</h2>
                     <p className="text-zinc-400">Sign in to manage your portfolio</p>
                 </div>
 
@@ -78,7 +78,7 @@ export function Login() {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full bg-black/50 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                className="w-full bg-black/50 border border-slate-300 rounded-lg py-3 pl-10 pr-4 text-slate-900 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                                 placeholder="admin@nrt.com"
                             />
                         </div>
@@ -93,7 +93,7 @@ export function Login() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-black/50 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                className="w-full bg-black/50 border border-slate-300 rounded-lg py-3 pl-10 pr-4 text-slate-900 placeholder:text-zinc-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -102,7 +102,7 @@ export function Login() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-orange-600 hover:bg-blue-700 text-slate-900 font-medium py-3 rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {loading ? (
                             <>

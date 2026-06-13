@@ -168,41 +168,41 @@ export function Portfolio() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-[#0F172A] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <SEO 
         title="Business Transformation Case Studies | NRT"
         description="Explore how Next Revolution Tech improves efficiency and automates workflows through ERP systems, AI automation, and custom business software."
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-8 font-black uppercase text-xs tracking-widest transition-all">
+          <Link to="/" className="inline-flex items-center gap-2 text-slate-900/50 hover:text-slate-900 mb-8 font-black uppercase text-xs tracking-widest transition-all">
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </Link>
           <div className="max-w-4xl">
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">Case Studies</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">Case Studies</div>
             <h1 className="text-5xl sm:text-7xl font-black tracking-tight leading-[0.95] mb-6">
               Business Transformation In Action
             </h1>
-            <p className="text-lg text-white/60 font-semibold max-w-3xl leading-relaxed mb-10">
+            <p className="text-lg text-slate-900/60 font-semibold max-w-3xl leading-relaxed mb-10">
               Explore how organizations improve efficiency, automate workflows and scale operations through ERP systems, AI automation and custom business software delivered by Next Revolution Tech.
             </p>
             
             <div className="flex flex-wrap gap-4 items-center">
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">ERP Systems</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">AI Automation</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">Business Process Optimization</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">Dedicated Technology Teams</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">ERP Systems</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">AI Automation</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">Business Process Optimization</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">Dedicated Technology Teams</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Categories Filter */}
-      <section className="py-12 border-b border-black/5 px-4 sm:px-6 lg:px-12 xl:px-24 sticky top-[80px] bg-white/80 backdrop-blur-xl z-30">
+      <section className="py-12 border-b border-slate-300 px-4 sm:px-6 lg:px-12 xl:px-24 sticky top-[80px] bg-white/80 backdrop-blur-xl z-30">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap items-center gap-3">
             {categories.map((cat, i) => (
@@ -211,8 +211,8 @@ export function Portfolio() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-3 rounded-full text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat 
-                    ? "bg-[#0F172A] text-white shadow-lg"
-                    : "bg-[#F8FAFC] border border-black/5 text-[#0F172A]/60 hover:bg-black/5 hover:text-[#0F172A]"
+                    ? "bg-white text-slate-900 shadow-lg"
+                    : "bg-white border border-slate-300 text-slate-900/60 hover:bg-black/5 hover:text-slate-900"
                 }`}
               >
                 {cat}
@@ -226,8 +226,8 @@ export function Portfolio() {
       <section className="py-24 relative z-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24">
           {loading ? (
-            <div className="py-32 flex flex-col items-center justify-center gap-4 text-[#0F172A]/40 font-bold">
-              <RefreshCw className="w-10 h-10 animate-spin text-[#3A5CCC]" />
+            <div className="py-32 flex flex-col items-center justify-center gap-4 text-slate-400 font-bold">
+              <RefreshCw className="w-10 h-10 animate-spin text-orange-600" />
               <span>Analyzing business systems...</span>
             </div>
           ) : (
@@ -245,10 +245,10 @@ export function Portfolio() {
                       exit={{ opacity: 0, scale: 0.9 }}
                       transition={{ duration: 0.4 }}
                       key={project.live_url}
-                      className="group bg-white rounded-[2rem] border border-black/5 overflow-hidden shadow-[0_20px_40px_rgba(11,27,53,0.02)] flex flex-col h-full hover:shadow-2xl hover:border-black/10 transition-all duration-500"
+                      className="group bg-white rounded-[2rem] border border-slate-300 overflow-hidden shadow-[0_20px_40px_rgba(11,27,53,0.02)] flex flex-col h-full hover:shadow-2xl hover:border-slate-300 transition-all duration-500"
                     >
                       {/* Image header area */}
-                      <div className="relative aspect-video bg-[#0F172A] overflow-hidden">
+                      <div className="relative aspect-video bg-white overflow-hidden">
                         <img 
                           src={project.image_url || "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80"}
                           alt={`${project.title} screenshot`}
@@ -257,7 +257,7 @@ export function Portfolio() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                         
                         <div className="absolute top-4 left-4 flex gap-2">
-                           <span className="bg-white/90 backdrop-blur-md text-[#0F172A] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg">
+                           <span className="bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-lg">
                              {project.category}
                            </span>
                         </div>
@@ -266,7 +266,7 @@ export function Portfolio() {
                           onClick={() => handleRefreshScreenshot(project.live_url, project.id)}
                           disabled={isRefreshing}
                           title="Regenerate Screenshot"
-                          className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-black/40 backdrop-blur-md text-white border border-white/10 flex items-center justify-center hover:bg-[#3A5CCC] hover:border-transparent transition-all cursor-pointer disabled:opacity-50 opacity-0 group-hover:opacity-100"
+                          className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-black/40 backdrop-blur-md text-slate-900 border border-slate-300 flex items-center justify-center hover:bg-orange-600 hover:border-transparent transition-all cursor-pointer disabled:opacity-50 opacity-0 group-hover:opacity-100"
                         >
                           <RefreshCw className={`w-4 h-4 ${isRefreshing ? "animate-spin" : ""}`} />
                         </button>
@@ -275,28 +275,28 @@ export function Portfolio() {
                       {/* Info body area */}
                       <div className="p-8 flex flex-col flex-grow justify-between gap-6">
                         <div className="space-y-4">
-                          <h3 className="text-xl font-bold tracking-tight text-[#0F172A] border-b border-black/5 pb-4">
+                          <h3 className="text-xl font-bold tracking-tight text-slate-900 border-b border-slate-300 pb-4">
                             {project.title}
                           </h3>
                           
                           <div className="space-y-3">
                              <div className="text-sm">
-                               <span className="font-bold text-[#0F172A] block mb-1">Challenge:</span>
-                               <span className="text-[#0F172A]/70 line-clamp-2">{project.challenge}</span>
+                               <span className="font-bold text-slate-900 block mb-1">Challenge:</span>
+                               <span className="text-slate-600 line-clamp-2">{project.challenge}</span>
                              </div>
                              <div className="text-sm">
-                               <span className="font-bold text-[#0F172A] block mb-1">Solution:</span>
-                               <span className="text-[#0F172A]/70 line-clamp-2">{project.solution}</span>
+                               <span className="font-bold text-slate-900 block mb-1">Solution:</span>
+                               <span className="text-slate-600 line-clamp-2">{project.solution}</span>
                              </div>
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center pt-4 border-t border-black/5">
+                        <div className="flex justify-between items-center pt-4 border-t border-slate-300">
                           <a 
                             href={project.live_url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-[11px] font-black uppercase tracking-widest text-[#3A5CCC] hover:text-[#0F172A] transition-colors inline-flex items-center gap-1.5 group/link"
+                            className="text-[11px] font-black uppercase tracking-widest text-orange-600 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 group/link"
                           >
                             Inspect System <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
                           </a>
@@ -312,10 +312,10 @@ export function Portfolio() {
       </section>
 
       {/* Transformation Outcomes Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC] border-y border-[#0F172A]/5 text-center">
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-slate-300 text-center">
         <div className="mx-auto max-w-5xl">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">The NRT Impact</div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-[#0F172A] leading-tight mb-16">
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">The NRT Impact</div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-slate-900 leading-tight mb-16">
             Transformation Outcomes
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -328,8 +328,8 @@ export function Portfolio() {
                "Process Optimization",
                "Business Scalability"
              ].map((outcome, i) => (
-               <div key={i} className="bg-white border border-[#0F172A]/5 px-8 py-5 rounded-2xl text-lg font-bold text-[#0F172A] shadow-sm hover:border-[#14B8A6] hover:shadow-md transition-all flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+               <div key={i} className="bg-white border border-slate-300 px-8 py-5 rounded-2xl text-lg font-bold text-slate-900 shadow-sm hover:border-slate-400 hover:shadow-md transition-all flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-slate-900" />
                   {outcome}
                </div>
              ))}
@@ -340,7 +340,7 @@ export function Portfolio() {
       {/* Industries We Support Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-center">
         <div className="mx-auto max-w-5xl">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0F172A]/40 mb-10">Industries We Support</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-10">Industries We Support</div>
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
              {[
                "Healthcare", 
@@ -352,7 +352,7 @@ export function Portfolio() {
                "Professional Services",
                "E-Commerce"
              ].map((industry, i) => (
-               <div key={i} className="text-lg font-bold text-[#0F172A]/70">
+               <div key={i} className="text-lg font-bold text-slate-600">
                   {industry}
                </div>
              ))}
@@ -361,22 +361,22 @@ export function Portfolio() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-[#0F172A] text-white relative overflow-hidden">
-         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3A5CCC]/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 text-center bg-white text-slate-900 relative overflow-hidden">
+         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
          
          <div className="mx-auto max-w-4xl relative z-10">
-            <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-white leading-tight mb-8">
+            <h2 className="text-5xl sm:text-7xl font-black tracking-tighter text-slate-900 leading-tight mb-8">
                Ready To Improve <br />Operations?
             </h2>
-            <p className="text-xl font-medium text-slate-400 max-w-2xl mx-auto mb-16">
+            <p className="text-xl font-medium text-slate-500 max-w-2xl mx-auto mb-16">
                Let's identify bottlenecks, automate workflows and build systems that support long-term business growth.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-               <Link to="/contact" className="bg-[#3A5CCC] text-white px-12 py-5 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3">
+               <Link to="/contact" className="bg-orange-600 text-white px-12 py-5 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-3">
                   Book Strategy Call <ArrowRight className="w-5 h-5" />
                </Link>
-               <Link to="/services" className="bg-white/5 border border-white/10 text-white px-12 py-5 rounded-2xl text-xl font-black hover:bg-white/10 transition-all flex items-center justify-center">
+               <Link to="/services" className="bg-white/5 border border-slate-300 text-slate-900 px-12 py-5 rounded-2xl text-xl font-black hover:bg-white/10 transition-all flex items-center justify-center">
                   Explore Solutions
                </Link>
             </div>

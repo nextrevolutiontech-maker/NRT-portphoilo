@@ -139,7 +139,7 @@ export function Chatbot() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
-              className="bg-[#0F172A] text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-[#0F172A]/90 transition-colors border border-white/10"
+              className="bg-orange-600 text-white p-3 sm:p-4 rounded-full shadow-2xl hover:bg-orange-700 transition-colors border border-orange-500"
             >
               <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6" />
             </motion.button>
@@ -153,38 +153,38 @@ export function Chatbot() {
             >
               <div className="space-y-3">
                 <div>
-                  <h3 className="font-semibold text-foreground text-sm mb-1">Chat with Us</h3>
-                  <p className="text-xs text-muted-foreground">
+                  <h3 className="font-semibold text-slate-900 dark:text-white text-sm mb-1">Chat with Us</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-300">
                     Get instant answers to your questions about our services, pricing, and more.
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
-                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 dark:hover:bg-zinc-800 transition-colors">
+                    <div className="w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 flex-shrink-0 text-xs">
                       💬
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-foreground">Quick Responses</div>
-                      <div className="text-xs text-muted-foreground">Get answers instantly</div>
+                      <div className="text-xs font-medium text-slate-900 dark:text-white">Quick Responses</div>
+                      <div className="text-xs text-slate-600 dark:text-slate-400">Get answers instantly</div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
-                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 dark:hover:bg-zinc-800 transition-colors">
+                    <div className="w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 flex-shrink-0 text-xs">
                       📋
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-foreground">Service Information</div>
-                      <div className="text-xs text-muted-foreground">Learn about our offerings</div>
+                      <div className="text-xs font-medium text-slate-900 dark:text-white">Service Information</div>
+                      <div className="text-xs text-slate-600 dark:text-slate-400">Learn about our offerings</div>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-secondary/10 transition-colors">
-                    <div className="w-6 h-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary flex-shrink-0 text-xs">
+                  <div className="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 dark:hover:bg-zinc-800 transition-colors">
+                    <div className="w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 flex-shrink-0 text-xs">
                       📅
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-foreground">Schedule Consultation</div>
-                      <div className="text-xs text-muted-foreground">Book a meeting with us</div>
+                      <div className="text-xs font-medium text-slate-900 dark:text-white">Schedule Consultation</div>
+                      <div className="text-xs text-slate-600 dark:text-slate-400">Book a meeting with us</div>
                     </div>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export function Chatbot() {
                     setIsOpen(true);
                     setHoverModalOpen(false);
                   }}
-                  className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm font-medium mt-2"
+                  className="w-full bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700 transition-colors text-sm font-medium mt-2"
                 >
                   Start Chat
                 </button>
@@ -211,10 +211,10 @@ export function Chatbot() {
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
-            className="fixed bottom-0 right-0 sm:bottom-24 sm:right-6 z-[10001] w-full sm:w-[380px] md:w-[400px] h-[70vh] sm:h-[600px] bg-white dark:bg-zinc-900 rounded-t-3xl sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-border"
+            className="fixed bottom-0 right-0 z-[10001] w-full h-[100dvh] sm:bottom-24 sm:right-6 sm:w-[450px] sm:h-[calc(100vh-120px)] sm:max-h-[750px] bg-white dark:bg-zinc-900 rounded-none sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col overflow-hidden border border-border"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-[#3A5CCC] via-[#27324A] to-[#3A5CCC] text-white p-4 flex items-center justify-between relative overflow-hidden">
+            <div className="bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 text-white p-4 flex items-center justify-between relative overflow-hidden">
               <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')] pointer-events-none" />
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -222,7 +222,7 @@ export function Chatbot() {
                 </div>
                 <div>
                   <div className="font-medium">Next Revolution Tech</div>
-                  <div className="text-xs text-primary-foreground/90">Online - We're here to help</div>
+                  <div className="text-xs text-white/90">Online - We're here to help</div>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -241,89 +241,13 @@ export function Chatbot() {
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-50/50 dark:bg-zinc-950/50 relative">
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-              {messages.map((message) => (
-                <motion.div
-                  key={message.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-                >
-                  <div
-                    className={`max-w-[80%] p-3 rounded-2xl shadow-sm ${message.sender === "user"
-                      ? "bg-primary text-primary-foreground rounded-br-none"
-                      : "bg-white dark:bg-zinc-800 text-foreground border border-border rounded-bl-none"
-                      }`}
-                  >
-                    <p className="text-sm">{message.text}</p>
-                    <div
-                      className={`text-xs mt-1 ${message.sender === "user" ? "text-primary-foreground/80" : "text-muted-foreground"
-                        }`}
-                    >
-                      {message.timestamp.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-              {isTyping && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex justify-start"
-                >
-                  <div className="bg-card text-card-foreground border border-border p-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1">
-                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                  </div>
-                </motion.div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Quick Replies */}
-            {messages.length === 1 && (
-              <div className="px-4 py-2 bg-card border-t border-border">
-                <div className="text-xs text-muted-foreground mb-2">Quick questions:</div>
-                <div className="flex flex-wrap gap-2">
-                  {quickReplies.map((reply, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleQuickReply(reply)}
-                      className="text-xs bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-zinc-100 px-3 py-1.5 rounded-full transition-colors border border-zinc-200 dark:border-zinc-700"
-                    >
-                      {reply}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Input */}
-            <div className="p-4 bg-background border-t border-border">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 bg-input text-foreground border border-input rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                />
-                <button
-                  onClick={handleSend}
-                  className="bg-primary text-primary-foreground p-2 rounded-full hover:bg-primary/90 transition-colors disabled:opacity-50"
-                  disabled={!inputValue.trim()}
-                >
-                  <Send className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
+            {/* Embedded Live Chatbot */}
+            <iframe 
+              src="https://next-revolution-tech-ai.vercel.app/"
+              className="flex-1 w-full h-full border-none"
+              title="Next Revolution Tech AI Chatbot"
+              allow="microphone;"
+            />
           </motion.div>
         )}
       </AnimatePresence>

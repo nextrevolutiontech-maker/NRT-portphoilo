@@ -55,25 +55,25 @@ export function Blog() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-hidden">
       <SEO
         title="NRT Blog | ERP, SaaS & Automation Insights"
         description="Practical writing on custom ERP cost, manufacturing software, AI workflow automation, and the decisions behind reliable digital products."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="pt-32 pb-48 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
         <InteractiveHero3D />
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10 text-center sm:text-left">
-           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">NRT Insights</div>
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-8">NRT Insights</div>
            <h1 className="text-5xl sm:text-7xl lg:text-[8rem] font-black tracking-tighter leading-[0.85] mb-12">
               Notes on <br />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">building</span> better <br />
+              <span className="text-orange-600">building</span> better <br />
               systems.
            </h1>
-           <p className="text-xl sm:text-3xl font-bold text-white/50 leading-tight max-w-2xl">
+           <p className="text-xl sm:text-3xl font-bold text-slate-900/50 leading-tight max-w-2xl">
               Practical writing on websites, custom ERPs, business automations, and scaling software products.
            </p>
         </div>
@@ -91,30 +91,30 @@ export function Blog() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ y: -10, scale: 1.01 }}
-                  className={`relative bg-gradient-to-br ${post.color} rounded-[2.5rem] p-8 sm:p-10 shadow-[0_30px_60px_-15px_rgba(11,27,53,0.3)] flex flex-col h-full overflow-hidden border border-white/10`}
+                  className={`relative bg-gradient-to-br ${post.color} rounded-[2.5rem] p-8 sm:p-10 shadow-[0_30px_60px_-15px_rgba(11,27,53,0.3)] flex flex-col h-full overflow-hidden border border-slate-300`}
                 >
                   <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
                   
                   <div className="flex items-center gap-3 mb-8 relative z-10">
-                    <div className="bg-white/10 backdrop-blur-md rounded-full px-5 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] text-white border border-white/20">
+                    <div className="bg-white/10 backdrop-blur-md rounded-full px-5 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] text-slate-900 border border-black/20">
                       {post.category}
                     </div>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-black mb-5 tracking-tighter leading-[1.1] text-white relative z-10 line-clamp-2">
+                  <h2 className="text-2xl sm:text-3xl font-black mb-5 tracking-tighter leading-[1.1] text-slate-900 relative z-10 line-clamp-2">
                     {post.title}
                   </h2>
-                  <p className="text-base font-bold text-white/70 mb-10 leading-relaxed relative z-10 line-clamp-3">
+                  <p className="text-base font-bold text-slate-900/70 mb-10 leading-relaxed relative z-10 line-clamp-3">
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center justify-between pt-8 border-t border-white/10 relative z-10 mt-auto">
-                    <div className="flex flex-col gap-0.5 text-[9px] font-black text-white/40 uppercase tracking-widest text-left">
+                  <div className="flex items-center justify-between pt-8 border-t border-slate-300 relative z-10 mt-auto">
+                    <div className="flex flex-col gap-0.5 text-[9px] font-black text-slate-900/40 uppercase tracking-widest text-left">
                       <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> {post.date}</span>
                       <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" /> {post.readTime}</span>
                     </div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/60 group-hover:text-slate-900 transition-colors">
                        Read Article +
                     </div>
                   </div>
@@ -127,13 +127,13 @@ export function Blog() {
 
       {/* Newsletter / CTA - Dark */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-24 mb-32">
-        <div className="relative rounded-[3rem] sm:rounded-[4rem] bg-[#0F172A] text-white p-12 sm:p-20 lg:p-24 text-center overflow-hidden shadow-2xl border border-white/5">
-           <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="relative rounded-[3rem] sm:rounded-[4rem] bg-white text-slate-900 p-12 sm:p-20 lg:p-24 text-center overflow-hidden shadow-2xl border border-slate-300">
+           <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none" />
            
            <div className="relative z-10">
-             <h2 className="text-4xl sm:text-7xl font-black mb-6 tracking-tighter leading-[0.9]">Stay <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">Updated</span>.</h2>
-             <p className="text-lg sm:text-xl font-bold text-white/50 mb-12 max-w-xl mx-auto">
+             <h2 className="text-4xl sm:text-7xl font-black mb-6 tracking-tighter leading-[0.9]">Stay <span className="text-orange-600">Updated</span>.</h2>
+             <p className="text-lg sm:text-xl font-bold text-slate-900/50 mb-12 max-w-xl mx-auto">
                 Get our latest technical articles and ERP workflow insights delivered straight to your inbox.
              </p>
 
@@ -142,10 +142,10 @@ export function Blog() {
                    <input 
                      type="email" 
                      placeholder="Enter your email" 
-                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#3A5CCC]/50 transition-all placeholder:text-white/20 shadow-inner"
+                     className="w-full bg-white/5 border border-slate-300 rounded-2xl px-8 py-5 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-[#3A5CCC]/50 transition-all placeholder:text-slate-900/20 shadow-inner"
                    />
                 </div>
-                <button className="bg-[#3A5CCC] text-white px-10 py-5 rounded-2xl text-lg font-black shadow-[0_20px_40px_rgba(58,92,204,0.3)] hover:scale-105 transition-all whitespace-nowrap">
+                <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl text-lg font-black shadow-[0_20px_40px_rgba(58,92,204,0.3)] hover:scale-105 transition-all whitespace-nowrap">
                    Subscribe Now
                 </button>
              </form>

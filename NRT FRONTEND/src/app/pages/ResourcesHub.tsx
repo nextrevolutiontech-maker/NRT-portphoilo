@@ -35,45 +35,45 @@ export function ResourcesHub() {
   const pillarResources = resourcesData.filter(r => r.isPillar);
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-hidden">
       <SEO
         title="Knowledge Hub | Next Revolution Tech"
         description="Practical insights on ERP systems, AI automation, workflow optimization and business growth."
       />
 
       {/* HERO SECTION */}
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         
         <div className="mx-auto max-w-7xl relative z-10 text-center lg:text-left">
-           <div className="inline-block text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8 bg-[#3A5CCC]/10 px-4 py-2 rounded-full border border-[#3A5CCC]/20">
+           <div className="inline-block text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-orange-600 mb-8 bg-orange-600/10 px-4 py-2 rounded-full border border-orange-600/20">
               GEO Authority Hub
            </div>
            <h1 className="text-4xl sm:text-[5rem] lg:text-[7rem] font-black tracking-tighter leading-[1] sm:leading-[0.9] mb-8">
               Knowledge For <br className="hidden lg:block" />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#6084F2]">Smarter Operations.</span>
+              <span className="text-orange-600">Smarter Operations.</span>
            </h1>
-           <p className="text-lg sm:text-2xl font-medium text-white/60 leading-relaxed max-w-3xl mx-auto lg:mx-0">
+           <p className="text-lg sm:text-2xl font-medium text-slate-900/60 leading-relaxed max-w-3xl mx-auto lg:mx-0">
               Practical insights on ERP systems, AI automation, workflow optimization and business growth for decision makers.
            </p>
         </div>
       </section>
 
       {/* WHAT WE HELP BUSINESSES SOLVE (GEO SECTION) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-b border-black/5">
+      <section className="py-20 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-b border-slate-300">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
             <div>
-              <h2 className="text-3xl font-black tracking-tight text-[#0F172A]">What We Help Businesses Solve</h2>
-              <p className="text-[#0F172A]/60 mt-2 font-medium">Core operational challenges we engineer out of your business.</p>
+              <h2 className="text-3xl font-black tracking-tight text-slate-900">What We Help Businesses Solve</h2>
+              <p className="text-slate-900/60 mt-2 font-medium">Core operational challenges we engineer out of your business.</p>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {painPoints.map((point, idx) => (
-              <div key={idx} className="bg-[#F8FAFC] rounded-2xl p-6 border border-black/5 hover:border-[#3A5CCC]/30 transition-colors flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#3A5CCC] shrink-0" />
-                <span className="font-bold text-sm leading-tight text-[#0F172A]">{point}</span>
+              <div key={idx} className="bg-white rounded-2xl p-6 border border-slate-300 hover:border-orange-600/30 transition-colors flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-orange-600 shrink-0" />
+                <span className="font-bold text-sm leading-tight text-slate-900">{point}</span>
               </div>
             ))}
           </div>
@@ -81,11 +81,11 @@ export function ResourcesHub() {
       </section>
 
       {/* PILLAR CONTENT / FEATURED */}
-      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC]">
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16">
-            <h2 className="text-4xl font-black tracking-tighter text-[#0F172A] mb-4">Featured Resources</h2>
-            <p className="text-lg text-[#0F172A]/60 font-medium">Essential guides on architecture, automation, and operational efficiency.</p>
+            <h2 className="text-4xl font-black tracking-tighter text-slate-900 mb-4">Featured Resources</h2>
+            <p className="text-lg text-slate-900/60 font-medium">Essential guides on architecture, automation, and operational efficiency.</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
@@ -100,7 +100,7 @@ export function ResourcesHub() {
       <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
-             <h2 className="text-4xl font-black tracking-tighter text-[#0F172A]">Knowledge Clusters</h2>
+             <h2 className="text-4xl font-black tracking-tighter text-slate-900">Knowledge Clusters</h2>
           </div>
 
           {/* Categories */}
@@ -109,8 +109,8 @@ export function ResourcesHub() {
               onClick={() => setActiveCategory("All")}
               className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
                 activeCategory === "All" 
-                ? "bg-[#0F172A] text-white" 
-                : "bg-[#F3F4F6] text-[#0F172A]/70 hover:bg-[#E2E8F0]"
+                ? "bg-white text-slate-900" 
+                : "bg-white text-slate-600 hover:bg-[#E2E8F0]"
               }`}
             >
               All Topics
@@ -121,8 +121,8 @@ export function ResourcesHub() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all ${
                   activeCategory === cat 
-                  ? "bg-[#3A5CCC] text-white shadow-md shadow-[#3A5CCC]/20" 
-                  : "bg-[#F3F4F6] text-[#0F172A]/70 hover:bg-[#E2E8F0]"
+                  ? "bg-orange-600 text-white shadow-md shadow-[#3A5CCC]/20" 
+                  : "bg-white text-slate-600 hover:bg-[#E2E8F0]"
                 }`}
               >
                 {cat}
@@ -140,27 +140,27 @@ export function ResourcesHub() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('/noise.svg')]" />
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/20 rounded-full blur-[120px] -z-10" />
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-600/20 rounded-full blur-[120px] -z-10" />
          
          <div className="mx-auto max-w-4xl text-center relative z-10">
             <h2 className="text-4xl sm:text-6xl font-black tracking-tighter mb-8">
-              Need Help Improving <span className="text-[#3A5CCC]">Operations?</span>
+              Need Help Improving <span className="text-orange-600">Operations?</span>
             </h2>
-            <p className="text-xl sm:text-2xl text-white/70 font-medium mb-12">
+            <p className="text-xl sm:text-2xl text-slate-900/70 font-medium mb-12">
               Let's identify inefficiencies, automate workflows and build systems that support long-term growth.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link 
                 to="/contact" 
-                className="inline-flex items-center justify-center gap-3 bg-white text-[#0F172A] px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform duration-300 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform duration-300 w-full sm:w-auto"
               >
                  Book Strategy Call <ArrowRight className="w-6 h-6" />
               </Link>
               <Link 
                 to="/dedicated-teams" 
-                className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-white/20 hover:border-white/40 text-white px-10 py-5 rounded-full font-black text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-black/20 hover:border-black/40 text-slate-900 px-10 py-5 rounded-full font-black text-lg hover:bg-white/5 transition-all duration-300 w-full sm:w-auto"
               >
                  Hire Dedicated Team
               </Link>
@@ -178,21 +178,21 @@ function ResourceCard({ resource, featured = false }: { resource: ResourceArticl
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.3 }}
-      className={`group relative bg-white border border-black/10 hover:border-[#3A5CCC]/50 rounded-3xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-[#3A5CCC]/10 transition-all flex flex-col h-full overflow-hidden ${featured ? 'bg-gradient-to-b from-white to-[#F8FAFC]' : ''}`}
+      className={`group relative bg-white border border-slate-300 hover:border-orange-600/50 rounded-3xl p-6 sm:p-8 hover:shadow-2xl hover:shadow-[#3A5CCC]/10 transition-all flex flex-col h-full overflow-hidden ${featured ? 'bg-gradient-to-b from-white to-[#F8FAFC]' : ''}`}
     >
       {/* Meta */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6 relative z-10">
-        <div className="inline-flex px-3 py-1 bg-[#3A5CCC]/10 text-[#3A5CCC] text-xs font-black uppercase tracking-wider rounded-md">
+        <div className="inline-flex px-3 py-1 bg-orange-600/10 text-orange-600 text-xs font-black uppercase tracking-wider rounded-md">
           {resource.category}
         </div>
-        <div className="flex items-center gap-2 text-xs font-bold text-[#0F172A]/50">
+        <div className="flex items-center gap-2 text-xs font-bold text-slate-900/50">
           <FileText className="w-4 h-4" />
           {resource.readingTime}
         </div>
       </div>
 
       {/* Title */}
-      <h3 className={`font-black tracking-tight text-[#0F172A] mb-6 group-hover:text-[#3A5CCC] transition-colors relative z-10 ${featured ? 'text-3xl' : 'text-2xl'}`}>
+      <h3 className={`font-black tracking-tight text-slate-900 mb-6 group-hover:text-orange-600 transition-colors relative z-10 ${featured ? 'text-3xl' : 'text-2xl'}`}>
         <Link to={resource.link} className="focus:outline-none">
           <span className="absolute inset-0 z-0" aria-hidden="true" />
           {resource.title}
@@ -202,25 +202,25 @@ function ResourceCard({ resource, featured = false }: { resource: ResourceArticl
       {/* Structural Problem/Outcome (Not a generic blog desc) */}
       <div className="flex-grow space-y-4 mb-8 relative z-10">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-1">Business Problem</span>
-          <p className="text-sm font-medium text-[#0F172A]/80 leading-relaxed border-l-2 border-[#E2E8F0] pl-3">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-1">Business Problem</span>
+          <p className="text-sm font-medium text-slate-900/80 leading-relaxed border-l-2 border-[#E2E8F0] pl-3">
             {resource.businessProblem}
           </p>
         </div>
         <div>
-          <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-1">Expected Outcome</span>
-          <p className="text-sm font-medium text-[#3A5CCC] leading-relaxed border-l-2 border-[#3A5CCC]/30 pl-3">
+          <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-1">Expected Outcome</span>
+          <p className="text-sm font-medium text-orange-600 leading-relaxed border-l-2 border-orange-600/30 pl-3">
             {resource.expectedOutcome}
           </p>
         </div>
       </div>
 
       {/* Internal Linking / Tags */}
-      <div className="pt-6 border-t border-black/5 mt-auto relative z-10">
-        <span className="text-[10px] font-black uppercase tracking-wider text-[#0F172A]/40 block mb-3">Related Solutions</span>
+      <div className="pt-6 border-t border-slate-300 mt-auto relative z-10">
+        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 block mb-3">Related Solutions</span>
         <div className="flex flex-wrap gap-2">
           {resource.relatedSolutions.map((sol, i) => (
-            <span key={i} className="text-xs font-bold text-[#0F172A]/60 bg-[#F3F4F6] px-2.5 py-1 rounded-md">
+            <span key={i} className="text-xs font-bold text-slate-900/60 bg-white px-2.5 py-1 rounded-md">
               {sol}
             </span>
           ))}
@@ -229,7 +229,7 @@ function ResourceCard({ resource, featured = false }: { resource: ResourceArticl
       
       {/* Action Indicator */}
       <div className="absolute top-6 right-6 sm:top-8 sm:right-8 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
-         <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center text-white">
+         <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-slate-900">
             <ArrowUpRight className="w-5 h-5" />
          </div>
       </div>

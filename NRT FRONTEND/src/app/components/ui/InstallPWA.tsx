@@ -59,7 +59,7 @@ export function InstallPWA({ className = "", mobile = false }: { className?: str
         return (
             <button
                 onClick={handleInstallClick}
-                className={`w-full bg-gradient-to-r from-primary to-blue-600 text-white px-6 py-3 rounded-md transition-all text-center shadow-lg font-medium flex items-center justify-center gap-2 ${className}`}
+                className={`w-full bg-gradient-to-r from-primary to-blue-600 text-slate-900 px-6 py-3 rounded-md transition-all text-center shadow-lg font-medium flex items-center justify-center gap-2 ${className}`}
             >
                 <Smartphone className="h-5 w-5" />
                 Install App

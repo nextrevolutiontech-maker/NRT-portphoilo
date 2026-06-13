@@ -4,7 +4,7 @@ import { Home, ArrowLeft } from "lucide-react";
 
 export function NotFound() {
   return (
-    <div className="pt-32 min-h-screen bg-[#F2F2F2] text-[#0F172A] flex items-center justify-center text-center px-4">
+    <div className="pt-32 min-h-screen bg-[#F2F2F2] text-slate-900 flex items-center justify-center text-center px-4">
       <Helmet>
         <title>404 - Page Not Found | Next Revolution Tech</title>
       </Helmet>
@@ -13,7 +13,7 @@ export function NotFound() {
         <div className="text-[10rem] font-black leading-none tracking-tighter text-primary/10 mb-8 select-none">
           404
         </div>
-        <h1 className="hero-heading mb-8">Page <span className="text-primary italic font-italic-serif">Not Found</span></h1>
+        <h1 className="hero-heading mb-8">Page <span className="text-orange-600">Not Found</span></h1>
         <p className="text-xl font-bold text-muted-foreground mb-12">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>

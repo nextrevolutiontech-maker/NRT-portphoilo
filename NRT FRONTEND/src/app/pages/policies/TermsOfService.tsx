@@ -2,13 +2,13 @@ import { Helmet } from "react-helmet-async";
 
 export function TermsOfService() {
     return (
-        <div className="pt-40 pb-24 bg-[#F2F2F2] min-h-screen text-[#0F172A]">
+        <div className="pt-40 pb-24 bg-[#F2F2F2] min-h-screen text-slate-900">
             <Helmet>
                 <title>Terms of Service | Next Revolution Tech</title>
             </Helmet>
 
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 bg-white p-16 rounded-[2.5rem] shadow-sm">
-                <h1 className="text-6xl font-black mb-8 tracking-tighter">Terms of <span className="text-primary italic font-italic-serif">Service</span></h1>
+                <h1 className="text-6xl font-black mb-8 tracking-tighter">Terms of <span className="text-orange-600">Service</span></h1>
                 <p className="text-muted-foreground font-bold mb-12">Last Updated: January 2026</p>
 
                 <div className="space-y-12 font-bold leading-relaxed">

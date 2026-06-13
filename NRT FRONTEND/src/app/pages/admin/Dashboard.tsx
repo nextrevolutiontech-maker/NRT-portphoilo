@@ -24,22 +24,22 @@ export function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen bg-black text-slate-900">
             {/* Top Bar */}
-            <div className="border-b border-white/10 bg-zinc-900/50 backdrop-blur-xl sticky top-0 z-10">
+            <div className="border-b border-slate-300 bg-zinc-900/50 backdrop-blur-xl sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <LayoutDashboard className="w-6 h-6 text-blue-500" />
+                        <LayoutDashboard className="w-6 h-6 text-orange-500" />
                         <h1 className="text-xl font-bold">Admin Dashboard</h1>
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <Link to="/" className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
+                        <Link to="/" className="flex items-center gap-2 text-sm text-zinc-400 hover:text-slate-900 transition-colors">
                             <Home className="w-4 h-4" />
                             Website
                         </Link>
                         <div className="text-sm text-zinc-400 hidden sm:block">
-                            Logged in as <span className="text-white font-medium">{user.name}</span>
+                            Logged in as <span className="text-slate-900 font-medium">{user.name}</span>
                         </div>
                         <button
                             onClick={handleLogout}
@@ -54,12 +54,12 @@ export function Dashboard() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Tabs */}
-                <div className="flex overflow-x-auto gap-2 mb-8 border-b border-white/10 pb-1">
+                <div className="flex overflow-x-auto gap-2 mb-8 border-b border-slate-300 pb-1">
                     <button
                         onClick={() => setActiveTab("projects")}
                         className={`flex items-center gap-2 px-4 py-3 rounded-t-lg transition-colors whitespace-nowrap ${activeTab === "projects"
-                                ? "bg-white/10 text-white border-b-2 border-blue-500"
-                                : "text-zinc-400 hover:text-white hover:bg-white/5"
+                                ? "bg-white/10 text-slate-900 border-b-2 border-blue-500"
+                                : "text-zinc-400 hover:text-slate-900 hover:bg-white/5"
                             }`}
                     >
                         <FolderKanban className="w-4 h-4" />
@@ -68,8 +68,8 @@ export function Dashboard() {
                     <button
                         onClick={() => setActiveTab("services")}
                         className={`flex items-center gap-2 px-4 py-3 rounded-t-lg transition-colors whitespace-nowrap ${activeTab === "services"
-                                ? "bg-white/10 text-white border-b-2 border-blue-500"
-                                : "text-zinc-400 hover:text-white hover:bg-white/5"
+                                ? "bg-white/10 text-slate-900 border-b-2 border-blue-500"
+                                : "text-zinc-400 hover:text-slate-900 hover:bg-white/5"
                             }`}
                     >
                         <Box className="w-4 h-4" />
@@ -78,8 +78,8 @@ export function Dashboard() {
                     <button
                         onClick={() => setActiveTab("testimonials")}
                         className={`flex items-center gap-2 px-4 py-3 rounded-t-lg transition-colors whitespace-nowrap ${activeTab === "testimonials"
-                                ? "bg-white/10 text-white border-b-2 border-blue-500"
-                                : "text-zinc-400 hover:text-white hover:bg-white/5"
+                                ? "bg-white/10 text-slate-900 border-b-2 border-blue-500"
+                                : "text-zinc-400 hover:text-slate-900 hover:bg-white/5"
                             }`}
                     >
                         <Users className="w-4 h-4" />

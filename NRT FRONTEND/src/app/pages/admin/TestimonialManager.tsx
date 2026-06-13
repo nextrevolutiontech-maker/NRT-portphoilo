@@ -132,10 +132,10 @@ export function TestimonialManager() {
     return (
         <div className="space-y-8">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">Testimonials</h2>
+                <h2 className="text-2xl font-bold text-slate-900">Testimonials</h2>
                 <button
                     onClick={() => setIsAdding(!isAdding)}
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                    className="flex items-center gap-2 bg-orange-600 hover:bg-blue-700 text-slate-900 px-4 py-2 rounded-lg transition-colors"
                 >
                     {isAdding ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                     {isAdding ? "Cancel" : "Add New Testimonial"}
@@ -144,7 +144,7 @@ export function TestimonialManager() {
 
             {isAdding && (
                 <div className="overflow-hidden">
-                    <form onSubmit={handleSubmit} className="bg-zinc-900 border border-white/10 p-6 rounded-xl space-y-4">
+                    <form onSubmit={handleSubmit} className="bg-zinc-900 border border-slate-300 p-6 rounded-xl space-y-4">
                         <div className="grid md:grid-cols-2 gap-4">
                             <input
                                 type="text"
@@ -152,7 +152,7 @@ export function TestimonialManager() {
                                 required
                                 value={formData.author}
                                 onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                             <input
                                 type="text"
@@ -160,7 +160,7 @@ export function TestimonialManager() {
                                 required
                                 value={formData.role}
                                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                         </div>
                         <div className="grid md:grid-cols-2 gap-4">
@@ -170,7 +170,7 @@ export function TestimonialManager() {
                                 required
                                 value={formData.company}
                                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                             <input
                                 type="number"
@@ -180,7 +180,7 @@ export function TestimonialManager() {
                                 required
                                 value={formData.rating}
                                 onChange={(e) => setFormData({ ...formData, rating: parseInt(e.target.value) })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                         </div>
 
@@ -189,7 +189,7 @@ export function TestimonialManager() {
                             required
                             value={formData.quote}
                             onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
-                            className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none h-24"
+                            className="w-full bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none h-24"
                         />
 
                         <div className="flex items-center gap-4">
@@ -203,7 +203,7 @@ export function TestimonialManager() {
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg border border-white/10 transition-colors"
+                                className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-slate-900 px-4 py-2 rounded-lg border border-slate-300 transition-colors"
                             >
                                 <Upload className="w-4 h-4" />
                                 {imageFile ? "Image Selected" : "Upload Author Image"}
@@ -215,7 +215,7 @@ export function TestimonialManager() {
                             <button
                                 type="submit"
                                 disabled={submitting}
-                                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                                className="bg-green-600 hover:bg-green-700 text-slate-900 px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
                             >
                                 {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                                 Save Testimonial
@@ -235,7 +235,7 @@ export function TestimonialManager() {
                     testimonials.map((testimonial) => (
                         <div
                             key={testimonial.id}
-                            className="bg-zinc-900/50 border border-white/5 p-4 rounded-xl flex items-center justify-between group hover:border-white/10 transition-all"
+                            className="bg-zinc-900/50 border border-slate-300 p-4 rounded-xl flex items-center justify-between group hover:border-slate-300 transition-all"
                         >
                             <div className="flex items-center gap-4">
                                 {testimonial.image_url && (
@@ -246,7 +246,7 @@ export function TestimonialManager() {
                                     />
                                 )}
                                 <div>
-                                    <h3 className="text-white font-medium">{testimonial.author}</h3>
+                                    <h3 className="text-slate-900 font-medium">{testimonial.author}</h3>
                                     <p className="text-sm text-zinc-500">{testimonial.role} at {testimonial.company}</p>
                                 </div>
                             </div>

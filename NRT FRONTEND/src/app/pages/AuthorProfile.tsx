@@ -10,9 +10,9 @@ export function AuthorProfile() {
   // Currently only supporting the founder profile as requested.
   if (slug !== "muhammad-ahsan-khan") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F3F4F6] text-[#0F172A] p-6">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white text-slate-900 p-6">
         <h1 className="text-4xl font-black mb-4">Author Not Found</h1>
-        <Link to="/blog" className="bg-[#0F172A] text-white px-6 py-3 rounded-xl font-bold">Back to Blog</Link>
+        <Link to="/blog" className="bg-white text-slate-900 px-6 py-3 rounded-xl font-bold">Back to Blog</Link>
       </div>
     );
   }
@@ -25,7 +25,7 @@ export function AuthorProfile() {
     bio: "Muhammad Ahsan Khan is the Founder and Business Systems Architect at Next Revolution Tech. He specializes in designing enterprise ERP systems, deploying AI automation, and driving business process optimization to help organizations achieve operational efficiency and scalability.",
     specializations: [
       { name: "Enterprise ERP Systems", icon: <Award className="w-5 h-5 text-[#0057FF]" /> },
-      { name: "Agentic AI Automation", icon: <BrainCircuit className="w-5 h-5 text-[#14B8A6]" /> },
+      { name: "Agentic AI Automation", icon: <BrainCircuit className="w-5 h-5 text-slate-900" /> },
       { name: "Business Process Optimization", icon: <LineChart className="w-5 h-5 text-[#E11D48]" /> },
       { name: "SaaS Architecture", icon: <Code2 className="w-5 h-5 text-[#8E2DE2]" /> },
       { name: "Cloud Infrastructure", icon: <Rocket className="w-5 h-5 text-[#FF9900]" /> }
@@ -52,32 +52,32 @@ export function AuthorProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <SEO
         title={`${author.name} - ${author.role} | NRT`}
         description={author.bio}
         schemaType="Person"
       />
 
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
         <InteractiveHero3D />
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
         
         <div className="mx-auto max-w-7xl relative z-10 grid lg:grid-cols-12 gap-16 items-center">
            <div className="lg:col-span-8">
-              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Author Profile</div>
+              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-6">Author Profile</div>
               <h1 className="text-5xl sm:text-7xl font-black mb-4 tracking-tighter leading-tight">{author.name}</h1>
-              <div className="text-xl sm:text-2xl font-bold text-white/50 mb-8 font-italic-serif italic">{author.role}</div>
-              <p className="text-lg font-semibold text-white/80 leading-relaxed max-w-2xl mb-10">
+              <div className="text-xl sm:text-2xl font-bold text-slate-900/50 mb-8 text-orange-600">{author.role}</div>
+              <p className="text-lg font-semibold text-slate-900/80 leading-relaxed max-w-2xl mb-10">
                  {author.bio}
               </p>
-              <a href={author.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#0A66C2] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-[#084e96] transition-colors">
+              <a href={author.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#0A66C2] text-slate-900 px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-[#084e96] transition-colors">
                  Connect on LinkedIn <ExternalLink className="w-5 h-5" />
               </a>
            </div>
 
            <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-white/10 shadow-2xl overflow-hidden p-2 bg-white/5 backdrop-blur-md">
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-slate-300 shadow-2xl overflow-hidden p-2 bg-white/5 backdrop-blur-md">
                  <img src={author.image} alt={author.name} className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500" />
               </div>
            </div>
@@ -88,25 +88,25 @@ export function AuthorProfile() {
          <div className="mx-auto max-w-7xl grid lg:grid-cols-12 gap-16 items-start">
             
             <div className="lg:col-span-7 space-y-16">
-               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-black/5 shadow-xl">
+               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-slate-300 shadow-xl">
                   <h2 className="text-3xl font-black tracking-tighter mb-8">Specializations</h2>
                   <div className="grid sm:grid-cols-2 gap-6">
                      {author.specializations.map((spec, i) => (
-                       <div key={i} className="flex items-center gap-4 bg-[#F3F4F6] p-5 rounded-xl border border-black/5">
+                       <div key={i} className="flex items-center gap-4 bg-white p-5 rounded-xl border border-slate-300">
                           <div className="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center shrink-0">
                              {spec.icon}
                           </div>
-                          <span className="font-bold text-[#0F172A]">{spec.name}</span>
+                          <span className="font-bold text-slate-900">{spec.name}</span>
                        </div>
                      ))}
                   </div>
                </div>
 
-               <div className="bg-[#0F172A] text-white p-10 sm:p-12 rounded-[2rem] border border-white/5 shadow-2xl relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.svg')]" />
+               <div className="bg-white text-slate-900 p-10 sm:p-12 rounded-[2rem] border border-slate-300 shadow-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-[0.01] bg-[url('/noise.svg')]" />
                   <div className="relative z-10">
                      <h2 className="text-3xl font-black tracking-tighter mb-8">{author.whyFounded.title}</h2>
-                     <div className="space-y-6 text-lg font-medium text-white/80 leading-relaxed">
+                     <div className="space-y-6 text-lg font-medium text-slate-900/80 leading-relaxed">
                         {author.whyFounded.content.map((paragraph, i) => (
                            <p key={i}>{paragraph}</p>
                         ))}
@@ -114,13 +114,13 @@ export function AuthorProfile() {
                   </div>
                </div>
 
-               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-black/5 shadow-xl">
+               <div className="bg-white p-10 sm:p-12 rounded-[2rem] border border-slate-300 shadow-xl">
                   <h2 className="text-3xl font-black tracking-tighter mb-8">Track Record & Business Value</h2>
                   <ul className="space-y-6">
                      {author.experience.map((exp, i) => (
                        <li key={i} className="flex items-start gap-4">
-                          <CheckCircle2 className="w-6 h-6 text-[#14B8A6] shrink-0 mt-0.5" />
-                          <span className="text-lg font-semibold text-[#0F172A]/80 leading-relaxed">{exp}</span>
+                          <CheckCircle2 className="w-6 h-6 text-slate-900 shrink-0 mt-0.5" />
+                          <span className="text-lg font-semibold text-slate-900/80 leading-relaxed">{exp}</span>
                        </li>
                      ))}
                   </ul>
@@ -128,55 +128,55 @@ export function AuthorProfile() {
             </div>
 
             <div className="lg:col-span-5 space-y-10 lg:sticky lg:top-32">
-               <div className="bg-gradient-to-br from-[#0F172A] to-[#161F33] text-white p-10 rounded-[2rem] shadow-2xl relative overflow-hidden border border-white/5">
+               <div className="bg-gradient-to-br bg-white border-2 border-slate-900 text-slate-900 p-10 rounded-[2rem] shadow-2xl relative overflow-hidden border border-slate-300">
                   <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
                   <div className="relative z-10">
                      <h3 className="text-2xl font-black mb-6 tracking-tighter">Enterprise Case Studies</h3>
                      <div className="space-y-4">
                         {author.caseStudies.map((cs, i) => (
-                          <Link key={i} to={cs.link} className="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-colors group">
+                          <Link key={i} to={cs.link} className="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 border border-slate-300 rounded-xl transition-colors group">
                              <span className="font-bold">{cs.title}</span>
-                             <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-white transition-colors shrink-0 ml-4" />
+                             <ExternalLink className="w-4 h-4 text-slate-900/40 group-hover:text-slate-900 transition-colors shrink-0 ml-4" />
                           </Link>
                         ))}
                      </div>
                   </div>
                </div>
 
-               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-black/5 mt-8">
+               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-300 mt-8">
                   <h3 className="text-2xl font-black mb-6 tracking-tighter">Recent Articles</h3>
                   <div className="space-y-4">
-                     <Link to="/blog/custom-erp-cost" className="flex flex-col p-4 bg-[#F3F4F6] hover:bg-white border border-black/5 rounded-xl transition-colors group">
-                        <span className="text-xs font-bold text-[#3A5CCC] uppercase mb-1">ERP & Automation</span>
-                        <span className="font-bold text-[#0F172A] group-hover:text-[#3A5CCC] transition-colors">Custom ERP Development Cost: Ultimate Guide</span>
+                     <Link to="/blog/custom-erp-cost" className="flex flex-col p-4 bg-white hover:bg-white border border-slate-300 rounded-xl transition-colors group">
+                        <span className="text-xs font-bold text-orange-600 uppercase mb-1">ERP & Automation</span>
+                        <span className="font-bold text-slate-900 group-hover:text-orange-600 transition-colors">Custom ERP Development Cost: Ultimate Guide</span>
                      </Link>
-                     <Link to="/blog/best-erp-manufacturing" className="flex flex-col p-4 bg-[#F3F4F6] hover:bg-white border border-black/5 rounded-xl transition-colors group">
-                        <span className="text-xs font-bold text-[#3A5CCC] uppercase mb-1">Manufacturing</span>
-                        <span className="font-bold text-[#0F172A] group-hover:text-[#3A5CCC] transition-colors">Why Excel is Costing You Millions</span>
+                     <Link to="/blog/best-erp-manufacturing" className="flex flex-col p-4 bg-white hover:bg-white border border-slate-300 rounded-xl transition-colors group">
+                        <span className="text-xs font-bold text-orange-600 uppercase mb-1">Manufacturing</span>
+                        <span className="font-bold text-slate-900 group-hover:text-orange-600 transition-colors">Why Excel is Costing You Millions</span>
                      </Link>
                   </div>
                </div>
 
-               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-black/5 mt-8">
+               <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-300 mt-8">
                   <h3 className="text-2xl font-black mb-6 tracking-tighter">Related Services</h3>
                   <div className="flex flex-col gap-3">
-                     <Link to="/services/custom-software-development" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                     <Link to="/services/custom-software-development" className="text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors flex items-center justify-between p-3 border border-slate-300 rounded-lg">
                         ERP Systems Development
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
-                     <Link to="/services/ai-automation" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                     <Link to="/services/ai-automation" className="text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors flex items-center justify-between p-3 border border-slate-300 rounded-lg">
                         AI Workflow Automation
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
-                     <Link to="/services/process-automation" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                     <Link to="/services/process-automation" className="text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors flex items-center justify-between p-3 border border-slate-300 rounded-lg">
                         Business Process Automation
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
-                     <Link to="/services/custom-software-development" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                     <Link to="/services/custom-software-development" className="text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors flex items-center justify-between p-3 border border-slate-300 rounded-lg">
                         Custom Business Software
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>
-                     <Link to="/services/dedicated-teams" className="text-sm font-bold text-[#0F172A] hover:text-[#3A5CCC] transition-colors flex items-center justify-between p-3 border border-black/5 rounded-lg">
+                     <Link to="/services/dedicated-teams" className="text-sm font-bold text-slate-900 hover:text-orange-600 transition-colors flex items-center justify-between p-3 border border-slate-300 rounded-lg">
                         Dedicated Technology Teams
                         <ExternalLink className="w-4 h-4 text-black/30" />
                      </Link>

@@ -11,10 +11,23 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled((current) => {
+          const next = window.scrollY > 20;
+          return current === next ? current : next;
+        });
+        ticking = false;
+      });
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -40,7 +53,7 @@ export function Header() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         scrolled 
-          ? "bg-white/95 backdrop-blur-md py-2.5 border-b border-[#0F172A]/5 shadow-lg" 
+          ? "bg-white/95 backdrop-blur-md py-2.5 border-b border-slate-300 shadow-lg" 
           : "bg-transparent py-4 sm:py-5"
       }`}
     >
@@ -57,9 +70,7 @@ export function Header() {
             <img
               src={logoImage}
               alt="Next Revolution Tech"
-              className={`h-14 sm:h-16 w-auto object-contain transition-all duration-500 ease-out hover:scale-105 hover:opacity-90 ${
-                !scrolled && 'brightness-0 invert'
-              }`}
+              className="h-14 sm:h-16 w-auto object-contain transition-all duration-500 ease-out hover:scale-105 hover:opacity-90"
             />
           </Link>
 
@@ -71,8 +82,8 @@ export function Header() {
                   to={item.href}
                   className={`text-nrt-nav px-4 py-2 rounded-full transition-all flex items-center gap-1.5 ${
                     scrolled 
-                      ? "text-[#0F172A]/70 hover:text-[#0F172A] hover:bg-[#0F172A]/5" 
-                      : "text-white/70 hover:text-white hover:bg-white/10"
+                      ? "text-slate-600 hover:text-slate-900 hover:bg-white/5" 
+                      : "text-slate-900/70 hover:text-slate-900 hover:bg-white/10"
                   }`}
                 >
                   {item.name}
@@ -80,12 +91,12 @@ export function Header() {
                 </Link>
                 {item.dropdown && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                    <div className="bg-white rounded-2xl shadow-xl border border-black/5 p-3 min-w-[200px] flex flex-col gap-1">
+                    <div className="bg-white rounded-2xl shadow-xl border border-slate-300 p-3 min-w-[200px] flex flex-col gap-1">
                       {item.dropdown.map((subItem) => (
                         <Link 
                           key={subItem.name}
                           to={subItem.href}
-                          className="px-4 py-3 text-sm font-bold text-[#0F172A]/70 hover:text-[#3A5CCC] hover:bg-[#F3F4F6] rounded-xl transition-colors"
+                          className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-orange-600 hover:bg-white rounded-xl transition-colors"
                         >
                           {subItem.name}
                         </Link>
@@ -103,10 +114,10 @@ export function Header() {
             <Magnetic>
               <Link 
                 to="/dedicated-teams" 
-                className={`px-5 py-3 rounded-full text-nrt-nav font-black uppercase tracking-wider text-sm transition-all border ${
+                className={`px-5 py-3 rounded-full text-nrt-nav font-semibold uppercase tracking-wider text-sm transition-all border ${
                   scrolled 
-                    ? "border-[#0F172A]/10 text-[#0F172A] hover:bg-[#0F172A]/5" 
-                    : "border-white/20 text-white hover:bg-white/10"
+                    ? "border-slate-300 text-slate-900 hover:bg-white/5" 
+                    : "border-black/20 text-slate-900 hover:bg-white/10"
                 }`}
               >
                 Hire Dedicated Team
@@ -116,7 +127,7 @@ export function Header() {
             <Magnetic>
               <Link 
                 to="/contact" 
-                className="bg-[#3A5CCC] hover:bg-[#27324A] text-white px-6 py-3 rounded-full text-nrt-nav shadow-md hover:shadow-lg transition-all font-black uppercase tracking-wider text-sm"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full text-nrt-nav shadow-md hover:shadow-lg transition-all font-semibold uppercase tracking-wider text-sm"
               >
                 Book Technical Audit
               </Link>
@@ -126,7 +137,7 @@ export function Header() {
           {/* Mobile Menu Toggle Button */}
           <button
             className={`xl:hidden p-2 rounded-xl transition-colors z-50 ${
-              scrolled ? "text-[#0F172A] hover:bg-[#0F172A]/5" : "text-white hover:bg-white/10"
+              scrolled ? "text-slate-900 hover:bg-white/5" : "text-slate-900 hover:bg-white/10"
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -142,25 +153,25 @@ export function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
-              className="xl:hidden mt-4 bg-[#0F172A] rounded-3xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-lg"
+              className="xl:hidden mt-4 bg-white rounded-3xl overflow-hidden border border-slate-300 shadow-2xl backdrop-blur-lg"
             >
               <div className="p-8 space-y-6">
                 {navigation.map((item) => (
                   <div key={item.name} className="space-y-4">
                     <Link
                       to={item.href}
-                      className="block text-xl font-bold tracking-tight text-white hover:text-[#3A5CCC] transition-colors uppercase"
+                      className="block text-xl font-bold tracking-tight text-slate-900 hover:text-orange-600 transition-colors uppercase"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
                     {item.dropdown && (
-                      <div className="pl-4 space-y-3 border-l-2 border-white/10">
+                      <div className="pl-4 space-y-3 border-l-2 border-slate-300">
                         {item.dropdown.map((subItem) => (
                           <Link
                             key={subItem.name}
                             to={subItem.href}
-                            className="block text-sm font-bold text-white/60 hover:text-white uppercase tracking-wider transition-colors"
+                            className="block text-sm font-bold text-slate-900/60 hover:text-slate-900 uppercase tracking-wider transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {subItem.name}
@@ -171,10 +182,10 @@ export function Header() {
                   </div>
                 ))}
                 
-                <div className="pt-6 border-t border-white/10 space-y-3">
+                <div className="pt-6 border-t border-slate-300 space-y-3">
                   <Link 
                     to="/dedicated-teams" 
-                    className="block w-full border border-white/20 text-white hover:bg-white/10 text-center py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-colors"
+                    className="block w-full border border-black/20 text-slate-900 hover:bg-white/10 text-center py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Hire Dedicated Team
@@ -182,7 +193,7 @@ export function Header() {
                   {/* Primary CTA */}
                   <Link 
                     to="/contact" 
-                    className="block w-full bg-[#3A5CCC] hover:bg-[#3A5CCC]/90 text-white text-center py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg transition-colors"
+                    className="block w-full bg-orange-600 hover:bg-orange-600/90 text-white text-center py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Book Technical Audit

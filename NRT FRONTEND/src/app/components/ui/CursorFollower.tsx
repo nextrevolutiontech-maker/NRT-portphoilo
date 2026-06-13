@@ -55,7 +55,7 @@ export function CursorFollower() {
       `}</style>
       <div
         ref={cursorRef}
-        className="custom-cursor fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-[#3A5CCC] bg-[#3A5CCC]/10 pointer-events-none z-[1000000] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className="custom-cursor fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-orange-600 bg-orange-600/10 pointer-events-none z-[1000000] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
       />
     </>
   );

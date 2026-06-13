@@ -61,31 +61,31 @@ export function ServiceDetail() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
+        <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
             <Helmet>
                 <title>{service.title} | Next Revolution Tech</title>
             </Helmet>
 
             {/* SECTION 1: INTRO - Dark Hero */}
-            <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-              <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+            <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+              <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
               <div className="mx-auto max-w-7xl relative z-10">
-                <Link to="/services" className="inline-flex items-center gap-2 font-black text-white/40 hover:text-[#3A5CCC] mb-12 transition-colors uppercase tracking-widest text-[10px]">
+                <Link to="/services" className="inline-flex items-center gap-2 font-black text-slate-900/40 hover:text-orange-600 mb-12 transition-colors uppercase tracking-widest text-[10px]">
                     <ArrowLeft className="w-4 h-4" /> Back to Services
                 </Link>
 
                 <div className="grid lg:grid-cols-2 gap-20 items-center">
                     <div>
-                        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-8">Service Details</div>
+                        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-8">Service Details</div>
                         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black mb-10 tracking-tighter leading-[0.9]">{service.title}</h1>
-                        <p className="text-2xl font-bold text-[#3A5CCC] mb-8 italic font-italic-serif">{extra.subtitle}</p>
-                        <p className="text-xl font-bold text-white/50 leading-relaxed mb-12 max-w-xl">{extra.longDescription}</p>
-                        <Link to="/contact" className="bg-[#3A5CCC] text-white px-10 py-5 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all inline-block">
+                        <p className="text-2xl font-bold mb-8 text-orange-600">{extra.subtitle}</p>
+                        <p className="text-xl font-bold text-slate-900/50 leading-relaxed mb-12 max-w-xl">{extra.longDescription}</p>
+                        <Link to="/contact" className="bg-orange-600 text-white px-10 py-5 rounded-2xl text-xl font-black shadow-2xl hover:scale-105 transition-all inline-block">
                             Get Started
                         </Link>
                     </div>
-                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 group">
+                    <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-slate-300 group">
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent opacity-40 z-10" />
                         <ImageWithFallback src={service.image_url} alt={service.title} className="w-full h-auto transform group-hover:scale-105 transition-transform duration-1000" />
                     </div>
@@ -95,19 +95,19 @@ export function ServiceDetail() {
 
             {/* Benefits - Light */}
             <div className="py-40 text-center container mx-auto px-4">
-                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-6">Efficiency</div>
-                <h2 className="text-5xl sm:text-7xl font-black mb-24 tracking-tighter text-[#0F172A]">Key Benefits</h2>
+                <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-6">Efficiency</div>
+                <h2 className="text-5xl sm:text-7xl font-black mb-24 tracking-tighter text-slate-900">Key Benefits</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {extra.benefits.map((benefit: string, index: number) => (
                         <motion.div 
                           key={index} 
                           whileHover={{ y: -10 }}
-                          className="bg-white p-10 rounded-[2.5rem] border border-[#0F172A]/5 shadow-xl text-left"
+                          className="bg-white p-10 rounded-[2.5rem] border border-slate-300 shadow-xl text-left"
                         >
-                            <div className="w-14 h-14 bg-[#F3F4F6] rounded-2xl flex items-center justify-center text-[#3A5CCC] mb-8 border border-[#0F172A]/5">
+                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-orange-600 mb-8 border border-slate-300">
                                <CheckCircle2 className="w-6 h-6" />
                             </div>
-                            <p className="text-xl font-black tracking-tighter text-[#0F172A] leading-tight">{benefit}</p>
+                            <p className="text-xl font-black tracking-tighter text-slate-900 leading-tight">{benefit}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -118,47 +118,47 @@ export function ServiceDetail() {
                 <div className="container mx-auto px-4 max-w-7xl">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16">
                         <div>
-                            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">Proof of Concept</div>
-                            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-[#0F172A]">Related Success Stories</h2>
+                            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">Proof of Concept</div>
+                            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-slate-900">Related Success Stories</h2>
                         </div>
-                        <Link to="/case-studies" className="mt-6 sm:mt-0 inline-flex items-center gap-2 font-black text-[#0F172A] hover:text-[#3A5CCC] uppercase tracking-widest text-xs transition-colors">
+                        <Link to="/case-studies" className="mt-6 sm:mt-0 inline-flex items-center gap-2 font-black text-slate-900 hover:text-orange-600 uppercase tracking-widest text-xs transition-colors">
                             View All Cases <ArrowLeft className="w-4 h-4 rotate-135" />
                         </Link>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {slug === 'custom-software-development' && (
-                            <Link to="/case-studies/pulse-healthcare-erp" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
-                                <div className="w-12 h-12 bg-[#3A5CCC]/10 text-[#3A5CCC] rounded-xl flex items-center justify-center mb-6">
+                            <Link to="/case-studies/pulse-healthcare-erp" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all">
+                                <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-xl flex items-center justify-center mb-6">
                                     <CheckCircle2 className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-2xl font-black mb-3">Pulse Healthcare ERP</h3>
-                                <p className="text-[#0F172A]/60 font-medium mb-6">Multi-tenant ERP system reducing overhead by 40%.</p>
-                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#3A5CCC] group-hover:text-[#0F172A] transition-colors">
+                                <p className="text-slate-900/60 font-medium mb-6">Multi-tenant ERP system reducing overhead by 40%.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-orange-600 group-hover:text-slate-900 transition-colors">
                                     Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
                                 </span>
                             </Link>
                         )}
                         {slug === 'ai-automation' && (
-                            <Link to="/case-studies/autonomous-ai-agent" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
-                                <div className="w-12 h-12 bg-[#14B8A6]/10 text-[#14B8A6] rounded-xl flex items-center justify-center mb-6">
+                            <Link to="/case-studies/autonomous-ai-agent" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all">
+                                <div className="w-12 h-12 bg-slate-900/10 text-slate-900 rounded-xl flex items-center justify-center mb-6">
                                     <CheckCircle2 className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-2xl font-black mb-3">Autonomous AI Agent</h3>
-                                <p className="text-[#0F172A]/60 font-medium mb-6">300% boost in lead qualification across global time zones.</p>
-                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#14B8A6] group-hover:text-[#0F172A] transition-colors">
+                                <p className="text-slate-900/60 font-medium mb-6">300% boost in lead qualification across global time zones.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-slate-900 transition-colors">
                                     Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
                                 </span>
                             </Link>
                         )}
                         {slug === 'custom-software-development' && (
-                            <Link to="/case-studies/textile-mill-pos" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all">
+                            <Link to="/case-studies/textile-mill-pos" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all">
                                 <div className="w-12 h-12 bg-[#FF9900]/10 text-[#FF9900] rounded-xl flex items-center justify-center mb-6">
                                     <CheckCircle2 className="w-6 h-6" />
                                 </div>
                                 <h3 className="text-2xl font-black mb-3">Textile Mill POS</h3>
-                                <p className="text-[#0F172A]/60 font-medium mb-6">Automated 10k+ invoices/month with FBR API sync.</p>
-                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#FF9900] group-hover:text-[#0F172A] transition-colors">
+                                <p className="text-slate-900/60 font-medium mb-6">Automated 10k+ invoices/month with FBR API sync.</p>
+                                <span className="inline-flex items-center gap-2 text-sm font-bold text-[#FF9900] group-hover:text-slate-900 transition-colors">
                                     Read Case Study <ArrowLeft className="w-4 h-4 rotate-135" />
                                 </span>
                             </Link>
@@ -169,17 +169,17 @@ export function ServiceDetail() {
 
             {/* CTA - Dark */}
             <section className="px-4 py-20 bg-transparent">
-                <div className="bg-[#0B0F19] rounded-[4rem] p-16 lg:p-32 text-center relative overflow-hidden shadow-2xl border border-white/5">
-                     <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
-                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
+                <div className="bg-white rounded-[4rem] p-16 lg:p-32 text-center relative overflow-hidden shadow-2xl border border-slate-300">
+                     <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none" />
                      <div className="relative z-10">
-                       <h2 className="text-5xl sm:text-7xl font-black mb-10 tracking-tighter text-white leading-tight">Ready to <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">scale</span>?</h2>
-                       <p className="text-xl sm:text-2xl font-bold text-white/50 mb-16 max-w-xl mx-auto leading-relaxed">
+                       <h2 className="text-5xl sm:text-7xl font-black mb-10 tracking-tighter text-slate-900 leading-tight">Ready to <span className="text-orange-600">scale</span>?</h2>
+                       <p className="text-xl sm:text-2xl font-bold text-slate-900/50 mb-16 max-w-xl mx-auto leading-relaxed">
                           Let's discuss how {service.title} can transform your business operations.
                        </p>
                        <div className="flex flex-wrap justify-center gap-8">
-                          <Link to="/contact" className="bg-[#3A5CCC] text-white px-12 py-6 rounded-2xl text-xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all">Get Started Now</Link>
-                          <Link to="/pricing" className="bg-white/5 border-2 border-white/20 text-white px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-[#0F172A] transition-all">View Pricing</Link>
+                          <Link to="/contact" className="bg-orange-600 text-white px-12 py-6 rounded-2xl text-xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all">Get Started Now</Link>
+                          <Link to="/pricing" className="bg-white/5 border-2 border-black/20 text-slate-900 px-12 py-6 rounded-2xl text-xl font-black hover:bg-white hover:text-slate-900 transition-all">View Pricing</Link>
                        </div>
                      </div>
                 </div>

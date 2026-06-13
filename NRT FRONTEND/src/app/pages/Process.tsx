@@ -78,21 +78,21 @@ export function Process() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-hidden">
       <SEO
         title="Our Process | NRT"
         description="See how Next Revolution Tech scopes, designs, builds, and optimizes ERP systems, AI automation, and custom business software."
       />
 
       {/* SECTION 1: HERO - Dark */}
-      <section className="pt-32 pb-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden text-center">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <section className="pt-32 pb-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden text-center">
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         
         <div className="mx-auto max-w-5xl relative z-10">
           <div className="flex flex-wrap justify-center gap-3 mb-8">
              {["ERP Systems", "AI Automation", "Business Process Optimization", "Custom Business Software", "Dedicated Technology Teams"].map(tag => (
-                <div key={tag} className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#3A5CCC] bg-[#3A5CCC]/10 px-4 py-2 rounded-full border border-[#3A5CCC]/20">
+                <div key={tag} className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-600 bg-orange-600/10 px-4 py-2 rounded-full border border-orange-600/20">
                    {tag}
                 </div>
              ))}
@@ -100,9 +100,9 @@ export function Process() {
           
           <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black tracking-tighter leading-[1.1] sm:leading-[1] mb-10">
              From Operational Challenges <br className="hidden sm:block" />
-             <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#27324A]">To Scalable Systems</span>
+             <span className="text-orange-600">To Scalable Systems</span>
           </h1>
-          <p className="text-xl sm:text-2xl font-medium text-white/60 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl sm:text-2xl font-medium text-slate-900/60 leading-relaxed max-w-3xl mx-auto">
              Every engagement begins with understanding your business processes, identifying bottlenecks and designing systems that improve efficiency, visibility and growth.
           </p>
         </div>
@@ -120,17 +120,17 @@ export function Process() {
                 transition={{ duration: 0.6 }}
                 className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
               >
-                 <div className={`bg-white rounded-[2rem] p-8 lg:p-12 shadow-lg border border-black/5 ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#3A5CCC] mb-4">Step {step.num}</div>
-                    <h2 className="text-2xl sm:text-4xl font-black mb-4 tracking-tighter leading-tight text-[#0F172A]">{step.title}</h2>
-                    <p className="text-base sm:text-lg font-medium text-[#0F172A]/60 mb-8 leading-relaxed">{step.desc}</p>
+                 <div className={`bg-white rounded-[2rem] p-8 lg:p-12 shadow-lg border border-slate-300 ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-4">Step {step.num}</div>
+                    <h2 className="text-2xl sm:text-4xl font-black mb-4 tracking-tighter leading-tight text-slate-900">{step.title}</h2>
+                    <p className="text-base sm:text-lg font-medium text-slate-900/60 mb-8 leading-relaxed">{step.desc}</p>
                     
-                    <div className="bg-[#F8FAFC] rounded-xl p-5 border border-black/5">
-                       <h4 className="text-xs font-black uppercase tracking-widest text-[#0F172A] mb-3">Deliverables:</h4>
+                    <div className="bg-white rounded-xl p-5 border border-slate-300">
+                       <h4 className="text-xs font-black uppercase tracking-widest text-slate-900 mb-3">Deliverables:</h4>
                        <ul className="space-y-2">
                           {step.deliverables.map((item, idx) => (
-                             <li key={idx} className="flex items-center gap-2 font-semibold text-[#0F172A]/80 text-sm">
-                                <CheckCircle2 className="w-4 h-4 text-[#3A5CCC]" />
+                             <li key={idx} className="flex items-center gap-2 font-semibold text-slate-900/80 text-sm">
+                                <CheckCircle2 className="w-4 h-4 text-orange-600" />
                                 {item}
                              </li>
                           ))}
@@ -144,10 +144,10 @@ export function Process() {
                       className={`relative aspect-[4/3] rounded-[2rem] bg-gradient-to-br ${step.color} shadow-xl p-8 flex flex-col items-center justify-center text-center`}
                     >
                        <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')]" />
-                       <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white shadow-xl mb-6 relative z-10">
+                       <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-xl border border-black/20 flex items-center justify-center text-slate-900 shadow-xl mb-6 relative z-10">
                           {step.icon}
                        </div>
-                       <div className="text-xl sm:text-2xl font-black text-white relative z-10">{step.title}</div>
+                       <div className="text-xl sm:text-2xl font-black text-slate-900 relative z-10">{step.title}</div>
                     </motion.div>
                  </div>
               </motion.div>
@@ -156,9 +156,9 @@ export function Process() {
       </section>
 
       {/* SECTION 3: TIMELINE (What Happens During Engagement) */}
-      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-black/5">
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-slate-300">
          <div className="mx-auto max-w-7xl text-center">
-            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-[#0F172A] mb-16">What Happens During Engagement</h2>
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-slate-900 mb-16">What Happens During Engagement</h2>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                {[
@@ -167,12 +167,12 @@ export function Process() {
                  { time: "Week 3-8", title: "Development & Integration", icon: <Workflow className="w-6 h-6" /> },
                  { time: "Post Launch", title: "Optimization & Growth", icon: <TrendingUp className="w-6 h-6" /> }
                ].map((phase, i) => (
-                  <div key={i} className="bg-[#F8FAFC] border border-black/5 p-8 rounded-3xl relative overflow-hidden group hover:border-[#3A5CCC]/30 hover:shadow-lg transition-all">
-                     <div className="text-[#3A5CCC] bg-white w-12 h-12 rounded-xl flex items-center justify-center mb-6 mx-auto shadow-sm group-hover:scale-110 transition-transform">
+                  <div key={i} className="bg-white border border-slate-300 p-8 rounded-3xl relative overflow-hidden group hover:border-orange-600/30 hover:shadow-lg transition-all">
+                     <div className="text-orange-600 bg-white w-12 h-12 rounded-xl flex items-center justify-center mb-6 mx-auto shadow-sm group-hover:scale-110 transition-transform">
                         {phase.icon}
                      </div>
-                     <div className="text-[10px] font-black uppercase tracking-widest text-[#0F172A]/40 mb-2">{phase.time}</div>
-                     <h3 className="text-xl font-black text-[#0F172A]">{phase.title}</h3>
+                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{phase.time}</div>
+                     <h3 className="text-xl font-black text-slate-900">{phase.title}</h3>
                   </div>
                ))}
             </div>
@@ -180,8 +180,8 @@ export function Process() {
       </section>
 
       {/* SECTION 4: SOLUTIONS DELIVERED */}
-      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
-         <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
+         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
          <div className="mx-auto max-w-7xl">
             <div className="text-center mb-16 relative z-10">
                <h2 className="text-4xl sm:text-5xl font-black tracking-tighter mb-4">Solutions Delivered Through Our Process</h2>
@@ -196,8 +196,8 @@ export function Process() {
                  { title: "Custom Business Software", icon: <Code2 className="w-5 h-5" /> },
                  { title: "Dedicated Technology Teams", icon: <ShieldCheck className="w-5 h-5" /> }
                ].map((solution, i) => (
-                  <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
-                     <div className="text-[#3A5CCC] bg-[#3A5CCC]/10 p-3 rounded-lg">
+                  <div key={i} className="bg-white/5 border border-slate-300 p-6 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
+                     <div className="text-orange-600 bg-orange-600/10 p-3 rounded-lg">
                         {solution.icon}
                      </div>
                      <div className="font-bold text-lg">{solution.title}</div>
@@ -208,10 +208,10 @@ export function Process() {
       </section>
 
       {/* SECTION 5: WHY BUSINESSES CHOOSE THIS APPROACH */}
-      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC]">
+      <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white">
          <div className="mx-auto max-w-5xl">
             <div className="text-center mb-16">
-               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-[#0F172A]">Why Businesses Choose This Approach</h2>
+               <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-slate-900">Why Businesses Choose This Approach</h2>
             </div>
             
             <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
@@ -224,9 +224,9 @@ export function Process() {
                  "Scalable Systems",
                  "Business Growth"
                ].map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-4 border-b border-black/5 pb-4">
-                     <CheckCircle2 className="w-6 h-6 text-[#3A5CCC]" />
-                     <span className="text-xl font-bold text-[#0F172A]">{benefit}</span>
+                  <div key={i} className="flex items-center gap-4 border-b border-slate-300 pb-4">
+                     <CheckCircle2 className="w-6 h-6 text-orange-600" />
+                     <span className="text-xl font-bold text-slate-900">{benefit}</span>
                   </div>
                ))}
             </div>
@@ -234,23 +234,23 @@ export function Process() {
       </section>
 
       {/* FINAL CTA - Enterprise Dark */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#080B11] relative overflow-hidden">
-         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white relative overflow-hidden">
+         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
          <div className="mx-auto max-w-7xl relative z-10">
-            <div className="bg-[#0F172A] rounded-3xl sm:rounded-[4rem] p-12 sm:p-24 text-center border border-white/5 shadow-2xl relative overflow-hidden">
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#3A5CCC]/20 rounded-full blur-[100px] pointer-events-none" />
-               <h2 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black text-white leading-[1] tracking-tighter mb-8 relative z-10">
+            <div className="bg-white rounded-3xl sm:rounded-[4rem] p-12 sm:p-24 text-center border border-slate-300 shadow-2xl relative overflow-hidden">
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/20 rounded-full blur-[100px] pointer-events-none" />
+               <h2 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black text-slate-900 leading-[1] tracking-tighter mb-8 relative z-10">
                   Ready To Improve <br className="hidden sm:block" />
-                  <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Operations?</span>
+                  <span className="text-orange-600">Operations?</span>
                </h2>
-               <p className="text-lg sm:text-2xl font-medium text-white/60 mb-12 max-w-3xl mx-auto relative z-10">
+               <p className="text-lg sm:text-2xl font-medium text-slate-900/60 mb-12 max-w-3xl mx-auto relative z-10">
                   Let's identify bottlenecks, automate workflows and build systems that support long-term business growth.
                </p>
                <div className="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
-                  <Link to="/contact" className="bg-[#3A5CCC] hover:bg-[#27324A] text-white px-10 py-6 rounded-full text-lg sm:text-xl font-black uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3">
+                  <Link to="/contact" className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-6 rounded-full text-lg sm:text-xl font-black uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3">
                      Book Strategy Call <ArrowRight className="w-6 h-6" />
                   </Link>
-                  <Link to="/services" className="bg-transparent border border-white/20 text-white px-10 py-6 rounded-full text-lg sm:text-xl font-black uppercase tracking-widest hover:bg-white hover:text-[#0F172A] transition-all flex items-center justify-center">
+                  <Link to="/services" className="bg-transparent border border-black/20 text-slate-900 px-10 py-6 rounded-full text-lg sm:text-xl font-black uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center">
                      Explore Solutions
                   </Link>
                </div>

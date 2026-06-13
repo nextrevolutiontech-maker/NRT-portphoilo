@@ -47,7 +47,7 @@ export function CaseStudies() {
       outcome: "Centralized operations, improved workflow efficiency, and robust supply chain visibility.",
       services: ["Custom Business Software", "API Integrations", "Workflow Automation"],
       image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1780131762/nrt-portfolio/uy9vqcoqzju32nj3ehfw.png",
-      color: "from-[#0F172A] to-[#161F33]"
+      color: "bg-white border-2 border-slate-900"
     },
     // 4. AI Automation
     {
@@ -91,33 +91,33 @@ export function CaseStudies() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#0F172A] overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-hidden">
       <SEO
         title="Business Transformation Case Studies"
         description="Explore how organizations improve efficiency, automate workflows and scale operations through ERP systems, AI automation and custom business software."
       />
 
       {/* SECTION 1: INTRO - Dark Hero */}
-      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#0F172A] text-white relative overflow-hidden">
+      <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
         <InteractiveHero3D />
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10">
-           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-12">Case Studies</div>
+           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-12">Case Studies</div>
            <h1 className="text-5xl sm:text-[6rem] lg:text-[7rem] font-black tracking-tighter leading-[1] sm:leading-[0.9] mb-12">
               Business Transformation <br className="hidden sm:block" />
-              <span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#14B8A6]">In Action</span>
+              <span className="text-orange-600">In Action</span>
            </h1>
-           <p className="text-xl sm:text-2xl font-bold text-white/60 leading-tight max-w-4xl mb-12">
+           <p className="text-xl sm:text-2xl font-bold text-slate-900/60 leading-tight max-w-4xl mb-12">
               See how businesses improve operational efficiency, automate workflows and scale through ERP systems, AI automation and custom business software delivered by Next Revolution Tech.
            </p>
            
            <div className="flex flex-wrap gap-4 items-center">
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">ERP Systems</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">AI Automation</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">Business Process Optimization</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">Custom Business Software</span>
-               <span className="bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">Dedicated Technology Teams</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">ERP Systems</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">AI Automation</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">Business Process Optimization</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">Custom Business Software</span>
+               <span className="bg-white/5 border border-slate-300 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 hover:bg-white/10 transition-colors">Dedicated Technology Teams</span>
            </div>
         </div>
       </section>
@@ -137,43 +137,43 @@ export function CaseStudies() {
                  {/* Content - 40% */}
                  <div className="w-full lg:w-[40%] flex flex-col gap-8 text-left">
                     <div>
-                      <span className="inline-block px-4 py-1.5 rounded-md bg-[#F8FAFC] border border-[#0F172A]/10 text-[#0F172A] text-[10px] font-black uppercase tracking-widest mb-6">
+                      <span className="inline-block px-4 py-1.5 rounded-md bg-white border border-slate-300 text-slate-900 text-[10px] font-black uppercase tracking-widest mb-6">
                         {study.industry}
                       </span>
                       {/* Reduced title size by 35% (from 4xl/7xl to 3xl/4xl) */}
-                      <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-[#0F172A] leading-tight mb-8">
+                      <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight mb-8">
                         {study.title}
                       </h2>
                       
                       <div className="space-y-8">
                          <div>
-                            <h3 className="text-[11px] font-black uppercase tracking-widest text-[#0F172A]/50 mb-3">Challenge</h3>
-                            <p className="text-base text-[#0F172A]/80 font-medium leading-relaxed border-l-2 border-[#3A5CCC] pl-4">
+                            <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-900/50 mb-3">Challenge</h3>
+                            <p className="text-base text-slate-900/80 font-medium leading-relaxed border-l-2 border-orange-600 pl-4">
                               {study.challenge}
                             </p>
                          </div>
                          <div>
-                            <h3 className="text-[11px] font-black uppercase tracking-widest text-[#0F172A]/50 mb-3">Solution</h3>
-                            <p className="text-base text-[#0F172A]/80 font-medium leading-relaxed border-l-2 border-[#14B8A6] pl-4">
+                            <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-900/50 mb-3">Solution</h3>
+                            <p className="text-base text-slate-900/80 font-medium leading-relaxed border-l-2 border-slate-300 pl-4">
                               {study.solution}
                             </p>
                          </div>
                          <div>
-                            <h3 className="text-[11px] font-black uppercase tracking-widest text-[#0F172A]/50 mb-3">Outcome</h3>
-                            <p className="text-base text-[#0F172A] font-bold leading-relaxed border-l-2 border-[#0F172A] pl-4">
+                            <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-900/50 mb-3">Outcome</h3>
+                            <p className="text-base text-slate-900 font-bold leading-relaxed border-l-2 border-[#0F172A] pl-4">
                               {study.outcome}
                             </p>
                          </div>
                       </div>
                     </div>
 
-                    <div className="pt-6 border-t border-black/5">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#0F172A]/40 block mb-4">Services Used:</span>
+                    <div className="pt-6 border-t border-slate-300">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-4">Services Used:</span>
                       <div className="flex flex-wrap gap-2">
                         {study.services.map((tech, idx) => (
                           <span 
                             key={idx}
-                            className="bg-[#F8FAFC] text-[#0F172A]/70 text-[11px] font-bold px-3 py-1.5 rounded-md border border-[#0F172A]/5"
+                            className="bg-white text-slate-600 text-[11px] font-bold px-3 py-1.5 rounded-md border border-slate-300"
                           >
                             {tech}
                           </span>
@@ -184,7 +184,7 @@ export function CaseStudies() {
                     <div className="pt-4">
                        <Link 
                          to={`/contact`}
-                         className="inline-flex items-center justify-center gap-4 bg-[#0F172A] text-white px-8 py-4 rounded-xl text-lg font-black hover:bg-[#3A5CCC] transition-all group/btn w-full sm:w-fit shadow-xl"
+                         className="inline-flex items-center justify-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-xl text-lg font-black hover:bg-orange-600 transition-all group/btn w-full sm:w-fit shadow-xl"
                        >
                          Discuss Similar Build
                          <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
@@ -212,10 +212,10 @@ export function CaseStudies() {
       </section>
 
       {/* Transformation Outcomes Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#F8FAFC] border-y border-[#0F172A]/5 text-center">
+      <section className="py-32 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white border-y border-slate-300 text-center">
         <div className="mx-auto max-w-5xl">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4">The NRT Impact</div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-[#0F172A] leading-tight mb-16">
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">The NRT Impact</div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-slate-900 leading-tight mb-16">
             Transformation Outcomes
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
@@ -229,8 +229,8 @@ export function CaseStudies() {
                "Business Scalability",
                "Workflow Automation"
              ].map((outcome, i) => (
-               <div key={i} className="bg-white border border-[#0F172A]/5 px-8 py-5 rounded-2xl text-lg font-bold text-[#0F172A] shadow-sm hover:border-[#14B8A6] hover:shadow-md transition-all flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#14B8A6]" />
+               <div key={i} className="bg-white border border-slate-300 px-8 py-5 rounded-2xl text-lg font-bold text-slate-900 shadow-sm hover:border-slate-400 hover:shadow-md transition-all flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-slate-900" />
                   {outcome}
                </div>
              ))}
@@ -241,7 +241,7 @@ export function CaseStudies() {
       {/* Industries We Support Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-center">
         <div className="mx-auto max-w-5xl">
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#0F172A]/40 mb-10">Industries We Support</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-10">Industries We Support</div>
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
              {[
                "Healthcare", 
@@ -253,7 +253,7 @@ export function CaseStudies() {
                "Professional Services",
                "E-Commerce"
              ].map((industry, i) => (
-               <div key={i} className="text-lg font-bold text-[#0F172A]/70">
+               <div key={i} className="text-lg font-bold text-slate-600">
                   {industry}
                </div>
              ))}
@@ -262,23 +262,23 @@ export function CaseStudies() {
       </section>
 
       {/* Massive Final CTA - Operations Focused */}
-      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-[#080B11] relative overflow-hidden">
+      <section className="py-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white relative overflow-hidden">
          <InteractiveHero3D />
-         <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('/noise.svg')]" />
+         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
          <div className="mx-auto max-w-7xl xl:max-w-[1400px] relative z-10">
-            <div className="bg-white/[0.02] backdrop-blur-3xl rounded-3xl sm:rounded-[6rem] p-12 sm:p-24 lg:p-32 text-center border border-white/5 shadow-2xl overflow-hidden relative">
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] pointer-events-none" />
-               <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[1] sm:leading-[0.9] mb-8 relative z-10 tracking-tight">
-                  Ready To Improve <br /><span className="font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#3A5CCC] to-[#4F7FFF]">Operations?</span>
+            <div className="bg-white/[0.02] backdrop-blur-3xl rounded-3xl sm:rounded-[6rem] p-12 sm:p-24 lg:p-32 text-center border border-slate-300 shadow-2xl overflow-hidden relative">
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none" />
+               <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-slate-900 leading-[1] sm:leading-[0.9] mb-8 relative z-10 tracking-tight">
+                  Ready To Improve <br /><span className="text-orange-600">Operations?</span>
                </h2>
-               <p className="text-xl sm:text-2xl font-medium text-slate-400 max-w-3xl mx-auto mb-16 relative z-10">
+               <p className="text-xl sm:text-2xl font-medium text-slate-500 max-w-3xl mx-auto mb-16 relative z-10">
                   Let's identify bottlenecks, automate workflows and build systems that support long-term business growth.
                </p>
                <div className="flex flex-wrap justify-center gap-6 relative z-10">
-                  <Link to="/contact" className="bg-[#3A5CCC] text-white px-10 py-5 sm:px-12 sm:py-6 rounded-2xl sm:rounded-2xl text-xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 group w-full sm:w-fit">
+                  <Link to="/contact" className="bg-orange-600 text-white px-10 py-5 sm:px-12 sm:py-6 rounded-2xl sm:rounded-2xl text-xl font-black shadow-[0_30px_60px_rgba(58,92,204,0.4)] hover:scale-105 transition-all flex items-center justify-center gap-4 group w-full sm:w-fit">
                      Book Strategy Call <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                   </Link>
-                  <Link to="/services" className="bg-white/5 border border-white/10 text-white px-10 py-5 sm:px-12 sm:py-6 rounded-2xl text-xl font-black hover:bg-white/10 transition-all flex items-center justify-center w-full sm:w-fit">
+                  <Link to="/services" className="bg-white/5 border border-slate-300 text-slate-900 px-10 py-5 sm:px-12 sm:py-6 rounded-2xl text-xl font-black hover:bg-white/10 transition-all flex items-center justify-center w-full sm:w-fit">
                      Explore Solutions
                   </Link>
                </div>

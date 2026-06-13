@@ -131,10 +131,10 @@ export function ServiceManager() {
     return (
         <div className="space-y-8">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">Services</h2>
+                <h2 className="text-2xl font-bold text-slate-900">Services</h2>
                 <button
                     onClick={() => setIsAdding(!isAdding)}
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                    className="flex items-center gap-2 bg-orange-600 hover:bg-blue-700 text-slate-900 px-4 py-2 rounded-lg transition-colors"
                 >
                     {isAdding ? <X className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                     {isAdding ? "Cancel" : "Add New Service"}
@@ -143,7 +143,7 @@ export function ServiceManager() {
 
             {isAdding && (
                 <div className="overflow-hidden">
-                    <form onSubmit={handleSubmit} className="bg-zinc-900 border border-white/10 p-6 rounded-xl space-y-4">
+                    <form onSubmit={handleSubmit} className="bg-zinc-900 border border-slate-300 p-6 rounded-xl space-y-4">
                         <div className="grid md:grid-cols-2 gap-4">
                             <input
                                 type="text"
@@ -151,7 +151,7 @@ export function ServiceManager() {
                                 required
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                             <input
                                 type="text"
@@ -159,7 +159,7 @@ export function ServiceManager() {
                                 required
                                 value={formData.icon}
                                 onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                                className="bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none"
+                                className="bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none"
                             />
                         </div>
 
@@ -168,14 +168,14 @@ export function ServiceManager() {
                             required
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none h-24"
+                            className="w-full bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none h-24"
                         />
 
                         <textarea
                             placeholder="Features (comma separated)"
                             value={formData.features}
                             onChange={(e) => setFormData({ ...formData, features: e.target.value })}
-                            className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none h-24"
+                            className="w-full bg-black/50 border border-slate-300 rounded-lg p-3 text-slate-900 focus:border-blue-500 outline-none h-24"
                         />
 
                         <div className="flex items-center gap-4">
@@ -189,7 +189,7 @@ export function ServiceManager() {
                             <button
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
-                                className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-lg border border-white/10 transition-colors"
+                                className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-slate-900 px-4 py-2 rounded-lg border border-slate-300 transition-colors"
                             >
                                 <Upload className="w-4 h-4" />
                                 {imageFile ? "Image Selected" : "Upload Image"}
@@ -201,7 +201,7 @@ export function ServiceManager() {
                             <button
                                 type="submit"
                                 disabled={submitting}
-                                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                                className="bg-green-600 hover:bg-green-700 text-slate-900 px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
                             >
                                 {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                                 Save Service
@@ -221,7 +221,7 @@ export function ServiceManager() {
                     services.map((service) => (
                         <div
                             key={service.id}
-                            className="bg-zinc-900/50 border border-white/5 p-4 rounded-xl flex items-center justify-between group hover:border-white/10 transition-all"
+                            className="bg-zinc-900/50 border border-slate-300 p-4 rounded-xl flex items-center justify-between group hover:border-slate-300 transition-all"
                         >
                             <div className="flex items-center gap-4">
                                 {service.image_url && (
@@ -232,7 +232,7 @@ export function ServiceManager() {
                                     />
                                 )}
                                 <div>
-                                    <h3 className="text-white font-medium">{service.title}</h3>
+                                    <h3 className="text-slate-900 font-medium">{service.title}</h3>
                                     <p className="text-sm text-zinc-500">{service.description.substring(0, 60)}...</p>
                                 </div>
                             </div>

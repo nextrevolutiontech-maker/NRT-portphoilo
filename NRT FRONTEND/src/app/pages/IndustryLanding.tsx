@@ -176,10 +176,10 @@ export function IndustryLanding() {
 
   if (!data) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F3F4F6] text-[#0F172A] p-6">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white text-slate-900 p-6">
         <h1 className="text-4xl font-black mb-4">Solution Page Not Found</h1>
-        <p className="text-lg mb-8 text-[#0F172A]/60">The industry solutions page you are looking for does not exist.</p>
-        <Link to="/" className="inline-flex items-center gap-2 bg-[#0F172A] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#3A5CCC] transition-all">
+        <p className="text-lg mb-8 text-slate-900/60">The industry solutions page you are looking for does not exist.</p>
+        <Link to="/" className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-all">
           Back to Homepage
         </Link>
       </div>
@@ -187,34 +187,34 @@ export function IndustryLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] text-[#0F172A] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <SEO
         title={`${data.metaTitle} | Next Revolution Tech`}
         description={data.metaDesc}
       />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-48 px-4 sm:px-6 lg:px-12 bg-[#0F172A] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.svg')]" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#3A5CCC]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <section className="relative pt-32 pb-48 px-4 sm:px-6 lg:px-12 bg-white text-slate-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-7xl relative z-10 grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#14B8A6] animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">{data.badge}</span>
+            <div className="inline-flex items-center gap-3 bg-white/5 border border-slate-300 rounded-full px-5 py-2 mb-4">
+              <span className="w-2 h-2 rounded-full bg-slate-900 animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-900/80">{data.badge}</span>
             </div>
-            <h1 className="text-4xl sm:text-7xl font-black tracking-tight leading-[0.95] text-white">
+            <h1 className="text-4xl sm:text-7xl font-black tracking-tight leading-[0.95] text-slate-900">
               {data.headline} <br />
-              <span className={`font-italic-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r ${data.accentColor}`}>
+              <span className={`${data.accentColor} text-orange-600`}>
                 {data.headlineHighlight}
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/50 font-medium max-w-2xl leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-900/50 font-medium max-w-2xl leading-relaxed">
               {data.subtext}
             </p>
           </div>
           <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center text-[#14B8A6] shadow-2xl backdrop-blur-md">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl bg-white/5 border border-slate-300 flex items-center justify-center text-slate-900 shadow-2xl backdrop-blur-md">
               {data.industryIcon}
             </div>
           </div>
@@ -227,11 +227,11 @@ export function IndustryLanding() {
           
           {/* Pain points and Features */}
           <div className="lg:col-span-7 space-y-16">
-            <div className="bg-white border border-black/5 rounded-[2.5rem] p-10 sm:p-12 shadow-[0_20px_40px_rgba(11,27,53,0.02)]">
-              <h3 className="text-2xl font-black text-[#0F172A] mb-8 uppercase tracking-tight">{data.painPointsTitle}</h3>
+            <div className="bg-white border border-slate-300 rounded-[2.5rem] p-10 sm:p-12 shadow-[0_20px_40px_rgba(11,27,53,0.02)]">
+              <h3 className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-tight">{data.painPointsTitle}</h3>
               <ul className="space-y-6">
                 {data.painPoints.map((item, i) => (
-                  <li key={i} className="flex gap-4 items-start text-base font-semibold text-[#0F172A]/70">
+                  <li key={i} className="flex gap-4 items-start text-base font-semibold text-slate-600">
                     <span className="w-6 h-6 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center shrink-0 font-bold mt-1 text-xs">✕</span>
                     <span>{item}</span>
                   </li>
@@ -239,17 +239,17 @@ export function IndustryLanding() {
               </ul>
             </div>
 
-            <div className="bg-white border border-black/5 rounded-[2.5rem] p-10 sm:p-12 shadow-[0_20px_40px_rgba(11,27,53,0.02)]">
-              <h3 className="text-2xl font-black text-[#0F172A] mb-8 uppercase tracking-tight">{data.featuresTitle}</h3>
+            <div className="bg-white border border-slate-300 rounded-[2.5rem] p-10 sm:p-12 shadow-[0_20px_40px_rgba(11,27,53,0.02)]">
+              <h3 className="text-2xl font-black text-slate-900 mb-8 uppercase tracking-tight">{data.featuresTitle}</h3>
               <div className="space-y-8">
                 {data.features.map((feature, i) => (
                   <div key={i} className="flex gap-5 items-start">
-                    <div className="w-10 h-10 rounded-xl bg-[#3A5CCC]/10 text-[#3A5CCC] flex items-center justify-center shrink-0 mt-1">
+                    <div className="w-10 h-10 rounded-xl bg-orange-600/10 text-orange-600 flex items-center justify-center shrink-0 mt-1">
                       <CheckCircle2 className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#0F172A] text-lg leading-tight mb-2 uppercase">{feature.title}</h4>
-                      <p className="text-sm text-[#0F172A]/60 font-semibold leading-relaxed">{feature.desc}</p>
+                      <h4 className="font-bold text-slate-900 text-lg leading-tight mb-2 uppercase">{feature.title}</h4>
+                      <p className="text-sm text-slate-900/60 font-semibold leading-relaxed">{feature.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -259,79 +259,79 @@ export function IndustryLanding() {
 
           {/* Form and Stats Sidebar */}
           <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
-            <div className="bg-gradient-to-br from-[#0F172A] to-[#161F33] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden border border-white/5">
+            <div className="bg-gradient-to-br bg-white border-2 border-slate-900 text-slate-900 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden border border-slate-300">
               <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')] pointer-events-none" />
               <div className="relative z-10 text-center">
-                <div className="text-6xl font-black text-[#14B8A6] mb-2">{data.impactMetric}</div>
-                <div className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-6">{data.impactLabel}</div>
-                <div className="border-t border-white/10 pt-6 text-sm font-semibold text-white/60">
+                <div className="text-6xl font-black text-slate-900 mb-2">{data.impactMetric}</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-slate-900/40 mb-6">{data.impactLabel}</div>
+                <div className="border-t border-slate-300 pt-6 text-sm font-semibold text-slate-900/60">
                   Reliable engineering squad with HIPAA, FBR API, and ERP security integration experts ready.
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-black/5 rounded-[2.5rem] p-8 sm:p-10 shadow-2xl">
-              <h3 className="text-xl font-bold uppercase tracking-wider text-[#0F172A] mb-6">Schedule Your Free Audit</h3>
+            <div className="bg-white border border-slate-300 rounded-[2.5rem] p-8 sm:p-10 shadow-2xl">
+              <h3 className="text-xl font-bold uppercase tracking-wider text-slate-900 mb-6">Schedule Your Free Audit</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-1">
-                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#0F172A]/40 ml-2">Full Name</label>
+                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2">Full Name</label>
                   <input 
                     type="text" 
                     required 
                     placeholder="Jane Doe"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-5 py-4 text-sm font-bold text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
+                    className="w-full bg-white/50 border border-slate-300 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#0F172A]/40 ml-2">Work Email</label>
+                    <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2">Work Email</label>
                     <input 
                       type="email" 
                       required 
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-5 py-4 text-sm font-bold text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#0F172A]/40 ml-2">WhatsApp</label>
+                    <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2">WhatsApp</label>
                     <input 
                       type="text" 
                       required 
                       placeholder="e.g. 03442013217"
                       value={formData.whatsapp}
                       onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                      className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-5 py-4 text-sm font-bold text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
+                      className="w-full bg-white/50 border border-slate-300 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
                     />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#0F172A]/40 ml-2">Company Name</label>
+                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2">Company Name</label>
                   <input 
                     type="text" 
                     placeholder="Acme Corp"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full bg-white/5 border border-[#0F172A]/5 rounded-2xl px-5 py-4 text-sm font-bold text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
+                    className="w-full bg-white/5 border border-slate-300 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#0F172A]/40 ml-2">Tell us about your biggest system issue</label>
+                  <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 ml-2">Tell us about your biggest system issue</label>
                   <textarea 
                     rows={3}
                     placeholder="e.g. We have inventory leaks on manual excel journals..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white/50 border border-[#0F172A]/5 rounded-2xl px-5 py-4 text-sm font-bold text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all resize-none"
+                    className="w-full bg-white/50 border border-slate-300 rounded-2xl px-5 py-4 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] transition-all resize-none"
                   />
                 </div>
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className="w-full bg-[#0F172A] text-white py-5 rounded-2xl text-sm font-black shadow-lg shadow-black/10 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-[#3A5CCC]"
+                  className="w-full bg-white text-slate-900 py-5 rounded-2xl text-sm font-black shadow-lg shadow-black/10 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer hover:bg-orange-600"
                 >
                   {status === 'loading' ? 'Submitting Request...' : 'Book Free Audit Now'}
                   <ArrowRight className="w-4 h-4" />
@@ -345,42 +345,42 @@ export function IndustryLanding() {
       {/* Proof Section - Related Case Studies */}
       <section className="py-24 px-4 bg-white relative z-20">
          <div className="mx-auto max-w-7xl">
-            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#3A5CCC] mb-4 text-center">Proven Success</div>
-            <h2 className="text-3xl sm:text-5xl font-black text-center mb-16 text-[#0F172A]">Related Case Studies</h2>
+            <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4 text-center">Proven Success</div>
+            <h2 className="text-3xl sm:text-5xl font-black text-center mb-16 text-slate-900">Related Case Studies</h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
                {industry === 'manufacturing-erp-uae' && (
-                  <Link to="/case-studies/textile-mill-pos" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
+                  <Link to="/case-studies/textile-mill-pos" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
                      <div className="w-12 h-12 bg-[#FF9900]/10 text-[#FF9900] rounded-xl flex items-center justify-center mb-6">
                         <CheckCircle2 className="w-6 h-6" />
                      </div>
                      <h3 className="text-2xl font-black mb-3">Textile Mill POS</h3>
-                     <p className="text-[#0F172A]/60 font-medium mb-6">Automated 10k+ invoices/month with FBR API sync.</p>
-                     <span className="inline-flex items-center gap-2 text-sm font-bold text-[#FF9900] group-hover:text-[#0F172A] transition-colors">
+                     <p className="text-slate-900/60 font-medium mb-6">Automated 10k+ invoices/month with FBR API sync.</p>
+                     <span className="inline-flex items-center gap-2 text-sm font-bold text-[#FF9900] group-hover:text-slate-900 transition-colors">
                         View Proof <ArrowRight className="w-4 h-4" />
                      </span>
                   </Link>
                )}
                {industry === 'healthcare-software-uk' && (
-                  <Link to="/case-studies/pulse-healthcare-erp" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
-                     <div className="w-12 h-12 bg-[#3A5CCC]/10 text-[#3A5CCC] rounded-xl flex items-center justify-center mb-6">
+                  <Link to="/case-studies/pulse-healthcare-erp" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
+                     <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-xl flex items-center justify-center mb-6">
                         <CheckCircle2 className="w-6 h-6" />
                      </div>
                      <h3 className="text-2xl font-black mb-3">Pulse Healthcare ERP</h3>
-                     <p className="text-[#0F172A]/60 font-medium mb-6">Multi-tenant ERP system reducing overhead by 40%.</p>
-                     <span className="inline-flex items-center gap-2 text-sm font-bold text-[#3A5CCC] group-hover:text-[#0F172A] transition-colors">
+                     <p className="text-slate-900/60 font-medium mb-6">Multi-tenant ERP system reducing overhead by 40%.</p>
+                     <span className="inline-flex items-center gap-2 text-sm font-bold text-orange-600 group-hover:text-slate-900 transition-colors">
                         View Proof <ArrowRight className="w-4 h-4" />
                      </span>
                   </Link>
                )}
                {industry === 'ai-automation-usa' && (
-                  <Link to="/case-studies/autonomous-ai-agent" className="group block bg-[#F3F4F6] rounded-[2rem] p-8 border border-[#0F172A]/5 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
-                     <div className="w-12 h-12 bg-[#14B8A6]/10 text-[#14B8A6] rounded-xl flex items-center justify-center mb-6">
+                  <Link to="/case-studies/autonomous-ai-agent" className="group block bg-white rounded-[2rem] p-8 border border-slate-300 hover:shadow-xl transition-all max-w-sm mx-auto w-full">
+                     <div className="w-12 h-12 bg-slate-900/10 text-slate-900 rounded-xl flex items-center justify-center mb-6">
                         <CheckCircle2 className="w-6 h-6" />
                      </div>
                      <h3 className="text-2xl font-black mb-3">Autonomous AI Agent</h3>
-                     <p className="text-[#0F172A]/60 font-medium mb-6">300% boost in lead qualification across global time zones.</p>
-                     <span className="inline-flex items-center gap-2 text-sm font-bold text-[#14B8A6] group-hover:text-[#0F172A] transition-colors">
+                     <p className="text-slate-900/60 font-medium mb-6">300% boost in lead qualification across global time zones.</p>
+                     <span className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-slate-900 transition-colors">
                         View Proof <ArrowRight className="w-4 h-4" />
                      </span>
                   </Link>

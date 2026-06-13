@@ -16,7 +16,7 @@ export function WhatsAppWidget() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
         >
-            <MessageCircle className="w-8 h-8 text-white fill-current" />
+            <MessageCircle className="w-8 h-8 text-slate-900 fill-current" />
             
             {/* Tooltip */}
             <span className="absolute right-full mr-4 bg-white text-gray-800 px-4 py-2 rounded-xl text-sm font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-gray-100 translate-y-0">
