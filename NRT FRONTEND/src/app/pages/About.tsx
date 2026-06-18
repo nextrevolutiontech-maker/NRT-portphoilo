@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { SEO } from "../components/SEO";
 import { Testimonials } from "../components/Testimonials";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
-import { FOUNDER } from "../../config/brand";
+import { FOUNDER, TEAM_MEMBERS } from "../../config/brand";
 
 export function About() {
   const ctaLinks = {
@@ -174,6 +174,91 @@ export function About() {
                      </div>
                   </div>
                </div>
+            </div>
+          </ScrollReveal>
+
+          {/* SECTION 4.5: MEET OUR LEADERSHIP */}
+          <ScrollReveal direction="up">
+            <div className="mb-32">
+              <div className="text-center mb-16">
+                <div className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-600 mb-4">Core Team</div>
+                <h2 className="text-4xl sm:text-5xl font-black tracking-tighter text-slate-900">Meet Our Leadership</h2>
+                <p className="text-xl text-slate-900/50 font-medium mt-4 max-w-2xl mx-auto">
+                  The engineers, designers, and strategists driving enterprise transformation.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {TEAM_MEMBERS.map((member) => (
+                  <div 
+                    key={member.slug} 
+                    className="bg-white border border-slate-300 rounded-[2.5rem] p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group hover:border-orange-600/30 flex flex-col justify-between"
+                  >
+                    <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
+                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange-600/5 rounded-full blur-[80px] -z-10 translate-x-1/2 -translate-y-1/2 group-hover:bg-orange-600/10 transition-colors duration-500" />
+                    
+                    <div>
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6">
+                        <div className="w-24 h-24 rounded-2xl bg-white overflow-hidden border border-slate-300 shadow-md shrink-0">
+                          <img 
+                            src={member.imageUrl} 
+                            alt={member.name} 
+                            loading="lazy"
+                            className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500" 
+                          />
+                        </div>
+                        <div className="text-center sm:text-left pt-1">
+                          <h3 className="text-xl font-black text-slate-900 tracking-tight">{member.name}</h3>
+                          <div className="text-xs font-bold text-orange-600 uppercase tracking-widest mt-1 mb-2 leading-snug">{member.title}</div>
+                          {member.linkedInUrl && (
+                            <a 
+                              href={member.linkedInUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center gap-1.5 text-slate-900/60 hover:text-[#0A66C2] transition-colors text-xs font-bold"
+                            >
+                              LinkedIn <Zap className="w-3.5 h-3.5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {member.bio && (
+                        <p className="text-slate-900/70 font-medium leading-relaxed text-sm">
+                          {member.bio}
+                        </p>
+                      )}
+
+                      {member.skills && (
+                        <div className="mt-4">
+                          <div className="text-[10px] font-bold uppercase tracking-widest text-orange-600 mb-2">Technical Skills</div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {member.skills.map((skill, index) => (
+                              <span 
+                                key={index} 
+                                className="text-[11px] font-bold text-slate-900 bg-slate-100 border border-slate-300/60 px-2.5 py-1 rounded-full hover:bg-slate-200 transition-colors"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {member.slug === "muhammad-ahsan-khan" && (
+                      <div className="mt-6 pt-4 border-t border-slate-200/60">
+                        <Link 
+                          to={`/author/${member.slug}`} 
+                          className="inline-flex items-center gap-2 text-slate-900 hover:text-orange-600 font-black text-xs uppercase tracking-wider transition-colors"
+                        >
+                          View Full Profile <Zap className="w-4 h-4 text-orange-600" />
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
 

@@ -402,6 +402,27 @@ export function Home() {
         </div>
       </section>
 
+      {/* Trust Stats Bar - Redesigned Dark & Premium */}
+      <ScrollReveal>
+        <section className="py-8 sm:py-10 bg-white border-y border-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_4px_20px_rgba(0,0,0,0.25)]">
+           <div className="mx-auto max-w-7xl px-4 flex flex-wrap justify-center gap-12 sm:gap-24">
+              {[
+                { end: 150, decimals: 0, suffix: "+", label: "Projects Delivered" },
+                { end: 45, decimals: 0, suffix: "", label: "Active Systems" },
+                { end: 1.2, decimals: 1, suffix: "M+", label: "Automations Running" },
+                { end: 99.9, decimals: 1, suffix: "%", label: "Client Satisfaction" }
+              ].map((stat, i) => (
+                <div key={i} className="text-center min-w-[140px]">
+                   <div className="text-3xl sm:text-4xl font-black tracking-tighter text-orange-600 mb-2">
+                     <CountUp end={stat.end} decimals={stat.decimals} suffix={stat.suffix} />
+                   </div>
+                   <div className="text-[11px] font-black uppercase tracking-widest text-slate-600">{stat.label}</div>
+                </div>
+              ))}
+           </div>
+        </section>
+      </ScrollReveal>
+
       {/* Interactive Services Showcase */}
       <ServicesShowcase />
 
@@ -446,27 +467,6 @@ export function Home() {
               </div>
             </div>
           </div>
-        </section>
-      </ScrollReveal>
-
-      {/* Trust Stats Bar - Redesigned Dark & Premium */}
-      <ScrollReveal>
-        <section className="py-8 sm:py-10 bg-white border-y border-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_4px_20px_rgba(0,0,0,0.25)]">
-           <div className="mx-auto max-w-7xl px-4 flex flex-wrap justify-center gap-12 sm:gap-24">
-              {[
-                { end: 150, decimals: 0, suffix: "+", label: "Projects Delivered" },
-                { end: 45, decimals: 0, suffix: "", label: "Active Systems" },
-                { end: 1.2, decimals: 1, suffix: "M+", label: "Automations Running" },
-                { end: 99.9, decimals: 1, suffix: "%", label: "Client Satisfaction" }
-              ].map((stat, i) => (
-                <div key={i} className="text-center min-w-[140px]">
-                   <div className="text-3xl sm:text-4xl font-black tracking-tighter text-orange-600 mb-2">
-                     <CountUp end={stat.end} decimals={stat.decimals} suffix={stat.suffix} />
-                   </div>
-                   <div className="text-[11px] font-black uppercase tracking-widest text-slate-600">{stat.label}</div>
-                </div>
-              ))}
-           </div>
         </section>
       </ScrollReveal>
 
