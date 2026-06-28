@@ -25,7 +25,7 @@ export function ScrollReveal({
   once = true,
 }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, amount: threshold });
+  const isInView = useInView(ref, { once, amount: "some" });
   const mainControls = useAnimation();
 
   useEffect(() => {

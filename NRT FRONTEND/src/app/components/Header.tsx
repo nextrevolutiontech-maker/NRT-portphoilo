@@ -32,7 +32,8 @@ export function Header() {
   }, []);
 
   const navigation = [
-    { name: "SOLUTIONS", href: "/services" },
+    { name: "SERVICES", href: "/services" },
+    { name: "PRICING", href: "/pricing" },
     { name: "CASE STUDIES", href: "/case-studies" },
     { name: "RESOURCES", href: "/resources" },
     { 
@@ -49,14 +50,32 @@ export function Header() {
   ];
 
 
+  const scrollToOffer = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.location.pathname !== "/") {
+      window.location.href = "/#website-offer";
+    } else {
+      const element = document.getElementById("website-offer");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        scrolled 
-          ? "bg-white/95 backdrop-blur-md py-2.5 border-b border-slate-300 shadow-lg" 
-          : "bg-transparent py-4 sm:py-5"
-      }`}
-    >
+    <div className="fixed top-0 left-0 right-0 z-[60] flex flex-col w-full">
+      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white text-xs sm:text-sm py-2 px-3 sm:px-4 text-center font-semibold flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 shadow-md shrink-0">
+         <span className="animate-pulse">🔥</span> 
+         <span>Special Offer: Complete Business Website <span className="hidden sm:inline">(Includes Domain & Hosting)</span> for just <b className="text-sm sm:text-lg">$200</b>!</span>
+         <a href="/#website-offer" onClick={scrollToOffer} className="underline font-black hover:text-orange-200 ml-1 sm:ml-2 transition-colors cursor-pointer">Claim Now</a>
+      </div>
+      <header 
+        className={`w-full transition-all duration-300 ease-in-out ${
+          scrolled 
+            ? "bg-white/95 backdrop-blur-md py-2.5 border-b border-slate-300 shadow-lg" 
+            : "bg-transparent py-3 sm:py-5"
+        }`}
+      >
       <motion.nav 
         initial={{ y: -10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -75,12 +94,12 @@ export function Header() {
           </Link>
 
           {/* Center Navigation Links - Balanced spacing */}
-          <div className="hidden xl:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-2 xl:gap-4">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
                   to={item.href}
-                  className={`text-nrt-nav px-4 py-2 rounded-full transition-all flex items-center gap-1.5 ${
+                  className={`text-nrt-nav px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap ${
                     scrolled 
                       ? "text-slate-600 hover:text-slate-900 hover:bg-white/5" 
                       : "text-slate-900/70 hover:text-slate-900 hover:bg-white/10"
@@ -109,12 +128,12 @@ export function Header() {
           </div>
 
           {/* Right CTA Area - Clear Hierarchy */}
-          <div className="hidden xl:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-3">
             {/* Secondary CTA */}
             <Magnetic>
               <Link 
                 to="/dedicated-teams" 
-                className={`px-5 py-3 rounded-full text-nrt-nav font-semibold uppercase tracking-wider text-sm transition-all border ${
+                className={`px-4 py-2.5 rounded-full text-nrt-nav font-semibold uppercase tracking-wider text-[13px] whitespace-nowrap transition-all border ${
                   scrolled 
                     ? "border-slate-300 text-slate-900 hover:bg-white/5" 
                     : "border-black/20 text-slate-900 hover:bg-white/10"
@@ -127,7 +146,7 @@ export function Header() {
             <Magnetic>
               <Link 
                 to="/contact" 
-                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full text-nrt-nav shadow-md hover:shadow-lg transition-all font-semibold uppercase tracking-wider text-sm"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-full text-nrt-nav shadow-md hover:shadow-lg transition-all font-semibold uppercase tracking-wider text-[13px] whitespace-nowrap"
               >
                 Book Technical Audit
               </Link>
@@ -205,5 +224,6 @@ export function Header() {
         </AnimatePresence>
       </motion.nav>
     </header>
+    </div>
   );
 }

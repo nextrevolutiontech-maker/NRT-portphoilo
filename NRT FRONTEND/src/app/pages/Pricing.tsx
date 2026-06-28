@@ -1,140 +1,285 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, MessageSquare, Zap, Clock, ShieldCheck, ArrowRight, Plus, Minus } from "lucide-react";
+import { CheckCircle2, MessageSquare, Minus, Plus, Zap, ArrowRight, ShieldCheck, Cog } from "lucide-react";
 import { useState } from "react";
 import { InteractiveHero3D } from "../components/ui/InteractiveHero3D";
 import { SEO } from "../components/SEO";
 
 export function Pricing() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'weekly'>('monthly');
+  const [activeTab, setActiveTab] = useState<string>("pos");
 
-  const packages = [
+  const pricingCategories = [
     {
-      name: "Starter",
-      price: billingCycle === 'monthly' ? "$1,000" : "$299",
-      period: billingCycle === 'monthly' ? "/month" : "/week",
-      desc: "Ideal for small ongoing maintenance and routine technical tasks.",
-      color: "from-[#6366f1] to-[#a855f7]",
-      features: [
-        "Unlimited Small Tasks",
-        "Basic API Integrations",
-        "Dedicated Project Manager",
-        "48h Turnaround Time",
-        "Weekly Progress Reports"
-      ],
-      cta: "Get Started",
-      highlight: false
+      id: "pos",
+      name: "POS & Inventory",
+      packages: [
+        {
+          name: "Basic Plan",
+          subtitle: "Perfect for Small Shops",
+          price: "PKR 45,000",
+          period: "One-Time",
+          color: "from-blue-600 to-indigo-800",
+          highlight: false,
+          features: [
+            "POS Billing",
+            "Thermal Printer Integration",
+            "Product Management",
+            "Stock Management",
+            "Customer Management",
+            "Daily Sales Report",
+            "Installation & Training"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Basic POS Plan (PKR 45k)."
+        },
+        {
+          name: "Standard Plan",
+          subtitle: "For Growing Businesses",
+          price: "PKR 75,000",
+          period: "One-Time",
+          color: "from-emerald-500 to-green-700",
+          highlight: true,
+          features: [
+            "All Basic Plan Features",
+            "Supplier Management",
+            "Purchase Management",
+            "Expense Tracking",
+            "Barcode Support",
+            "Low Stock Alerts",
+            "Backup System"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Standard POS Plan (PKR 75k)."
+        },
+        {
+          name: "Premium Plan",
+          subtitle: "Complete Business Solution",
+          price: "PKR 110,000",
+          period: "One-Time",
+          color: "from-orange-500 to-red-600",
+          highlight: false,
+          features: [
+            "All Standard Plan Features",
+            "Multi User Access",
+            "Advanced Dashboard",
+            "Profit & Loss Reports",
+            "Customer & Supplier Ledger",
+            "Cloud Backup (Optional)",
+            "Priority Support"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Premium POS Plan (PKR 110k)."
+        }
+      ]
     },
     {
-      name: "Performance Pro",
-      price: billingCycle === 'monthly' ? "$1,500" : "$449",
-      period: billingCycle === 'monthly' ? "/month" : "/week",
-      desc: "Dedicated to speed, security, and technical infrastructure health.",
-      color: "from-[#11998E] to-[#38EF7D]",
-      features: [
-        "Core Web Vitals Boost",
-        "Security & Firewall Audit",
-        "24/7 Uptime Monitoring",
-        "Database Optimization",
-        "Server Health Checks"
-      ],
-      cta: "Get Started",
-      highlight: false
+      id: "website",
+      name: "Business Website",
+      packages: [
+        {
+          name: "Starter",
+          subtitle: "For Small Businesses",
+          price: "PKR 35,000",
+          period: "One-Time",
+          color: "from-blue-600 to-indigo-800",
+          highlight: false,
+          features: [
+            "Up to 5 Pages",
+            "Responsive Design",
+            "Contact Form",
+            "Google Map",
+            "Basic SEO"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Starter Website Plan (PKR 35k)."
+        },
+        {
+          name: "Business",
+          subtitle: "For More Visibility",
+          price: "PKR 60,000",
+          period: "One-Time",
+          color: "from-emerald-500 to-green-700",
+          highlight: true,
+          features: [
+            "Up to 10-15 Pages",
+            "Admin Panel",
+            "Blog Section",
+            "Advanced SEO",
+            "WhatsApp Integration"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Business Website Plan (PKR 60k)."
+        },
+        {
+          name: "Enterprise",
+          subtitle: "Advanced Features & Brands",
+          price: "PKR 90,000+",
+          period: "Custom",
+          color: "from-orange-500 to-red-600",
+          highlight: false,
+          features: [
+            "Custom Design",
+            "CMS / Easy to Manage",
+            "Booking / Inquiry System",
+            "Dashboard",
+            "API Integration"
+          ],
+          cta: "Get a Quote",
+          message: "Hi NRT, I need a quote for an Enterprise Website."
+        }
+      ]
     },
     {
-      name: "Growth",
-      price: billingCycle === 'monthly' ? "$2,000" : "$599",
-      period: billingCycle === 'monthly' ? "/month" : "/week",
-      desc: "Perfect for scaling businesses needing full-stack firepower.",
-      color: "from-[#3A5CCC] to-[#27324A]",
-      features: [
-        "Full Stack Development",
-        "Custom API & Webhooks",
-        "Weekly Strategy Calls",
-        "Priority Support Queue",
-        "Daily Progress Updates"
-      ],
-      cta: "Get Started",
-      highlight: true
+      id: "ecommerce",
+      name: "E-Commerce Store",
+      packages: [
+        {
+          name: "Basic",
+          subtitle: "For Small Online Stores",
+          price: "PKR 55,000",
+          period: "One-Time",
+          color: "from-blue-600 to-indigo-800",
+          highlight: false,
+          features: [
+            "Up to 50 Products",
+            "Shopping Cart",
+            "Secure Checkout",
+            "WhatsApp Orders",
+            "Payment Integration"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Basic E-Commerce Plan (PKR 55k)."
+        },
+        {
+          name: "Standard",
+          subtitle: "For Growing Businesses",
+          price: "PKR 85,000",
+          period: "One-Time",
+          color: "from-emerald-500 to-green-700",
+          highlight: true,
+          features: [
+            "Unlimited Products",
+            "Inventory Management",
+            "Coupon System",
+            "Order Tracking",
+            "Customer Accounts"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Standard E-Commerce Plan (PKR 85k)."
+        },
+        {
+          name: "Premium",
+          subtitle: "Large Stores & Multi-vendor",
+          price: "PKR 140,000",
+          period: "One-Time",
+          color: "from-orange-500 to-red-600",
+          highlight: false,
+          features: [
+            "Multi Vendor (Optional)",
+            "Advanced Reports",
+            "Mobile Optimized",
+            "Marketing Tools",
+            "Complete Admin Dashboard"
+          ],
+          cta: "Buy Now on WhatsApp",
+          message: "Hi NRT, I want the Premium E-Commerce Plan (PKR 140k)."
+        }
+      ]
     },
     {
-      name: "AI Automation",
-      price: billingCycle === 'monthly' ? "$2,500" : "$749",
-      period: billingCycle === 'monthly' ? "/month" : "/week",
-      desc: "Specialized in autonomous agents and AI-driven workflows.",
-      color: "from-[#8E2DE2] to-[#4A00E0]",
-      features: [
-        "Custom AI Agent Build",
-        "Workflow Automation",
-        "LLM Integration (GPT/Claude)",
-        "Automated Support Setup",
-        "AI-Driven Data Insights"
-      ],
-      cta: "Get Started",
-      highlight: false
-    },
-    {
-      name: "Scale",
-      price: billingCycle === 'monthly' ? "$3,500" : "$999",
-      period: billingCycle === 'monthly' ? "/month" : "/week",
-      desc: "Enterprise-grade builds and high-level technical architecture.",
-      color: "from-[#0ea5e9] to-[#2563eb]",
-      features: [
-        "Entire Technical Team",
-        "Unlimited Complex Tasks",
-        "Architectural Consulting",
-        "Fastest 24h Turnaround",
-        "Dedicated Senior Developer"
-      ],
-      cta: "Get Started",
-      highlight: false
-    },
-    {
-      name: "Custom Project",
-      price: "Let's Talk",
-      period: "",
-      desc: "A custom team or fixed-scope build dedicated to your vision.",
-      color: "bg-white border-2 border-slate-900",
-      features: [
-        "Fixed Scope Execution",
-        "Zero-to-One MVP Build",
-        "Legacy Code Migration",
-        "Dedicated Sprint Team",
-        "Project Manager Assigned"
-      ],
-      cta: "Book a Call",
-      highlight: false
+      id: "support",
+      name: "Maintenance & Support",
+      packages: [
+        {
+          name: "Basic Support",
+          subtitle: "For Basic Support Needs",
+          price: "PKR 3,000",
+          period: "/Month",
+          color: "from-blue-600 to-indigo-800",
+          highlight: false,
+          features: [
+            "Bug Fixes",
+            "System Backup",
+            "Basic Technical Support"
+          ],
+          cta: "Subscribe Now",
+          message: "Hi NRT, I want the Basic Support Plan (PKR 3k/mo)."
+        },
+        {
+          name: "Standard Support",
+          subtitle: "Better Performance",
+          price: "PKR 6,000",
+          period: "/Month",
+          color: "from-emerald-500 to-green-700",
+          highlight: true,
+          features: [
+            "Software Updates",
+            "Feature Improvements",
+            "Priority Support",
+            "Database Maintenance"
+          ],
+          cta: "Subscribe Now",
+          message: "Hi NRT, I want the Standard Support Plan (PKR 6k/mo)."
+        },
+        {
+          name: "Premium Support",
+          subtitle: "Peace of Mind",
+          price: "PKR 10,000",
+          period: "/Month",
+          color: "from-orange-500 to-red-600",
+          highlight: false,
+          features: [
+            "Unlimited Support",
+            "Performance Optimization",
+            "Security Monitoring",
+            "Monthly Business Report",
+            "Emergency Assistance"
+          ],
+          cta: "Subscribe Now",
+          message: "Hi NRT, I want the Premium Support Plan (PKR 10k/mo)."
+        }
+      ]
     }
+  ];
+
+  const addons = [
+    { name: "Thermal Printer Setup", price: "Included" },
+    { name: "Barcode Scanner Setup", price: "PKR 3,000" },
+    { name: "Product Data Import", price: "PKR 5,000" },
+    { name: "Extra User Setup", price: "PKR 2,000 / User" },
+    { name: "On-site Training", price: "PKR 5,000" },
   ];
 
   const faqs = [
     {
-      q: "Is there a contract?",
-      a: "No long-term contracts. We work on a month-to-month basis, so you can cancel or pause anytime."
+      q: "Is there any hidden cost?",
+      a: "No, all our pricing is transparent. You only pay what you see in the selected plan. Additional features outside the scope will be quoted separately."
     },
     {
-      q: "Can I upgrade/downgrade?",
-      a: "Yes, you can change your plan anytime with just 7 days notice."
+      q: "Can I upgrade my plan later?",
+      a: "Absolutely! You can start with a Basic or Starter plan and upgrade to Standard or Premium as your business grows."
     },
     {
-      q: "What timezone do you work in?",
-      a: "We are flexible. Our team adjusts to your timezone (EST, PST, GMT, etc.) to ensure smooth communication."
+      q: "How does the maintenance plan work?",
+      a: "Our maintenance plans are subscription-based (monthly) to ensure your system stays secure, updated, and runs smoothly without interruptions."
     },
     {
-      q: "How do I get started?",
-      a: "The best way to start is with a small paid test task. This allows you to experience our quality without any long-term commitment."
+      q: "How can I make the payment?",
+      a: "We accept bank transfers, EasyPaisa, JazzCash, and direct deposits. Details will be provided over WhatsApp or Email once you finalize your plan."
     }
   ];
+
+  const activePackages = pricingCategories.find(c => c.id === activeTab)?.packages || [];
 
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
       <SEO
-        title="Pricing"
-        description="Transparent weekly and monthly pricing for website, eCommerce, API, automation, and dedicated engineering support from Next Revolution Tech."
+        title="Pricing & Packages"
+        description="Complete digital solutions for smarter businesses. Affordable and reliable POS, Website, and E-commerce plans in Pakistan."
       />
 
-      {/* Hero - Dark Hero */}
+      {/* Hero */}
       <section className="pt-32 pb-40 px-4 sm:px-6 lg:px-12 xl:px-24 bg-white text-slate-900 relative overflow-hidden">
         <InteractiveHero3D />
         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
@@ -142,94 +287,118 @@ export function Pricing() {
         <div className="mx-auto max-w-7xl relative z-10 text-center">
           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-8">Investment Plans</div>
           <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.9] mb-10">
-            Pricing that fits <br /><span className="text-orange-600">real</span> workloads.
+            Complete Digital <br /><span className="text-orange-600">Solutions</span>
           </h1>
           <p className="text-xl sm:text-2xl font-bold text-slate-900/50 max-w-2xl mx-auto leading-relaxed">
-            Start with a small task, choose weekly support, or build a custom team around your website, app, API, or automation work.
+            Smart solutions for smarter businesses. Choose the perfect plan to digitize and grow your business today.
           </p>
         </div>
       </section>
 
-      {/* Billing Toggle */}
-      <section className="py-12 bg-white border-b border-slate-300">
-        <div className="mx-auto max-w-7xl px-4 flex flex-col items-center">
-          <div className="bg-white p-1.5 rounded-2xl flex items-center shadow-lg border border-slate-300">
-            <button
-              onClick={() => setBillingCycle('monthly')}
-              className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
-                billingCycle === 'monthly' 
-                ? "bg-orange-600 text-white shadow-lg" 
-                : "text-slate-400 hover:text-slate-900"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBillingCycle('weekly')}
-              className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
-                billingCycle === 'weekly' 
-                ? "bg-orange-600 text-white shadow-lg" 
-                : "text-slate-400 hover:text-slate-900"
-              }`}
-            >
-              Weekly
-            </button>
-          </div>
-          <div className="mt-4 text-[10px] font-black uppercase tracking-[0.2em] text-orange-600">
-            {billingCycle === 'monthly' ? "Save 15% with monthly billing" : "Short-term commitment"}
+      {/* Tabs */}
+      <section className="py-8 bg-white border-b border-slate-200 sticky top-0 z-40 bg-white/90 backdrop-blur-md">
+        <div className="mx-auto max-w-7xl px-4 flex justify-start sm:justify-center overflow-x-auto no-scrollbar pb-4 sm:pb-0">
+          <div className="bg-slate-100 p-1.5 rounded-2xl flex items-center shadow-inner gap-1 min-w-max">
+            {pricingCategories.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveTab(cat.id)}
+                className={`px-6 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
+                  activeTab === cat.id 
+                  ? "bg-white text-orange-600 shadow-md" 
+                  : "text-slate-500 hover:text-slate-900"
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Packages */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 xl:px-24 bg-white">
-        <div className="mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-          {packages.map((pkg, i) => (
+      {/* Packages Grid */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 xl:px-24 bg-slate-50">
+        <div className="mx-auto max-w-7xl">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={i}
+              key={activeTab}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`relative rounded-[2rem] p-6 sm:p-8 flex flex-col shadow-xl bg-gradient-to-br ${pkg.color} ${pkg.highlight ? 'scale-105 z-10 border-4 border-black/20' : 'border border-slate-300'}`}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid md:grid-cols-3 gap-6 lg:gap-8"
             >
-              <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none" />
-              <div className="relative z-10 flex flex-col h-full">
-                {pkg.highlight && (
-                  <div className="bg-white text-orange-600 rounded-full px-3 py-1 text-[8px] font-black uppercase tracking-widest mb-4 w-fit shadow-xl">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className={`text-lg font-black mb-1 text-slate-900 uppercase tracking-tighter`}>{pkg.name}</h3>
-                <div className="flex items-baseline gap-1 mb-4 text-slate-900">
-                  <span className="text-2xl font-black tracking-tighter">{pkg.price}</span>
-                  <span className="text-[10px] font-bold opacity-60">{pkg.period}</span>
-                </div>
-                <p className="text-[12px] font-bold text-slate-900/70 mb-6 leading-tight line-clamp-2">{pkg.desc}</p>
-
-                <ul className="space-y-2 mb-8 flex-grow">
-                  {pkg.features.map((feat, fi) => (
-                    <li key={fi} className="flex items-start gap-2.5 text-slate-900/90">
-                      <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
-                      <span className="text-[12px] font-bold leading-tight">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/contact"
-                  className={`block w-full py-3.5 rounded-xl text-center font-black text-base transition-all shadow-xl hover:scale-105 ${pkg.highlight ? 'bg-white text-slate-900' : 'bg-white text-slate-900'}`}
+              {activePackages.map((pkg, i) => (
+                <div
+                  key={i}
+                  className={`relative rounded-[2.5rem] p-8 flex flex-col shadow-xl bg-gradient-to-br ${pkg.color} ${pkg.highlight ? 'scale-105 z-10 border-4 border-white shadow-2xl' : 'border border-slate-200 mt-0 md:mt-6 mb-0 md:mb-6'}`}
                 >
-                  {pkg.cta}
-                </Link>
-              </div>
+                  <div className="absolute inset-0 opacity-10 bg-[url('/noise.svg')] pointer-events-none rounded-[2.5rem]" />
+                  <div className="relative z-10 flex flex-col h-full text-white">
+                    {pkg.highlight && (
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-orange-500 text-white rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest shadow-xl whitespace-nowrap">
+                        Most Popular
+                      </div>
+                    )}
+                    
+                    <div className="mb-8">
+                       <h3 className={`text-2xl font-black mb-2 uppercase tracking-tighter`}>{pkg.name}</h3>
+                       <p className="text-[12px] font-bold text-white/80 leading-tight">{pkg.subtitle}</p>
+                    </div>
+
+                    <div className="flex items-baseline gap-2 mb-8 bg-black/20 p-4 rounded-2xl border border-white/10">
+                      <span className="text-3xl lg:text-4xl font-black tracking-tighter">{pkg.price}</span>
+                      <span className="text-xs font-bold text-white/60">{pkg.period}</span>
+                    </div>
+
+                    <ul className="space-y-4 mb-10 flex-grow">
+                      {pkg.features.map((feat, fi) => (
+                        <li key={fi} className="flex items-start gap-3 text-white/90">
+                          <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-white/80" />
+                          <span className="text-sm font-bold leading-tight">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href={`https://wa.me/923442013217?text=${encodeURIComponent(pkg.message)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`block w-full py-4 rounded-xl text-center font-black text-sm uppercase tracking-widest transition-all shadow-xl hover:scale-105 ${pkg.highlight ? 'bg-white text-green-700' : 'bg-white text-slate-900'}`}
+                    >
+                      {pkg.cta}
+                    </a>
+                  </div>
+                </div>
+              ))}
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          {/* Add-ons Section for Specific Tabs */}
+          {(activeTab === 'pos' || activeTab === 'ecommerce') && (
+             <motion.div 
+               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+               className="mt-20 max-w-3xl mx-auto bg-white rounded-[2rem] border border-slate-300 p-8 shadow-sm"
+             >
+                <div className="flex items-center gap-3 mb-6">
+                   <Cog className="w-6 h-6 text-orange-600" />
+                   <h3 className="text-2xl font-black tracking-tighter text-slate-900">Add-ons (One Time)</h3>
+                </div>
+                <div className="space-y-3">
+                   {addons.map((addon, i) => (
+                      <div key={i} className="flex justify-between items-center py-3 border-b border-slate-100 last:border-0">
+                         <span className="font-bold text-slate-700">{addon.name}</span>
+                         <span className="font-black text-slate-900 bg-slate-100 px-3 py-1 rounded-lg text-sm">{addon.price}</span>
+                      </div>
+                   ))}
+                </div>
+             </motion.div>
+          )}
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-32 bg-white px-4 sm:px-6 lg:px-8 xl:px-24 border-y border-slate-300">
+      <section className="py-32 bg-white px-4 sm:px-6 lg:px-8 xl:px-24 border-t border-slate-300">
         <div className="mx-auto max-w-4xl">
           <div className="text-center mb-20">
             <div className="text-[10px] font-black uppercase tracking-[0.4em] text-orange-600 mb-4">Common Questions</div>
@@ -238,12 +407,12 @@ export function Pricing() {
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-white rounded-[2rem] overflow-hidden border border-slate-300">
+              <div key={i} className="bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-200">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full p-8 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+                  className="w-full p-8 flex items-center justify-between text-left hover:bg-slate-100 transition-colors"
                 >
-                  <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">{faq.q}</span>
+                  <span className="text-xl font-black tracking-tight text-slate-900">{faq.q}</span>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center border border-slate-300 transition-transform ${openFaq === i ? 'rotate-180 bg-white text-slate-900' : ''}`}>
                     {openFaq === i ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                   </div>
@@ -256,7 +425,7 @@ export function Pricing() {
                       exit={{ height: 0, opacity: 0 }}
                       className="px-8 pb-8"
                     >
-                      <p className="text-lg font-bold text-slate-900/60 leading-relaxed">
+                      <p className="text-lg font-bold text-slate-600 leading-relaxed">
                         {faq.a}
                       </p>
                     </motion.div>
@@ -271,27 +440,9 @@ export function Pricing() {
             <h3 className="text-3xl font-black mb-6 tracking-tighter relative z-10">Still have questions?</h3>
             <p className="text-slate-900/50 text-xl font-bold mb-10 relative z-10">We're here to help. Reach out to us via WhatsApp or Email.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
-              <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-slate-900 px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:scale-105 transition-all">WhatsApp Us</a>
-              <Link to="/contact" className="bg-white/5 border border-slate-300 text-slate-900 px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:bg-white hover:text-slate-900 transition-all">Contact Form</Link>
+              <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-3"><MessageSquare className="w-5 h-5" /> WhatsApp Us</a>
+              <Link to="/contact" className="bg-slate-100 border border-slate-300 text-slate-900 px-10 py-5 rounded-2xl text-lg font-black shadow-xl hover:bg-white hover:text-slate-900 transition-all">Contact Form</Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Row */}
-      <section className="py-24 border-t border-slate-300">
-        <div className="mx-auto max-w-7xl px-4 flex flex-wrap justify-center gap-12 sm:gap-24 opacity-40">
-          <div className="text-center">
-            <div className="text-3xl font-black tracking-tighter">Month-to-month</div>
-            <div className="text-[10px] uppercase font-black tracking-widest mt-1">No long-term contracts</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black tracking-tighter">7-Day Notice</div>
-            <div className="text-[10px] uppercase font-black tracking-widest mt-1">Cancel or Scale anytime</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black tracking-tighter">100% IP</div>
-            <div className="text-[10px] uppercase font-black tracking-widest mt-1">You own all the code</div>
           </div>
         </div>
       </section>

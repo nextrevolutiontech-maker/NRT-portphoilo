@@ -18,7 +18,7 @@ const AUTHORS: Record<string, {
   "muhammad-ahsan-khan": {
     name: "Muhammad Ahsan Khan",
     role: "Founder & Business Systems Architect",
-    image: "https://res.cloudinary.com/de4oqb7rz/image/upload/v1740927508/nrt-portfolio/dp2_k9oov6.png",
+    image: "/ahsan_new.jpg",
     linkedin: "https://www.linkedin.com/in/muhammad-ahsan-khan-founder-61a51032a",
     bio: "Muhammad Ahsan Khan is the Founder and Business Systems Architect at Next Revolution Tech. He specializes in designing enterprise ERP systems, deploying AI automation, and driving business process optimization to help organizations achieve operational efficiency and scalability.",
     specializations: [

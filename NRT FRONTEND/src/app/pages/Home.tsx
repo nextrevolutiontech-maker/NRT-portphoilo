@@ -41,7 +41,10 @@ import {
   Plus,
   Minus,
   MessageSquare,
-  Users
+  Users,
+  Briefcase,
+  Building2,
+  Stethoscope
 } from "lucide-react";
 import { PreFooterCTA } from "../components/PreFooterCTA";
 import { ScrollReveal } from "../components/ui/ScrollReveal";
@@ -401,6 +404,72 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Special Offer Section */}
+      <ScrollReveal>
+        <section id="website-offer" className="py-20 sm:py-24 bg-slate-900 text-white relative overflow-hidden border-y border-slate-800">
+           <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
+           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/20 rounded-full blur-[120px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
+           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 translate-y-1/2" />
+           
+           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                 <div className="w-full lg:w-1/2">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 font-bold text-sm uppercase tracking-wider mb-6 shadow-[0_0_15px_rgba(234,88,12,0.1)]">
+                       <span className="animate-pulse">🔥</span> Limited Time Offer
+                    </div>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-6">
+                       Complete Business Website for just <span className="text-orange-500">$200</span>
+                    </h2>
+                    <p className="text-lg text-slate-300 mb-8 max-w-xl">
+                       Get your business online in just days! Our all-inclusive package comes with a premium custom design, 1-year domain name, and blazing fast secure hosting.
+                    </p>
+                    
+                    <ul className="space-y-4 mb-10">
+                       {[
+                         "Free 1-Year .com Domain & Premium Hosting",
+                         "Mobile-Responsive Premium Design (5-7 Pages)",
+                         "SEO Optimized & Fast Loading Speed",
+                         "WhatsApp Integration & Lead Capture Forms"
+                       ].map((feature, i) => (
+                         <li key={i} className="flex items-center gap-3 text-slate-200">
+                            <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                            <span className="font-medium">{feature}</span>
+                         </li>
+                       ))}
+                    </ul>
+                    
+                    <a 
+                      href="https://wa.me/923442013217?text=Hi NRT, I want to claim the $200 Complete Website Offer for my business." 
+                      target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-500 text-white px-8 py-4 rounded-full text-lg font-bold shadow-[0_0_30px_rgba(234,88,12,0.3)] hover:scale-105 transition-all"
+                    >
+                       Claim Offer on WhatsApp
+                       <ArrowRight className="w-5 h-5 ml-2" />
+                    </a>
+                 </div>
+                 
+                 <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      { title: "Business / Corporate", icon: <Briefcase className="w-6 h-6 text-blue-400" /> },
+                      { title: "E-Commerce Store", icon: <ShoppingCart className="w-6 h-6 text-green-400" /> },
+                      { title: "Restaurant / Cafe", icon: <UtensilsCrossed className="w-6 h-6 text-orange-400" /> },
+                      { title: "Real Estate Listings", icon: <Building2 className="w-6 h-6 text-indigo-400" /> },
+                      { title: "Clinic / Healthcare", icon: <Stethoscope className="w-6 h-6 text-teal-400" /> }
+                    ].map((type, i) => (
+                      <div key={i} className="bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm p-6 rounded-2xl hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 flex flex-col gap-3 group">
+                         <div className="w-12 h-12 rounded-full bg-slate-900/80 flex items-center justify-center border border-slate-700 group-hover:scale-110 transition-transform">
+                            {type.icon}
+                         </div>
+                         <h3 className="text-lg font-bold text-white">{type.title}</h3>
+                         <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Included in Package</span>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+           </div>
+        </section>
+      </ScrollReveal>
 
       {/* Trust Stats Bar - Redesigned Dark & Premium */}
       <ScrollReveal>

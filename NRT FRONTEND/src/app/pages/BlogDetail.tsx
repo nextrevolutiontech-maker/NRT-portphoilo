@@ -287,7 +287,7 @@ export function BlogDetail() {
       <div className="min-h-screen flex flex-col items-center justify-center bg-white text-slate-900 p-6">
         <h1 className="text-4xl font-black mb-4">Article Not Found</h1>
         <p className="text-lg mb-8 text-slate-900/60">The article you are looking for does not exist or has been relocated.</p>
-        <Link to="/blog" className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-all">
+        <Link to="/resources" className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-all">
           <ArrowLeft className="w-5 h-5" /> Back to Blog
         </Link>
       </div>
@@ -306,7 +306,7 @@ export function BlogDetail() {
         <div className="absolute inset-0 opacity-[0.01] pointer-events-none bg-[url('/noise.svg')]" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="mx-auto max-w-4xl px-4 relative z-10">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-slate-900/50 hover:text-slate-900 mb-8 font-black uppercase text-xs tracking-widest transition-all">
+          <Link to="/resources" className="inline-flex items-center gap-2 text-slate-900/50 hover:text-slate-900 mb-8 font-black uppercase text-xs tracking-widest transition-all">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
           <div className="flex flex-wrap items-center gap-4 mb-6">
