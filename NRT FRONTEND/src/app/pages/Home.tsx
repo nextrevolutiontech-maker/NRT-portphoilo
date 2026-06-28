@@ -405,6 +405,38 @@ export function Home() {
         </div>
       </section>
 
+      {/* Solution Finder Teaser */}
+      <ScrollReveal>
+        <section className="py-16 bg-primary text-primary-foreground relative overflow-hidden border-y border-primary/20">
+          <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="max-w-2xl text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm uppercase tracking-wider mb-6">
+                  <Bot className="w-4 h-4" /> AI Digital Strategist
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-4">
+                  Not sure which solution your business needs?
+                </h2>
+                <p className="text-lg text-primary-foreground/80">
+                  Answer 5 quick questions about your operations and receive a custom digital roadmap, suggested team structure, and timeline in seconds.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Link 
+                  to="/solution-finder" 
+                  className="inline-flex items-center justify-center bg-white text-primary px-8 py-5 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition-all"
+                >
+                  Find My Solution <ArrowRight className="w-6 h-6 ml-2" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* Special Offer Section */}
       <ScrollReveal>
         <section id="website-offer" className="py-20 sm:py-24 bg-slate-900 text-white relative overflow-hidden border-y border-slate-800">

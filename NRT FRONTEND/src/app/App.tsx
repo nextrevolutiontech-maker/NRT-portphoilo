@@ -40,6 +40,9 @@ import { GDPRCompliance } from "./pages/policies/GDPRCompliance";
 import { Pricing } from "./pages/Pricing";
 import { NotFound } from "./pages/NotFound";
 import { DedicatedTeamsLanding } from "./pages/DedicatedTeamsLanding";
+import { SolutionFinder } from "./pages/SolutionFinder";
+import { ContentOpsDashboard } from "./pages/ContentOpsDashboard";
+import { BusinessProblemDetail } from "./pages/BusinessProblemDetail";
 
 // Loading Fallback
 const PageLoader = () => (
@@ -86,6 +89,7 @@ export default function App() {
           {/* Admin Routes (Standalone) */}
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/content-ops" element={<ContentOpsDashboard />} />
 
           {/* Public Routes (With Header/Footer) */}
           <Route element={<PublicLayout />}>
@@ -102,6 +106,7 @@ export default function App() {
             <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
             <Route path="/resources" element={<ResourcesHub />} />
             <Route path="/resources/:slug" element={<BlogDetail />} />
+            <Route path="/knowledge/:slug" element={<BlogDetail />} />
             <Route path="/tech-stack" element={<TechStack />} />
             <Route path="/discovery-framework" element={<DiscoveryFramework />} />
             <Route path="/author/:slug" element={<AuthorProfile />} />
@@ -109,6 +114,8 @@ export default function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/estimator" element={<CostEstimator />} />
+            <Route path="/solution-finder" element={<SolutionFinder />} />
+            <Route path="/business-problems/:slug" element={<BusinessProblemDetail />} />
             <Route path="/dedicated-teams" element={<DedicatedTeamsLanding />} />
             <Route path="*" element={<NotFound />} />
           </Route>

@@ -6,12 +6,19 @@ import react from '@vitejs/plugin-react'
 import viteCompression from 'vite-plugin-compression';
 import Sitemap from 'vite-plugin-sitemap';
 import { VitePWA } from 'vite-plugin-pwa';
+import mdx from '@mdx-js/rollup';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [
+    mdx({ 
+      providerImportSource: "@mdx-js/react",
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter]
+    }),
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
     react(),
