@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
-import { ArrowRight, ArrowLeft, CheckCircle, Target, Briefcase, Users, LayoutDashboard, BrainCircuit } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle, Target, Briefcase, Users, LayoutDashboard, BrainCircuit, Loader2 } from 'lucide-react';
 import mappingData from '../../../data/problem-mapping.json';
+import { API_BASE_URL } from '../../config';
+import { toast } from 'sonner';
 
 const STEPS = [
   { id: 1, title: 'Industry', icon: Briefcase },
@@ -23,6 +25,40 @@ export function SolutionFinder() {
   });
 
   const [showResults, setShowResults] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalStep, setModalStep] = useState(1);
+  const [leadData, setLeadData] = useState({ name: '', email: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleLeadSubmit = async () => {
+    if (!leadData.name || !leadData.email) return;
+    
+    setIsSubmitting(true);
+    try {
+      const payload = {
+        name: leadData.name,
+        email: leadData.email,
+        whatsapp: "Solution Finder",
+        company: formData.size, // Pass size as company info
+        phone: "",
+        message: `SOLUTION FINDER LEAD:\nIndustry: ${formData.industry}\nCompany Size: ${formData.size}\nProblems: ${formData.problems.join(', ')}\nTools: ${formData.tools.join(', ')}\nPrimary Goal: ${formData.goal}\nScore: ${calculateResults().score}`
+      };
+
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error('Failed to send');
+
+      setModalStep(2);
+    } catch (error) {
+      toast.error("Transmission Error", { description: "Failed to save roadmap. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < 5) setCurrentStep(c => c + 1);
@@ -144,12 +180,97 @@ export function SolutionFinder() {
             </div>
 
             <div className="text-center">
-              <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all inline-flex items-center gap-2">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all inline-flex items-center gap-2"
+              >
                 Book Discovery Call <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </ScrollReveal>
         </div>
+
+        {/* Premium Lead Capture Modal */}
+        <AnimatePresence>
+          {isModalOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="bg-white w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-[2rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] border border-slate-100 relative"
+              >
+                {/* Premium Close Button */}
+                <button 
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-6 right-6 p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all duration-200"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+
+                <div className="p-8 sm:p-10">
+                  {modalStep === 1 ? (
+                    <>
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 text-primary rounded-2xl flex items-center justify-center mb-8 shadow-sm">
+                        <CheckCircle className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-3xl font-black mb-3 text-slate-900 tracking-tight">Save Your Roadmap</h3>
+                      <p className="text-slate-500 mb-8 text-lg leading-relaxed">Enter your details to receive a copy of this strategy and schedule your free discovery call.</p>
+                      
+                      <div className="space-y-5 mb-10">
+                        <div>
+                          <label className="block text-sm font-bold mb-2 text-slate-700 uppercase tracking-wide">Full Name</label>
+                          <input 
+                            type="text" 
+                            value={leadData.name}
+                            onChange={(e) => setLeadData({...leadData, name: e.target.value})}
+                            className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-5 py-4 text-slate-900 font-medium focus:bg-white focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-bold mb-2 text-slate-700 uppercase tracking-wide">Work Email</label>
+                          <input 
+                            type="email" 
+                            value={leadData.email}
+                            onChange={(e) => setLeadData({...leadData, email: e.target.value})}
+                            className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-5 py-4 text-slate-900 font-medium focus:bg-white focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      <button 
+                        onClick={handleLeadSubmit}
+                        disabled={isSubmitting || !leadData.name || !leadData.email}
+                        className={`w-full py-4 rounded-2xl font-bold flex justify-center items-center gap-2 transition-all duration-300 ${(leadData.name && leadData.email && !isSubmitting) ? 'bg-primary text-primary-foreground hover:shadow-lg hover:-translate-y-0.5' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}`}
+                      >
+                        {isSubmitting ? (
+                          <><Loader2 className="w-5 h-5 animate-spin" /> Saving...</>
+                        ) : (
+                          <>Save & Continue <ArrowRight className="w-5 h-5" /></>
+                        )}
+                      </button>
+                    </>
+                  ) : (
+                    <div className="text-center py-8">
+                      <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-emerald-100">
+                        <CheckCircle className="w-10 h-10" />
+                      </div>
+                      <h3 className="text-3xl font-black mb-3 text-slate-900 tracking-tight">Roadmap Sent!</h3>
+                      <p className="text-slate-500 mb-10 text-lg leading-relaxed">We've saved your preferences. Now, let's pick a time that works for you.</p>
+                      
+                      <a 
+                        href="/contact" 
+                        className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] hover:-translate-y-0.5 transition-all flex justify-center items-center gap-2"
+                      >
+                        Select Calendar Time <ArrowRight className="w-5 h-5" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     );
   }
@@ -201,8 +322,12 @@ export function SolutionFinder() {
                     {['Manufacturing', 'Retail', 'Healthcare', 'Logistics', 'Construction', 'Education'].map(ind => (
                       <button
                         key={ind}
-                        onClick={() => setFormData({...formData, industry: ind})}
-                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.industry === ind ? 'border-primary bg-primary/5' : 'border-border hover:border-foreground/30'}`}
+                        type="button"
+                        onClick={() => {
+                          setFormData({...formData, industry: ind});
+                          setTimeout(handleNext, 300);
+                        }}
+                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.industry === ind ? 'border-primary bg-primary/5 ring-2 ring-primary ring-offset-2' : 'border-border hover:border-foreground/30 hover:bg-secondary/50'}`}
                       >
                         <span className="font-bold text-lg">{ind}</span>
                       </button>
@@ -218,8 +343,12 @@ export function SolutionFinder() {
                     {['1-10', '11-50', '51-200', '201-1000', '1000+'].map(size => (
                       <button
                         key={size}
-                        onClick={() => setFormData({...formData, size})}
-                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.size === size ? 'border-primary bg-primary/5' : 'border-border hover:border-foreground/30'}`}
+                        type="button"
+                        onClick={() => {
+                          setFormData({...formData, size});
+                          setTimeout(handleNext, 300);
+                        }}
+                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.size === size ? 'border-primary bg-primary/5 ring-2 ring-primary ring-offset-2' : 'border-border hover:border-foreground/30 hover:bg-secondary/50'}`}
                       >
                         <span className="font-bold text-lg">{size}</span>
                       </button>
@@ -236,8 +365,9 @@ export function SolutionFinder() {
                     {mappingData.map(mapping => (
                       <button
                         key={mapping.id}
+                        type="button"
                         onClick={() => toggleArrayItem('problems', mapping.id)}
-                        className={`p-4 text-left rounded-xl border-2 transition-all flex items-start gap-4 ${formData.problems.includes(mapping.id) ? 'border-primary bg-primary/5' : 'border-border hover:border-foreground/30'}`}
+                        className={`p-4 text-left rounded-xl border-2 transition-all flex items-start gap-4 ${formData.problems.includes(mapping.id) ? 'border-primary bg-primary/5 ring-2 ring-primary ring-offset-2' : 'border-border hover:border-foreground/30 hover:bg-secondary/50'}`}
                       >
                         <div className={`w-6 h-6 rounded-full border flex-shrink-0 mt-0.5 ${formData.problems.includes(mapping.id) ? 'border-primary bg-primary' : 'border-foreground/30'}`}>
                            {formData.problems.includes(mapping.id) && <CheckCircle className="w-5 h-5 text-primary-foreground ml-0.5 mt-0.5" />}
@@ -257,8 +387,9 @@ export function SolutionFinder() {
                     {['Excel / Spreadsheets', 'QuickBooks', 'Xero', 'SAP', 'Odoo', 'Tally', 'No System'].map(tool => (
                       <button
                         key={tool}
+                        type="button"
                         onClick={() => toggleArrayItem('tools', tool)}
-                        className={`p-4 text-left rounded-xl border-2 transition-all ${formData.tools.includes(tool) ? 'border-primary bg-primary/5' : 'border-border hover:border-foreground/30'}`}
+                        className={`p-4 text-left rounded-xl border-2 transition-all ${formData.tools.includes(tool) ? 'border-primary bg-primary/5 ring-2 ring-primary ring-offset-2' : 'border-border hover:border-foreground/30 hover:bg-secondary/50'}`}
                       >
                         <span className="font-medium text-sm">{tool}</span>
                       </button>
@@ -274,8 +405,12 @@ export function SolutionFinder() {
                     {['Reduce Operational Costs', 'Increase Productivity & Sales', 'Automate Manual Tasks with AI', 'Complete Digital Transformation'].map(goal => (
                       <button
                         key={goal}
-                        onClick={() => setFormData({...formData, goal})}
-                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.goal === goal ? 'border-primary bg-primary/5' : 'border-border hover:border-foreground/30'}`}
+                        type="button"
+                        onClick={() => {
+                          setFormData({...formData, goal});
+                          setTimeout(handleNext, 300);
+                        }}
+                        className={`p-6 text-left rounded-xl border-2 transition-all ${formData.goal === goal ? 'border-primary bg-primary/5 ring-2 ring-primary ring-offset-2' : 'border-border hover:border-foreground/30 hover:bg-secondary/50'}`}
                       >
                         <span className="font-bold text-lg">{goal}</span>
                       </button>

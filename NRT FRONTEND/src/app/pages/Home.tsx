@@ -405,37 +405,40 @@ export function Home() {
         </div>
       </section>
 
-      {/* Solution Finder Teaser */}
-      <ScrollReveal>
-        <section className="py-16 bg-primary text-primary-foreground relative overflow-hidden border-y border-primary/20">
-          <div className="absolute inset-0 opacity-[0.05] bg-[url('/noise.svg')]" />
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="max-w-2xl text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm uppercase tracking-wider mb-6">
-                  <Bot className="w-4 h-4" /> AI Digital Strategist
-                </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-4">
-                  Not sure which solution your business needs?
-                </h2>
-                <p className="text-lg text-primary-foreground/80">
-                  Answer 5 quick questions about your operations and receive a custom digital roadmap, suggested team structure, and timeline in seconds.
-                </p>
+      {/* Floating Solution Finder CTA - Integrated below Hero */}
+      <div className="relative z-20 -mt-8 sm:-mt-12 mb-16 sm:mb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <ScrollReveal>
+          <div className="bg-slate-900 rounded-[2.5rem] p-8 sm:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] border border-slate-700/50 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 group">
+            {/* Ambient Background Effects */}
+            <div className="absolute inset-0 opacity-20 bg-[url('/noise.svg')] pointer-events-none mix-blend-overlay" />
+            <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/20 rounded-full blur-[80px] pointer-events-none group-hover:bg-primary/30 transition-colors duration-700" />
+            <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-orange-600/20 rounded-full blur-[80px] pointer-events-none" />
+
+            <div className="relative z-10 max-w-2xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-widest mb-6 backdrop-blur-md">
+                <Bot className="w-4 h-4 text-primary" /> AI Digital Strategist
               </div>
-              <div className="shrink-0">
-                <Link 
-                  to="/solution-finder" 
-                  className="inline-flex items-center justify-center bg-white text-primary px-8 py-5 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition-all"
-                >
-                  Find My Solution <ArrowRight className="w-6 h-6 ml-2" />
-                </Link>
-              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] text-white mb-4">
+                Not sure which solution your business needs?
+              </h2>
+              <p className="text-lg text-slate-300 font-medium leading-relaxed">
+                Answer 5 quick questions about your operations and receive a custom digital roadmap, suggested team structure, and exact timeline.
+              </p>
+            </div>
+
+            <div className="relative z-10 shrink-0 w-full lg:w-auto flex justify-center">
+              <Link 
+                to="/solution-finder" 
+                className="w-full lg:w-auto inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-50 px-8 py-5 rounded-2xl text-xl font-bold shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_60px_rgba(255,255,255,0.25)] hover:-translate-y-1 transition-all duration-300 gap-3"
+              >
+                Find My Solution <ArrowRight className="w-6 h-6" />
+              </Link>
             </div>
           </div>
-        </section>
-      </ScrollReveal>
+        </ScrollReveal>
+      </div>
+
+
 
       {/* Special Offer Section */}
       <ScrollReveal>
@@ -1206,13 +1209,13 @@ export function Home() {
 
             <div className="grid gap-6">
                {[
-                 { q: "What is your approach to implementing ERP Systems?", a: "We don't just install software; we align the ERP with your core business processes. From centralized databases to custom portal interfaces, we ensure that the system eliminates manual bottlenecks and provides real-time operational visibility." },
-                 { q: "How can AI Automation help my business?", a: "AI Automation replaces repetitive, manual tasks with intelligent workflows. This includes automating customer support, qualifying leads, and streamlining data entry, allowing your team to focus on high-value growth initiatives." },
-                 { q: "Do you build custom software from scratch?", a: "Yes. Whether you need a specialized SaaS platform, an internal management dashboard, or a complex integration with legacy systems, our engineering team builds secure, scalable, and tailored software solutions." },
-                 { q: "How does the Dedicated Technology Team model work?", a: "You get immediate access to a full stack of elite engineers, designers, and project managers without the recruitment overhead. They integrate directly with your operations to provide continuous technical execution for your long-term roadmap." },
-                 { q: "How is NRT different from a typical development agency?", a: "We are an outcome-driven business transformation partner. We focus on delivering operational efficiency, scalability, and business growth through technology, rather than just writing code." }
+                 { q: "What is your approach to implementing ERP Systems?", a: "We don't just install software; we align the ERP with your core business processes. From centralized databases to custom portal interfaces, we ensure that the system eliminates manual bottlenecks and provides real-time operational visibility.", img: "/faq-icons/erp.png" },
+                 { q: "How can AI Automation help my business?", a: "AI Automation replaces repetitive, manual tasks with intelligent workflows. This includes automating customer support, qualifying leads, and streamlining data entry, allowing your team to focus on high-value growth initiatives.", img: "/faq-icons/ai.png" },
+                 { q: "Do you build custom software from scratch?", a: "Yes. Whether you need a specialized SaaS platform, an internal management dashboard, or a complex integration with legacy systems, our engineering team builds secure, scalable, and tailored software solutions.", img: "/faq-icons/software.png" },
+                 { q: "How does the Dedicated Technology Team model work?", a: "You get immediate access to a full stack of elite engineers, designers, and project managers without the recruitment overhead. They integrate directly with your operations to provide continuous technical execution for your long-term roadmap.", img: "/faq-icons/team.png" },
+                 { q: "How is NRT different from a typical development agency?", a: "We are an outcome-driven business transformation partner. We focus on delivering operational efficiency, scalability, and business growth through technology, rather than just writing code.", img: "/faq-icons/nrt.png" }
                ].map((faq, i) => (
-                 <FAQItem key={i} faq={faq} index={i} />
+                  <FAQItem key={i} faq={faq} index={i} />
                ))}
             </div>
          </div>
@@ -1315,8 +1318,7 @@ export function Home() {
                       <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">Full Name</label>
                       <input 
                         type="text" 
-                        required 
-                        placeholder="e.g. Jane Doe"
+                        required
                         value={leadForm.name}
                         onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                         className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1327,8 +1329,7 @@ export function Home() {
                         <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">Work Email</label>
                         <input 
                           type="email" 
-                          required 
-                          placeholder="jane@company.com"
+                          required
                           value={leadForm.email}
                           onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
                           className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1338,8 +1339,7 @@ export function Home() {
                         <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">WhatsApp Number</label>
                         <input 
                           type="text" 
-                          required 
-                          placeholder="e.g. 03442013217"
+                          required
                           value={leadForm.whatsapp}
                           onChange={(e) => setLeadForm({ ...leadForm, whatsapp: e.target.value })}
                           className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1349,8 +1349,7 @@ export function Home() {
                     <div className="space-y-2">
                       <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">Company Name</label>
                       <input 
-                        type="text" 
-                        placeholder="Acme Corp"
+                        type="text"
                         value={leadForm.company}
                         onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
                         className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1360,7 +1359,6 @@ export function Home() {
                       <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">What is your biggest manual/tech bottleneck?</label>
                       <textarea 
                         rows={3}
-                        placeholder="e.g., Managing inventory via Excel is causing double entry errors..."
                         value={leadForm.message}
                         onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
                         className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-6 py-4 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all resize-none"
@@ -1396,8 +1394,7 @@ export function Home() {
               <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 ml-2">Full Name</label>
               <input 
                 type="text" 
-                required 
-                placeholder="Jane Doe"
+                required
                 value={leadForm.name}
                 onChange={(e) => setLeadForm({ ...leadForm, name: e.target.value })}
                 className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-5 py-3.5 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1408,8 +1405,7 @@ export function Home() {
                 <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 ml-2">Work Email</label>
                 <input 
                   type="email" 
-                  required 
-                  placeholder="jane@company.com"
+                  required
                   value={leadForm.email}
                   onChange={(e) => setLeadForm({ ...leadForm, email: e.target.value })}
                   className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-5 py-3.5 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1419,8 +1415,7 @@ export function Home() {
                 <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 ml-2">WhatsApp</label>
                 <input 
                   type="text" 
-                  required 
-                  placeholder="e.g. 03442013217"
+                  required
                   value={leadForm.whatsapp}
                   onChange={(e) => setLeadForm({ ...leadForm, whatsapp: e.target.value })}
                   className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-5 py-3.5 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1430,8 +1425,7 @@ export function Home() {
             <div className="space-y-1">
               <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 ml-2">Company Name</label>
               <input 
-                type="text" 
-                placeholder="Acme Corp"
+                type="text"
                 value={leadForm.company}
                 onChange={(e) => setLeadForm({ ...leadForm, company: e.target.value })}
                 className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-5 py-3.5 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all"
@@ -1441,7 +1435,6 @@ export function Home() {
               <label className="block text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 ml-2">Primary Bottleneck / Message</label>
               <textarea 
                 rows={3}
-                placeholder="Briefly describe your process bottleneck..."
                 value={leadForm.message}
                 onChange={(e) => setLeadForm({ ...leadForm, message: e.target.value })}
                 className="w-full bg-white border border-slate-300 text-slate-900 focus:border-orange-600 rounded-2xl px-5 py-3.5 text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all resize-none"
@@ -1470,17 +1463,24 @@ function FAQItem({ faq, index }: { faq: any, index: number }) {
   return (
     <motion.div 
       initial={false}
-      className={`rounded-[2.5rem] border transition-all duration-700 overflow-hidden ${
+      className={`rounded-[2.5rem] border transition-all duration-700 overflow-hidden relative ${
         isOpen 
-        ? 'bg-white border border-slate-300 shadow-2xl' 
-        : 'bg-white border-slate-200 hover:border-slate-400'
+        ? 'bg-white border-orange-600/30 shadow-[0_30px_80px_-15px_rgba(234,88,12,0.2)] scale-[1.03] z-50' 
+        : 'bg-white border-slate-200 hover:border-orange-600/30 hover:-translate-y-1 hover:shadow-xl z-10'
       }`}
     >
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-8 sm:p-12 flex items-start justify-between text-left group"
+        className="w-full p-8 sm:p-12 flex items-start justify-between text-left group relative"
       >
-        <div className="flex gap-8 sm:gap-12">
+        {/* Floating Hover Image */}
+        {faq.img && (
+          <div className="absolute right-28 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700 pointer-events-none z-20 hidden xl:flex items-center justify-center pointer-events-none mix-blend-multiply" style={{ maskImage: 'radial-gradient(circle, black 50%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)' }}>
+            <img src={faq.img} alt="" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" />
+          </div>
+        )}
+
+        <div className="flex gap-8 sm:gap-12 relative z-10 w-full xl:w-2/3 pr-8">
            <div className="relative">
               <span className={`text-4xl sm:text-5xl font-bold tracking-tighter transition-all duration-700 ${isOpen ? 'text-orange-600' : 'text-slate-400 group-hover:text-slate-900'}`}>
                  {(index + 1).toString().padStart(2, '0')}

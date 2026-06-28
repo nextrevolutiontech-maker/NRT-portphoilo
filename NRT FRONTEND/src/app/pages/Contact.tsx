@@ -107,7 +107,6 @@ export function Contact() {
                       name="name"
                       type="text"
                       required
-                      placeholder="Jane Doe"
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
@@ -119,7 +118,6 @@ export function Contact() {
                       name="email"
                       type="email"
                       required
-                      placeholder="jane@company.com"
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
@@ -132,7 +130,6 @@ export function Contact() {
                     <input
                       name="company"
                       type="text"
-                      placeholder="Acme Corp"
                       value={formData.company}
                       onChange={handleChange}
                       className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
@@ -143,7 +140,6 @@ export function Contact() {
                     <input
                       name="whatsapp"
                       type="text"
-                      placeholder="e.g. 03442013217"
                       value={formData.whatsapp}
                       onChange={handleChange}
                       className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all shadow-sm hover:border-orange-600/20"
@@ -156,7 +152,6 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="Tell us about your operational challenges or project goals..."
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-white/50 border border-slate-300 rounded-2xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-[#3A5CCC] font-bold transition-all resize-none shadow-sm hover:border-orange-600/20"
@@ -198,8 +193,8 @@ export function Contact() {
                       <Mail className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Partnerships & Strategy</div>
-                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-sm sm:text-lg font-black hover:text-orange-600 transition-colors break-all lg:break-all xl:break-normal">
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Partnerships & Strategy</div>
+                      <a href="mailto:nextrevolutiontech@gmail.com" className="text-sm sm:text-lg font-black text-white hover:text-orange-500 transition-colors break-all lg:break-all xl:break-normal">
                         nextrevolutiontech@gmail.com
                       </a>
                     </div>
@@ -209,8 +204,8 @@ export function Contact() {
                       <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Direct Line</div>
-                      <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-2xl font-black hover:text-[#25D366] transition-colors">0344-2013217</a>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Direct Line</div>
+                      <a href="https://wa.me/923442013217" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-2xl font-black text-white hover:text-[#25D366] transition-colors">0344-2013217</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-4 sm:gap-6 group/item">
@@ -218,8 +213,8 @@ export function Contact() {
                       <Globe className="w-6 h-6 sm:w-7 sm:h-7" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900/40 mb-1">Location</div>
-                      <div className="text-lg sm:text-2xl font-black">Karachi, Pakistan</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Location</div>
+                      <div className="text-lg sm:text-2xl font-black text-white">Karachi, Pakistan</div>
                     </div>
                   </div>
                 </div>
